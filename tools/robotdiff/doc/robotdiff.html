@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>Diff Tool for Robot Framework Outputs</title>
+<title>robotdiff.py</title>
 <style type="text/css">
 
 /* Robot Framework User Guide Style Sheet
@@ -448,8 +448,58 @@ pre.literal-block, pre.doctest-block {
 </style>
 </head>
 <body>
-<div class="document" id="diff-tool-for-robot-framework-outputs">
-<h1 class="title">Diff Tool for Robot Framework Outputs</h1>
+<div class="document" id="robotdiff-py">
+<h1 class="title">robotdiff.py</h1>
+<p>A tool for comparing two or more Robot Framework output files.</p>
+<div class="section">
+<h1><a id="synopsis" name="synopsis">Synopsis</a></h1>
+<pre class="literal-block">
+robotdiff.py [options] input files
+</pre>
+</div>
+<div class="section">
+<h1><a id="options" name="options">Options</a></h1>
+<blockquote>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-r</span>, <span class="option">--report <var>&lt;file&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>HTML report file (created from the input files).
+Default is 'robotdiff.html'.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-n</span>, <span class="option">--name <var>&lt;name&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Name for test run. Different test runs can be named
+with this option. However, there must be as many
+names as there are input files. By default the name
+of the input files are used as names. Input files
+having same file name are distinguished by adding
+as many parent directories to the names as is needed.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-t</span>, <span class="option">--title <var>&lt;title&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Title for the generated diff report. The default
+title is 'Diff Report'.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-E</span>, <span class="option">--escape <var>&lt;what:with&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Escape certain characters which are problematic in
+console. 'what' is the name of the character to
+escape and 'with' is the string to escape it with.
+Available character to escape: %(ESCAPES)s
+Example: <span class="cli">-\-escape space:_ -\-title My_Diff_Report</span></td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>Print this usage instruction.</td></tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section">
+<h1><a id="description" name="description">Description</a></h1>
 <p>This script compares two or more Robot Framework output files and creates a
 report where possible differences between test case statuses in each file
 are highlighted. Main use case is verifying that results from executing same
@@ -457,29 +507,6 @@ test cases in different environments are same. For example, it is possible to
 test that new Robot Framework version does not affect test results. Another
 usage is comparing earlier test results with newer ones to find out possible
 status changes and added test cases.</p>
-<div class="section">
-<h1><a id="usage" name="usage">Usage</a></h1>
-<p><span class="cli">robotdiff.py [options] input files</span></p>
-<p>Robotdiff has following command line options:</p>
-<pre class="literal-block">
--r --report file         HTML report file (created from the input files).
-                         Default is 'robotdiff.html'.
--n --name name *         Name for test run. Different test runs can be named
-                         with this option. However, there must be as many
-                         names as there are input files. By default the name
-                         of the input files are used as names. Input files
-                         having same file name are distinguished by adding
-                         as many parent directories to the names as is needed.
--t --title title         Title for the generated diff report. The default
-                         title is 'Diff Report'.
--E --escape what:with *  Escape certain characters which are problematic in
-                         console. 'what' is the name of the character to
-                         escape and 'with' is the string to escape it with.
-                         Available character to escape: %(ESCAPES)s
-                         Example: :cli:`-\\-escape space:_ -\\-title My_Diff_Report`
--h -? --help             Print this usage instruction.
-</pre>
-<p>Options that can be specified multiple times are marked with an asterisk (*).</p>
 <p>Examples:</p>
 <pre class="literal-block">
 $ robotdiff.py output1.xml output2.xml output3.xml
@@ -489,7 +516,7 @@ $ robotdiff.py --name Env1 --name Env2 smoke1.xml smoke2.xml
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2008-06-09 06:23 UTC.
+Generated on: 2008-06-11 08:27 UTC.
 
 </div>
 </body>

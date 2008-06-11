@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title>Robot Framework Test Status Checker</title>
+<title>statuschecker.py</title>
 <style type="text/css">
 
 /* Robot Framework User Guide Style Sheet
@@ -448,25 +448,57 @@ pre.literal-block, pre.doctest-block {
 </style>
 </head>
 <body>
-<div class="document" id="robot-framework-test-status-checker">
-<h1 class="title">Robot Framework Test Status Checker</h1>
-<p>Usage:  statuschecker.py infile [outfile]</p>
+<div class="document" id="statuschecker-py">
+<h1 class="title">statuschecker.py</h1>
+<p>A tool for further processing of Robot Framework output files.</p>
+<div class="section">
+<h1><a id="synopsis" name="synopsis">Synopsis</a></h1>
+<pre class="literal-block">
+statuschecker.py infile [outfile]
+</pre>
+</div>
+<div class="section">
+<h1><a id="description" name="description">Description</a></h1>
 <p>This tool processes Robot Framework output XML files and checks that test case
 statuses and messages are as expected. Main use case is post-processing output
 files got when testing Robot Framework test libraries using Robot Framework
 itself.</p>
 <p>If output file is not given, the input file is considered to be also output
 file and it is edited in place.</p>
+<div class="section">
+<h2><a id="defining-expected-test-status" name="defining-expected-test-status">Defining expected test status</a></h2>
 <p>By default all test cases are expected to 'PASS' and have no message. Changing
 the expected status to 'FAIL' is done by having word 'FAIL' (in uppercase)
 somewhere in the test case documentation. Expected error message must then be
 given after 'FAIL'. Error message can also be specified as a regular expression
 by prefixing it with 'REGEXP:'. Having spaces between the status, the message
-or the possible regexp prefix is optional. Everything before 'FAIL' is ignored.</p>
+or the possible regexp prefix is optional.</p>
+</div>
+<div class="section">
+<h2><a id="defining-expected-keyword-log-messages" name="defining-expected-keyword-log-messages">Defining expected keyword log messages</a></h2>
+<p>Expected keyword log messages can also be defined in the test case documentation
+using syntax like:</p>
+<pre class="literal-block">
+LOG x.y:z message
+</pre>
+<p>For example, following documentation expects that the test case fails with
+message 'Expected message', and in addition, the second log message of first keyword
+is 'Log message':</p>
+<pre class="literal-block">
+FAIL: Expected failure LOG 1:2 Log message
+</pre>
+<p>The message index (number after ':') is by default 1, so if you check the first
+log message of iven keyword, it may be omitted.</p>
+</div>
+</div>
+<div class="section">
+<h1><a id="download" name="download">Download</a></h1>
+<p>statuscheker.py can be downloaded from <a class="reference" href="http://downloads.robotframework.org">http://downloads.robotframework.org</a></p>
+</div>
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2008-06-09 07:12 UTC.
+Generated on: 2008-06-11 08:56 UTC.
 
 </div>
 </body>

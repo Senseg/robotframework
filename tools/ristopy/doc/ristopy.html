@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
-<title></title>
+<title>risto.py</title>
 <style type="text/css">
 
 /* Robot Framework User Guide Style Sheet
@@ -448,18 +448,105 @@ pre.literal-block, pre.doctest-block {
 </style>
 </head>
 <body>
-<div class="document">
-<p>risto.py is a tool for plotting graphs about test execution history
-based on statistics read from Robot output files.</p>
+<div class="document" id="risto-py">
+<h1 class="title">risto.py</h1>
+<p>A tool for plotting graphs about test execution history based on statistics
+read from Robot output files.</p>
 <div class="section">
-<h1><a id="usage" name="usage">Usage</a></h1>
-<p>risto.py -- Robot Framework's Historical Reporting Tool</p>
-<p>Version: 1.0</p>
-<dl class="docutils">
-<dt>Usage:  risto.py options input files</dt>
-<dd>or:   risto.py options1 --- options2 --- optionsN --- input files
-or:   risto.py --argumentfile path</dd>
-</dl>
+<h1><a id="synopsis" name="synopsis">Synopsis</a></h1>
+<pre class="literal-block">
+risto.py options input files
+risto.py options1 --- options2 --- optionsN --- input files
+risto.py --argumentfile path
+</pre>
+</div>
+<div class="section">
+<h1><a id="options" name="options">Options</a></h1>
+<blockquote>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-C</span>, <span class="option">--nocritical</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Do not plot graphs for critical tests.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-A</span>, <span class="option">--noall</span></kbd></td>
+<td>Do not plot graphs for all tests.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-T</span>, <span class="option">--nototals</span></kbd></td>
+<td>Do not plot total graphs.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-P</span>, <span class="option">--nopassed</span></kbd></td>
+<td>Do not plot passed graphs.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-F</span>, <span class="option">--nofailed</span></kbd></td>
+<td>Do not plot failed graphs.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-t</span>, <span class="option">--tag <var>&lt;name&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Add graphs for these tags. Name can contain '*' and
+'?' as wildcards. 'AND' in the tag name is converted
+to ' &amp; ', to make it easier to plot combined tags.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-o</span>, <span class="option">--output <var>&lt;path&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Path to the image file to create. If not given, the
+image is opened into Matplotlib' viewer.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-i</span>, <span class="option">--title <var>&lt;title&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Title of the graph. Underscores in the given title
+are converted to spaces. By default there is no
+title.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-w</span>, <span class="option">--width <var>&lt;inches&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Width of the image. Default is 800.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-h</span>, <span class="option">--height <var>&lt;inches&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Height of the image. Default is 400.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-f</span>, <span class="option">--font <var>&lt;size&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Font size used for legends and labels. Default is 8.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-m</span>, <span class="option">--marker <var>&lt;size&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Size of marked used with tag graphs. Default is 5.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-x</span>, <span class="option">--xticks <var>&lt;num&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Maximum number of ticks in x-axis. Default is 15.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-n</span>, <span class="option">--namemeta <var>&lt;name&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Name of the metadata of the top level test suite
+where to get name of the test round. By default names
+are got from paths to input files.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--argumentfile <var>&lt;path&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Read arguments from the specified file.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--verbose</span></kbd></td>
+<td>Verbose output.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--help</span></kbd></td>
+<td>Print this help.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--version</span></kbd></td>
+<td>Print version information.</td></tr>
+</tbody>
+</table>
+</blockquote>
+<p>Additionally <span class="cli">---</span> can be used to group options when creating multiple
+images at once.</p>
+</div>
+<div class="section">
+<h1><a id="description" name="description">Description</a></h1>
 <p>risto.py plots graphs about test execution history, based on statistics read
 from Robot output files. By default, it draws total, passed and failed graphs
 for critical tests and all tests, but it is possible to omit some of these
@@ -483,99 +570,6 @@ from a file specified with the <span class="cli">--argument</span> option. In an
 and their possible arguments are listed one per line, and option groups are
 separated with lines of three or more hyphens. Empty lines and lines starting
 with a hash mark (#) are ignored.</p>
-<p>Options:</p>
-<table class="docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group">
-<kbd><span class="option">--nocritical</span></kbd></td>
-<td>Also -C. Specifies that graphs are not plot for critical tests.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--noall</span></kbd></td>
-<td>Also -A. Specifies that graphs are not plot for all tests.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--nototals</span></kbd></td>
-<td>Also -T. Specifies that total graphs are not plot.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--nopassed</span></kbd></td>
-<td>Also -P. Specifies that passed graphs are not plot.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--nofailed</span></kbd></td>
-<td>Also -F. Specifies that failed graphs not plot.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--tag</span></kbd></td>
-<td>Also -t. Takes name as argument. Adds graphs for these
-tags. The name can contain &quot;*&quot; and &quot;?&quot; as
-wildcards. Underscores in the names are converted to spaces and
-additionally &quot;AND&quot; to &quot;&amp;&quot;.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--output</span></kbd></td>
-<td>Also -o. Takes path as argument. Specifies the path to
-the image file to create. If not given, the image is opened into
-Matplotlib's viewer.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--title</span></kbd></td>
-<td>Also -i. Takes title as argument. Specifies the title of
-the graph. Underscores in the given title are converted to
-spaces. By default, there is no title.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--width</span></kbd></td>
-<td>Also -w. Takes inches as argument. Specifies the width of
-the image. The default is 800.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--height</span></kbd></td>
-<td>Also -h. Takes inches as argument. Specifies the height
-of the image. The default is 400.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--font</span></kbd></td>
-<td>Also -f. Takes size as argument. Specifies the font size
-used for legends and labels. The default is 8.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--marker <var>size</var></span></kbd></td>
-<td>Also -m. The size of the marker used with tag graphs. The default is 5.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--xticks</span></kbd></td>
-<td>Also -x. Takes num as argument. Specifies the maximum
-number of ticks on the x-axis. The default is 15.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--namemeta</span></kbd></td>
-<td>Also -n. Takes name as argument. Specifies the name of
-the metadata of the top level test suite where to get the name of
-the test round. By default, names are got from the paths to input
-files.</td></tr>
-</tbody>
-</table>
-<!-- TODO: Change the formatting so that the options below look OK in the HTML file. -->
-<p>---</p>
-<blockquote>
-Used to group options to create several images at once.</blockquote>
-<table class="docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group">
-<kbd><span class="option">--argumentfile</span></kbd></td>
-<td>Takes path as argument. Reads the command line arguments from the specified file.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--verbose</span></kbd></td>
-<td>Specifies the verbose output.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--help</span></kbd></td>
-<td><blockquote class="first">
-Prints the help.</blockquote>
-<table class="last docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group">
-<kbd><span class="option">--version</span></kbd></td>
-<td>Prints the version information.</td></tr>
-</tbody>
-</table>
-</td></tr>
-</tbody>
-</table>
 <p>Examples:</p>
 <div class="highlight"><pre><span class="n">risto</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">output</span> <span class="n">history</span><span class="o">.</span><span class="n">png</span> <span class="n">output1</span><span class="o">.</span><span class="n">xml</span> <span class="n">output2</span><span class="o">.</span><span class="n">xml</span> <span class="n">output3</span><span class="o">.</span><span class="n">xml</span>
         <span class="n">risto</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">title</span> <span class="n">My_Report</span> <span class="o">--</span><span class="n">noall</span> <span class="o">--</span><span class="n">namemeta</span> <span class="n">Date</span> <span class="o">--</span><span class="n">output</span> <span class="n">out</span><span class="o">.</span><span class="n">png</span> \<span class="o">*.</span><span class="n">xml</span>
@@ -623,15 +617,13 @@ older versions, it needs to be installed separately.</p>
 <li><a class="reference" href="http://matplotlib.sourceforge.net/">Matplotlib</a></li>
 <li><a class="reference" href="http://numpy.scipy.org/">NumPy</a></li>
 <li><a class="reference" href="http://effbot.org/zone/element-index.htm">ElementTree</a></li>
-<li><a class="reference" href="TODO">risto.py</a></li>
+<li><a class="reference" href="http://downloads.robotframework.org">risto.py</a></li>
 </ul>
-</div>
-</div>
 <div class="section">
-<h1><a id="screenshots" name="screenshots">Screenshots</a></h1>
+<h3><a id="screenshots" name="screenshots">Screenshots</a></h3>
 <p>Here you can find some screenshots of risto.py.</p>
 <div class="section">
-<h2><a id="default-settings" name="default-settings">Default settings</a></h2>
+<h4><a id="default-settings" name="default-settings">Default settings</a></h4>
 <p>The screenshot below uses some very simple example outputs, thus the lines
 are mainly straight. The default settings have been used otherwise,
 but the output has been saved into a file with the <span class="cli">--output
@@ -642,7 +634,7 @@ default.png</span> option.</p>
 </div>
 </div>
 <div class="section">
-<h2><a id="various-settings" name="various-settings">Various settings</a></h2>
+<h4><a id="various-settings" name="various-settings">Various settings</a></h4>
 <p>The example outputs used in this screenshot are the same as in the previous
 one, but now the following options have been specified:</p>
 <pre class="literal-block">
@@ -654,7 +646,7 @@ one, but now the following options have been specified:</p>
 </div>
 </div>
 <div class="section">
-<h2><a id="using-matplotlib-s-viewer" name="using-matplotlib-s-viewer">Using Matplotlib's Viewer</a></h2>
+<h4><a id="using-matplotlib-s-viewer" name="using-matplotlib-s-viewer">Using Matplotlib's Viewer</a></h4>
 <p>This time there are more input files and the image has been opened
 in Matplotlib's viewer (that is, the <span class="cli">--output</span> option has not been
 used). The options used to create this example are the ones below:</p>
@@ -668,7 +660,7 @@ used). The options used to create this example are the ones below:</p>
 </div>
 </div>
 <div class="section">
-<h1><a id="more-realistic-examples" name="more-realistic-examples">More Realistic Examples</a></h1>
+<h3><a id="more-realistic-examples" name="more-realistic-examples">More Realistic Examples</a></h3>
 <p>These examples are generated from actual test outputs using the following argument file:</p>
 <pre class="literal-block">
 --title Overview
@@ -693,9 +685,11 @@ path/\*/output.xml
 </div>
 </div>
 </div>
+</div>
+</div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2008-06-06 09:11 UTC.
+Generated on: 2008-06-11 08:15 UTC.
 
 </div>
 </body>
