@@ -480,7 +480,7 @@ pre.literal-block, pre.doctest-block {
 <li><a class="reference internal" href="#executing-test-cases" id="id117">3&nbsp;&nbsp;&nbsp;Executing test cases</a><ul class="auto-toc">
 <li><a class="reference internal" href="#basic-usage" id="id118">3.1&nbsp;&nbsp;&nbsp;Basic usage</a></li>
 <li><a class="reference internal" href="#configuring-execution" id="id119">3.2&nbsp;&nbsp;&nbsp;Configuring execution</a></li>
-<li><a class="reference internal" href="#output-files" id="id120">3.3&nbsp;&nbsp;&nbsp;Output files</a></li>
+<li><a class="reference internal" href="#created-outputs" id="id120">3.3&nbsp;&nbsp;&nbsp;Created outputs</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#extending-robot-framework" id="id121">4&nbsp;&nbsp;&nbsp;Extending Robot Framework</a><ul class="auto-toc">
@@ -2365,7 +2365,7 @@ ignored.</li>
 <p>The files and directories that are processed are expected to be test
 case files and test directories, respectively, but if they do not
 contain any test cases, they are silently ignored (a message is
-written to the <a class="reference internal" href="#syslog-file">syslog</a>) and the processing continues.</p>
+written to the <a class="reference internal" href="#system-log">syslog</a>) and the processing continues.</p>
 <div class="section" id="initialization-files">
 <h4><a class="toc-backref" href="#id177">Initialization files</a></h4>
 <p>A test suite created from a directory can have the same settings
@@ -6158,7 +6158,7 @@ BUT check are these used first -->
 <ul class="auto-toc simple">
 <li><a class="reference internal" href="#basic-usage" id="id240">3.1&nbsp;&nbsp;&nbsp;Basic usage</a></li>
 <li><a class="reference internal" href="#configuring-execution" id="id241">3.2&nbsp;&nbsp;&nbsp;Configuring execution</a></li>
-<li><a class="reference internal" href="#output-files" id="id242">3.3&nbsp;&nbsp;&nbsp;Output files</a></li>
+<li><a class="reference internal" href="#created-outputs" id="id242">3.3&nbsp;&nbsp;&nbsp;Created outputs</a></li>
 </ul>
 </div>
 <div class="section" id="basic-usage">
@@ -6680,7 +6680,7 @@ jybot --ouputdir c:\temp\logs --splitoutputs <span class="m">2</span> %*
 <p>This section explains different command line options that can be used
 for configuring the <a class="reference internal" href="#starting-test-execution">test execution</a> or <a class="reference internal" href="#post-processing-outputs">post-processing
 outputs</a>. Options related to generated output files are discussed in
-the <a class="reference internal" href="#output-files">next section</a>.</p>
+the <a class="reference internal" href="#created-outputs">next section</a>.</p>
 <div class="contents local topic" id="id49">
 <ul class="auto-toc simple">
 <li><a class="reference internal" href="#selecting-test-cases" id="id257">3.2.1&nbsp;&nbsp;&nbsp;Selecting test cases</a><ul>
@@ -6707,7 +6707,6 @@ the <a class="reference internal" href="#output-files">next section</a>.</p>
 <li><a class="reference internal" href="#setting-the-execution-mode" id="id272">3.2.6&nbsp;&nbsp;&nbsp;Setting the execution mode</a></li>
 <li><a class="reference internal" href="#controlling-the-monitor-output" id="id273">3.2.7&nbsp;&nbsp;&nbsp;Controlling the monitor output</a></li>
 <li><a class="reference internal" href="#setting-listeners" id="id274">3.2.8&nbsp;&nbsp;&nbsp;Setting listeners</a></li>
-<li><a class="reference internal" href="#setting-times-for-combined-outputs" id="id275">3.2.9&nbsp;&nbsp;&nbsp;Setting times for combined outputs</a></li>
 </ul>
 </div>
 <div class="section" id="selecting-test-cases">
@@ -6989,104 +6988,85 @@ execution. They are taken into use with the command line option
 <span class="setting">--listener</span>, and the specified listeners must be in the <a class="reference internal" href="#adjusting-library-search-path">module
 search path</a> similarly as test libraries.</p>
 </div>
-<div class="section" id="setting-times-for-combined-outputs">
-<h3><a class="toc-backref" href="#id275">3.2.9&nbsp;&nbsp;&nbsp;Setting times for combined outputs</a></h3>
-<p>When <a class="reference internal" href="#combining-outputs">combining outputs</a> with <span class="prog">rebot</span>, it is possible to set the
-start and end time of the combined test suite using the options
-<span class="setting">--starttime</span> and <span class="setting">--endtime</span>, respectively. This
-may be convenient, because by default, the combined suite does not
-have these values. When both the start and end time are given, the
-elapsed time is also calculated based on them. Otherwise the elapsed
-time is got by adding the elapsed times of the child tests suites together.</p>
-<p>Times must be given as timestamps in the format <span class="code">YYYY-MM-DD
-hh:mm:ss.mil</span>, where all separators are optional and the parts from
-milliseconds to hours can be omitted. For example, <span class="code">2008-06-11
-17:59:20.495</span> is equivalent both to <span class="code">20080611-175920.495</span> and
-<span class="code">20080611175920495</span>, and also mere <span class="code">20080611</span> would work.</p>
-<p>Examples:</p>
-<pre class="literal-block">
-rebot --starttime 20080611-17:59:20.495 output1.xml output2.xml
-rebot --starttime 20080611-175920 --endtime 20080611-180242 *.xml
-</pre>
 </div>
-</div>
-<div class="section" id="output-files">
-<h2><a class="toc-backref" href="#id242">3.3&nbsp;&nbsp;&nbsp;Output files</a></h2>
-<p>Several outputs files are created When tests are executed, and most of
-them are somehow related to test results. This section explains what
+<div class="section" id="created-outputs">
+<h2><a class="toc-backref" href="#id242">3.3&nbsp;&nbsp;&nbsp;Created outputs</a></h2>
+<p>Several outputs files are created when tests are executed, and most of
+them are somehow related to test results. This section discusses what
 outputs are created, how to configure where to create them, and how to
 fine-tune their contents.</p>
 <div class="contents local topic" id="id59">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#different-output-files" id="id276">3.3.1&nbsp;&nbsp;&nbsp;Different output files</a><ul>
-<li><a class="reference internal" href="#output-directory" id="id277">Output directory</a></li>
-<li><a class="reference internal" href="#output-file" id="id278">Output file</a></li>
-<li><a class="reference internal" href="#log-file" id="id279">Log file</a></li>
-<li><a class="reference internal" href="#report-file" id="id280">Report file</a></li>
-<li><a class="reference internal" href="#summary-file" id="id281">Summary file</a></li>
-<li><a class="reference internal" href="#debug-file" id="id282">Debug file</a></li>
-<li><a class="reference internal" href="#setting-timestamps-to-output-file-names" id="id283">Setting timestamps to output file names</a></li>
-<li><a class="reference internal" href="#syslog-file" id="id284">Syslog file</a></li>
-<li><a class="reference internal" href="#listener-outputs" id="id285">Listener outputs</a></li>
+<li><a class="reference internal" href="#different-output-files" id="id275">3.3.1&nbsp;&nbsp;&nbsp;Different output files</a><ul>
+<li><a class="reference internal" href="#output-directory" id="id276">Output directory</a></li>
+<li><a class="reference internal" href="#output-file" id="id277">Output file</a></li>
+<li><a class="reference internal" href="#log-file" id="id278">Log file</a></li>
+<li><a class="reference internal" href="#report-file" id="id279">Report file</a></li>
+<li><a class="reference internal" href="#summary-file" id="id280">Summary file</a></li>
+<li><a class="reference internal" href="#debug-file" id="id281">Debug file</a></li>
+<li><a class="reference internal" href="#setting-timestamps-to-output-file-names" id="id282">Setting timestamps to output file names</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#splitting-outputs" id="id286">3.3.2&nbsp;&nbsp;&nbsp;Splitting outputs</a><ul>
-<li><a class="reference internal" href="#unbalanced-output" id="id287">Unbalanced output</a></li>
-<li><a class="reference internal" href="#balanced-output" id="id288">Balanced output</a></li>
+<li><a class="reference internal" href="#splitting-outputs" id="id283">3.3.2&nbsp;&nbsp;&nbsp;Splitting outputs</a><ul>
+<li><a class="reference internal" href="#unbalanced-output" id="id284">Unbalanced output</a></li>
+<li><a class="reference internal" href="#balanced-output" id="id285">Balanced output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#setting-titles" id="id289">3.3.3&nbsp;&nbsp;&nbsp;Setting titles</a></li>
-<li><a class="reference internal" href="#configuring-statistics" id="id290">3.3.4&nbsp;&nbsp;&nbsp;Configuring statistics</a><ul>
-<li><a class="reference internal" href="#including-and-excluding-tag-statistics" id="id291">Including and excluding tag statistics</a></li>
-<li><a class="reference internal" href="#generating-combined-tag-statistics" id="id292">Generating combined tag statistics</a></li>
-<li><a class="reference internal" href="#creating-links-from-tag-names" id="id293">Creating links from tag names</a></li>
-<li><a class="reference internal" href="#adding-documentation-to-tags" id="id294">Adding documentation to tags</a></li>
-<li><a class="reference internal" href="#configuring-the-statistics-by-suite-table" id="id295">Configuring the Statistics by Suite table</a></li>
+<li><a class="reference internal" href="#setting-titles" id="id286">3.3.3&nbsp;&nbsp;&nbsp;Setting titles</a></li>
+<li><a class="reference internal" href="#configuring-statistics" id="id287">3.3.4&nbsp;&nbsp;&nbsp;Configuring statistics</a><ul>
+<li><a class="reference internal" href="#including-and-excluding-tag-statistics" id="id288">Including and excluding tag statistics</a></li>
+<li><a class="reference internal" href="#generating-combined-tag-statistics" id="id289">Generating combined tag statistics</a></li>
+<li><a class="reference internal" href="#creating-links-from-tag-names" id="id290">Creating links from tag names</a></li>
+<li><a class="reference internal" href="#adding-documentation-to-tags" id="id291">Adding documentation to tags</a></li>
+<li><a class="reference internal" href="#configuring-the-statistics-by-suite-table" id="id292">Configuring the Statistics by Suite table</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#setting-log-level" id="id296">3.3.5&nbsp;&nbsp;&nbsp;Setting log level</a></li>
-<li><a class="reference internal" href="#removing-keywords-from-outputs" id="id297">3.3.6&nbsp;&nbsp;&nbsp;Removing keywords from outputs</a></li>
+<li><a class="reference internal" href="#setting-log-level" id="id293">3.3.5&nbsp;&nbsp;&nbsp;Setting log level</a></li>
+<li><a class="reference internal" href="#setting-times-for-combined-outputs" id="id294">3.3.6&nbsp;&nbsp;&nbsp;Setting times for combined outputs</a></li>
+<li><a class="reference internal" href="#removing-keywords-from-outputs" id="id295">3.3.7&nbsp;&nbsp;&nbsp;Removing keywords from outputs</a></li>
+<li><a class="reference internal" href="#system-log" id="id296">3.3.8&nbsp;&nbsp;&nbsp;System log</a></li>
 </ul>
 </div>
 <div class="section" id="different-output-files">
-<h3><a class="toc-backref" href="#id276">3.3.1&nbsp;&nbsp;&nbsp;Different output files</a></h3>
-<p>This section explains different output files and how to configure
-where they are created. Other outputs than the <a class="reference internal" href="#syslog-file">syslog file</a> are
-configured using command line options, which get the path to the
-output file as an argument. All these options, except
-<span class="setting">--output</span> when executing test cases, also accept special
-value <span class="setting">NONE</span> (case-insensitive), which means that the output
-file in question is not created at all.</p>
+<h3><a class="toc-backref" href="#id275">3.3.1&nbsp;&nbsp;&nbsp;Different output files</a></h3>
+<p>This section explains what different output files can be created and how
+to configure where to create them. Output files are configured using
+command line options, which get the path to the output file in
+question as an argument. Special value <span class="setting">NONE</span>
+(case-insensitive), can be used to disable creating certain output
+file.</p>
 <div class="section" id="output-directory">
-<h4><a class="toc-backref" href="#id277">Output directory</a></h4>
-<p>The default location where all output files are created is the
-directory where the execution is started from, but it can be altered
-with <span class="setting">--outputdir (-d)</span> option. All output files can be
-set using an absolute path, in which case they are created to
-the specified place, but in other cases the path is considered
-relative to the output directory. Regardless how a path to an
-individual output file is got, its parent directory is created
+<h4><a class="toc-backref" href="#id276">Output directory</a></h4>
+<p>All output files can be set using an absolute path, in which case they
+are created to the specified place, but in other cases the path is
+considered relative to the output directory. The default output
+directory is the directory where the execution is started from, but it
+can be altered with <span class="setting">--outputdir (-d)</span> option. The path set
+with this option is, again, relative to the execution directory, but
+can naturally be given also as an absoute path. Regardless how a path
+to an individual output file is got, its parent directory is created
 automatically if it does not exist.</p>
 </div>
 <div class="section" id="output-file">
-<h4><a class="toc-backref" href="#id278">Output file</a></h4>
-<p>XML output files contain all the test execution results. <a class="reference internal" href="#log-file">Log</a>,
-<a class="reference internal" href="#report-file">report</a>, and <a class="reference internal" href="#summary-file">summary</a> files are generated based on them, they can also
-be <a class="reference internal" href="#post-processing-outputs">combined and otherwise post-processed</a> after the test execution.</p>
+<h4><a class="toc-backref" href="#id277">Output file</a></h4>
+<p>Output files contain all the test execution results in XML
+format. <a class="reference internal" href="#log-file">Log</a>, <a class="reference internal" href="#report-file">report</a>, and <a class="reference internal" href="#summary-file">summary</a> files are generated based on them,
+and they can also be <a class="reference internal" href="#post-processing-outputs">combined and otherwise post-processed</a> after the
+test execution.</p>
 <p>The command line option <span class="setting">--output (-o)</span> determines where
-output files are created. When tests are executed, the default name
-for outputs is <span class="path">output.xml</span>, and it is not possible to suppress creating
-them. When post-processing outputs, new output files are not created
-unless this option is explicitly used.</p>
+output files are created. Output files are always created when tests
+are executed, the default name for them is <span class="path">output.xml</span>. When
+post-processing outputs, new output files are not created unless this
+option is explicitly used.</p>
 </div>
 <div class="section" id="log-file">
-<h4><a class="toc-backref" href="#id279">Log file</a></h4>
-<p>Log files contain details about the executed test cases. They have a
-hierarchical structure showing test suite, test case and keyword
-details. Log files are needed nearly every time when test results
-needs to be investigated in detail. Even though log files also have
-statistics, <a class="reference internal" href="#report-file">report</a> and <a class="reference internal" href="#summary-file">summary</a> files are better for getting an
-higher-level overview.</p>
+<h4><a class="toc-backref" href="#id278">Log file</a></h4>
+<p>Log files contain details about the executed test cases in HTML
+format. They have a hierarchical structure showing test suite, test
+case and keyword details. Log files are needed nearly every time when
+test results must be investigated in detail. Even though log files
+also have statistics, <a class="reference internal" href="#report-file">report</a> and <a class="reference internal" href="#summary-file">summary</a> files are better for
+getting an higher-level overview.</p>
 <p>The command line option <span class="setting">--log (-l)</span> determines where log
 files are created. Unless special value <span class="setting">NONE</span> is used, log
 files are always created and their default name is <span class="path">log.html</span>.</p>
@@ -7096,30 +7076,30 @@ files are always created and their default name is <span class="path">log.html</
 </div>
 </div>
 <div class="section" id="report-file">
-<h4><a class="toc-backref" href="#id280">Report file</a></h4>
-<p>Report files contain an overview of the test execution results. They
-have statistic based on tags and executed test suites, as well as
-short details about every executed test suite and test case. When both
-report and log is generated, the report has links to the log file for
-easy navigation to more detailed information.  It is easy to see the
-overall test execution status from the report, because its backgroud
-is green is if all <a class="reference internal" href="#setting-criticality">critical tests</a> pass, and bright red otherwise.</p>
+<h4><a class="toc-backref" href="#id279">Report file</a></h4>
+<p>Report files contain an overview of the test execution results in HTML
+format. They have statistic based on tags and executed test suites, as
+well as a list of all executed test cases . When both reports and logs
+are generated, the report has links to the log file for easy
+navigation to more detailed information.  It is easy to see the
+overall test execution status from reports, because their backgroud is
+green if all <a class="reference internal" href="#setting-criticality">critical tests</a> pass, and bright red otherwise.</p>
 <p>The command line option <span class="setting">--report (-r)</span> determines where
 report files are created. Similarly as log files, reporst are always
-created unless <span class="setting">NONE</span> is used as a value. The default name
-for a log file is <span class="path">report.html</span>.</p>
+created unless <span class="setting">NONE</span> is used as a value, and their default
+name is <span class="path">report.html</span>.</p>
 <div class="figure">
 <img alt="report.png" src="report.png" style="width: 600px; height: 568px;" />
 <p class="caption">An example report file</p>
 </div>
 </div>
 <div class="section" id="summary-file">
-<h4><a class="toc-backref" href="#id281">Summary file</a></h4>
-<p>Summary files contain same statistics as reports, and their backgrounds
-are similarly green or red depending on the overall test execution
-status. They have no test case details, however, which makes them much
-smaller than reports. They are usefull when a big number of test cases is
-executed, and a very high-level overview is needed.</p>
+<h4><a class="toc-backref" href="#id280">Summary file</a></h4>
+<p>Summary files contain same statistics as reports, and their
+backgrounds are similarly green or red depending on the overall test
+execution status. They have no test case details, however, which makes
+them much smaller. They are usefull when a big number of test cases is
+executed and a very high-level overview is needed.</p>
 <p>Summary files are not generated by default. When they are needed, they
 can be created using the command line option <span class="setting">--summary (-S)</span>.</p>
 <div class="figure">
@@ -7128,18 +7108,18 @@ can be created using the command line option <span class="setting">--summary (-S
 </div>
 </div>
 <div class="section" id="debug-file">
-<h4><a class="toc-backref" href="#id282">Debug file</a></h4>
-<p>Debug files are plain text files that are written during the
+<h4><a class="toc-backref" href="#id281">Debug file</a></h4>
+<p>Debug files are plain text files that are written during the test
 execution. All messages got from test libraries are written to them,
 as wel as information about started and ended test suites, test cases
 and keywords. Debug files can be used for monitoring the test
 execution using, for example, a separate <a class="reference internal" href="#file-viewing-tool-fileviewer-py">file viewer tool</a> or in
 UNIX-like systems simply with <span class="prog">tail -f</span> command.</p>
 <p>Debug files are not created unless the command line option
-<span class="setting">--debugfile (-b)</span> is used explicityly.</p>
+<span class="setting">--debugfile (-b)</span> is used explicitly.</p>
 </div>
 <div class="section" id="setting-timestamps-to-output-file-names">
-<h4><a class="toc-backref" href="#id283">Setting timestamps to output file names</a></h4>
+<h4><a class="toc-backref" href="#id282">Setting timestamps to output file names</a></h4>
 <p><em>TO BE CONTINUED FROM HERE</em></p>
 <p>Because all output file names can be given from the command line, it
 is possible to use timestamps</p>
@@ -7152,22 +7132,9 @@ and the extension of each output file name.</p>
 pybot --timestampoutputs --log mylog.html tests</blockquote>
 <p>generates files called output-080604-163225.xml and mylog-080604-163225.html</p>
 </div>
-<div class="section" id="syslog-file">
-<h4><a class="toc-backref" href="#id284">Syslog file</a></h4>
-<p>Syslog files contains debug information about the functioning of Robot
-Framework. The information in it is usually only needed when some unexpected
-error occurs during the execution of tests.</p>
-<p>To enable syslog, the environment variable <span class="var">ROBOT_SYSLOG_FILE</span> must contain an
-absolute path to a non-existing file. The <span class="var">ROBOT_SYSLOG_LEVEL</span> environment
-variable determines the level of logging. The available levels are the same as with the
-<a class="reference internal" href="#setting-log-level">--loglevel</a> command line option.</p>
-</div>
-<div class="section" id="listener-outputs">
-<h4><a class="toc-backref" href="#id285">Listener outputs</a></h4>
-</div>
 </div>
 <div class="section" id="splitting-outputs">
-<h3><a class="toc-backref" href="#id286">3.3.2&nbsp;&nbsp;&nbsp;Splitting outputs</a></h3>
+<h3><a class="toc-backref" href="#id283">3.3.2&nbsp;&nbsp;&nbsp;Splitting outputs</a></h3>
 <p>For large test suites, instead of generating one vast output file, Robot
 Framework can be configured to produce a set of smaller output files. In this
 case, if log files are created, one log file will be created from each
@@ -7182,7 +7149,7 @@ each file depends on the split level and the directory structure of the test dat
 As the examples below show, the test data needs to be structured in a
 way that supports splitting outputs, if you wish to use that feature.</p>
 <div class="section" id="unbalanced-output">
-<h4><a class="toc-backref" href="#id287">Unbalanced output</a></h4>
+<h4><a class="toc-backref" href="#id284">Unbalanced output</a></h4>
 <p>When an unbalanced directory structure (see the figure below) is executed with a split
 level set to 3, an individual output file is created for test case files from 1 to 4.
 The information about the test case files 5 and 6 is written to the root
@@ -7200,7 +7167,7 @@ details of test case files 1, 2, 3 and 4, respectively.</li>
 </div>
 </div>
 <div class="section" id="balanced-output">
-<h4><a class="toc-backref" href="#id288">Balanced output</a></h4>
+<h4><a class="toc-backref" href="#id285">Balanced output</a></h4>
 <p>When a balanced directory structure (see the figure below) is executed with a split
 level set to 3, an individual output file is created for all test case files.
 In this case, the following files will be created:</p>
@@ -7218,7 +7185,7 @@ contain details of test case files from 1 to 8.</li>
 </div>
 </div>
 <div class="section" id="setting-titles">
-<h3><a class="toc-backref" href="#id289">3.3.3&nbsp;&nbsp;&nbsp;Setting titles</a></h3>
+<h3><a class="toc-backref" href="#id286">3.3.3&nbsp;&nbsp;&nbsp;Setting titles</a></h3>
 <p>Titles for <a class="reference internal" href="#log-file">log</a>, <a class="reference internal" href="#report-file">report</a> and <a class="reference internal" href="#summary-file">summary</a> files can be given
 from the command line using the options <span class="setting">--logtitle</span>,
 <span class="setting">--reporttitle</span> and <span class="setting">--summarytitle</span>,
@@ -7226,12 +7193,12 @@ respectively. The default title is generated from the name(s) of the
 input file(s).</p>
 </div>
 <div class="section" id="configuring-statistics">
-<h3><a class="toc-backref" href="#id290">3.3.4&nbsp;&nbsp;&nbsp;Configuring statistics</a></h3>
+<h3><a class="toc-backref" href="#id287">3.3.4&nbsp;&nbsp;&nbsp;Configuring statistics</a></h3>
 <p>There are several command line options that can be used to configure and tweak the
 contents of 'Statistics by Tag', 'Test Details by Tag' and 'Statistics by Suite'
 -tables in outputs files.</p>
 <div class="section" id="including-and-excluding-tag-statistics">
-<h4><a class="toc-backref" href="#id291">Including and excluding tag statistics</a></h4>
+<h4><a class="toc-backref" href="#id288">Including and excluding tag statistics</a></h4>
 <p>The command line options <span class="setting">--tagstatinclude</span> and <span class="setting">--tagstatexclude</span>
 can be used to define the contents of the Statistics by Tag and Test Details
 by Tag tables. Both of these options may be given several times and their
@@ -7239,7 +7206,7 @@ arguments may be simple patterns. If a tag matches both include and exclude, it
 will be excluded.</p>
 </div>
 <div class="section" id="generating-combined-tag-statistics">
-<h4><a class="toc-backref" href="#id292">Generating combined tag statistics</a></h4>
+<h4><a class="toc-backref" href="#id289">Generating combined tag statistics</a></h4>
 <p>The command line option <span class="setting">--tagstatcombine</span> can be used to generate an
 aggregate row in the Statistics by Tag and Test Details by Tag tables.
 There are three somewhat different ways for giving arguments for this option:</p>
@@ -7258,7 +7225,7 @@ Example: <span class="cli">--tagstatcombine it-11NOTsmoke</span></dd>
 </dl>
 </div>
 <div class="section" id="creating-links-from-tag-names">
-<h4><a class="toc-backref" href="#id293">Creating links from tag names</a></h4>
+<h4><a class="toc-backref" href="#id290">Creating links from tag names</a></h4>
 <p>It is possible to add an external link to the Statistics by Tag table by using
 the command line option <span class="setting">--tagstatlink</span>. An argument to this option is given
 in the format <span class="code">pattern:link:title</span>, where pattern may contain the characters &quot;*&quot; (matches
@@ -7271,7 +7238,7 @@ Examples:</p>
 </pre>
 </div>
 <div class="section" id="adding-documentation-to-tags">
-<h4><a class="toc-backref" href="#id294">Adding documentation to tags</a></h4>
+<h4><a class="toc-backref" href="#id291">Adding documentation to tags</a></h4>
 <p>Documentation for tags can be set with the command line option <span class="setting">--tagdoc</span>
 The argument is in the format <span class="code">tag:doc</span>, where &quot;tag&quot; may be a simple pattern and &quot;doc&quot; may
 contain simple formatting. This documentation is shown in the
@@ -7284,7 +7251,7 @@ Examples:</p>
 </pre>
 </div>
 <div class="section" id="configuring-the-statistics-by-suite-table">
-<h4><a class="toc-backref" href="#id295">Configuring the Statistics by Suite table</a></h4>
+<h4><a class="toc-backref" href="#id292">Configuring the Statistics by Suite table</a></h4>
 <p>You can control how many levels of subsuites are displayed in the
 Statistics by Suite table. This is done with the command line option
 <span class="setting">--suitestatlevel</span>. If 0 is given as an argument, the whole table is
@@ -7292,7 +7259,7 @@ removed.</p>
 </div>
 </div>
 <div class="section" id="setting-log-level">
-<h3><a class="toc-backref" href="#id296">3.3.5&nbsp;&nbsp;&nbsp;Setting log level</a></h3>
+<h3><a class="toc-backref" href="#id293">3.3.5&nbsp;&nbsp;&nbsp;Setting log level</a></h3>
 <p>By default, the <a class="reference internal" href="#logging-information">keyword output</a> from test libraries is logged at the <span class="msg">INFO</span>
 level. This can be changed from the command line using <span class="setting">--loglevel (-L)</span>.
 In descending order, the available log levels are <span class="msg">WARN</span>, <span class="msg">INFO</span>,
@@ -7306,8 +7273,28 @@ of keyword arguments and return values. Normally, only variable names are
 logged. This may increase the size of the output file(s) considerably.</p>
 </div>
 </div>
+<div class="section" id="setting-times-for-combined-outputs">
+<h3><a class="toc-backref" href="#id294">3.3.6&nbsp;&nbsp;&nbsp;Setting times for combined outputs</a></h3>
+<p>When <a class="reference internal" href="#combining-outputs">combining outputs</a> with <span class="prog">rebot</span>, it is possible to set the
+start and end time of the combined test suite using the options
+<span class="setting">--starttime</span> and <span class="setting">--endtime</span>, respectively. This
+may be convenient, because by default, the combined suite does not
+have these values. When both the start and end time are given, the
+elapsed time is also calculated based on them. Otherwise the elapsed
+time is got by adding the elapsed times of the child tests suites together.</p>
+<p>Times must be given as timestamps in the format <span class="code">YYYY-MM-DD
+hh:mm:ss.mil</span>, where all separators are optional and the parts from
+milliseconds to hours can be omitted. For example, <span class="code">2008-06-11
+17:59:20.495</span> is equivalent both to <span class="code">20080611-175920.495</span> and
+<span class="code">20080611175920495</span>, and also mere <span class="code">20080611</span> would work.</p>
+<p>Examples:</p>
+<pre class="literal-block">
+rebot --starttime 20080611-17:59:20.495 output1.xml output2.xml
+rebot --starttime 20080611-175920 --endtime 20080611-180242 *.xml
+</pre>
+</div>
 <div class="section" id="removing-keywords-from-outputs">
-<h3><a class="toc-backref" href="#id297">3.3.6&nbsp;&nbsp;&nbsp;Removing keywords from outputs</a></h3>
+<h3><a class="toc-backref" href="#id295">3.3.7&nbsp;&nbsp;&nbsp;Removing keywords from outputs</a></h3>
 <p>When outputs are processed with <span class="prog">rebot</span>, you can remove all
 keyword information of passed tests from the produced log file(s)
 using the command line option <span class="setting">--removekeywords</span>. Only the
@@ -7315,19 +7302,29 @@ names of top-level keywords will be listed. This may reduce the size
 of the log file(s) dramatically, while still preserving the essential
 information about failed tests.</p>
 </div>
+<div class="section" id="system-log">
+<h3><a class="toc-backref" href="#id296">3.3.8&nbsp;&nbsp;&nbsp;System log</a></h3>
+<p>Syslog files contains debug information about the functioning of Robot
+Framework. The information in it is usually only needed when some unexpected
+error occurs during the execution of tests.</p>
+<p>To enable syslog, the environment variable <span class="var">ROBOT_SYSLOG_FILE</span> must contain an
+absolute path to a non-existing file. The <span class="var">ROBOT_SYSLOG_LEVEL</span> environment
+variable determines the level of logging. The available levels are the same as with the
+<a class="reference internal" href="#setting-log-level">--loglevel</a> command line option.</p>
+</div>
 </div>
 </div>
 <div class="section" id="extending-robot-framework">
 <h1><a class="toc-backref" href="#id121">4&nbsp;&nbsp;&nbsp;Extending Robot Framework</a></h1>
 <div class="contents local topic" id="id63">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#creating-test-libraries" id="id298">4.1&nbsp;&nbsp;&nbsp;Creating test libraries</a></li>
-<li><a class="reference internal" href="#using-listener-interface" id="id299">4.2&nbsp;&nbsp;&nbsp;Using listener interface</a></li>
-<li><a class="reference internal" href="#using-internal-apis" id="id300">4.3&nbsp;&nbsp;&nbsp;Using internal APIs</a></li>
+<li><a class="reference internal" href="#creating-test-libraries" id="id297">4.1&nbsp;&nbsp;&nbsp;Creating test libraries</a></li>
+<li><a class="reference internal" href="#using-listener-interface" id="id298">4.2&nbsp;&nbsp;&nbsp;Using listener interface</a></li>
+<li><a class="reference internal" href="#using-internal-apis" id="id299">4.3&nbsp;&nbsp;&nbsp;Using internal APIs</a></li>
 </ul>
 </div>
 <div class="section" id="creating-test-libraries">
-<h2><a class="toc-backref" href="#id298">4.1&nbsp;&nbsp;&nbsp;Creating test libraries</a></h2>
+<h2><a class="toc-backref" href="#id297">4.1&nbsp;&nbsp;&nbsp;Creating test libraries</a></h2>
 <p>Robot Framework's actual testing capabilities are provided by test
 libraries. There are many existing libraries, some of which are even
 bundled with the core framework, but there is still often a need to
@@ -7336,42 +7333,42 @@ chapter illustrates, Robot Framework's library API is really simple
 and straightforward.</p>
 <div class="contents local topic" id="id64">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#supported-programming-languages" id="id301">4.1.1&nbsp;&nbsp;&nbsp;Supported programming languages</a></li>
-<li><a class="reference internal" href="#different-test-library-apis" id="id302">4.1.2&nbsp;&nbsp;&nbsp;Different test library APIs</a></li>
-<li><a class="reference internal" href="#library-and-keyword-names" id="id303">4.1.3&nbsp;&nbsp;&nbsp;Library and keyword names</a></li>
-<li><a class="reference internal" href="#keyword-arguments" id="id304">4.1.4&nbsp;&nbsp;&nbsp;Keyword arguments</a><ul>
-<li><a class="reference internal" href="#id66" id="id305">Default values</a></li>
-<li><a class="reference internal" href="#id67" id="id306">Variable number of arguments</a></li>
-<li><a class="reference internal" href="#argument-types" id="id307">Argument types</a></li>
+<li><a class="reference internal" href="#supported-programming-languages" id="id300">4.1.1&nbsp;&nbsp;&nbsp;Supported programming languages</a></li>
+<li><a class="reference internal" href="#different-test-library-apis" id="id301">4.1.2&nbsp;&nbsp;&nbsp;Different test library APIs</a></li>
+<li><a class="reference internal" href="#library-and-keyword-names" id="id302">4.1.3&nbsp;&nbsp;&nbsp;Library and keyword names</a></li>
+<li><a class="reference internal" href="#keyword-arguments" id="id303">4.1.4&nbsp;&nbsp;&nbsp;Keyword arguments</a><ul>
+<li><a class="reference internal" href="#id66" id="id304">Default values</a></li>
+<li><a class="reference internal" href="#id67" id="id305">Variable number of arguments</a></li>
+<li><a class="reference internal" href="#argument-types" id="id306">Argument types</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#reporting-keyword-status" id="id308">4.1.5&nbsp;&nbsp;&nbsp;Reporting keyword status</a></li>
-<li><a class="reference internal" href="#logging-information" id="id309">4.1.6&nbsp;&nbsp;&nbsp;Logging information</a></li>
-<li><a class="reference internal" href="#returning-values" id="id310">4.1.7&nbsp;&nbsp;&nbsp;Returning values</a></li>
-<li><a class="reference internal" href="#providing-arguments-to-libraries" id="id311">4.1.8&nbsp;&nbsp;&nbsp;Providing arguments to libraries</a></li>
-<li><a class="reference internal" href="#library-scope" id="id312">4.1.9&nbsp;&nbsp;&nbsp;Library scope</a></li>
-<li><a class="reference internal" href="#documenting-libraries" id="id313">4.1.10&nbsp;&nbsp;&nbsp;Documenting libraries</a></li>
-<li><a class="reference internal" href="#dynamic-library-api" id="id314">4.1.11&nbsp;&nbsp;&nbsp;Dynamic library API</a><ul>
-<li><a class="reference internal" href="#getting-keyword-names" id="id315">Getting keyword names</a></li>
-<li><a class="reference internal" href="#running-keywords" id="id316">Running keywords</a></li>
-<li><a class="reference internal" href="#getting-keyword-arguments" id="id317">Getting keyword arguments</a></li>
-<li><a class="reference internal" href="#getting-keyword-documentation" id="id318">Getting keyword documentation</a></li>
-<li><a class="reference internal" href="#summary" id="id319">Summary</a></li>
+<li><a class="reference internal" href="#reporting-keyword-status" id="id307">4.1.5&nbsp;&nbsp;&nbsp;Reporting keyword status</a></li>
+<li><a class="reference internal" href="#logging-information" id="id308">4.1.6&nbsp;&nbsp;&nbsp;Logging information</a></li>
+<li><a class="reference internal" href="#returning-values" id="id309">4.1.7&nbsp;&nbsp;&nbsp;Returning values</a></li>
+<li><a class="reference internal" href="#providing-arguments-to-libraries" id="id310">4.1.8&nbsp;&nbsp;&nbsp;Providing arguments to libraries</a></li>
+<li><a class="reference internal" href="#library-scope" id="id311">4.1.9&nbsp;&nbsp;&nbsp;Library scope</a></li>
+<li><a class="reference internal" href="#documenting-libraries" id="id312">4.1.10&nbsp;&nbsp;&nbsp;Documenting libraries</a></li>
+<li><a class="reference internal" href="#dynamic-library-api" id="id313">4.1.11&nbsp;&nbsp;&nbsp;Dynamic library API</a><ul>
+<li><a class="reference internal" href="#getting-keyword-names" id="id314">Getting keyword names</a></li>
+<li><a class="reference internal" href="#running-keywords" id="id315">Running keywords</a></li>
+<li><a class="reference internal" href="#getting-keyword-arguments" id="id316">Getting keyword arguments</a></li>
+<li><a class="reference internal" href="#getting-keyword-documentation" id="id317">Getting keyword documentation</a></li>
+<li><a class="reference internal" href="#summary" id="id318">Summary</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#hybrid-library-api" id="id320">4.1.12&nbsp;&nbsp;&nbsp;Hybrid library API</a><ul>
-<li><a class="reference internal" href="#id71" id="id321">Getting keyword names</a></li>
-<li><a class="reference internal" href="#id72" id="id322">Running keywords</a></li>
-<li><a class="reference internal" href="#getting-keyword-arguments-and-documentation" id="id323">Getting keyword arguments and documentation</a></li>
-<li><a class="reference internal" href="#id74" id="id324">Summary</a></li>
+<li><a class="reference internal" href="#hybrid-library-api" id="id319">4.1.12&nbsp;&nbsp;&nbsp;Hybrid library API</a><ul>
+<li><a class="reference internal" href="#id71" id="id320">Getting keyword names</a></li>
+<li><a class="reference internal" href="#id72" id="id321">Running keywords</a></li>
+<li><a class="reference internal" href="#getting-keyword-arguments-and-documentation" id="id322">Getting keyword arguments and documentation</a></li>
+<li><a class="reference internal" href="#id74" id="id323">Summary</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#testing-libraries" id="id325">4.1.13&nbsp;&nbsp;&nbsp;Testing libraries</a></li>
-<li><a class="reference internal" href="#packaging-libraries" id="id326">4.1.14&nbsp;&nbsp;&nbsp;Packaging libraries</a></li>
+<li><a class="reference internal" href="#testing-libraries" id="id324">4.1.13&nbsp;&nbsp;&nbsp;Testing libraries</a></li>
+<li><a class="reference internal" href="#packaging-libraries" id="id325">4.1.14&nbsp;&nbsp;&nbsp;Packaging libraries</a></li>
 </ul>
 </div>
 <div class="section" id="supported-programming-languages">
-<h3><a class="toc-backref" href="#id301">4.1.1&nbsp;&nbsp;&nbsp;Supported programming languages</a></h3>
+<h3><a class="toc-backref" href="#id300">4.1.1&nbsp;&nbsp;&nbsp;Supported programming languages</a></h3>
 <p>Robot Framework itself is written with <a class="reference external" href="http://www.python.org/">Python</a> and, naturally, test libraries
 extending it can be implemented using the same
 language. Additionally, it is possible to write libraries using <a class="reference external" href="http://java.sun.com/">Java</a>,
@@ -7391,7 +7388,7 @@ latter. The plan is to have XML-RPC support built in to Robot
 Framework in the future.</p>
 </div>
 <div class="section" id="different-test-library-apis">
-<h3><a class="toc-backref" href="#id302">4.1.2&nbsp;&nbsp;&nbsp;Different test library APIs</a></h3>
+<h3><a class="toc-backref" href="#id301">4.1.2&nbsp;&nbsp;&nbsp;Different test library APIs</a></h3>
 <p>Robot Framework has three different test library APIs.</p>
 <p>Normal API</p>
 <blockquote>
@@ -7429,7 +7426,7 @@ few cases where APIs have differences, both usages are explained with
 adequate examples.</p>
 </div>
 <div class="section" id="library-and-keyword-names">
-<h3><a class="toc-backref" href="#id303">4.1.3&nbsp;&nbsp;&nbsp;Library and keyword names</a></h3>
+<h3><a class="toc-backref" href="#id302">4.1.3&nbsp;&nbsp;&nbsp;Library and keyword names</a></h3>
 <p>The name of a test library that is used when a library is imported is
 the same as the name of the module or class implementing it. For
 example, if you have a Python module <span class="code">MyLibrary</span> (that is, the file
@@ -7542,7 +7539,7 @@ case, is excluded.</p>
 </table>
 </div>
 <div class="section" id="keyword-arguments">
-<h3><a class="toc-backref" href="#id304">4.1.4&nbsp;&nbsp;&nbsp;Keyword arguments</a></h3>
+<h3><a class="toc-backref" href="#id303">4.1.4&nbsp;&nbsp;&nbsp;Keyword arguments</a></h3>
 <p>With a normal and hybrid API, the information on how many arguments a
 keyword needs is got directly from the method that implements it.
 Libraries using a <a class="reference internal" href="#dynamic-library-api">dynamic library API</a> have other means for getting
@@ -7564,7 +7561,7 @@ so on.</p>
     <span class="k">print</span> <span class="s">&quot;Keyword got three arguments &#39;</span><span class="si">%s</span><span class="s">&#39;, &#39;</span><span class="si">%s</span><span class="s">&#39; and &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">)</span>
 </pre></div>
 <div class="section" id="id66">
-<h4><a class="toc-backref" href="#id305">Default values</a></h4>
+<h4><a class="toc-backref" href="#id304">Default values</a></h4>
 <p>It is often useful that some of the arguments that a keyword uses have
 default values. Python and Java have different syntaxes for handling these
 kinds of situations, and the natural syntaxes of these languages can be
@@ -7664,7 +7661,7 @@ examples:</p>
 </table>
 </div>
 <div class="section" id="id67">
-<h4><a class="toc-backref" href="#id306">Variable number of arguments</a></h4>
+<h4><a class="toc-backref" href="#id305">Variable number of arguments</a></h4>
 <p>Robot Framework supports also keywords that take any number of
 arguments. Similarly as with the default values, the actual syntax to use
 in test libraries is different in Python and Java.</p>
@@ -7795,7 +7792,7 @@ the limitations explained above.</p>
 </table>
 </div>
 <div class="section" id="argument-types">
-<h4><a class="toc-backref" href="#id307">Argument types</a></h4>
+<h4><a class="toc-backref" href="#id306">Argument types</a></h4>
 <p>Robot Framework does not do any argument type checking when it uses
 keywords. Since arguments in Python do not have any type, calling a Python
 method implementing a keyword always succeeds, but the execution fails
@@ -7807,7 +7804,7 @@ coercion automatically, so, for example, a method expecting
 </div>
 </div>
 <div class="section" id="reporting-keyword-status">
-<h3><a class="toc-backref" href="#id308">4.1.5&nbsp;&nbsp;&nbsp;Reporting keyword status</a></h3>
+<h3><a class="toc-backref" href="#id307">4.1.5&nbsp;&nbsp;&nbsp;Reporting keyword status</a></h3>
 <p>After a method implementing a keyword is called, it can use any
 mechanism to communicate with the system under test. It can then also
 send messages to Robot Framework's log file, return information that
@@ -7831,7 +7828,7 @@ in the log message of the failed keyword, so it is not lost even if
 this happens.</p>
 </div>
 <div class="section" id="logging-information">
-<h3><a class="toc-backref" href="#id309">4.1.6&nbsp;&nbsp;&nbsp;Logging information</a></h3>
+<h3><a class="toc-backref" href="#id308">4.1.6&nbsp;&nbsp;&nbsp;Logging information</a></h3>
 <p>Exception messages are not the only way to give information to the
 users. In addition to that, methods can also send messages to log
 files simply by writing to standard output (stdout) or standard error
@@ -7911,7 +7908,7 @@ possible problems in the library itself. The <span class="msg">WARN</span> level
 be used to make messages slightly more visible.</p>
 </div>
 <div class="section" id="returning-values">
-<h3><a class="toc-backref" href="#id310">4.1.7&nbsp;&nbsp;&nbsp;Returning values</a></h3>
+<h3><a class="toc-backref" href="#id309">4.1.7&nbsp;&nbsp;&nbsp;Returning values</a></h3>
 <p>The final way for keywords to communicate back to the core framework
 is returning information retrieved from the system under test or
 generated by some other means. Returned values can be assigned to
@@ -8027,7 +8024,7 @@ added in the future.</p>
 </table>
 </div>
 <div class="section" id="providing-arguments-to-libraries">
-<h3><a class="toc-backref" href="#id311">4.1.8&nbsp;&nbsp;&nbsp;Providing arguments to libraries</a></h3>
+<h3><a class="toc-backref" href="#id310">4.1.8&nbsp;&nbsp;&nbsp;Providing arguments to libraries</a></h3>
 <p>All test libraries implemented as classes can take arguments. These
 arguments are specified in the Setting table after the library name,
 and when Robot Framework creates an instance of the imported library
@@ -8098,7 +8095,7 @@ the libraries used in the above example:</p>
 </pre></div>
 </div>
 <div class="section" id="library-scope">
-<h3><a class="toc-backref" href="#id312">4.1.9&nbsp;&nbsp;&nbsp;Library scope</a></h3>
+<h3><a class="toc-backref" href="#id311">4.1.9&nbsp;&nbsp;&nbsp;Library scope</a></h3>
 <p>Libraries implemented as classes can have an internal state, which can be
 altered by keywords and with arguments to the constructor of the
 library. Because the state can affect how keywords actually behave, it
@@ -8172,7 +8169,7 @@ easily closing all open browsers.</p>
 </pre></div>
 </div>
 <div class="section" id="documenting-libraries">
-<h3><a class="toc-backref" href="#id313">4.1.10&nbsp;&nbsp;&nbsp;Documenting libraries</a></h3>
+<h3><a class="toc-backref" href="#id312">4.1.10&nbsp;&nbsp;&nbsp;Documenting libraries</a></h3>
 <p>A test library without documentation about what keywords it
 contains and what those keywords do is rather useless. To ease
 maintenance, it is highly recommended that library documentation is
@@ -8232,7 +8229,7 @@ because their documentations are lost in compilation and not available
 at runtime.</p>
 </div>
 <div class="section" id="dynamic-library-api">
-<h3><a class="toc-backref" href="#id314">4.1.11&nbsp;&nbsp;&nbsp;Dynamic library API</a></h3>
+<h3><a class="toc-backref" href="#id313">4.1.11&nbsp;&nbsp;&nbsp;Dynamic library API</a></h3>
 <p>The dynamic API is in most ways similar to the normal API. For
 example, reporting the keyword status, logging and returning values
 works exactly the same way. Most importantly, there are no differences
@@ -8270,7 +8267,7 @@ component has several ways of creating keywords, and it is likely
 that it already has a mechanism that suites your needs.</p>
 <!-- TODO: add javalibcore to supporting tools and link it from here -->
 <div class="section" id="getting-keyword-names">
-<h4><a class="toc-backref" href="#id315">Getting keyword names</a></h4>
+<h4><a class="toc-backref" href="#id314">Getting keyword names</a></h4>
 <p>Dynamic libraries tell what keywords they implement with the
 <span class="code">get_keyword_names</span> method. The method also has the alias
 <span class="code">getKeywordNames</span> that is recommended when writing Java. This
@@ -8288,7 +8285,7 @@ if calling it fails for some reason, the library is considered a
 normal library, instead.</p>
 </div>
 <div class="section" id="running-keywords">
-<h4><a class="toc-backref" href="#id316">Running keywords</a></h4>
+<h4><a class="toc-backref" href="#id315">Running keywords</a></h4>
 <p>Dynamic libraries have a special <span class="code">run_keyword</span> (alias
 <span class="code">runKeyword</span>) method for executing their keywords. When a
 keyword from a dynamic library is used in the test data, Robot
@@ -8318,7 +8315,7 @@ trivial) dynamic library.</p>
 </pre></div>
 </div>
 <div class="section" id="getting-keyword-arguments">
-<h4><a class="toc-backref" href="#id317">Getting keyword arguments</a></h4>
+<h4><a class="toc-backref" href="#id316">Getting keyword arguments</a></h4>
 <p>If a dynamic library only implements the <span class="code">get_keyword_names</span> and
 <span class="code">run_keyword</span> methods, Robot Framework does not have any information
 about the arguments that the implemented keywords need. For example,
@@ -8406,7 +8403,7 @@ library, arguments are shown in the documentation, in which case they
 need to have meaningful names.</p>
 </div>
 <div class="section" id="getting-keyword-documentation">
-<h4><a class="toc-backref" href="#id318">Getting keyword documentation</a></h4>
+<h4><a class="toc-backref" href="#id317">Getting keyword documentation</a></h4>
 <p>The final special method that dynamic libraries can implement is
 <span class="code">get_keyword_documentation</span> (alias
 <span class="code">getKeywordDocumentation</span>). It takes a keyword name as an
@@ -8421,7 +8418,7 @@ the first line of the documentation (until the first <span class="code">\n</span
 shown in test logs.</p>
 </div>
 <div class="section" id="summary">
-<h4><a class="toc-backref" href="#id319">Summary</a></h4>
+<h4><a class="toc-backref" href="#id318">Summary</a></h4>
 <p>All special methods in the dynamic API are listed in the table
 below. Method names are listed in the underscore format, but their
 camelCase aliases function in exactly the same way.</p>
@@ -8479,19 +8476,19 @@ are completely optional.</p>
 </div>
 </div>
 <div class="section" id="hybrid-library-api">
-<h3><a class="toc-backref" href="#id320">4.1.12&nbsp;&nbsp;&nbsp;Hybrid library API</a></h3>
+<h3><a class="toc-backref" href="#id319">4.1.12&nbsp;&nbsp;&nbsp;Hybrid library API</a></h3>
 <p>The hybrid library API is, as its name implies, a hybrid between the
 normal API and the dynamic API. Just as with the dynamic API, it is
 possible to implement a library using the hybrid API only as a class.</p>
 <div class="section" id="id71">
-<h4><a class="toc-backref" href="#id321">Getting keyword names</a></h4>
+<h4><a class="toc-backref" href="#id320">Getting keyword names</a></h4>
 <p>Keyword names are got in the exactly same way as with the dynamic
 API. In practice, the library needs to have the
 <span class="code">get_keyword_names</span> or <span class="code">getKeywordNames</span> method returning
 a list of keyword names that the library implements.</p>
 </div>
 <div class="section" id="id72">
-<h4><a class="toc-backref" href="#id322">Running keywords</a></h4>
+<h4><a class="toc-backref" href="#id321">Running keywords</a></h4>
 <p>In the hybrid API, there is no <span class="code">run_keyword</span> method for executing
 keywords. Instead, Robot Framework uses reflection to find methods
 implementing keywords, similarly as with the normal API. A library
@@ -8533,7 +8530,7 @@ to implement all the methods in the library class, but that brings few
 benefits compared to the normal API.</p>
 </div>
 <div class="section" id="getting-keyword-arguments-and-documentation">
-<h4><a class="toc-backref" href="#id323">Getting keyword arguments and documentation</a></h4>
+<h4><a class="toc-backref" href="#id322">Getting keyword arguments and documentation</a></h4>
 <p>When this API is used, Robot Framework uses reflection to find the
 methods implementing keywords, similarly as with the normal API. After
 getting a reference to the method, it searches for arguments and
@@ -8542,7 +8539,7 @@ API. Thus there is no need for special methods for getting arguments
 and documentation like there is with the dynamic API.</p>
 </div>
 <div class="section" id="id74">
-<h4><a class="toc-backref" href="#id324">Summary</a></h4>
+<h4><a class="toc-backref" href="#id323">Summary</a></h4>
 <p>When implementing a test library in Python, the hybrid API has the same
 dynamic capabilities as the actual dynamic API. A great benefit with it is
 that there is no need to have special methods for getting keyword
@@ -8560,7 +8557,7 @@ the keyword name and arguments.</p>
 </div>
 </div>
 <div class="section" id="testing-libraries">
-<h3><a class="toc-backref" href="#id325">4.1.13&nbsp;&nbsp;&nbsp;Testing libraries</a></h3>
+<h3><a class="toc-backref" href="#id324">4.1.13&nbsp;&nbsp;&nbsp;Testing libraries</a></h3>
 <p>Any non-trivial test library needs to be thoroughly tested to prevent
 bugs in them. Of course, this testing should be automated to make it
 easy to rerun tests when libraries are changed.</p>
@@ -8584,7 +8581,7 @@ Framework. If you cannot decide, of course it is possible to use both
 the approaches.</p>
 </div>
 <div class="section" id="packaging-libraries">
-<h3><a class="toc-backref" href="#id326">4.1.14&nbsp;&nbsp;&nbsp;Packaging libraries</a></h3>
+<h3><a class="toc-backref" href="#id325">4.1.14&nbsp;&nbsp;&nbsp;Packaging libraries</a></h3>
 <p>After a library is implemented, documented, and tested, it still needs
 to be distributed to the users. With simple libraries consisting of a
 single file, it is often enough to ask the users to copy that file
@@ -8603,12 +8600,12 @@ does that automatically.</p>
 </div>
 </div>
 <div class="section" id="using-listener-interface">
-<h2><a class="toc-backref" href="#id299">4.2&nbsp;&nbsp;&nbsp;Using listener interface</a></h2>
+<h2><a class="toc-backref" href="#id298">4.2&nbsp;&nbsp;&nbsp;Using listener interface</a></h2>
 <div class="contents local topic" id="id75">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#taking-listeners-into-use" id="id327">4.2.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></li>
-<li><a class="reference internal" href="#available-listener-interface-methods" id="id328">4.2.2&nbsp;&nbsp;&nbsp;Available listener interface methods</a></li>
-<li><a class="reference internal" href="#listener-examples" id="id329">4.2.3&nbsp;&nbsp;&nbsp;Listener examples</a></li>
+<li><a class="reference internal" href="#taking-listeners-into-use" id="id326">4.2.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></li>
+<li><a class="reference internal" href="#available-listener-interface-methods" id="id327">4.2.2&nbsp;&nbsp;&nbsp;Available listener interface methods</a></li>
+<li><a class="reference internal" href="#listener-examples" id="id328">4.2.3&nbsp;&nbsp;&nbsp;Listener examples</a></li>
 </ul>
 </div>
 <p>Robot Framework has a listener interface that can be used to receive
@@ -8618,7 +8615,7 @@ Java. Example uses of the listener interface include external test
 monitors, sending a mail message when a test fails, and communicating with
 other systems.</p>
 <div class="section" id="taking-listeners-into-use">
-<h3><a class="toc-backref" href="#id327">4.2.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></h3>
+<h3><a class="toc-backref" href="#id326">4.2.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></h3>
 <p>Listeners are taken into use from the command line with the
 <span class="setting">--listener</span> option, so that the name of the listener is
 given to it as an argument. The listener name is got from the name of
@@ -8635,7 +8632,7 @@ jybot --listener com.company.package.Listener tests.html
 </pre>
 </div>
 <div class="section" id="available-listener-interface-methods">
-<h3><a class="toc-backref" href="#id328">4.2.2&nbsp;&nbsp;&nbsp;Available listener interface methods</a></h3>
+<h3><a class="toc-backref" href="#id327">4.2.2&nbsp;&nbsp;&nbsp;Available listener interface methods</a></h3>
 <p>Robot Framework creates an instance of the listener class when test
 execution starts. No arguments are given to the constructor of the
 listener class. During the test execution, Robot Framework calls
@@ -8752,7 +8749,7 @@ need to implement any explicit interface or have all these methods.</p>
 </pre></div>
 </div>
 <div class="section" id="listener-examples">
-<h3><a class="toc-backref" href="#id329">4.2.3&nbsp;&nbsp;&nbsp;Listener examples</a></h3>
+<h3><a class="toc-backref" href="#id328">4.2.3&nbsp;&nbsp;&nbsp;Listener examples</a></h3>
 <p>The first simple example is implemented with Python. It mainly
 illustrates that using the listener interface is not very complicated.</p>
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">SimpleListener</span><span class="p">:</span>
@@ -8849,7 +8846,7 @@ example.</p>
 </div>
 </div>
 <div class="section" id="using-internal-apis">
-<h2><a class="toc-backref" href="#id300">4.3&nbsp;&nbsp;&nbsp;Using internal APIs</a></h2>
+<h2><a class="toc-backref" href="#id299">4.3&nbsp;&nbsp;&nbsp;Using internal APIs</a></h2>
 <p>Robot Framework has some public APIs which are intended to help in developing
 supporting tools or extending the processing of input or output data. These
 APIs are implemented as Python modules, and as such can only be used from
@@ -8862,14 +8859,14 @@ investigating existing <a class="reference internal" href="#supporting-tools">su
 just taking a look at the source code of Robot Framework.</p>
 <div class="contents local topic" id="id77">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#test-execution" id="id330">4.3.1&nbsp;&nbsp;&nbsp;Test execution</a></li>
-<li><a class="reference internal" href="#parsed-test-data" id="id331">4.3.2&nbsp;&nbsp;&nbsp;Parsed test data</a></li>
-<li><a class="reference internal" href="#runnable-test-data" id="id332">4.3.3&nbsp;&nbsp;&nbsp;Runnable test data</a></li>
-<li><a class="reference internal" href="#executed-test-data" id="id333">4.3.4&nbsp;&nbsp;&nbsp;Executed test data</a></li>
+<li><a class="reference internal" href="#test-execution" id="id329">4.3.1&nbsp;&nbsp;&nbsp;Test execution</a></li>
+<li><a class="reference internal" href="#parsed-test-data" id="id330">4.3.2&nbsp;&nbsp;&nbsp;Parsed test data</a></li>
+<li><a class="reference internal" href="#runnable-test-data" id="id331">4.3.3&nbsp;&nbsp;&nbsp;Runnable test data</a></li>
+<li><a class="reference internal" href="#executed-test-data" id="id332">4.3.4&nbsp;&nbsp;&nbsp;Executed test data</a></li>
 </ul>
 </div>
 <div class="section" id="test-execution">
-<h3><a class="toc-backref" href="#id330">4.3.1&nbsp;&nbsp;&nbsp;Test execution</a></h3>
+<h3><a class="toc-backref" href="#id329">4.3.1&nbsp;&nbsp;&nbsp;Test execution</a></h3>
 <p>This API consists of <span class="code">run</span> method, which can be used for
 starting the test execution. The signature of the method is
 <span class="code">run(*datasources, **options)</span>, where <span class="code">datasources</span> are
@@ -8891,7 +8888,7 @@ This problem will be fixed in future releases.</p>
 </div>
 </div>
 <div class="section" id="parsed-test-data">
-<h3><a class="toc-backref" href="#id331">4.3.2&nbsp;&nbsp;&nbsp;Parsed test data</a></h3>
+<h3><a class="toc-backref" href="#id330">4.3.2&nbsp;&nbsp;&nbsp;Parsed test data</a></h3>
 <p><em>TODO: Go this and rest of the section throug</em></p>
 <p>An API for getting a <span class="code">TestSuite</span> object containing parsed test
 data.  This API is used like <span class="code">TestSuite(*datasources,
@@ -8914,7 +8911,7 @@ replaced when parsing the data. <a class="reference internal" href="#test-data-e
 parses the input data. See <a class="reference internal" href="#built-in-variables">Built-in variables</a> for more information about
 <span class="var">${CURDIR}</span>.</dd>
 </dl>
-<p><a class="reference internal" href="#syslog-file">syslog</a></p>
+<p><a class="reference internal" href="#system-log">syslog</a></p>
 <dl class="docutils">
 <dt>SuiteNames</dt>
 <dd>The value of this option becomes the name of the topmost suite, if either
@@ -8922,7 +8919,7 @@ several datasources are given or if the datasource is a directory.</dd>
 </dl>
 </div>
 <div class="section" id="runnable-test-data">
-<h3><a class="toc-backref" href="#id332">4.3.3&nbsp;&nbsp;&nbsp;Runnable test data</a></h3>
+<h3><a class="toc-backref" href="#id331">4.3.3&nbsp;&nbsp;&nbsp;Runnable test data</a></h3>
 <p>A method for parsing given input files into a runnable test suite object.
 This means that variables and settings for suite are processed.</p>
 <p>The signature of this <span class="code">TestSuite</span> method is
@@ -8932,7 +8929,7 @@ the command line. &quot;Settings&quot; must be a RobotSettings object, and &quot
 implement the syslog interface.</p>
 </div>
 <div class="section" id="executed-test-data">
-<h3><a class="toc-backref" href="#id333">4.3.4&nbsp;&nbsp;&nbsp;Executed test data</a></h3>
+<h3><a class="toc-backref" href="#id332">4.3.4&nbsp;&nbsp;&nbsp;Executed test data</a></h3>
 <p>A method for reading a Robot Framework output file(s) into a test suite
 object that contains all the relevant information about the results of
 the test execution.</p>
@@ -8986,24 +8983,24 @@ and report files can be generated with <a class="reference internal" href="#post
 <h1><a class="toc-backref" href="#id125">5&nbsp;&nbsp;&nbsp;Appendices</a></h1>
 <div class="contents local topic" id="id78">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#all-available-settings-in-test-data" id="id334">5.1&nbsp;&nbsp;&nbsp;All available settings in test data</a></li>
-<li><a class="reference internal" href="#all-command-line-options" id="id335">5.2&nbsp;&nbsp;&nbsp;All command line options</a></li>
-<li><a class="reference internal" href="#supporting-tools" id="id336">5.3&nbsp;&nbsp;&nbsp;Supporting tools</a></li>
-<li><a class="reference internal" href="#documentation-formatting" id="id337">5.4&nbsp;&nbsp;&nbsp;Documentation formatting</a></li>
-<li><a class="reference internal" href="#time-formats" id="id338">5.5&nbsp;&nbsp;&nbsp;Time formats</a></li>
+<li><a class="reference internal" href="#all-available-settings-in-test-data" id="id333">5.1&nbsp;&nbsp;&nbsp;All available settings in test data</a></li>
+<li><a class="reference internal" href="#all-command-line-options" id="id334">5.2&nbsp;&nbsp;&nbsp;All command line options</a></li>
+<li><a class="reference internal" href="#supporting-tools" id="id335">5.3&nbsp;&nbsp;&nbsp;Supporting tools</a></li>
+<li><a class="reference internal" href="#documentation-formatting" id="id336">5.4&nbsp;&nbsp;&nbsp;Documentation formatting</a></li>
+<li><a class="reference internal" href="#time-formats" id="id337">5.5&nbsp;&nbsp;&nbsp;Time formats</a></li>
 </ul>
 </div>
 <div class="section" id="all-available-settings-in-test-data">
-<h2><a class="toc-backref" href="#id334">5.1&nbsp;&nbsp;&nbsp;All available settings in test data</a></h2>
+<h2><a class="toc-backref" href="#id333">5.1&nbsp;&nbsp;&nbsp;All available settings in test data</a></h2>
 <div class="contents local topic" id="id79">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#id80" id="id339">5.1.1&nbsp;&nbsp;&nbsp;Setting table</a></li>
-<li><a class="reference internal" href="#test-case-table" id="id340">5.1.2&nbsp;&nbsp;&nbsp;Test Case table</a></li>
-<li><a class="reference internal" href="#id81" id="id341">5.1.3&nbsp;&nbsp;&nbsp;Keyword table</a></li>
+<li><a class="reference internal" href="#id80" id="id338">5.1.1&nbsp;&nbsp;&nbsp;Setting table</a></li>
+<li><a class="reference internal" href="#test-case-table" id="id339">5.1.2&nbsp;&nbsp;&nbsp;Test Case table</a></li>
+<li><a class="reference internal" href="#id81" id="id340">5.1.3&nbsp;&nbsp;&nbsp;Keyword table</a></li>
 </ul>
 </div>
 <div class="section" id="id80">
-<h3><a class="toc-backref" href="#id339">5.1.1&nbsp;&nbsp;&nbsp;Setting table</a></h3>
+<h3><a class="toc-backref" href="#id338">5.1.1&nbsp;&nbsp;&nbsp;Setting table</a></h3>
 <p>The Setting table is used to import test libraries, resource files and
 variable files and to define metadata for test suites and test
 cases. It can be included in test case files and resource files. Note
@@ -9079,7 +9076,7 @@ Postcondition</td>
 </table>
 </div>
 <div class="section" id="test-case-table">
-<h3><a class="toc-backref" href="#id340">5.1.2&nbsp;&nbsp;&nbsp;Test Case table</a></h3>
+<h3><a class="toc-backref" href="#id339">5.1.2&nbsp;&nbsp;&nbsp;Test Case table</a></h3>
 <p>The settings in the Test Case table are always specific to the test case for which they
 are defined. Some of these settings override the default values defined in the Settings table.</p>
 <table border="1" class="tabular docutils">
@@ -9119,7 +9116,7 @@ are defined. Some of these settings override the default values defined in the S
 </table>
 </div>
 <div class="section" id="id81">
-<h3><a class="toc-backref" href="#id341">5.1.3&nbsp;&nbsp;&nbsp;Keyword table</a></h3>
+<h3><a class="toc-backref" href="#id340">5.1.3&nbsp;&nbsp;&nbsp;Keyword table</a></h3>
 <p>Settings in the Keyword table are specific to the user keyword for which they are defined.</p>
 <table border="1" class="tabular docutils">
 <caption>Settings available in the Keyword table</caption>
@@ -9150,18 +9147,18 @@ are defined. Some of these settings override the default values defined in the S
 </div>
 </div>
 <div class="section" id="all-command-line-options">
-<h2><a class="toc-backref" href="#id335">5.2&nbsp;&nbsp;&nbsp;All command line options</a></h2>
+<h2><a class="toc-backref" href="#id334">5.2&nbsp;&nbsp;&nbsp;All command line options</a></h2>
 <p>This appendix lists all the command line options that are available
 when <a class="reference internal" href="#starting-test-execution">executing test cases</a> with <span class="prog">pybot</span> or <span class="prog">jybot</span>, and when
 <a class="reference internal" href="#post-processing-outputs">post-processing outputs</a> with <span class="prog">rebot</span>.</p>
 <div class="contents local topic" id="id83">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#command-line-options-for-test-execution" id="id342">5.2.1&nbsp;&nbsp;&nbsp;Command line options for test execution</a></li>
-<li><a class="reference internal" href="#command-line-options-for-post-processing-outputs" id="id343">5.2.2&nbsp;&nbsp;&nbsp;Command line options for post-processing outputs</a></li>
+<li><a class="reference internal" href="#command-line-options-for-test-execution" id="id341">5.2.1&nbsp;&nbsp;&nbsp;Command line options for test execution</a></li>
+<li><a class="reference internal" href="#command-line-options-for-post-processing-outputs" id="id342">5.2.2&nbsp;&nbsp;&nbsp;Command line options for post-processing outputs</a></li>
 </ul>
 </div>
 <div class="section" id="command-line-options-for-test-execution">
-<h3><a class="toc-backref" href="#id342">5.2.1&nbsp;&nbsp;&nbsp;Command line options for test execution</a></h3>
+<h3><a class="toc-backref" href="#id341">5.2.1&nbsp;&nbsp;&nbsp;Command line options for test execution</a></h3>
 <blockquote>
 <table class="docutils option-list" frame="void" rules="none">
 <col class="option" />
@@ -9341,7 +9338,7 @@ option. The default is INFO.</dd>
 </dl>
 </div>
 <div class="section" id="command-line-options-for-post-processing-outputs">
-<h3><a class="toc-backref" href="#id343">5.2.2&nbsp;&nbsp;&nbsp;Command line options for post-processing outputs</a></h3>
+<h3><a class="toc-backref" href="#id342">5.2.2&nbsp;&nbsp;&nbsp;Command line options for post-processing outputs</a></h3>
 <p>Options:</p>
 <blockquote>
 <table class="docutils option-list" frame="void" rules="none">
@@ -9501,66 +9498,66 @@ option to Robot and the default is INFO.</dd>
 </div>
 </div>
 <div class="section" id="supporting-tools">
-<h2><a class="toc-backref" href="#id336">5.3&nbsp;&nbsp;&nbsp;Supporting tools</a></h2>
+<h2><a class="toc-backref" href="#id335">5.3&nbsp;&nbsp;&nbsp;Supporting tools</a></h2>
 <p>In this appendix, the available supporting tools for Robot Framework
 are described. Unless otherwise stated later in this chapter, the
 tools can be downloaded from the <a class="reference external" href="TODO,correctlink">Robot Framework supporting tools page</a>.</p>
 <div class="contents local topic" id="id84">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#library-documentation-tool-libdoc-py" id="id344">5.3.1&nbsp;&nbsp;&nbsp;Library documentation tool -- libdoc.py</a></li>
-<li><a class="reference internal" href="#historical-reporting-tool-risto-py" id="id345">5.3.2&nbsp;&nbsp;&nbsp;Historical reporting tool -- risto.py</a></li>
-<li><a class="reference internal" href="#test-data-tidying-tool-robotidy-py" id="id346">5.3.3&nbsp;&nbsp;&nbsp;Test data tidying tool -- robotidy.py</a></li>
-<li><a class="reference internal" href="#test-result-diffing-tool-robotdiff-py" id="id347">5.3.4&nbsp;&nbsp;&nbsp;Test result diffing tool -- robotdiff.py</a></li>
-<li><a class="reference internal" href="#execution-time-reporting-tool-times2csv-py" id="id348">5.3.5&nbsp;&nbsp;&nbsp;Execution time reporting tool -- times2csv.py</a></li>
-<li><a class="reference internal" href="#file-viewing-tool-fileviewer-py" id="id349">5.3.6&nbsp;&nbsp;&nbsp;File viewing tool -- fileviewer.py</a></li>
-<li><a class="reference internal" href="#one-click-installer" id="id350">5.3.7&nbsp;&nbsp;&nbsp;One click installer</a></li>
-<li><a class="reference internal" href="#test-status-checker-tool-statuschecker-py" id="id351">5.3.8&nbsp;&nbsp;&nbsp;Test status checker tool -- statuschecker.py</a></li>
-<li><a class="reference internal" href="#test-data-editing-tool-robot-ide" id="id352">5.3.9&nbsp;&nbsp;&nbsp;Test data editing tool (Robot IDE)</a></li>
+<li><a class="reference internal" href="#library-documentation-tool-libdoc-py" id="id343">5.3.1&nbsp;&nbsp;&nbsp;Library documentation tool -- libdoc.py</a></li>
+<li><a class="reference internal" href="#historical-reporting-tool-risto-py" id="id344">5.3.2&nbsp;&nbsp;&nbsp;Historical reporting tool -- risto.py</a></li>
+<li><a class="reference internal" href="#test-data-tidying-tool-robotidy-py" id="id345">5.3.3&nbsp;&nbsp;&nbsp;Test data tidying tool -- robotidy.py</a></li>
+<li><a class="reference internal" href="#test-result-diffing-tool-robotdiff-py" id="id346">5.3.4&nbsp;&nbsp;&nbsp;Test result diffing tool -- robotdiff.py</a></li>
+<li><a class="reference internal" href="#execution-time-reporting-tool-times2csv-py" id="id347">5.3.5&nbsp;&nbsp;&nbsp;Execution time reporting tool -- times2csv.py</a></li>
+<li><a class="reference internal" href="#file-viewing-tool-fileviewer-py" id="id348">5.3.6&nbsp;&nbsp;&nbsp;File viewing tool -- fileviewer.py</a></li>
+<li><a class="reference internal" href="#one-click-installer" id="id349">5.3.7&nbsp;&nbsp;&nbsp;One click installer</a></li>
+<li><a class="reference internal" href="#test-status-checker-tool-statuschecker-py" id="id350">5.3.8&nbsp;&nbsp;&nbsp;Test status checker tool -- statuschecker.py</a></li>
+<li><a class="reference internal" href="#test-data-editing-tool-robot-ide" id="id351">5.3.9&nbsp;&nbsp;&nbsp;Test data editing tool (Robot IDE)</a></li>
 </ul>
 </div>
 <div class="section" id="library-documentation-tool-libdoc-py">
-<h3><a class="toc-backref" href="#id344">5.3.1&nbsp;&nbsp;&nbsp;Library documentation tool -- libdoc.py</a></h3>
+<h3><a class="toc-backref" href="#id343">5.3.1&nbsp;&nbsp;&nbsp;Library documentation tool -- libdoc.py</a></h3>
 <p><a class="reference external" href="libdoc.html">libdoc.py</a> is tool for generating HTML or XML documentation from keywords of a
 test library or a resource file.</p>
 </div>
 <div class="section" id="historical-reporting-tool-risto-py">
-<h3><a class="toc-backref" href="#id345">5.3.2&nbsp;&nbsp;&nbsp;Historical reporting tool -- risto.py</a></h3>
+<h3><a class="toc-backref" href="#id344">5.3.2&nbsp;&nbsp;&nbsp;Historical reporting tool -- risto.py</a></h3>
 <p><a class="reference external" href="ristopy.html">Risto.py</a> is a tool for generating graphs about historical statistics
 of test executions.</p>
 </div>
 <div class="section" id="test-data-tidying-tool-robotidy-py">
-<h3><a class="toc-backref" href="#id346">5.3.3&nbsp;&nbsp;&nbsp;Test data tidying tool -- robotidy.py</a></h3>
+<h3><a class="toc-backref" href="#id345">5.3.3&nbsp;&nbsp;&nbsp;Test data tidying tool -- robotidy.py</a></h3>
 <p><a class="reference external" href="robotidy.html">Robotidy</a> is a tool for cleaning Robot Framework test data, changing test
 data format between HTML and TSV and fixing inline comments to format supported
 by Robot IDE.</p>
 </div>
 <div class="section" id="test-result-diffing-tool-robotdiff-py">
-<h3><a class="toc-backref" href="#id347">5.3.4&nbsp;&nbsp;&nbsp;Test result diffing tool -- robotdiff.py</a></h3>
+<h3><a class="toc-backref" href="#id346">5.3.4&nbsp;&nbsp;&nbsp;Test result diffing tool -- robotdiff.py</a></h3>
 <p><a class="reference external" href="robotdiff.html">Robotdiff</a> is a tool for generating diff reports from Robot
 Framework output files.</p>
 </div>
 <div class="section" id="execution-time-reporting-tool-times2csv-py">
-<h3><a class="toc-backref" href="#id348">5.3.5&nbsp;&nbsp;&nbsp;Execution time reporting tool -- times2csv.py</a></h3>
+<h3><a class="toc-backref" href="#id347">5.3.5&nbsp;&nbsp;&nbsp;Execution time reporting tool -- times2csv.py</a></h3>
 <p><a class="reference external" href="times2csv.html">times2csv.py</a> is a tool for generating start, end and elapsed
 time information about suites, tests and keywords in CSV format.</p>
 </div>
 <div class="section" id="file-viewing-tool-fileviewer-py">
-<h3><a class="toc-backref" href="#id349">5.3.6&nbsp;&nbsp;&nbsp;File viewing tool -- fileviewer.py</a></h3>
+<h3><a class="toc-backref" href="#id348">5.3.6&nbsp;&nbsp;&nbsp;File viewing tool -- fileviewer.py</a></h3>
 <p><a class="reference external" href="fileviewer.html">Fileviewer</a> is a graphical tool implementing UNIX <span class="cli">tail</span> -like
 functionality. It is especially designed to view <a class="reference internal" href="#debug-file">debug files</a></p>
 </div>
 <div class="section" id="one-click-installer">
-<h3><a class="toc-backref" href="#id350">5.3.7&nbsp;&nbsp;&nbsp;One click installer</a></h3>
+<h3><a class="toc-backref" href="#id349">5.3.7&nbsp;&nbsp;&nbsp;One click installer</a></h3>
 <p><a class="reference external" href="oneclickinstaller.html">One click installer</a> is an <a class="reference external" href="http://www.autoitscript.com/autoit3/">AutoIT</a> script that installs Robot
 Framework and its dependencies.</p>
 </div>
 <div class="section" id="test-status-checker-tool-statuschecker-py">
-<h3><a class="toc-backref" href="#id351">5.3.8&nbsp;&nbsp;&nbsp;Test status checker tool -- statuschecker.py</a></h3>
+<h3><a class="toc-backref" href="#id350">5.3.8&nbsp;&nbsp;&nbsp;Test status checker tool -- statuschecker.py</a></h3>
 <p><a class="reference external" href="statuschecker.html">Statuschecker</a> is a tool for verifying that test case statuses and messages
 and also keyword log messages are as expected.</p>
 </div>
 <div class="section" id="test-data-editing-tool-robot-ide">
-<h3><a class="toc-backref" href="#id352">5.3.9&nbsp;&nbsp;&nbsp;Test data editing tool (Robot IDE)</a></h3>
+<h3><a class="toc-backref" href="#id351">5.3.9&nbsp;&nbsp;&nbsp;Test data editing tool (Robot IDE)</a></h3>
 <p>Robot IDE is a standalone tool for editing test data. It helps in
 creating, editing and maintaining of Robot Framework test data.</p>
 <p>More information will be added as soon as Robot IDE project is
@@ -9568,7 +9565,7 @@ made publicly available.</p>
 </div>
 </div>
 <div class="section" id="documentation-formatting">
-<h2><a class="toc-backref" href="#id337">5.4&nbsp;&nbsp;&nbsp;Documentation formatting</a></h2>
+<h2><a class="toc-backref" href="#id336">5.4&nbsp;&nbsp;&nbsp;Documentation formatting</a></h2>
 <p>In this appendix, the documentation formatting practices of Robot
 Framework are described. It is possible to use simple HTML formatting, such as bold and italic
 text and tables, both with the documentation of test cases and test
@@ -9577,15 +9574,15 @@ that it is understandable and clear both as plain text and after the HTML
 transformation. It is also similar to the style used in most wikis.</p>
 <div class="contents local topic" id="id95">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#applicable-general-rules-on-documentation-formatting" id="id353">5.4.1&nbsp;&nbsp;&nbsp;Applicable general rules on documentation formatting</a></li>
-<li><a class="reference internal" href="#bold-and-italic" id="id354">5.4.2&nbsp;&nbsp;&nbsp;Bold and italic</a></li>
-<li><a class="reference internal" href="#urls" id="id355">5.4.3&nbsp;&nbsp;&nbsp;URLs</a></li>
-<li><a class="reference internal" href="#tables" id="id356">5.4.4&nbsp;&nbsp;&nbsp;Tables</a></li>
-<li><a class="reference internal" href="#horizontal-ruler" id="id357">5.4.5&nbsp;&nbsp;&nbsp;Horizontal ruler</a></li>
+<li><a class="reference internal" href="#applicable-general-rules-on-documentation-formatting" id="id352">5.4.1&nbsp;&nbsp;&nbsp;Applicable general rules on documentation formatting</a></li>
+<li><a class="reference internal" href="#bold-and-italic" id="id353">5.4.2&nbsp;&nbsp;&nbsp;Bold and italic</a></li>
+<li><a class="reference internal" href="#urls" id="id354">5.4.3&nbsp;&nbsp;&nbsp;URLs</a></li>
+<li><a class="reference internal" href="#tables" id="id355">5.4.4&nbsp;&nbsp;&nbsp;Tables</a></li>
+<li><a class="reference internal" href="#horizontal-ruler" id="id356">5.4.5&nbsp;&nbsp;&nbsp;Horizontal ruler</a></li>
 </ul>
 </div>
 <div class="section" id="applicable-general-rules-on-documentation-formatting">
-<h3><a class="toc-backref" href="#id353">5.4.1&nbsp;&nbsp;&nbsp;Applicable general rules on documentation formatting</a></h3>
+<h3><a class="toc-backref" href="#id352">5.4.1&nbsp;&nbsp;&nbsp;Applicable general rules on documentation formatting</a></h3>
 <p>Besides the formatting explained here, the documentation used for test
 cases and suites is subject to general parsing rules of the Robot
 Framework test data. For example, dividing text into lines and
@@ -9644,7 +9641,7 @@ totally equivalent.</p>
 </table>
 </div>
 <div class="section" id="bold-and-italic">
-<h3><a class="toc-backref" href="#id354">5.4.2&nbsp;&nbsp;&nbsp;Bold and italic</a></h3>
+<h3><a class="toc-backref" href="#id353">5.4.2&nbsp;&nbsp;&nbsp;Bold and italic</a></h3>
 <p>Bold text can be created by having an asterisk before and after the
 selected word or words, for example <span class="code">*this is bold*</span>. Italic
 style works similarly, but the special character is an underscore, for
@@ -9692,13 +9689,13 @@ asterisks.</p>
 </table>
 </div>
 <div class="section" id="urls">
-<h3><a class="toc-backref" href="#id355">5.4.3&nbsp;&nbsp;&nbsp;URLs</a></h3>
+<h3><a class="toc-backref" href="#id354">5.4.3&nbsp;&nbsp;&nbsp;URLs</a></h3>
 <p>Since Robot Framework 1.6, all strings that look like an URL are
 automatically converted into a clickable link. For example,
 http://some.url turns into link.</p>
 </div>
 <div class="section" id="tables">
-<h3><a class="toc-backref" href="#id356">5.4.4&nbsp;&nbsp;&nbsp;Tables</a></h3>
+<h3><a class="toc-backref" href="#id355">5.4.4&nbsp;&nbsp;&nbsp;Tables</a></h3>
 <p>Tables are created using the pipe character with spaces around it ( | ) as
 a cell boundary and a newline (<span class="code">\n</span>) as a row separator. The table
 always has a thin border and the text is left-aligned. Formatting using
@@ -9734,7 +9731,7 @@ bold and italic works also in table cells:</p>
 </table>
 </div>
 <div class="section" id="horizontal-ruler">
-<h3><a class="toc-backref" href="#id357">5.4.5&nbsp;&nbsp;&nbsp;Horizontal ruler</a></h3>
+<h3><a class="toc-backref" href="#id356">5.4.5&nbsp;&nbsp;&nbsp;Horizontal ruler</a></h3>
 <p>Horizontal rulers (the &lt;hr&gt; tag) make it possible to separate larger
 sections from each others. They can be created by having three hyphens
 alone in a line (<span class="code">n---n</span>). Example:</p>
@@ -9751,7 +9748,7 @@ yadda yadda\n
 </div>
 </div>
 <div class="section" id="time-formats">
-<h2><a class="toc-backref" href="#id338">5.5&nbsp;&nbsp;&nbsp;Time formats</a></h2>
+<h2><a class="toc-backref" href="#id337">5.5&nbsp;&nbsp;&nbsp;Time formats</a></h2>
 <p>The time format syntax described below can be used with test case and
 user keyword timeouts, as well as with several keywords (for example,
 with the BuiltIn library's keywords <span class="kw">Sleep</span> and <span class="kw">Wait Until
@@ -9802,7 +9799,7 @@ are valid.</td>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2008-06-12 11:56 UTC.
+<p>Generated on: 2008-06-12 12:22 UTC.
 </p>
 
 </div>
