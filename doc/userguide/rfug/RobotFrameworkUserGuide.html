@@ -345,7 +345,7 @@ table.messages td.level {
 .var {
     background: #f4f4f4;
 }
-.setting {
+.opt {
     font-style: italic;
 }
 .prog, .code, .cli {
@@ -355,7 +355,7 @@ table.messages td.level {
 .msg {
     font-family: monospace;
 }
-.kw, .name {  
+.name {  
     font-style: italic;
 }
 .path {
@@ -500,16 +500,16 @@ pre.literal-block, pre.doctest-block {
 </ul>
 </div>
 <!-- Roles to use in text like :rolename:`text`. Styled in userguide.css.
-- var      variables
-- setting  settings in setting table (e.g. Force Tags), tc/kw tables
-           (e.g [Documentation]) and command line options (e.g. - -name)
-- prog     program names (e.g. rebot, risto.py)
-- code     programming code
-- msg      test case status and message, as well as log messages and levels
-- name     keyword, test case and test suite names
-- cli      command line examples (note that options alone use setting)
-- path     file names and paths
-- misc     everything else (synonym to ``text``) -->
+- var    variables
+- opt    settings in setting table (e.g. Force Tags), tc/kw tables
+         (e.g [Documentation]) and command line options (e.g. - -name)
+- prog   program names (e.g. rebot, risto.py)
+- code   programming code
+- msg    test case status and message, as well as log messages and levels
+- name   keyword, library, test case, test suite, etc. names
+- cli    command line examples (note that options alone use opt)
+- path   file names and paths
+- misc   everything else (synonym to ``text``) -->
 <div class="section" id="getting-started">
 <h1><a class="toc-backref" href="#id114">1&nbsp;&nbsp;&nbsp;Getting started</a></h1>
 <div class="contents local topic" id="contents">
@@ -1811,15 +1811,15 @@ are in the subsequent columns. Setting names have square brackets around
 them to distinguish them from keywords. The available settings are listed
 below and explained later in this section.</p>
 <dl class="docutils">
-<dt><span class="setting">[Documentation]</span></dt>
+<dt><span class="opt">[Documentation]</span></dt>
 <dd>Used for specifying a <a class="reference internal" href="#test-case-name-and-documentation">test case documentation</a>.</dd>
-<dt><span class="setting">[Tags]</span></dt>
+<dt><span class="opt">[Tags]</span></dt>
 <dd>Used for <a class="reference internal" href="#tagging-test-cases">tagging test cases</a>.</dd>
-<dt><span class="setting">[Setup]</span>, <span class="setting">[Teardown]</span></dt>
+<dt><span class="opt">[Setup]</span>, <span class="opt">[Teardown]</span></dt>
 <dd>Specify <a class="reference internal" href="#test-setup-and-teardown">test setup and teardown</a>. Have also synonyms
-<span class="setting">[Precondition]</span> and <span class="setting">[Postcondition]</span>,
+<span class="opt">[Precondition]</span> and <span class="opt">[Postcondition]</span>,
 respectively.</dd>
-<dt><span class="setting">[Timeout]</span></dt>
+<dt><span class="opt">[Timeout]</span></dt>
 <dd>Used for setting a <a class="reference internal" href="#test-case-timeout">test case timeout</a>. <a class="reference internal" href="#timeouts">Timeouts</a> are discussed in
 their own section.</dd>
 </dl>
@@ -1863,13 +1863,13 @@ their own section.</dd>
 settings. These settings are mainly default values for the
 test-case-specific settings listed earlier.</p>
 <dl class="docutils">
-<dt><span class="setting">Force Tags</span>, <span class="setting">Default Tags</span></dt>
+<dt><span class="opt">Force Tags</span>, <span class="opt">Default Tags</span></dt>
 <dd>The forced and default values for <a class="reference internal" href="#tagging-test-cases">tags</a>.</dd>
-<dt><span class="setting">Test Setup</span>, <span class="setting">Test Teardown</span></dt>
+<dt><span class="opt">Test Setup</span>, <span class="opt">Test Teardown</span></dt>
 <dd>The default values for <a class="reference internal" href="#test-setup-and-teardown">test setup and teardown</a>. Have also synonyms
-<span class="setting">Test Precondition</span> and <span class="setting">Test Postcondition</span>,
+<span class="opt">Test Precondition</span> and <span class="opt">Test Postcondition</span>,
 respectively.</dd>
-<dt><span class="setting">Test Timeout</span></dt>
+<dt><span class="opt">Test Timeout</span></dt>
 <dd>The default value for <a class="reference internal" href="#test-case-timeout">test case timeout</a>. <a class="reference internal" href="#timeouts">Timeouts</a> are discussed in
 their own section.</dd>
 </dl>
@@ -1884,7 +1884,7 @@ use the <a class="reference internal" href="#automatic-variables">automatic vari
 itself to refer to the test name. It is available whenever a test is
 being executed, including all user keywords, as well as the test setup
 and the test teardown.</p>
-<p>The <span class="setting">[Documentation]</span> setting allows you to set a free
+<p>The <span class="opt">[Documentation]</span> setting allows you to set a free
 documentation for a test case. That text is shown in the command line
 output, as well as the resulting test logs and test reports. If the
 documentation is long, it can be <a class="reference internal" href="#dividing-test-data-to-several-rows">split into several cells</a> that
@@ -1978,19 +1978,19 @@ automatically collected based on tags.</li>
 cases, and different ways to do it are listed below. These
 approaches can naturally be used together.</p>
 <dl class="docutils">
-<dt><span class="setting">Force Tags</span> in the Setting table</dt>
+<dt><span class="opt">Force Tags</span> in the Setting table</dt>
 <dd>All test cases in a test case file with this setting always get
 specified tags. If it is used in the <cite>test suite initialization file</cite>,
 all test cases in sub test suites get these tags.</dd>
-<dt><span class="setting">Default Tags</span> in the Setting table</dt>
-<dd>Test cases that do not have a <span class="setting">[Tags]</span> setting of their own
+<dt><span class="opt">Default Tags</span> in the Setting table</dt>
+<dd>Test cases that do not have a <span class="opt">[Tags]</span> setting of their own
 get these tags. If it used in the test suite initialization file,
-it is interpreted as a default value for <span class="setting">Default Tags</span> in
+it is interpreted as a default value for <span class="opt">Default Tags</span> in
 lower-level test suites.</dd>
-<dt><span class="setting">[Tags]</span> in the Test Case table</dt>
+<dt><span class="opt">[Tags]</span> in the Test Case table</dt>
 <dd>A test case always gets these tags. Additionally, it does not get the
-possible tags specified with <span class="setting">Default Tags</span>.</dd>
-<dt><span class="setting">--settag</span> command line option</dt>
+possible tags specified with <span class="opt">Default Tags</span>.</dd>
+<dt><span class="opt">--settag</span> command line option</dt>
 <dd>All executed test cases get tags set with this option in addition
 to tags they got elsewhere. This option is only available in Robot
 Framework version 1.8.3 and newer.</dd>
@@ -2137,13 +2137,13 @@ in a test suite, so using them avoids repetition.</p>
 with possible arguments. It can either be a keyword from a library or
 a higher-level user keyword.</p>
 <p>The easiest way to specify a setup or a teardown for test cases in a
-test suite is using the <span class="setting">Test Setup</span> and <span class="setting">Test
+test suite is using the <span class="opt">Test Setup</span> and <span class="opt">Test
 Teardown</span> settings in the Setting table. Individual test cases can
 also have their own setup or teardown. They are defined with the
-<span class="setting">[Setup]</span> or <span class="setting">[Teardown]</span> settings in the test case
-table and they override possible <span class="setting">Test Setup</span> and
-<span class="setting">Test Teardown</span> settings. Having no keyword after a
-<span class="setting">[Setup]</span> or <span class="setting">[Teardown]</span> setting means having no
+<span class="opt">[Setup]</span> or <span class="opt">[Teardown]</span> settings in the test case
+table and they override possible <span class="opt">Test Setup</span> and
+<span class="opt">Test Teardown</span> settings. Having no keyword after a
+<span class="opt">[Setup]</span> or <span class="opt">[Teardown]</span> setting means having no
 setup or teardown.</p>
 <table border="1" class="example docutils">
 <caption>Test setup and teardown examples</caption>
@@ -2332,13 +2332,13 @@ only one high-level keyword.</p>
 <p>The following settings in the Setting table can be used to customize the
 test suite:</p>
 <dl class="docutils">
-<dt><span class="setting">Documentation</span></dt>
+<dt><span class="opt">Documentation</span></dt>
 <dd>Used for specifying a <a class="reference internal" href="#test-suite-name-and-documentation">test suite documentation</a></dd>
-<dt><span class="setting">Meta: &lt;name&gt;</span></dt>
+<dt><span class="opt">Meta: &lt;name&gt;</span></dt>
 <dd>Used for setting <a class="reference internal" href="#free-test-suite-metadata">free test suite metadata</a>.</dd>
-<dt><span class="setting">Suite Setup</span>, <span class="setting">Suite Teardown</span></dt>
+<dt><span class="opt">Suite Setup</span>, <span class="opt">Suite Teardown</span></dt>
 <dd>Specify <a class="reference internal" href="#suite-setup-and-teardown">suite setup and teardown</a>. Have also synonyms
-<span class="setting">Suite Precondition</span> and <span class="setting">Suite Postcondition</span>, respectively.</dd>
+<span class="opt">Suite Precondition</span> and <span class="opt">Suite Postcondition</span>, respectively.</dd>
 </dl>
 </div>
 <div class="section" id="test-suite-directories">
@@ -2368,8 +2368,8 @@ written to the <a class="reference internal" href="#system-log">syslog</a>) and 
 <div class="section" id="initialization-files">
 <h4><a class="toc-backref" href="#id188">Initialization files</a></h4>
 <p>A test suite created from a directory can have the same settings
-(<span class="setting">Documentation</span>, <span class="setting">Meta: &lt;name&gt;</span>, <span class="setting">Suite
-Setup</span>, <span class="setting">Suite Teardown</span>) as a test case created from a
+(<span class="opt">Documentation</span>, <span class="opt">Meta: &lt;name&gt;</span>, <span class="opt">Suite
+Setup</span>, <span class="opt">Suite Teardown</span>) as a test case created from a
 file. Because a directory alone cannot have that kind of information,
 they must be placed into a special initialization file.</p>
 <p>Initialization files have the same structure as test case files, except that
@@ -2382,7 +2382,7 @@ borrowed from Python, where files named in this manner denote that a
 directory is a module.</p>
 <p>The main usage of initialization files is setting test-suite-related
 settings, but setting <a class="reference internal" href="#test-case-related-settings-in-the-setting-table">test-case-related settings</a> is also possible.
-However, only <span class="setting">Force Tags</span> is generally useful, because
+However, only <span class="opt">Force Tags</span> is generally useful, because
 others are only default values for the same settings in lower-level files,
 and even they are default values for the <a class="reference internal" href="#settings-in-the-test-case-table">settings in the Test Case table</a>.</p>
 <table border="1" class="example docutils">
@@ -2476,7 +2476,7 @@ underscores are replaced with spaces, words in camelCaseFormat
 separated, and first letters of all words capitalized. For example,
 <span class="path">some_tests.html</span> becomes <span class="code">Some Tests</span> and
 <span class="path">MyTestDir</span> becomes <span class="code">My Test Dir</span>.</p>
-<p>The documentation for a test suite is set using the <span class="setting">Documentation</span>
+<p>The documentation for a test suite is set using the <span class="opt">Documentation</span>
 setting in the Setting table. It can be used in test case files
 or, with higher-level suites, in test suite initialization files. Test
 suite documentation has exactly the same characteristics regarding to where
@@ -2512,15 +2512,15 @@ documentation</a>.</p>
 </table>
 <p>Both the name and documentation of the top-level test suite can be
 overridden in test execution. This can be done with the command line
-options <span class="setting">--name</span> and <span class="setting">--doc</span>, respectively, as
+options <span class="opt">--name</span> and <span class="opt">--doc</span>, respectively, as
 explained in section <a class="reference internal" href="#setting-metadata">Setting metadata</a>.</p>
 </div>
 <div class="section" id="free-test-suite-metadata">
 <h3><a class="toc-backref" href="#id190">2.3.4&nbsp;&nbsp;&nbsp;Free test suite metadata</a></h3>
 <p>Test suites can also have other metadata than the documentation. This
-metadata is defined in the Setting table using the <span class="setting">Meta: &lt;name&gt;</span>
+metadata is defined in the Setting table using the <span class="opt">Meta: &lt;name&gt;</span>
 setting, where &lt;name&gt; is a freely selected metadata name. For example,
-<span class="setting">Meta: Version</span> adds the version metadata for a test
+<span class="opt">Meta: Version</span> adds the version metadata for a test
 suite. Metadata set in this manner is shown in test reports and logs.</p>
 <p>The value for the metadata is located in the column after the name. It
 is handled similarly as documentations, which means that it can be
@@ -2561,7 +2561,7 @@ used.</p>
 </tbody>
 </table>
 <p>For top-level test suites, it is possible to set metadata also with the
-<span class="setting">--metadata</span> command line option. This is discussed in more
+<span class="opt">--metadata</span> command line option. This is discussed in more
 detail in section <a class="reference internal" href="#setting-metadata">Setting metadata</a>.</p>
 </div>
 <div class="section" id="suite-setup-and-teardown">
@@ -2574,9 +2574,9 @@ from a directory they must be specified in a <a class="reference internal" href=
 initialization file</a>.</p>
 <p>Similarly as with test cases, a suite setup and teardown are keywords
 that may take arguments. They are defined in the Setting table with
-<span class="setting">Suite Setup</span> and <span class="setting">Suite Teardown</span> settings,
-respectively. They also have similar synonyms, <span class="setting">Suite
-Precondition</span> and <span class="setting">Suite Postcondition</span>, as a test case setup
+<span class="opt">Suite Setup</span> and <span class="opt">Suite Teardown</span> settings,
+respectively. They also have similar synonyms, <span class="opt">Suite
+Precondition</span> and <span class="opt">Suite Postcondition</span>, as a test case setup
 and teardown have. Keyword names and possible arguments are located in
 the columns after the setting name.</p>
 <p>If a suite setup fails, all test cases in it and its child test suites
@@ -2628,7 +2628,7 @@ section.</p>
 subsections below.</p>
 <div class="section" id="using-library-setting">
 <h4><a class="toc-backref" href="#id193">Using Library setting</a></h4>
-<p>Test libraries are normally imported using the <span class="setting">Library</span>
+<p>Test libraries are normally imported using the <span class="opt">Library</span>
 setting in the Setting table and having the library name in the
 subsequent column. The library name is case-sensitive (it is the name
 of the module or class implementing the library and must be exactly
@@ -2686,7 +2686,7 @@ files using them.</p>
 <p>Another possibility to take a test library into use is using the
 keyword <span class="name">Import Library</span> from the <a class="reference internal" href="#builtin-library">BuiltIn library</a>. This keyword
 takes the library name and possible arguments similarly as the
-<span class="setting">Library</span> setting. Keywords from the imported library are
+<span class="opt">Library</span> setting. Keywords from the imported library are
 available in the test suite where the <span class="name">Import Library</span> keyword was
 used. This approach is useful in cases where the library is not
 available when the test execution starts and only some other keywords
@@ -3458,8 +3458,8 @@ in section <a class="reference internal" href="#resource-and-variable-files">Res
 <div class="section" id="setting-variables-in-command-line">
 <h4><a class="toc-backref" href="#id212">Setting variables in command line</a></h4>
 <p>Variables can be set from the command line either individually with
-the <span class="setting">--variable</span> option or using a variable file with the
-<span class="setting">--variablefile</span> option. Variables set from the command line
+the <span class="opt">--variable</span> option or using a variable file with the
+<span class="opt">--variablefile</span> option. Variables set from the command line
 are globally available for all executed test data files, and they also
 override variables with the same names in the Variable table and in
 the imported variable files.</p>
@@ -3469,7 +3469,7 @@ name:value</span>, where <span class="cli">name</span> is the name of the variab
 set by using this option several times. Only scalar variables can be
 set from the command line and they can only get string values. Many
 special characters are difficult or impossible to represent in the
-command line, but they can be <a class="reference internal" href="#escaping-options">escaped</a> with the <span class="setting">--escape</span>
+command line, but they can be <a class="reference internal" href="#escaping-options">escaped</a> with the <span class="opt">--escape</span>
 option.</p>
 <div class="highlight"><pre>--variable EXAMPLE:value
 --variable HOST:localhost:7272 --variable USER:robot
@@ -3608,7 +3608,7 @@ global, test suite, test case or user keyword scope.</p>
 <h5>Global scope</h5>
 <p>Global variables are available everywhere in the test data. These
 variables are normally set from the command line with the
-<span class="setting">--variable</span> and <span class="setting">--variablefile</span>
+<span class="opt">--variable</span> and <span class="opt">--variablefile</span>
 options. Additionally, it is possible to create new global variables
 or change the existing ones with the <a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="name">Set
 Global Variable</span> anywhere in the test data.</p>
@@ -3622,7 +3622,7 @@ capital letters with global variables.</p>
 <p>Variables with the test suite scope are available anywhere in the test
 suite where they are defined or imported. They can be created in
 Variable tables, imported from variable files using the
-<span class="setting">Variables</span> setting in the Setting table, or set with the
+<span class="opt">Variables</span> setting in the Setting table, or set with the
 <a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="name">Set Suite Variable</span> anywhere in that test
 suite.</p>
 <p>The test suite scope <em>is not recursive</em>, which means that variables
@@ -4214,15 +4214,15 @@ have the same square bracket syntax separating them from keyword
 names. All available settings are listed below and explained later in
 this section.</p>
 <dl class="docutils">
-<dt><span class="setting">[Documentation]</span></dt>
+<dt><span class="opt">[Documentation]</span></dt>
 <dd>Used for setting a <a class="reference internal" href="#user-keyword-name-and-documentation">user keyword documentation</a>.</dd>
 </dl>
 <dl class="docutils">
-<dt><span class="setting">[Arguments]</span></dt>
+<dt><span class="opt">[Arguments]</span></dt>
 <dd>Specifies <a class="reference internal" href="#user-keyword-arguments">user keyword arguments</a>.</dd>
-<dt><span class="setting">[Return]</span></dt>
+<dt><span class="opt">[Return]</span></dt>
 <dd>Specifies <a class="reference internal" href="#user-keyword-return-values">user keyword return values</a>.</dd>
-<dt><span class="setting">[Timeout]</span></dt>
+<dt><span class="opt">[Timeout]</span></dt>
 <dd>Sets the possible <a class="reference internal" href="#user-keyword-timeout">user keyword timeout</a>. <a class="reference internal" href="#timeouts">Timeouts</a> are discussed
 in a section of their own.</dd>
 </dl>
@@ -4236,7 +4236,7 @@ acceptable to have quite long keyword names. Actually, when creating
 use-case-like test cases, the highest-level keywords are often
 formulated as sentences or even paragraphs.</p>
 <p>User keywords can have a documentation that is set with the
-<span class="setting">[Documentation]</span> setting, exactly as <a class="reference internal" href="#test-case-name-and-documentation">test case
+<span class="opt">[Documentation]</span> setting, exactly as <a class="reference internal" href="#test-case-name-and-documentation">test case
 documentation</a>. This setting documents the user keyword in the test
 data. It is also shown in a more formal keyword documentation, which
 the <a class="reference internal" href="#library-documentation-tool-libdoc-py">libdoc</a> tool can create from <a class="reference internal" href="#resource-files">resource files</a>. Finally, the
@@ -4249,14 +4249,14 @@ sequence, is shown as a keyword documentation in test logs.</p>
 specifying them is probably the most complicated feature normally
 needed with Robot Framework, but even that is relatively easy,
 particularly in most common cases. Arguments are always specified with
-the <span class="setting">[Arguments]</span> setting, and argument names use the same
+the <span class="opt">[Arguments]</span> setting, and argument names use the same
 syntax as <a class="reference internal" href="#variables">variables</a>, for example <span class="var">${arg}</span>.</p>
 <div class="section" id="positional-arguments">
 <h4><a class="toc-backref" href="#id228">Positional arguments</a></h4>
 <p>The simplest way to specify arguments (apart from not having them at all)
 is using only positional arguments. In most cases, this is all
 that is needed.</p>
-<p>The syntax is such that first the <span class="setting">[Arguments]</span> setting is
+<p>The syntax is such that first the <span class="opt">[Arguments]</span> setting is
 given and then argument names are defined in the subsequent
 cells. Each argument is in its own cell, using the same syntax as with
 variables. The keyword must be used with as many arguments as there
@@ -4539,17 +4539,17 @@ very close to the one in Python.</p>
 <div class="section" id="user-keyword-return-values">
 <h3><a class="toc-backref" href="#id231">2.6.4&nbsp;&nbsp;&nbsp;User keyword return values</a></h3>
 <p>Similarly as library keywords, also user keywords can return
-values. Return values are defined with the <span class="setting">[Return]</span>
+values. Return values are defined with the <span class="opt">[Return]</span>
 setting. The values can then be <a class="reference internal" href="#return-values-from-keywords">assigned to variables</a> in test
 cases or other user keywords.</p>
 <p>In a typical case, a user keyword returns one value and it can be set
 to a scalar variable. This is done by having the return value in the
-next cell after the <span class="setting">[Return]</span> setting. User keywords can
+next cell after the <span class="opt">[Return]</span> setting. User keywords can
 also return several values, which can then be assigned into several
 scalar variables at once, to a list variable, or to scalar variables
 and a list variable. Several values can be returned simply by
 specifying those values in different cells after the
-<span class="setting">[Return]</span> setting.</p>
+<span class="opt">[Return]</span> setting.</p>
 <table border="1" class="example docutils">
 <caption>User keywords returning values</caption>
 <colgroup>
@@ -4694,7 +4694,7 @@ them somewhat more complicated than Variable tables.</p>
 <h3><a class="toc-backref" href="#id232">2.7.1&nbsp;&nbsp;&nbsp;Resource files</a></h3>
 <div class="section" id="taking-resource-files-into-use">
 <h4><a class="toc-backref" href="#id233">Taking resource files into use</a></h4>
-<p>Resource files are imported using the <span class="setting">Resource</span> setting in the
+<p>Resource files are imported using the <span class="opt">Resource</span> setting in the
 Settings table. The path to the resource file is given in the cell
 after the setting name.</p>
 <p>If the path is given in an absolute format, it is used directly. In other
@@ -4744,8 +4744,8 @@ resource file.</p>
 <p>The higher-level structure of resource files is the same as that of
 test case files otherwise, but, of course, they cannot contain Test Case
 tables. Additionally, the Setting table in resource files can contain
-only import settings (<span class="setting">Library</span>, <span class="setting">Resource</span>, and
-<span class="setting">Variables</span>). The Variable table and Keyword table are used
+only import settings (<span class="opt">Library</span>, <span class="opt">Resource</span>, and
+<span class="opt">Variables</span>). The Variable table and Keyword table are used
 exactly the same way as in test case files.</p>
 <p>If several resource files have a user keyword with the same name, they
 must be used so that the <a class="reference internal" href="#handling-keywords-with-same-names">keyword name is prefixed with the resource
@@ -4913,8 +4913,8 @@ approach quite flexible.</dd>
 <div class="section" id="setting-table">
 <h5>Setting table</h5>
 <p>All test data files can import variables using the
-<span class="setting">Variables</span> setting in the Setting table, in the same way as
-<a class="reference internal" href="#taking-resource-files-into-use">resource files are imported</a> using the <span class="setting">Resource</span>
+<span class="opt">Variables</span> setting in the Setting table, in the same way as
+<a class="reference internal" href="#taking-resource-files-into-use">resource files are imported</a> using the <span class="opt">Resource</span>
 setting. Similarly to resource files, the path to the imported
 variable file is considered relative to the directory where the
 importing file is, and if not found, it is searched from the
@@ -4971,9 +4971,9 @@ set from the command line override variables from variable files.</p>
 <div class="section" id="command-line">
 <h5>Command line</h5>
 <p>Another way of introducing variables is using the command line option
-<span class="setting">--variablefile</span>. Variables in these files are globally
+<span class="opt">--variablefile</span>. Variables in these files are globally
 available in all test data files, similarly as individual variables set
-with the <span class="setting">--variable</span> option.</p>
+with the <span class="opt">--variable</span> option.</p>
 <p>For more information, see <cite>Robot command line options</cite>.</p>
 </div>
 </div>
@@ -5321,11 +5321,11 @@ removed and keywords are always stopped.</p>
 </div>
 <div class="section" id="test-case-timeout">
 <h4><a class="toc-backref" href="#id243">Test case timeout</a></h4>
-<p>The test case timeout can be set either by using the <span class="setting">Test
-Timeout</span> setting in the Setting table or the <span class="setting">[Timeout]</span>
-setting in the Test Case table. <span class="setting">Test Timeout</span> in the Setting
+<p>The test case timeout can be set either by using the <span class="opt">Test
+Timeout</span> setting in the Setting table or the <span class="opt">[Timeout]</span>
+setting in the Test Case table. <span class="opt">Test Timeout</span> in the Setting
 table defines a default test timeout value for all the test cases in
-the test suite, whereas <span class="setting">[Timeout]</span> in the Test Case table
+the test suite, whereas <span class="opt">[Timeout]</span> in the Test Case table
 applies a timeout to an individual test case and overrides the
 possible default value.</p>
 <p>Regardless of where the test timeout is defined, the first cell after
@@ -5500,7 +5500,7 @@ keywords with <a class="reference internal" href="#user-keyword-timeout">user ke
 </div>
 <div class="section" id="user-keyword-timeout">
 <h4><a class="toc-backref" href="#id244">User keyword timeout</a></h4>
-<p>A timeout can be set for a user keyword using the <span class="setting">[Timeout]</span>
+<p>A timeout can be set for a user keyword using the <span class="opt">[Timeout]</span>
 setting in the Keyword table. The syntax for setting it, including how
 timeout values and possible custom messages are given, is
 identical to the syntax used with <a class="reference internal" href="#test-case-timeout">test case timeouts</a>. If no custom
@@ -6211,7 +6211,7 @@ and they are executed by giving the path to the file or directory in
 question to the selected runner script. The path can be absolute or,
 more commonly, relative to the directory where tests are executed
 from. The given file or directory creates the top-level test suite,
-which gets its name, unless overridden with the <span class="setting">--name</span> <a class="reference internal" href="#setting-the-name">option</a>,
+which gets its name, unless overridden with the <span class="opt">--name</span> <a class="reference internal" href="#setting-the-name">option</a>,
 from the <a class="reference internal" href="#test-suite-name-and-documentation">file or directory name</a>. Different execution possibilities
 are illustrated in the examples below. Note that in these examples, as
 well as in other examples in this section, only the <span class="prog">pybot</span>
@@ -6232,7 +6232,7 @@ catenating them together with an ampersand (&amp;) and spaces. For example,
 the name of the top-level suite in the first example below is
 <span class="name">My Tests &amp; Your Tests</span>. These automatically created names are
 seldom very good and they are often quite long. In most cases, it
-is thus better to use the <span class="setting">--name</span> option for overriding it, as
+is thus better to use the <span class="opt">--name</span> option for overriding it, as
 in the second example below:</p>
 <pre class="literal-block">
 pybot my_tests.html your_tests.html
@@ -6248,18 +6248,18 @@ section. What options actually exist and how they can be used is
 discussed elsewhere in this chapter.</p>
 <div class="section" id="short-and-long-options">
 <h5>Short and long options</h5>
-<p>Options always have a long name, such as <span class="setting">--name</span>, and the
+<p>Options always have a long name, such as <span class="opt">--name</span>, and the
 most frequently needed options also have a short name, such as
-<span class="setting">-N</span>. In addition to that, long options can be shortened as
+<span class="opt">-N</span>. In addition to that, long options can be shortened as
 long as they are unique. For example, <span class="cli">--logle DEBUG</span> works,
 while <span class="cli">--lo log.html</span> does not, because the former matches only
-<span class="setting">--loglevel</span>, but the latter matches several options. Short
+<span class="opt">--loglevel</span>, but the latter matches several options. Short
 and shortened options are practical when executing test cases
 manually, but long options are recommended in <a class="reference internal" href="#creating-start-up-scripts">start-up scripts</a>,
 because they are easier to understand.</p>
 <p>The long option format is case-insensitive, which facilitates writing option
-names in an easy-to-read format. For example, <span class="setting">--SuiteStatLevel</span>
-is equivalent to, but easier to read than <span class="setting">--suitestatlevel</span>.</p>
+names in an easy-to-read format. For example, <span class="opt">--SuiteStatLevel</span>
+is equivalent to, but easier to read than <span class="opt">--suitestatlevel</span>.</p>
 </div>
 <div class="section" id="setting-option-values">
 <h5>Setting option values</h5>
@@ -6412,7 +6412,7 @@ works the same way when <a class="reference internal" href="#specifying-the-test
 executed</a>, and also in this case the name of the top-level test
 suite is created by joining child suite names with an ampersand (&amp;)
 and spaces. These automatically generated names are not that good, and
-it is often a good idea to use <span class="setting">--name</span> to give a more
+it is often a good idea to use <span class="opt">--name</span> to give a more
 meaningful name:</p>
 <pre class="literal-block">
 rebot --name Browser_Compatibility firefox.xml opera.xml safari.xml ie.xml
@@ -6424,11 +6424,11 @@ rebot --include smoke --name Smoke_Tests c:\results\*.xml
 <h3><a class="toc-backref" href="#id263">3.1.3&nbsp;&nbsp;&nbsp;Getting help on the command line</a></h3>
 <p>Both when executing test cases with <span class="prog">pybot</span> or <span class="prog">jybot</span> and
 when post-processing reports with <span class="prog">rebot</span>, it is possible to get
-command line help with the option <span class="setting">--help</span> and its short version
-<span class="setting">-h</span>. These help texts have a short general overview and
+command line help with the option <span class="opt">--help</span> and its short version
+<span class="opt">-h</span>. These help texts have a short general overview and
 briefly explain the available command line options.</p>
 <p>All runner scripts also support getting the version information with
-the option <span class="setting">--version</span>. This information also contains Python
+the option <span class="opt">--version</span>. This information also contains Python
 or Jython version and the platform type:</p>
 <pre class="literal-block">
 $ pybot --version
@@ -6445,7 +6445,7 @@ Rebot 2.0 (Python 2.5.2 on win32)
 <h3><a class="toc-backref" href="#id264">3.1.4&nbsp;&nbsp;&nbsp;Handling complicated characters</a></h3>
 <p>Because spaces are used for separating options from each other, it is
 problematic to use them in option values.  Some options, such as
-<span class="setting">--name</span>, automatically convert underscores to spaces, but
+<span class="opt">--name</span>, automatically convert underscores to spaces, but
 with others spaces must be escaped. Additionally, many special
 characters are complicated to use on the command line.</p>
 <p>Because escaping complicated characters with a backslash or quoting
@@ -6459,10 +6459,10 @@ tools have the same or similar capabilities.</p>
 <h4><a class="toc-backref" href="#id265">Escaping options</a></h4>
 <p>In Robot Framework's command line escaping mechanism,
 problematic characters are escaped with freely selected text. The
-command line option to use is <span class="setting">--escape</span> (short version
-<span class="setting">-E</span>), which takes an argument in the format <span class="setting">what:with</span>,
-where <span class="setting">what</span> is the name of the character to escape and
-<span class="setting">with</span> is the string to escape it with. Characters that can
+command line option to use is <span class="opt">--escape</span> (short version
+<span class="opt">-E</span>), which takes an argument in the format <span class="opt">what:with</span>,
+where <span class="opt">what</span> is the name of the character to escape and
+<span class="opt">with</span> is the string to escape it with. Characters that can
 be escaped are listed in the table below:</p>
 <table border="1" class="tabular docutils">
 <caption>Available escapes</caption>
@@ -6548,7 +6548,7 @@ be escaped are listed in the table below:</p>
 </tbody>
 </table>
 <p>The following examples make the syntax more clear. In the
-first example, the metadata <span class="setting">X</span> gets the value <span class="code">Value with
+first example, the metadata <span class="opt">X</span> gets the value <span class="code">Value with
 spaces</span>, and in the second variable <span class="var">${VAR}</span> is assigned to
 <span class="code">&quot;Hello, world!&quot;</span>.</p>
 <pre class="literal-block">
@@ -6562,8 +6562,8 @@ selected carefully.</p>
 <div class="section" id="using-argument-files">
 <h4><a class="toc-backref" href="#id266">Using argument files</a></h4>
 <p>Another possibility to handle complicated arguments is placing them
-into a argument file and using <span class="setting">--argumentfile</span> (short
-option <span class="setting">-A</span>) to specify the path to it, along with possible other
+into a argument file and using <span class="opt">--argumentfile</span> (short
+option <span class="opt">-A</span>) to specify the path to it, along with possible other
 options. These files can contain both command line options and paths
 to the test data, one per line. Argument files can contain any ASCII
 characters without escaping, but spaces in the beginning and end
@@ -6708,12 +6708,12 @@ post-processing outputs with the <span class="prog">rebot</span> tool.</p>
 <div class="section" id="by-test-suite-and-test-case-names">
 <h4><a class="toc-backref" href="#id269">By test suite and test case names</a></h4>
 <p>Test suites and test cases can be selected by their names with the command
-line options <span class="setting">--suite (-s)</span> and <span class="setting">--test (-t)</span>,
+line options <span class="opt">--suite (-s)</span> and <span class="opt">--test (-t)</span>,
 respectively.  Both of these options can be used several times to
 select several test suites or cases. Arguments to these options are
 case- and space-insensitive, and there can also be <a class="reference internal" href="#option-value-as-simple-pattern">simple
-patterns</a> matching multiple names.  If both the <span class="setting">--suite</span> and
-<span class="setting">--test</span> options are used, only test cases in matching suites
+patterns</a> matching multiple names.  If both the <span class="opt">--suite</span> and
+<span class="opt">--test</span> options are used, only test cases in matching suites
 with matching names are selected.</p>
 <pre class="literal-block">
 --test Example
@@ -6722,7 +6722,7 @@ with matching names are selected.</p>
 --suite example-??
 --suite mysuite --test mytest --test your*
 </pre>
-<p>Using the <span class="setting">--suite</span> option is more or less the same as executing only
+<p>Using the <span class="opt">--suite</span> option is more or less the same as executing only
 the appropriate test case file or directory. One major benefit is the
 possibility to select the suite based on its parent suite. The syntax
 for this is specifying both the parent and child suite names separated
@@ -6732,16 +6732,16 @@ suite are executed.</p>
 --suite parent.child
 --suite myhouse.myhousemusic --test jack*
 </pre>
-<p>Selecting individual test cases with the <span class="setting">--test</span> option is very
+<p>Selecting individual test cases with the <span class="opt">--test</span> option is very
 practical when creating test cases, but quite limited when running tests
-automatically. The <span class="setting">--suite</span> option can be useful in that
+automatically. The <span class="opt">--suite</span> option can be useful in that
 case, but in general, selecting test cases by tag names is more
 flexible.</p>
 </div>
 <div class="section" id="by-tag-names">
 <h4><a class="toc-backref" href="#id270">By tag names</a></h4>
 <p>It is possible to include and exclude test cases by <a class="reference internal" href="#tagging-test-cases">tag</a> names with the
-<span class="setting">--include (-i)</span> and <span class="setting">--exclude (-e)</span> options,
+<span class="opt">--include (-i)</span> and <span class="opt">--exclude (-e)</span> options,
 respectively. When the former is used, only test cases having a
 matching tag are selected, and with the latter, test cases having a
 matching tag are not. If both are used, only tests with a tag
@@ -6752,7 +6752,7 @@ are selected.</p>
 --exclude not_ready
 --include regression --exclude long_lasting
 </pre>
-<p>Both <span class="setting">--include</span> and <span class="setting">--exclude</span> can be used several
+<p>Both <span class="opt">--include</span> and <span class="opt">--exclude</span> can be used several
 times to match multiple tags, and their arguments can be <a class="reference internal" href="#option-value-as-simple-pattern">simple
 patterns</a>. In these cases, the rules for selecting test cases apply,
 so that test cases with a tag matching any include patterns are
@@ -6772,12 +6772,12 @@ with <span class="code">NOT</span> (case-sensitive).</p>
 many interesting possibilities:</p>
 <ul class="simple">
 <li>A subset of tests to be executed before other tests can be tagged
-with <span class="setting">smoke</span> and executed with <span class="cli">--include smoke</span>.</li>
+with <span class="opt">smoke</span> and executed with <span class="cli">--include smoke</span>.</li>
 <li>Unfinished test can be committed to version control with the tag
-<span class="setting">not_ready</span> and excluded from the test execution with
+<span class="opt">not_ready</span> and excluded from the test execution with
 <span class="cli">--exclude not_ready</span>.</li>
-<li>Tests can be tagged with <span class="setting">iter-&lt;num&gt;</span>, where
-<span class="setting">&lt;num&gt;</span> specifies the number of the current iteration, and
+<li>Tests can be tagged with <span class="opt">iter-&lt;num&gt;</span>, where
+<span class="opt">&lt;num&gt;</span> specifies the number of the current iteration, and
 after executing all test cases, a separate report containing only
 the tests for a certain iteration can be generated (for example, <span class="cli">rebot
 --include iter-42 ouput.xml</span>).</li>
@@ -6791,12 +6791,12 @@ critical tests. If a single critical test fails, the whole test run is
 considered failed. On the other hand, non-critical test cases can
 fail and the overall status is still passed.</p>
 <p>By default, all test cases are critical, but this can be changed with
-the <span class="setting">--critical (-c)</span> and <span class="setting">--noncritical (-n)</span>
+the <span class="opt">--critical (-c)</span> and <span class="opt">--noncritical (-n)</span>
 options. These options specify which test cases are consider critical
-based on tags, similarly as <span class="setting">--include</span> and
-<span class="setting">--exclude</span> are used to <a class="reference internal" href="#by-tag-names">select test cases by tag
-names</a>. If only <span class="setting">--critical</span> is used, test cases with a
-matching tag are critical. If only <span class="setting">--noncritical</span> is used,
+based on tags, similarly as <span class="opt">--include</span> and
+<span class="opt">--exclude</span> are used to <a class="reference internal" href="#by-tag-names">select test cases by tag
+names</a>. If only <span class="opt">--critical</span> is used, test cases with a
+matching tag are critical. If only <span class="opt">--noncritical</span> is used,
 tests without a matching tag are critical. Finally, if both are
 used, only test with a critical tag but without a non-critical tag are
 considered critical.  Both of these options accept <a class="reference internal" href="#option-value-as-simple-pattern">simple patterns</a>
@@ -6809,14 +6809,14 @@ and can be given several times.</p>
 <p>The most common use case for setting criticality is having test cases
 that are not ready or test features still under development in the
 test execution. Of course, these tests could be excluded from the
-test execution altogether with the <span class="setting">--exclude</span> option, but
+test execution altogether with the <span class="opt">--exclude</span> option, but
 including them as non-critical tests enables you to see when
 they start to pass.</p>
 <div class="note">
 <p class="first admonition-title">Note</p>
 <p class="last">Currently, criticality set when tests are executed is not
 changed when <a class="reference internal" href="#post-processing-outputs">post-processing outputs</a>, unless
-<span class="setting">--critical</span> or <span class="setting">--noncritical</span> is used
+<span class="opt">--critical</span> or <span class="opt">--noncritical</span> is used
 explicitly. In the future, this will change so that they are
 to be used always. It is thus recommended to use them with
 <span class="prog">rebot</span> already now.</p>
@@ -6829,29 +6829,29 @@ to be used always. It is thus recommended to use them with
 <p>When Robot Framework parses test data, <a class="reference internal" href="#test-suite-name-and-documentation">test suite names are created
 from file and directory names</a>. The name of the top-level test suite
 can, however, be overridden with the command line option
-<span class="setting">--name (-N)</span>. Underscores in the given name are converted to
+<span class="opt">--name (-N)</span>. Underscores in the given name are converted to
 spaces automatically, and words in the name capitalized.</p>
 </div>
 <div class="section" id="setting-the-documentation">
 <h4><a class="toc-backref" href="#id274">Setting the documentation</a></h4>
 <p>In addition to <a class="reference internal" href="#test-suite-name-and-documentation">defining documentation in the test data</a>, documentation
 of the top-level suite can be given from the command line with the
-option <span class="setting">--doc (-D)</span>. Underscores in the given documentation
+option <span class="opt">--doc (-D)</span>. Underscores in the given documentation
 are converted to spaces, and it may contain simple <a class="reference internal" href="#documentation-formatting">HTML formatting</a>.</p>
 </div>
 <div class="section" id="setting-free-metadata">
 <h4><a class="toc-backref" href="#id275">Setting free metadata</a></h4>
 <p><a class="reference internal" href="#free-test-suite-metadata">Free test suite metadata</a> may also be given from the command line
-with the option <span class="setting">--metadata (-M)</span>. The argument must be in
-the format <span class="setting">name:value</span>, where <span class="setting">name</span> the name of
-the metadata to set and <span class="setting">value</span> is its value. Underscores in
+with the option <span class="opt">--metadata (-M)</span>. The argument must be in
+the format <span class="opt">name:value</span>, where <span class="opt">name</span> the name of
+the metadata to set and <span class="opt">value</span> is its value. Underscores in
 the former are converted to spaces and words capitalized, and the
 latter may contain simple <a class="reference internal" href="#documentation-formatting">HTML formatting</a>. This option may be used
 several times to set multiple metadata.</p>
 </div>
 <div class="section" id="setting-tags">
 <h4><a class="toc-backref" href="#id276">Setting tags</a></h4>
-<p>The command line option <span class="setting">--settag (-G)</span> can be used to set
+<p>The command line option <span class="opt">--settag (-G)</span> can be used to set
 the given tag to all executed test cases. This option may be used
 several times to set multiple tags.</p>
 </div>
@@ -6898,7 +6898,7 @@ with Java.</p>
 <div class="section" id="using-the-pythonpath-option">
 <h4><a class="toc-backref" href="#id281">Using the --pythonpath option</a></h4>
 <p>Robot Framework also has a separate command line option
-<span class="setting">--pythonpath (-P)</span> for adding directories or archives into
+<span class="opt">--pythonpath (-P)</span> for adding directories or archives into
 PYTHONPATH. Multiple paths can be given by separating them with a
 colon (:) or using this option several times. The given path can also be
 a glob pattern matching multiple paths, but then it normally must be
@@ -6914,8 +6914,8 @@ a glob pattern matching multiple paths, but then it normally must be
 <div class="section" id="setting-variables">
 <h3><a class="toc-backref" href="#id282">3.2.5&nbsp;&nbsp;&nbsp;Setting variables</a></h3>
 <p><a class="reference internal" href="#variables">Variables</a> can be set from the command line either <a class="reference internal" href="#setting-variables-in-command-line">individually</a>
-using the <span class="setting">--variable (-v)</span> option or through <a class="reference internal" href="#variable-files">variable files</a>
-with the <span class="setting">--variablefile (-V)</span> option. Variables and variable
+using the <span class="opt">--variable (-v)</span> option or through <a class="reference internal" href="#variable-files">variable files</a>
+with the <span class="opt">--variablefile (-V)</span> option. Variables and variable
 files are explained in separate chapters, but the following examples
 illustrate how to use these options:</p>
 <pre class="literal-block">
@@ -6927,22 +6927,22 @@ illustrate how to use these options:</p>
 </div>
 <div class="section" id="setting-the-execution-mode">
 <h3><a class="toc-backref" href="#id283">3.2.6&nbsp;&nbsp;&nbsp;Setting the execution mode</a></h3>
-<p>The command line option <span class="setting">--runmode</span> can be used to alter the test
+<p>The command line option <span class="opt">--runmode</span> can be used to alter the test
 execution. Possible values for it are listed and explained below,
 other values are silently ignored. All these values are case-insensitive.</p>
 <dl class="docutils">
-<dt><span class="setting">ExitOnFailure</span></dt>
+<dt><span class="opt">ExitOnFailure</span></dt>
 <dd>Test execution is stopped immediately if a <a class="reference internal" href="#setting-criticality">critical test</a>
 fails. All remaining tests are marked failed with the message
 <span class="msg">Critical failure occurred and ExitOnFailure option is in
 use</span>. This option is new in version 1.8.7.</dd>
-<dt><span class="setting">random:test</span></dt>
+<dt><span class="opt">random:test</span></dt>
 <dd>Test cases inside each test suite are executed in random
 order. This option is new in version 1.8.6.</dd>
-<dt><span class="setting">random:suite</span></dt>
+<dt><span class="opt">random:suite</span></dt>
 <dd>All test suites are executed in a random order, but test cases inside
 suites are run in the order they are defined.  This option is new in version 1.8.6.</dd>
-<dt><span class="setting">random:all</span></dt>
+<dt><span class="opt">random:all</span></dt>
 <dd>Both test cases and test suites are executed in a random
 order. This option is new in version 1.8.6.</dd>
 </dl>
@@ -6950,21 +6950,21 @@ order. This option is new in version 1.8.6.</dd>
 <div class="section" id="controlling-the-monitor-output">
 <h3><a class="toc-backref" href="#id284">3.2.7&nbsp;&nbsp;&nbsp;Controlling the monitor output</a></h3>
 <p>The width of the test execution output in the console is set using the
-option <span class="setting">--monitorwidth (-W)</span>. The default value for the monitor
+option <span class="opt">--monitorwidth (-W)</span>. The default value for the monitor
 width is 78 characters.</p>
-<p>The <span class="setting">--monitorcolors (-C)</span> option is used to control whether
+<p>The <span class="opt">--monitorcolors (-C)</span> option is used to control whether
 colors should be used in the monitor output. These so-called ANSI
 colors do not work on Windows by default, but they ought to work on
 all UNIX-like systems. This option has three possible, case-insensitive
 values:</p>
 <dl class="docutils">
-<dt><span class="setting">on</span></dt>
+<dt><span class="opt">on</span></dt>
 <dd>Colors are used on UNIX-like systems, but not on Windows. This is
 the default.</dd>
-<dt><span class="setting">off</span></dt>
+<dt><span class="opt">off</span></dt>
 <dd>Colors are never used. Useful for example when redirecting the
 output to a file.</dd>
-<dt><span class="setting">force</span></dt>
+<dt><span class="opt">force</span></dt>
 <dd>Colors are always used, also on Windows.</dd>
 </dl>
 <p>Example:</p>
@@ -6976,7 +6976,7 @@ pybot --monitorwidth 140 --monitorcolors OFF tests.html &gt; output.txt
 <h3><a class="toc-backref" href="#id285">3.2.8&nbsp;&nbsp;&nbsp;Setting listeners</a></h3>
 <p>So-called <a class="reference internal" href="#using-listener-interface">listeners</a> can be used for monitoring the test
 execution. They are taken into use with the command line option
-<span class="setting">--listener</span>, and the specified listeners must be in the <a class="reference internal" href="#adjusting-library-search-path">module
+<span class="opt">--listener</span>, and the specified listeners must be in the <a class="reference internal" href="#adjusting-library-search-path">module
 search path</a> similarly as test libraries.</p>
 </div>
 </div>
@@ -7030,7 +7030,7 @@ to fine-tune their contents.</p>
 <p>This section explains what different output files can be created and
 how to configure where they are created. Output files are configured
 using command line options, which get the path to the output file in
-question as an argument. A special value <span class="setting">NONE</span>
+question as an argument. A special value <span class="opt">NONE</span>
 (case-insensitive) can be used to disable creating a certain output
 file.</p>
 <div class="section" id="output-directory">
@@ -7039,7 +7039,7 @@ file.</p>
 are created to the specified place, but in other cases, the path is
 considered relative to the output directory. The default output
 directory is the directory where the execution is started from, but it
-can be altered with the <span class="setting">--outputdir (-d)</span> option. The path
+can be altered with the <span class="opt">--outputdir (-d)</span> option. The path
 set with this option is, again, relative to the execution directory,
 but can naturally be given also as an absoute path. Regardless of how
 a path to an individual output file is obtained, its parent directory
@@ -7051,7 +7051,7 @@ is created automatically, if it does not exist already.</p>
 format. <a class="reference internal" href="#log-file">Log</a>, <a class="reference internal" href="#report-file">report</a>, and <a class="reference internal" href="#summary-file">summary</a> files are generated based on
 output files, and output files can also be <a class="reference internal" href="#post-processing-outputs">combined and otherwise
 post-processed</a> after the test execution.</p>
-<p>The command line option <span class="setting">--output (-o)</span> determines where
+<p>The command line option <span class="opt">--output (-o)</span> determines where
 output files are created. Output files are always created when tests
 are executed, and the default name for them is
 <span class="path">output.xml</span>. When post-processing outputs, new output files are
@@ -7065,8 +7065,8 @@ case and keyword details. Log files are needed nearly every time when
 test results are to be investigated in detail. Even though log files
 also have statistics, <a class="reference internal" href="#report-file">report</a> and <a class="reference internal" href="#summary-file">summary</a> files are better for
 getting an higher-level overview.</p>
-<p>The command line option <span class="setting">--log (-l)</span> determines where log
-files are created. Unless the special value <span class="setting">NONE</span> is used,
+<p>The command line option <span class="opt">--log (-l)</span> determines where log
+files are created. Unless the special value <span class="opt">NONE</span> is used,
 log files are always created and their default name is
 <span class="path">log.html</span>.</p>
 <div class="figure">
@@ -7088,9 +7088,9 @@ navigation to more detailed information.  It is easy to see the
 overall test execution status from reports, because their background
 color is green, if all <a class="reference internal" href="#setting-criticality">critical tests</a> pass, and bright red
 otherwise.</p>
-<p>The command line option <span class="setting">--report (-r)</span> determines where
+<p>The command line option <span class="opt">--report (-r)</span> determines where
 report files are created. Similarly as log files, reports are always
-created unless <span class="setting">NONE</span> is used as a value, and their default
+created unless <span class="opt">NONE</span> is used as a value, and their default
 name is <span class="path">report.html</span>.</p>
 <div class="figure">
 <a class="reference external image-reference" href="report_passed.html"><img alt="report_passed.png" src="report_passed.png" style="width: 550px; height: 502px;" /></a>
@@ -7109,7 +7109,7 @@ test execution status. However, they have no test case details, which
 makes them much smaller. They are useful when a large number of test
 cases is executed and a very high-level overview is needed.</p>
 <p>Summary files are not generated by default. When they are needed, they
-can be created using the command line option <span class="setting">--summary
+can be created using the command line option <span class="opt">--summary
 (-S)</span>.</p>
 <div class="figure">
 <a class="reference external image-reference" href="summary_passed.html"><img alt="summary_passed.png" src="summary_passed.png" style="width: 550px; height: 395px;" /></a>
@@ -7126,14 +7126,14 @@ execution. This can be done using, for example, a separate <a class="reference i
 viewer tool</a>, or in UNIX-like systems, simply with the <span class="prog">tail
 -f</span> command.</p>
 <p>Debug files are not created unless the command line option
-<span class="setting">--debugfile (-b)</span> is used explicitly.</p>
+<span class="opt">--debugfile (-b)</span> is used explicitly.</p>
 </div>
 <div class="section" id="timestamping-output-files">
 <h4><a class="toc-backref" href="#id293">Timestamping output files</a></h4>
 <p>All output files listed in this section can be automatically
-timestamped with the option <span class="setting">--timestampoutputs (-T)</span>, which
+timestamped with the option <span class="opt">--timestampoutputs (-T)</span>, which
 is one of the rare opions taking no value. When this option is used, a
-timestamp in the format <span class="setting">YYYYMMDD-hhmmss</span> is placed between
+timestamp in the format <span class="opt">YYYYMMDD-hhmmss</span> is placed between
 the extension and the basename of each file. The example below would,
 for example, create such output files as
 <span class="path">output-20080604-163225.xml</span> and
@@ -7148,8 +7148,8 @@ pybot --timestampoutputs --log mylog.html --report NONE tests.html
 by prefixing the name of the top-level test suite with <span class="name">Test
 Log</span>, <span class="name">Test Report</span> or <span class="name">Summary Report</span>. Custom titles can
 be given from the command line using the options
-<span class="setting">--logtitle</span>, <span class="setting">--reporttitle</span> and
-<span class="setting">--summarytitle</span>, respectively. With all these options,
+<span class="opt">--logtitle</span>, <span class="opt">--reporttitle</span> and
+<span class="opt">--summarytitle</span>, respectively. With all these options,
 underscores in the given title are converted to spaces automatically.</p>
 <p>Examples:</p>
 <pre class="literal-block">
@@ -7187,13 +7187,13 @@ of keyword arguments and the return values using this level.</dd>
 <h4><a class="toc-backref" href="#id297">Setting log level</a></h4>
 <p>By default, log messages below <span class="msg">INFO</span> are not logged, but this
 threshold level can be changed from the command line using the
-<span class="setting">--loglevel (-L)</span> option. This option takes any of the
+<span class="opt">--loglevel (-L)</span> option. This option takes any of the
 available log levels as an argument, and that level becomes the new
 threshold level. A special value <span class="msg">NONE</span> can also be used to
 disable logging altogether.</p>
 <p>Another possibility to change the log level is using the <a class="reference internal" href="#builtin-library">BuiltIn
 keyword</a> <span class="name">Set Log Level</span> in the test data. It takes the same
-arguments as the <span class="setting">--loglevel</span> option, and it also returns the
+arguments as the <span class="opt">--loglevel</span> option, and it also returns the
 old level so that it can be restored later, for example, in a <a class="reference internal" href="#test-setup-and-teardown">test
 teardown</a>.</p>
 </div>
@@ -7205,7 +7205,7 @@ increase to the extent that opening them in the browser is slow. A
 solution for this problem is splitting the log file into smaller
 pieces so that the top-level log acts as an index having links to
 other pieces. Splitting can be activated with the command line option
-<span class="setting">--splitoutputs</span>, which takes the level where to split test suites from as an argument. With this option, both XML output files and log files are
+<span class="opt">--splitoutputs</span>, which takes the level where to split test suites from as an argument. With this option, both XML output files and log files are
 split from the specified level.</p>
 <p>When outputs are split, a top-level output file contains the general
 information about the whole test execution and it links to lower-level output
@@ -7285,17 +7285,17 @@ post-processing outputs.</p>
 <p>When a deeper suite structure is executed, showing all the test suite
 levels in the <span class="name">Statistics by Suite</span> table may make the table
 somewhat difficult to read. You can control the number of levels
-displayed with the command line option <span class="setting">--suitestatlevel</span>. It
-takes the required level as an integer, and if <span class="setting">0</span> is used,
+displayed with the command line option <span class="opt">--suitestatlevel</span>. It
+takes the required level as an integer, and if <span class="opt">0</span> is used,
 the whole table is removed.</p>
 </div>
 <div class="section" id="including-and-excluding-tag-statistics">
 <h4><a class="toc-backref" href="#id303">Including and excluding tag statistics</a></h4>
 <p>When many tags are used, the <span class="name">Statistics by Tag</span> table can become
 quite congested. If this happens, the command line options
-<span class="setting">--tagstatinclude</span> and <span class="setting">--tagstatexclude</span> can be
+<span class="opt">--tagstatinclude</span> and <span class="opt">--tagstatexclude</span> can be
 used to select which tags to display, similarly as
-<span class="setting">--include</span> and <span class="setting">--exclude</span> are used to <a class="reference internal" href="#by-tag-names">select test
+<span class="opt">--include</span> and <span class="opt">--exclude</span> are used to <a class="reference internal" href="#by-tag-names">select test
 cases</a>:</p>
 <pre class="literal-block">
 --tagstatinclude some-tag --tagstatinclude another-tag
@@ -7309,7 +7309,7 @@ interesting can be recommended.</p>
 </div>
 <div class="section" id="generating-combined-tag-statistics">
 <h4><a class="toc-backref" href="#id304">Generating combined tag statistics</a></h4>
-<p>The command line option <span class="setting">--tagstatcombine</span> can be used to
+<p>The command line option <span class="opt">--tagstatcombine</span> can be used to
 generate aggregate tags that combine statistics from multiple
 tags. These new combined tags are shown in the <span class="name">Statistics by
 Tag</span> table, and the matching tests are listed in the <span class="name">Test
@@ -7342,14 +7342,14 @@ executed with these options:</p>
 <h4><a class="toc-backref" href="#id305">Creating links from tag names</a></h4>
 <p>You can add external links to the <span class="name">Statistics by Tag</span>
 table by using the command line option
-<span class="setting">--tagstatlink</span>. Arguments to this option are given in the format
-<span class="setting">tag:link:name</span>, where <span class="setting">tag</span> specifies the tags to
-assign the link to, <span class="setting">link</span> is the link to be created, and
-<span class="setting">name</span> is the name to give to the link.</p>
-<p><span class="setting">tag</span> may be a single tag, but more commonly a <a class="reference internal" href="#option-value-as-simple-pattern">simple
+<span class="opt">--tagstatlink</span>. Arguments to this option are given in the format
+<span class="opt">tag:link:name</span>, where <span class="opt">tag</span> specifies the tags to
+assign the link to, <span class="opt">link</span> is the link to be created, and
+<span class="opt">name</span> is the name to give to the link.</p>
+<p><span class="opt">tag</span> may be a single tag, but more commonly a <a class="reference internal" href="#option-value-as-simple-pattern">simple
 pattern</a> where <span class="code">*</span> matches anything and <span class="code">?</span> matches any
-single character. When <span class="setting">tag</span> is a pattern, the matches to
-wildcards may be used in <span class="setting">link</span> with the syntax <span class="code">%N</span>,
+single character. When <span class="opt">tag</span> is a pattern, the matches to
+wildcards may be used in <span class="opt">link</span> with the syntax <span class="code">%N</span>,
 where &quot;N&quot; is the index of the match starting from 1.</p>
 <p>The following examples illustrate the usage of this option, and the figure below shows
 a snippet of the resulting <span class="name">Statistics by Tag</span> table when example test
@@ -7367,8 +7367,8 @@ data is executed with these options:</p>
 <div class="section" id="adding-documentation-to-tags">
 <h4><a class="toc-backref" href="#id306">Adding documentation to tags</a></h4>
 <p>Tags can be given a documentation with the command line option
-<span class="setting">--tagdoc</span>, which takes an argument in the format
-<span class="setting">tag:doc</span>. &quot;tag&quot; is the name of the tag to assign
+<span class="opt">--tagdoc</span>, which takes an argument in the format
+<span class="opt">tag:doc</span>. &quot;tag&quot; is the name of the tag to assign
 the documentation to, and it can also be a <a class="reference internal" href="#option-value-as-simple-pattern">simple pattern</a> matching
 multiple tags. &quot;doc&quot; is the assigned
 documentation. Underscores in it are converted to spaces automatically,
@@ -7391,7 +7391,7 @@ a tool tip for these tags in the <span class="name">Statistics by Tag</span> tab
 <h4><a class="toc-backref" href="#id308">Setting times for combined outputs</a></h4>
 <p>When <a class="reference internal" href="#combining-outputs">combining outputs</a>, it is possible to set the start and end
 time of the combined test suite using the options
-<span class="setting">--starttime</span> and <span class="setting">--endtime</span>, respectively. This is
+<span class="opt">--starttime</span> and <span class="opt">--endtime</span>, respectively. This is
 convenient, because by default, combined suites do not have these
 values. When both the start and end time are given, the elapsed time
 is also calculated based on them. Otherwise the elapsed time is got by
@@ -7413,12 +7413,12 @@ rebot --starttime 20080611-175920 --endtime 20080611-180242 *.xml
 especially their log messages. When creating higher level reports, log
 files are not necessarily needed at all, and then keywords and their
 messages just take space unnecessarily. In these situations, the
-command line option <span class="setting">--removekeywords</span> can be used to dispose
+command line option <span class="opt">--removekeywords</span> can be used to dispose
 of unnecessary keywords. It has two possible values:</p>
 <dl class="docutils">
-<dt><span class="setting">ALL</span></dt>
+<dt><span class="opt">ALL</span></dt>
 <dd>All keywords are unconditionally removed.</dd>
-<dt><span class="setting">PASSED</span></dt>
+<dt><span class="opt">PASSED</span></dt>
 <dd>Keywords are removed only from the passed test cases. In most cases, log
 files created after this contain enough information to investigate
 possible failures.</dd>
@@ -7445,12 +7445,12 @@ information about</p>
 <p>Normally users never need this information, but it can be
 useful when investigating problems with test libraries or Robot Framework
 itself. A system log is not created by default, but it can be enabled
-by setting the environment variable <span class="setting">ROBOT_SYSLOG_FILE</span> so
+by setting the environment variable <span class="opt">ROBOT_SYSLOG_FILE</span> so
 that it contains a path to the selected file.</p>
 <p>A system log has the same <a class="reference internal" href="#log-levels">log levels</a> as a normal log file, with the
 exception that instead of <span class="msg">FAIL</span> it has the <span class="msg">ERROR</span> level. The
 treshold level to use can be altered using the
-<span class="setting">ROBOT_SYSLOG_LEVEL</span> environment variable.</p>
+<span class="opt">ROBOT_SYSLOG_LEVEL</span> environment variable.</p>
 <div class="highlight"><pre><span class="c">#!/bin/bash</span>
 
 <span class="nb">export </span><span class="nv">ROBOT_SYSLOG_FILE</span><span class="o">=</span>/tmp/syslog.txt
@@ -8795,7 +8795,7 @@ other systems.</p>
 <div class="section" id="taking-listeners-into-use">
 <h3><a class="toc-backref" href="#id343">4.2.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></h3>
 <p>Listeners are taken into use from the command line with the
-<span class="setting">--listener</span> option, so that the name of the listener is
+<span class="opt">--listener</span> option, so that the name of the listener is
 given to it as an argument. The listener name is got from the name of
 the class implementing the listener interface, similarly as <a class="reference internal" href="#test-library-names">test
 library names</a> are got from classes implementing them. The specified
@@ -9898,7 +9898,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2008-06-15 22:12 UTC.
+<p>Generated on: 2008-06-15 22:16 UTC.
 </p>
 
 </div>
