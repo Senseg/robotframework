@@ -507,7 +507,6 @@ pre.literal-block, pre.doctest-block {
 - code     programming code
 - msg      test case status and message, as well as log messages and levels
 - name     keyword, test case and test suite names
-- kw       TODO: rename to 'name' where used
 - cli      command line examples (note that options alone use setting)
 - path     file names and paths
 - misc     everything else (synonym to ``text``) -->
@@ -1305,7 +1304,7 @@ any resulting reports and, additionally, most tools used with Robot
 Framework also ignore them. To add information that is visible in
 Robot Framework outputs, or available to, for example, <a class="reference internal" href="#test-data-editing-tool-robot-ide">Robot IDE</a>,
 place it to the documentation or other metadata of test cases or suites,
-or log with the <span class="kw">Log</span> or <span class="kw">Comment</span> keywords available
+or log with the <span class="name">Log</span> or <span class="name">Comment</span> keywords available
 from the <a class="reference internal" href="#builtin-library">BuiltIn library</a>.</p>
 </div>
 <div class="section" id="escaping">
@@ -1732,12 +1731,12 @@ contain possible arguments to the specified keyword.</p>
 <div class="section" id="workflow-tests-vs-data-driven-tests">
 <h4><a class="toc-backref" href="#id180">Workflow tests vs. data-driven tests</a></h4>
 <p>In general, there are two kinds of test cases. So called <em>workflow</em>
-tests, such as the <span class="tc">Valid Login</span> test above, are constructed from
+tests, such as the <span class="name">Valid Login</span> test above, are constructed from
 several keywords. Their normal structure is that first the system is
-taken into the initial state (<span class="kw">Open Login Page</span>), then something is
-done to the system (<span class="kw">Input Name</span>, <span class="kw">Input Password</span>,
-<span class="kw">Submit Credentials</span>), and finally it is verified that the system
-behaved as expected (<span class="kw">Welcome Page Should Be Open</span>).</p>
+taken into the initial state (<span class="name">Open Login Page</span>), then something is
+done to the system (<span class="name">Input Name</span>, <span class="name">Input Password</span>,
+<span class="name">Submit Credentials</span>), and finally it is verified that the system
+behaved as expected (<span class="name">Welcome Page Should Be Open</span>).</p>
 <p>Another type of tests are <em>data-driven</em> test cases that contain only
 one higher-level keyword, normally created as <a class="reference internal" href="#creating-user-keywords">user keywords</a>. These
 kinds of tests are very useful when there is a need to test the same
@@ -2685,10 +2684,10 @@ files using them.</p>
 <div class="section" id="using-import-library-keyword">
 <h4><a class="toc-backref" href="#id194">Using Import Library keyword</a></h4>
 <p>Another possibility to take a test library into use is using the
-keyword <span class="kw">Import Library</span> from the <a class="reference internal" href="#builtin-library">BuiltIn library</a>. This keyword
+keyword <span class="name">Import Library</span> from the <a class="reference internal" href="#builtin-library">BuiltIn library</a>. This keyword
 takes the library name and possible arguments similarly as the
 <span class="setting">Library</span> setting. Keywords from the imported library are
-available in the test suite where the <span class="kw">Import Library</span> keyword was
+available in the test suite where the <span class="name">Import Library</span> keyword was
 used. This approach is useful in cases where the library is not
 available when the test execution starts and only some other keywords
 make it available.</p>
@@ -2763,7 +2762,7 @@ changing the actual name is, of course, a better solution.</li>
 <span class="code">WITH NAME</span> (case-insensitive) after the library name and then
 having the new name in the next cell. The specified name is shown in
 logs and must be used in the test data when using keywords' full name
-(<span class="kw">LibraryName.Keyword Name</span>).</p>
+(<span class="name">LibraryName.Keyword Name</span>).</p>
 <table border="1" class="example docutils">
 <caption>Importing libraries with custom names</caption>
 <colgroup>
@@ -2865,7 +2864,7 @@ different arguments:</p>
 </tbody>
 </table>
 <p>Setting a custom name to a test library works both when importing a
-library in the Setting table and when using the <span class="kw">Import Library</span> keyword.</p>
+library in the Setting table and when using the <span class="name">Import Library</span> keyword.</p>
 </div>
 <div class="section" id="standard-libraries">
 <h3><a class="toc-backref" href="#id197">2.4.3&nbsp;&nbsp;&nbsp;Standard libraries</a></h3>
@@ -2899,30 +2898,30 @@ documented.</p>
 <h4><a class="toc-backref" href="#id198">BuiltIn library</a></h4>
 <p>The BuiltIn library provides a set of generic keywords needed
 often. The provided keywords allow functions for verifications (for
-example, <span class="kw">Should Be Equal</span>), conversions (for example, <span class="kw">Convert
-To Integer</span>) and for various other purposes (for example, <span class="kw">Log</span> and
-<span class="kw">Sleep</span>).</p>
+example, <span class="name">Should Be Equal</span>), conversions (for example, <span class="name">Convert
+To Integer</span>) and for various other purposes (for example, <span class="name">Log</span> and
+<span class="name">Sleep</span>).</p>
 <p>The names of the keywords in the BuiltIn library have been renamed for
 Robot Framework version 1.8. All the old keywords still work, but the
 long names (the names visible in log files) of the keywords that are
-deprecated begin with <span class="kw">DeprecatedBuiltIn.</span> (for example,
-<span class="kw">DeprecatedBuiltIn.Equals</span>).</p>
+deprecated begin with <span class="name">DeprecatedBuiltIn.</span> (for example,
+<span class="name">DeprecatedBuiltIn.Equals</span>).</p>
 <p>For more information, see the <a class="reference external" href="BuiltIn.html">BuiltIn library documentation</a>.</p>
 </div>
 <div class="section" id="operatingsystem-library">
 <h4><a class="toc-backref" href="#id199">OperatingSystem library</a></h4>
 <p>The OperatingSystem library enables various operating-system-related
 tasks to be performed in the system running Robot Framework. It can,
-among other things, execute commands (for example, <span class="kw">Run</span>) and
-check whether files exist or not (for example, <span class="kw">File Should
+among other things, execute commands (for example, <span class="name">Run</span>) and
+check whether files exist or not (for example, <span class="name">File Should
 Exist</span>). The idea of the library is to wrap all relevant functions
 from the standard Python modules <span class="code">os</span>, <span class="code">os.path</span> and
 <span class="code">shutil</span>, but other related functions can also be added.</p>
 <p>The names of the keywords in the OperatingSystem library have been
 renamed for Robot Framework version 1.8. All the old keywords still
 work, but the long names (names visible in log files) of the keywords
-that are deprecated begin with <span class="kw">DeprecatedOperatingSystem.</span> (for
-example, <span class="kw">DeprecatedOperatingSystem.Fail Unless File Empty</span>).</p>
+that are deprecated begin with <span class="name">DeprecatedOperatingSystem.</span> (for
+example, <span class="name">DeprecatedOperatingSystem.Fail Unless File Empty</span>).</p>
 <p>For more information, see the <a class="reference external" href="OperatingSystem.html">OperatingSystem library documentation</a>.</p>
 </div>
 <div class="section" id="telnet-library">
@@ -2940,9 +2939,9 @@ simultaneous connections.</p>
 Python's standard list and dictionary data structures. For more
 information about lists and dictionaries, see <a class="reference external" href="http://docs.python.org/lib/lib.html">Python Library
 Reference</a> . The provided keywords allow functions for creating
-dictionaries (<span class="kw">Create Dictionary</span>), modifying lists and
-dictionaries (for example, <span class="kw">Append To List</span>), and checking the
-equality of lists and dictionaries (for example, <span class="kw">Dictionaries
+dictionaries (<span class="name">Create Dictionary</span>), modifying lists and
+dictionaries (for example, <span class="name">Append To List</span>), and checking the
+equality of lists and dictionaries (for example, <span class="name">Dictionaries
 Should Be Equal</span>).</p>
 <p>For more information, see the <a class="reference external" href="Collections.html">Collections library documentation</a>.</p>
 </div>
@@ -3009,7 +3008,7 @@ used in most places in test data. Most commonly, they are used in
 arguments for keywords in test case tables and keyword tables, but
 also all settings allow variables in their values. A normal keyword
 name <em>cannot</em> be specified with a variable, but the <a class="reference internal" href="#builtin-library">BuiltIn
-keyword</a> <span class="kw">Run Keyword</span> can be used to get the same effect.</p>
+keyword</a> <span class="name">Run Keyword</span> can be used to get the same effect.</p>
 <p>Robot Framework itself has two kinds of variables, scalars and lists,
 and they have the syntaxes <span class="var">${VARIABLE</span>} and <span class="var">&#64;{VARIABLE}</span>,
 respectively. In addition to this, environment variables can be used
@@ -3172,10 +3171,10 @@ object:</p>
 <p>Finally, when this test data is executed, different keywords receive
 the arguments as explained below:</p>
 <ul class="simple">
-<li><span class="kw">KW 1</span> gets a string <span class="code">Hello, world!</span></li>
-<li><span class="kw">KW 2</span> gets an object stored to variable <span class="var">${OBJ}</span></li>
-<li><span class="kw">KW 3</span> gets a string <span class="code">I said &quot;Hello, world!&quot;</span></li>
-<li><span class="kw">KW 4</span> gets a string <span class="code">You said &quot;Hi, tellus!&quot;</span></li>
+<li><span class="name">KW 1</span> gets a string <span class="code">Hello, world!</span></li>
+<li><span class="name">KW 2</span> gets an object stored to variable <span class="var">${OBJ}</span></li>
+<li><span class="name">KW 3</span> gets a string <span class="code">I said &quot;Hello, world!&quot;</span></li>
+<li><span class="name">KW 4</span> gets a string <span class="code">You said &quot;Hi, tellus!&quot;</span></li>
 </ul>
 </div>
 <div class="section" id="list-variables">
@@ -3275,8 +3274,8 @@ data using the syntax <span class="var">%{ENV_VAR_NAME}</span>. They are limited
 values.</p>
 <p>Environment variables set in the system before the test execution are
 available during it, and it is possible to create new ones with the keyword
-<span class="kw">Set Environment Variable</span> or delete existing ones with the
-keyword <span class="kw">Delete Environment Variable</span>, both available in the
+<span class="name">Set Environment Variable</span> or delete existing ones with the
+keyword <span class="name">Delete Environment Variable</span>, both available in the
 <a class="reference internal" href="#operatingsystem-library">OperatingSystem library</a>. Because environment variables are global,
 environment variables set in one test case can be used in other test
 cases executed after it. However, changes to environment variables are
@@ -3523,8 +3522,8 @@ libraries. The syntax for a simple case is illustrated in the example below:</p>
 </tr>
 </tbody>
 </table>
-<p>In the example above, the value returned by the <span class="kw">Get X</span> keyword is
-first set into the variable <span class="var">${x}</span> and then used by the <span class="kw">Log</span>
+<p>In the example above, the value returned by the <span class="name">Get X</span> keyword is
+first set into the variable <span class="var">${x}</span> and then used by the <span class="name">Log</span>
 keyword. This syntax works in all cases where a keywords returns
 something, and the variable is set to whatever value returned by the
 keyword. Having the equals sign <span class="code">=</span> after the variable name is
@@ -3580,7 +3579,7 @@ iterables, if needed.</p>
 </tr>
 </tbody>
 </table>
-<p>Assuming that the keyword <span class="kw">Get 3</span> returns a list
+<p>Assuming that the keyword <span class="name">Get 3</span> returns a list
 <span class="code">[1, 2, 3]</span>, the following variables are created:</p>
 <ul class="simple">
 <li><span class="var">${scalar}</span> with the value <span class="code">[1, 2, 3]</span></li>
@@ -3598,7 +3597,7 @@ because, in general, automated test cases should not depend on each
 other, and accidentally setting a variable that is used elsewhere
 could cause hard-to-debug errors. If there is a genuine need for
 setting a variable in one test case and using it in another, use the
-<span class="kw">Set Suite Variable</span> or <span class="kw">Set Global Variable</span> keywords
+<span class="name">Set Suite Variable</span> or <span class="name">Set Global Variable</span> keywords
 available from the <a class="reference internal" href="#builtin-library">BuiltIn library</a>.</p>
 </div>
 <div class="section" id="variable-scopes">
@@ -3611,7 +3610,7 @@ global, test suite, test case or user keyword scope.</p>
 variables are normally set from the command line with the
 <span class="setting">--variable</span> and <span class="setting">--variablefile</span>
 options. Additionally, it is possible to create new global variables
-or change the existing ones with the <a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="kw">Set
+or change the existing ones with the <a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="name">Set
 Global Variable</span> anywhere in the test data.</p>
 <p>Global variables override variables defined in Variable tables or in
 imported variable files. Variables set locally override even global
@@ -3624,7 +3623,7 @@ capital letters with global variables.</p>
 suite where they are defined or imported. They can be created in
 Variable tables, imported from variable files using the
 <span class="setting">Variables</span> setting in the Setting table, or set with the
-<a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="kw">Set Suite Variable</span> anywhere in that test
+<a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="name">Set Suite Variable</span> anywhere in that test
 suite.</p>
 <p>The test suite scope <em>is not recursive</em>, which means that variables
 available in a higher-level test suite <em>are not available</em> in
@@ -3638,7 +3637,7 @@ they are used, it is recommended to use capital letters also with them.</p>
 <p>Variables created in test cases from the return values of keywords have a
 test case scope and they are available only in that test
 case. Another possibility to create them is using the <a class="reference internal" href="#builtin-library">BuiltIn keyword</a>
-<span class="kw">Set Test Variable</span> anywhere in that particular test case. Test
+<span class="name">Set Test Variable</span> anywhere in that particular test case. Test
 case variables are local and should use lower-case letters.</p>
 </div>
 <div class="section" id="user-keyword-scope">
@@ -3991,9 +3990,9 @@ and test case:</p>
 <p>When this test data is executed, the keywords get the arguments as
 explained below:</p>
 <ul class="simple">
-<li><span class="kw">KW 1</span> gets string <span class="code">Robot</span></li>
-<li><span class="kw">KW 2</span> gets string <span class="code">Robot says hello to Fit</span></li>
-<li><span class="kw">KW 3</span> gets string <span class="code">two</span></li>
+<li><span class="name">KW 1</span> gets string <span class="code">Robot</span></li>
+<li><span class="name">KW 2</span> gets string <span class="code">Robot says hello to Fit</span></li>
+<li><span class="name">KW 3</span> gets string <span class="code">two</span></li>
 </ul>
 <p>The extended variable syntax is evaluated in the following order:</p>
 <ol class="arabic simple">
@@ -4053,8 +4052,8 @@ first. If it has the value <span class="code">name</span>, the final value is th
 value of the variable <span class="var">${varname}</span>. There can be several nested
 variables, but resolving the outermost fails, if any of them does not
 exist.</p>
-<p>In the example below, <span class="kw">Do X</span> gets the value <span class="var">${JOHN_HOME}</span>
-or <span class="var">${JANE_HOME}</span>, depending on if <span class="kw">Get Name</span> returns
+<p>In the example below, <span class="name">Do X</span> gets the value <span class="var">${JOHN_HOME}</span>
+or <span class="var">${JANE_HOME}</span>, depending on if <span class="name">Get Name</span> returns
 <span class="code">john</span> or <span class="code">jane</span>. If it returns something else, resolving
 <span class="var">${${name}_HOME}</span> fails.</p>
 <table border="1" class="example docutils">
@@ -4693,7 +4692,6 @@ them somewhat more complicated than Variable tables.</p>
 </div>
 <div class="section" id="resource-files">
 <h3><a class="toc-backref" href="#id232">2.7.1&nbsp;&nbsp;&nbsp;Resource files</a></h3>
-<!-- TODO: Some short introductory text here? -->
 <div class="section" id="taking-resource-files-into-use">
 <h4><a class="toc-backref" href="#id233">Taking resource files into use</a></h4>
 <p>Resource files are imported using the <span class="setting">Resource</span> setting in the
@@ -4751,8 +4749,8 @@ only import settings (<span class="setting">Library</span>, <span class="setting
 exactly the same way as in test case files.</p>
 <p>If several resource files have a user keyword with the same name, they
 must be used so that the <a class="reference internal" href="#handling-keywords-with-same-names">keyword name is prefixed with the resource
-file name</a> without the extension (for example, <span class="kw">myresources.Some
-Keyword</span> and <span class="kw">common.Some Keyword</span>). Moreover, if several resource
+file name</a> without the extension (for example, <span class="name">myresources.Some
+Keyword</span> and <span class="name">common.Some Keyword</span>). Moreover, if several resource
 files contain the same variable, the one that is imported first is
 taken into use.</p>
 <table border="1" class="example docutils">
@@ -4912,7 +4910,6 @@ approach quite flexible.</dd>
 </dl>
 <div class="section" id="taking-variable-files-into-use">
 <h4><a class="toc-backref" href="#id236">Taking variable files into use</a></h4>
-<!-- TODO: Add a short introductory text here? -->
 <div class="section" id="setting-table">
 <h5>Setting table</h5>
 <p>All test data files can import variables using the
@@ -4982,7 +4979,6 @@ with the <span class="setting">--variable</span> option.</p>
 </div>
 <div class="section" id="creating-variables-directly">
 <h4><a class="toc-backref" href="#id237">Creating variables directly</a></h4>
-<!-- TODO: Add a short introductory text here? -->
 <div class="section" id="id33">
 <h5>Basic syntax</h5>
 <p>When variable files are taken into use, they are imported as Python
@@ -5285,19 +5281,19 @@ highest priority. In such cases, it is possible to use <em>the full name
 of the keyword</em>, where the keyword name is prefixed with the name of
 the resource or library and a dot is a delimiter.</p>
 <p>With library keywords, the long format means only using the format
-<span class="kw">LibraryName.Keyword Name</span>. For example, the keyword <span class="kw">Run</span> from the
+<span class="name">LibraryName.Keyword Name</span>. For example, the keyword <span class="name">Run</span> from the
 <a class="reference internal" href="#operatingsystem-library">OperatingSystem library</a> could be used as
-<span class="kw">OperatingSystem.Run</span>, even if there was another <span class="kw">Run</span> keyword
+<span class="name">OperatingSystem.Run</span>, even if there was another <span class="name">Run</span> keyword
 somewhere else. If the library is in a module or package, the full
 module or package name must be used (for example,
-<span class="kw">com.company.Library.Some Keyword</span>). If a custom name is given to a
+<span class="name">com.company.Library.Some Keyword</span>). If a custom name is given to a
 library using the <a class="reference internal" href="#setting-custom-name-to-test-library">WITH NAME syntax</a>, the specified name must be
 used also in the full keyword name.</p>
 <p>Resource files are specified in the full keyword name, similarly as
 library names. The name of the resource is derived from the basename
 of the resource file without the file extension. For example, the
-keyword <span class="kw">Example</span> in a resource file <span class="path">myresources.html</span> can
-be used as <span class="kw">myresources.Example</span>. Note that this syntax does not
+keyword <span class="name">Example</span> in a resource file <span class="path">myresources.html</span> can
+be used as <span class="name">myresources.Example</span>. Note that this syntax does not
 work, if several resource files have the same basename. In such
 cases, either the files or the keywords must be renamed. The full name
 of the keyword is case-, space- and underscore-insensitive, similarly
@@ -5599,10 +5595,10 @@ syntax is possible also in shell scripts or Perl.</p>
 <div class="section" id="normal-for-loop">
 <h4><a class="toc-backref" href="#id246">Normal for loop</a></h4>
 <p>In a normal For loop, one variable is assigned into a list of values,
-one value per iteration. The syntax starts with <span class="kw">:FOR</span>, where
+one value per iteration. The syntax starts with <span class="name">:FOR</span>, where
 colon is required to separate the syntax from normal keywords. The
 next cell contains the loop variable, the subsequent cell must have
-<span class="kw">IN</span>, and the final cells contain values over which to iterate.</p>
+<span class="name">IN</span>, and the final cells contain values over which to iterate.</p>
 <p>The keywords used in the For loop are on the next rows and they must
 be indented one cell to the right. The For loop ends when the indentation
 returns back to normal or the table ends. Having nested For loops
@@ -5693,15 +5689,15 @@ inside a For loop and have another For loop there.</p>
 </tr>
 </tbody>
 </table>
-<p>The For loop in <span class="tc">Example 1</span> above is executed twice, so that first
+<p>The For loop in <span class="name">Example 1</span> above is executed twice, so that first
 the loop variable <span class="var">${animal}</span> has the value <span class="code">cat</span> and then
-<span class="code">dog</span>. The loop consists of two <span class="kw">Log</span> keywords. In the
+<span class="code">dog</span>. The loop consists of two <span class="name">Log</span> keywords. In the
 second example, loop values are <a class="reference internal" href="#dividing-test-data-to-several-rows">split into several rows</a> and the
 loop is run altogether seven times.</p>
 <p>For loops are most useful and also clearest when they are used with
 <a class="reference internal" href="#list-variables">list variables</a>. This is illustrated by the example below, where
 <span class="var">&#64;{ELEMENTS}</span> contains an arbitrary long list of element names
-and <span class="kw">Start Element</span> is used with all of them.</p>
+and <span class="name">Start Element</span> is used with all of them.</p>
 <table border="1" class="example docutils">
 <caption>For loop with a list variable</caption>
 <colgroup>
@@ -5743,7 +5739,7 @@ and <span class="kw">Start Element</span> is used with all of them.</p>
 <h4><a class="toc-backref" href="#id247">Using several loop variables</a></h4>
 <p>It is also possible to use several loop variables. The syntax is the
 same as with the normal For loop, but all loop variables are listed in
-the cells between <span class="kw">:FOR</span> and <span class="kw">IN</span>. There can be any number of loop
+the cells between <span class="name">:FOR</span> and <span class="name">IN</span>. There can be any number of loop
 variables, but their number must match the number of loop
 values. The number of values must be evenly dividable by the number of
 variables.</p>
@@ -5837,9 +5833,9 @@ that is executed a certain number of times, and Robot Framework has a
 special <span class="code">FOR index IN RANGE limit</span> syntax for this purpose. This
 syntax is derived from the similar Python idiom.</p>
 <p>Similarly as other For loops, the For in range loop starts with
-<span class="kw">:FOR</span> and the loop variable is in the next cell. In this format
+<span class="name">:FOR</span> and the loop variable is in the next cell. In this format
 there can be only one loop variable and it contains the current loop
-index. The next cell must contain <span class="kw">IN RANGE</span> and the subsequent
+index. The next cell must contain <span class="name">IN RANGE</span> and the subsequent
 cells loop limits.</p>
 <p>In the simplest case, only the upper limit of the loop is
 specified. In this case, loop indexes start from zero and increase by one
@@ -6009,16 +6005,16 @@ construct, there are several ways to get the same effect.</p>
 cases</a> and <a class="reference internal" href="#suite-setup-and-teardown">test suites</a> can be specified using a
 variable. This facilitates changing them, for example, from
 the command line.</li>
-<li>The <a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="kw">Run Keyword</span> takes a keyword to actually
+<li>The <a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="name">Run Keyword</span> takes a keyword to actually
 execute as an argument, and it can thus be a variable. The value of
 the variable can, for example, be got dynamically from an earlier
 keyword or given from the command line.</li>
-<li>The <a class="reference internal" href="#builtin-library">BuiltIn keywords</a> <span class="kw">Run Keyword If</span> and <span class="kw">Run Keyword
+<li>The <a class="reference internal" href="#builtin-library">BuiltIn keywords</a> <span class="name">Run Keyword If</span> and <span class="name">Run Keyword
 Unless</span> execute a named keyword only if a certain expression is
 true or false, respectively. They are ideally suited to creating
 simple if/else constructs. For an example, see the documentation of
 the former.</li>
-<li>Another <a class="reference internal" href="#builtin-library">BuiltIn keyword</a>, <span class="kw">Set Variable If</span>, can be used to set
+<li>Another <a class="reference internal" href="#builtin-library">BuiltIn keyword</a>, <span class="name">Set Variable If</span>, can be used to set
 variables dynamically based on a given expression.</li>
 <li>There are several <a class="reference internal" href="#builtin-library">BuiltIn keywords</a> that allow executing a named
 keyword only if a test case or test suite has failed or passed.</li>
@@ -6033,12 +6029,12 @@ action in the background and returns immediately, and there is
 another keyword that can later be used to check the status of the
 background process or other action.</p>
 <p>Robot Framework also has native support for parallel execution of
-keywords. The syntax for it is using <span class="kw">:PARALLEL</span> in the second
-column of the Test Case or Keyword table, similarly as <span class="kw">:FOR</span> is
+keywords. The syntax for it is using <span class="name">:PARALLEL</span> in the second
+column of the Test Case or Keyword table, similarly as <span class="name">:FOR</span> is
 used with <a class="reference internal" href="#for-loops">For loops</a>. In both cases, a colon (:) must be used to
 separate them from normal keywords. Keywords inside a parallel block
 are also indented, similarly as keywords in a For loop.  The difference
-is that there is no need to have anything after <span class="kw">:PARALLEL</span>, and
+is that there is no need to have anything after <span class="name">:PARALLEL</span>, and
 normally the first keyword of the parallel block is already there.</p>
 <p>When a parallel block is executed, all the keywords in it are started
 in the background, one after another, and the whole block returns only
@@ -6139,13 +6135,11 @@ block or a For loop there.</p>
 <div class="warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Parallel execution cannot be used with <a class="reference internal" href="#timeouts">timeouts</a> and it
-does not work correctly with any <span class="kw">Run Keyword XXX</span>
+does not work correctly with any <span class="name">Run Keyword XXX</span>
 keywords in the <a class="reference internal" href="#builtin-library">BuiltIn library</a>. In general, it is a quite
 experimental and not much used feature, and it may also have
 other peculiar problems.</p>
 </div>
-<!-- TODO: Move these below next to other link targets
-BUT check are these used first -->
 </div>
 </div>
 </div>
@@ -7198,7 +7192,7 @@ available log levels as an argument, and that level becomes the new
 threshold level. A special value <span class="msg">NONE</span> can also be used to
 disable logging altogether.</p>
 <p>Another possibility to change the log level is using the <a class="reference internal" href="#builtin-library">BuiltIn
-keyword</a> <span class="kw">Set Log Level</span> in the test data. It takes the same
+keyword</a> <span class="name">Set Log Level</span> in the test data. It takes the same
 arguments as the <span class="setting">--loglevel</span> option, and it also returns the
 old level so that it can be restored later, for example, in a <a class="reference internal" href="#test-setup-and-teardown">test
 teardown</a>.</p>
@@ -7733,7 +7727,7 @@ used, for example, in a suite setup or teardown to ensure that test
 cases in the next test suites can start from a known state. For example,
 <span class="name">SeleniumLibrary</span> uses the <span class="code">GLOBAL</span> scope to enable
 using the same browser in different test cases without having to
-reopen it, and it also has the <span class="kw">Close All Browsers</span> keyword for
+reopen it, and it also has the <span class="name">Close All Browsers</span> keyword for
 easily closing all open browsers.</p>
 <p>Example Python library using <span class="code">TEST SUITE</span> scope:</p>
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">ExampleLibrary</span><span class="p">:</span>
@@ -7784,9 +7778,9 @@ underscore. With Java libraries, also methods that are implemented in
 find the method implementing these keywords. Name comparison is
 case-insensitive, and also spaces and underscores are ignored. For
 example, the method <span class="code">hello</span> maps to the keyword name
-<span class="kw">Hello</span>, <span class="kw">hello</span> or even <span class="kw">h e l l o</span>. Similarly both the
+<span class="name">Hello</span>, <span class="name">hello</span> or even <span class="name">h e l l o</span>. Similarly both the
 <span class="code">do_nothing</span> and <span class="code">doNothing</span> methods can be used as the
-<span class="kw">Do Nothing</span> keyword in the test data.</p>
+<span class="name">Do Nothing</span> keyword in the test data.</p>
 <p>Example Python library implemented as a module in the <span class="path">MyLibrary.py</span> file:</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="k">print</span> <span class="s">&quot;Hello, </span><span class="si">%s</span><span class="s">!&quot;</span> <span class="o">%</span> <span class="n">name</span>
@@ -8425,7 +8419,7 @@ them anyway.</p>
 <p>It is also easy to use Robot Framework itself for testing libraries
 and that way have actual end-to-end acceptance tests for them. There are
 plenty of useful keywords in the <a class="reference internal" href="#builtin-library">BuiltIn library</a> for this
-purpose. One worth mentioning specifically is <span class="kw">Run Keyword And Expect
+purpose. One worth mentioning specifically is <span class="name">Run Keyword And Expect
 Error</span>, which is useful for testing that keywords report errors
 correctly.</p>
 <p>Whether to use a unit- or acceptance-level testing approach depends on
@@ -8505,7 +8499,7 @@ separated with spaces or underscores, or in the camelCase format. For
 example, <span class="code">['first keyword', 'second keyword']</span>,
 <span class="code">['first_keyword', 'second_keyword']</span>, and
 <span class="code">['firstKeyword', 'secondKeyword']</span> would all result in the keywords
-<span class="kw">First Keyword</span> and <span class="kw">Second Keyword</span>.</p>
+<span class="name">First Keyword</span> and <span class="name">Second Keyword</span>.</p>
 <p>Dynamic libraries must always have this method. If it is missing, or
 if calling it fails for some reason, the library is considered a
 static library, instead.</p>
@@ -8545,7 +8539,7 @@ trivial) dynamic library.</p>
 <p>If a dynamic library only implements the <span class="code">get_keyword_names</span> and
 <span class="code">run_keyword</span> methods, Robot Framework does not have any information
 about the arguments that the implemented keywords need. For example,
-both <span class="kw">First Keyword</span> and <span class="kw">Second Keyword</span> in the example above
+both <span class="name">First Keyword</span> and <span class="name">Second Keyword</span> in the example above
 could be used with any number of arguments. This is problematic,
 because most real keywords expect a certain number of keywords, and
 under these circumstances they would need to check the argument counts
@@ -9857,7 +9851,7 @@ More text...
 <div class="section" id="time-format">
 <h2><a class="toc-backref" href="#id354">5.5&nbsp;&nbsp;&nbsp;Time format</a></h2>
 <p>Robot Framework has its own time format that is used by several
-keywords (for example <span class="kw">Sleep</span> and <span class="kw">Wait Until Keyword
+keywords (for example <span class="name">Sleep</span> and <span class="name">Wait Until Keyword
 Succeeds</span>) as well as <a class="reference internal" href="#test-case-timeout">test case</a> and <a class="reference internal" href="#user-keyword-timeout">user keyword timeouts</a>. This
 format is ment to be both flexible to use and easy to understand.</p>
 <div class="section" id="time-as-number">
@@ -9904,7 +9898,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2008-06-15 21:54 UTC.
+<p>Generated on: 2008-06-15 22:12 UTC.
 </p>
 
 </div>
