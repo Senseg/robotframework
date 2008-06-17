@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
 <title>robotdiff.py</title>
 <style type="text/css">
 
@@ -345,7 +345,7 @@ table.messages td.level {
 .var {
     background: #f4f4f4;
 }
-.setting {
+.opt {
     font-style: italic;
 }
 .prog, .code, .cli {
@@ -355,7 +355,7 @@ table.messages td.level {
 .msg {
     font-family: monospace;
 }
-.kw, .name {  
+.name {  
     font-style: italic;
 }
 .path {
@@ -450,15 +450,16 @@ pre.literal-block, pre.doctest-block {
 <body>
 <div class="document" id="robotdiff-py">
 <h1 class="title">robotdiff.py</h1>
+
 <p>A tool for comparing two or more Robot Framework output files.</p>
-<div class="section">
-<h1><a id="synopsis" name="synopsis">Synopsis</a></h1>
+<div class="section" id="synopsis">
+<h1>Synopsis</h1>
 <pre class="literal-block">
 robotdiff.py [options] input files
 </pre>
 </div>
-<div class="section">
-<h1><a id="options" name="options">Options</a></h1>
+<div class="section" id="options">
+<h1>Options</h1>
 <blockquote>
 <table class="docutils option-list" frame="void" rules="none">
 <col class="option" />
@@ -467,45 +468,46 @@ robotdiff.py [options] input files
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-r</span>, <span class="option">--report <var>&lt;file&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>HTML report file (created from the input files).
-Default is 'robotdiff.html'.</td></tr>
+<tr><td>&nbsp;</td><td>The HTML report file (created from the input files).
+The default is <span class="path">robotdiff.html</span>.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-n</span>, <span class="option">--name <var>&lt;name&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Name for test run. Different test runs can be named
+<tr><td>&nbsp;</td><td>The name for the test run. Different test runs can be named
 with this option. However, there must be as many
-names as there are input files. By default the name
+names as there are input files. By default, the name
 of the input files are used as names. Input files
-having same file name are distinguished by adding
-as many parent directories to the names as is needed.</td></tr>
+with the same file name are distinguished by adding
+as many parent directories to the names as needed.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-t</span>, <span class="option">--title <var>&lt;title&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Title for the generated diff report. The default
-title is 'Diff Report'.</td></tr>
+<tr><td>&nbsp;</td><td>The title for the generated diff report. The default
+title is &quot;Diff Report&quot;.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-E</span>, <span class="option">--escape <var>&lt;what:with&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Escape certain characters which are problematic in
-console. 'what' is the name of the character to
-escape and 'with' is the string to escape it with.
-Available character to escape: %(ESCAPES)s
+<tr><td>&nbsp;</td><td>Escapes certain characters that are problematic in the
+console. &quot;what&quot; is the name of the character to
+escape and &quot;with&quot; is the string to escape it with.
+The available characters to escape: %(ESCAPES)s
 Example: <span class="cli">-\-escape space:_ -\-title My_Diff_Report</span></td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
-<td>Print this usage instruction.</td></tr>
+<td>Prints this usage instruction.</td></tr>
 </tbody>
 </table>
 </blockquote>
 </div>
-<div class="section">
-<h1><a id="description" name="description">Description</a></h1>
-<p>This script compares two or more Robot Framework output files and creates a
-report where possible differences between test case statuses in each file
-are highlighted. Main use case is verifying that results from executing same
-test cases in different environments are same. For example, it is possible to
-test that new Robot Framework version does not affect test results. Another
-usage is comparing earlier test results with newer ones to find out possible
+<div class="section" id="description">
+<h1>Description</h1>
+<p>This script compares two or more Robot Framework output files and
+creates a report, where possible differences between test case
+statuses in each file are highlighted. The main use case is verifying
+that results from executing the same test cases in different
+environments are the same. For example, you can test that a new Robot
+Framework version does not affect your test results. Another usage is
+comparing earlier test results with newer ones to find out possible
 status changes and added test cases.</p>
 <p>Examples:</p>
 <pre class="literal-block">
@@ -516,7 +518,7 @@ $ robotdiff.py --name Env1 --name Env2 smoke1.xml smoke2.xml
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2008-06-11 10:12 UTC.
+Generated on: 2008-06-17 08:59 UTC.
 
 </div>
 </body>

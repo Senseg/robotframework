@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
 <title>risto.py</title>
 <style type="text/css">
 
@@ -345,7 +345,7 @@ table.messages td.level {
 .var {
     background: #f4f4f4;
 }
-.setting {
+.opt {
     font-style: italic;
 }
 .prog, .code, .cli {
@@ -355,7 +355,7 @@ table.messages td.level {
 .msg {
     font-family: monospace;
 }
-.kw, .name {  
+.name {  
     font-style: italic;
 }
 .path {
@@ -450,18 +450,19 @@ pre.literal-block, pre.doctest-block {
 <body>
 <div class="document" id="risto-py">
 <h1 class="title">risto.py</h1>
+
 <p>A tool for plotting graphs about test execution history based on statistics
 read from Robot output files.</p>
-<div class="section">
-<h1><a id="synopsis" name="synopsis">Synopsis</a></h1>
+<div class="section" id="synopsis">
+<h1>Synopsis</h1>
 <pre class="literal-block">
 risto.py options input files
 risto.py options1 --- options2 --- optionsN --- input files
 risto.py --argumentfile path
 </pre>
 </div>
-<div class="section">
-<h1><a id="options" name="options">Options</a></h1>
+<div class="section" id="options">
+<h1>Options</h1>
 <blockquote>
 <table class="docutils option-list" frame="void" rules="none">
 <col class="option" />
@@ -470,103 +471,103 @@ risto.py --argumentfile path
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-C</span>, <span class="option">--nocritical</span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Do not plot graphs for critical tests.</td></tr>
+<tr><td>&nbsp;</td><td>Does not plot graphs for critical tests.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-A</span>, <span class="option">--noall</span></kbd></td>
-<td>Do not plot graphs for all tests.</td></tr>
+<td>Does not plot graphs for all tests.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-T</span>, <span class="option">--nototals</span></kbd></td>
-<td>Do not plot total graphs.</td></tr>
+<td>Does not plot total graphs.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-P</span>, <span class="option">--nopassed</span></kbd></td>
-<td>Do not plot passed graphs.</td></tr>
+<td>Does not plot passed graphs.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-F</span>, <span class="option">--nofailed</span></kbd></td>
-<td>Do not plot failed graphs.</td></tr>
+<td>Does not plot failed graphs.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-t</span>, <span class="option">--tag <var>&lt;name&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Add graphs for these tags. Name can contain '*' and
-'?' as wildcards. 'AND' in the tag name is converted
-to ' &amp; ', to make it easier to plot combined tags.</td></tr>
+<tr><td>&nbsp;</td><td>Adds graphs for these tags. The name can contain &quot;*&quot; and
+&quot;?&quot; as wildcards. &quot;AND&quot; in the tag name is converted
+to &quot; &amp; &quot;, to make it easier to plot combined tags.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-o</span>, <span class="option">--output <var>&lt;path&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Path to the image file to create. If not given, the
-image is opened into Matplotlib' viewer.</td></tr>
+<tr><td>&nbsp;</td><td>The path to the image file to create. If not given, the
+image is opened into Matplotlib viewer.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-i</span>, <span class="option">--title <var>&lt;title&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Title of the graph. Underscores in the given title
-are converted to spaces. By default there is no
+<tr><td>&nbsp;</td><td>The title of the graph. Underscores in the given title
+are converted to spaces. By default, there is no
 title.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-w</span>, <span class="option">--width <var>&lt;inches&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Width of the image. Default is 800.</td></tr>
+<tr><td>&nbsp;</td><td>The width of the image. The default is 800.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-h</span>, <span class="option">--height <var>&lt;inches&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Height of the image. Default is 400.</td></tr>
+<tr><td>&nbsp;</td><td>The height of the image. The default is 400.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-f</span>, <span class="option">--font <var>&lt;size&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Font size used for legends and labels. Default is 8.</td></tr>
+<tr><td>&nbsp;</td><td>The font size used for legends and labels. The default is 8.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-m</span>, <span class="option">--marker <var>&lt;size&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Size of marked used with tag graphs. Default is 5.</td></tr>
+<tr><td>&nbsp;</td><td>The size of the marker used with tag graphs. The default is 5.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-x</span>, <span class="option">--xticks <var>&lt;num&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Maximum number of ticks in x-axis. Default is 15.</td></tr>
+<tr><td>&nbsp;</td><td>The maximum number of ticks on the x-axis. The default is 15.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-n</span>, <span class="option">--namemeta <var>&lt;name&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Name of the metadata of the top level test suite
-where to get name of the test round. By default names
-are got from paths to input files.</td></tr>
+<tr><td>&nbsp;</td><td>The name of the metadata of the top-level test suite
+where to get the name of the test round. By default, names
+are got from the paths to input files.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--argumentfile <var>&lt;path&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Read arguments from the specified file.</td></tr>
+<tr><td>&nbsp;</td><td>Reads arguments from the specified file.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--verbose</span></kbd></td>
-<td>Verbose output.</td></tr>
+<td>The verbose output.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--help</span></kbd></td>
-<td>Print this help.</td></tr>
+<td>Prints this help.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--version</span></kbd></td>
-<td>Print version information.</td></tr>
+<td>Prints the version information.</td></tr>
 </tbody>
 </table>
 </blockquote>
-<p>Additionally <span class="cli">---</span> can be used to group options when creating multiple
+<p>Additionally, <span class="opt">---</span> can be used to group options when creating multiple
 images at once.</p>
 </div>
-<div class="section">
-<h1><a id="description" name="description">Description</a></h1>
+<div class="section" id="description">
+<h1>Description</h1>
 <p>risto.py plots graphs about test execution history, based on statistics read
 from Robot output files. By default, it draws total, passed and failed graphs
 for critical tests and all tests, but it is possible to omit some of these
 graphs and also to add graphs by tags. The actual drawing is handled by the Matplotlib
 tool that must be installed separately. More information on Matplotlib, including
-the installation instructions, can be found from <a class="reference" href="http://matplotlib.sourceforge.net">http://matplotlib.sourceforge.net</a>.</p>
+the installation instructions, can be found from <a class="reference external" href="http://matplotlib.sourceforge.net">http://matplotlib.sourceforge.net</a>.</p>
 <p>Names of test rounds that are shown on the x-axis are, by default, obtained from the
 paths to input files. Alternatively, names can be obtained from the metadata of the
-top level test suite (for more information, see Robot Framework's <span class="cli">--metadata</span> option).</p>
-<p>Graphs are saved to a file specified with the <span class="cli">--output</span> option, and the output
+top-level test suite (for more information, see Robot Framework's <span class="opt">--metadata</span> option).</p>
+<p>Graphs are saved to a file specified with the <span class="opt">--output</span> option, and the output
 format is determined by the file extension. The supported formats depend on the installed
 Matplotlib back-ends, but at least PNG ought to be always available. If the output
 file is omitted, the graph is opened into Matplotlib's image viewer (which
 requires Matplotlib to be installed with some graphical front end).</p>
 <p>It is possible to draw several graphs with different options at once. This is
-done by separating different option groups with three or more hyphens (<span class="cli">---</span>).
+done by separating different option groups with three or more hyphens (<span class="opt">---</span>).
 Note that in this case, also paths to input files need to be separated from
 the options similarly.</p>
 <p>Instead of giving all options from the command line, it is possible to read them
-from a file specified with the <span class="cli">--argument</span> option. In an argument file, options
+from a file specified with the <span class="opt">--argument</span> option. In an argument file, options
 and their possible arguments are listed one per line, and option groups are
 separated with lines of three or more hyphens. Empty lines and lines starting
 with a hash mark (#) are ignored.</p>
@@ -592,14 +593,14 @@ with a hash mark (#) are ignored.</p>
 <span class="o">======================================</span>
 </pre></div>
 </div>
-<div class="section">
-<h1><a id="installation" name="installation">Installation</a></h1>
+<div class="section" id="installation">
+<h1>Installation</h1>
 <p>Here you can find the instructions for the installation of risto.py.</p>
-<div class="section">
-<h2><a id="preconditions" name="preconditions">Preconditions</a></h2>
+<div class="section" id="preconditions">
+<h2>Preconditions</h2>
 <p>risto.py requires Python. It has been tested both on releases 2.4 and
-2.5, and it should work also in 2.3. Also some Robot modules are
-needed, and thus some Robot Framework 1.8 version needs to be
+2.5, and it should work also in 2.3. Also some Robot Framwork modules are
+needed, and thus some Robot Framework version 1.8 needs to be
 installed.</p>
 <p>The Matplotlib tool is used for plotting graphs, and it needs to be
 installed separately. Matplotlib has its own preconditions, and at
@@ -614,26 +615,26 @@ module. Python 2.5 has this module in its standard library, but for
 older versions, it needs to be installed separately.</p>
 <p>Links to the needed software:</p>
 <ul class="simple">
-<li><a class="reference" href="http://matplotlib.sourceforge.net/">Matplotlib</a></li>
-<li><a class="reference" href="http://numpy.scipy.org/">NumPy</a></li>
-<li><a class="reference" href="http://effbot.org/zone/element-index.htm">ElementTree</a></li>
+<li><a class="reference external" href="http://matplotlib.sourceforge.net/">Matplotlib</a></li>
+<li><a class="reference external" href="http://numpy.scipy.org/">NumPy</a></li>
+<li><a class="reference external" href="http://effbot.org/zone/element-index.htm">ElementTree</a></li>
 </ul>
-<div class="section">
-<h3><a id="screenshots" name="screenshots">Screenshots</a></h3>
+<div class="section" id="screenshots">
+<h3>Screenshots</h3>
 <p>Here you can find some screenshots of risto.py.</p>
-<div class="section">
-<h4><a id="default-settings" name="default-settings">Default settings</a></h4>
+<div class="section" id="default-settings">
+<h4>Default settings</h4>
 <p>The screenshot below uses some very simple example outputs, thus the lines
 are mainly straight. The default settings have been used otherwise,
-but the output has been saved into a file with the <span class="cli">--output
+but the output has been saved into a file with the <span class="opt">--output
 default.png</span> option.</p>
 <div class="figure">
 <img alt="risto_default.png" src="risto_default.png" style="width: 800px; height: 400px;" />
 <p class="caption">Simple example output</p>
 </div>
 </div>
-<div class="section">
-<h4><a id="various-settings" name="various-settings">Various settings</a></h4>
+<div class="section" id="various-settings">
+<h4>Various settings</h4>
 <p>The example outputs used in this screenshot are the same as in the previous
 one, but now the following options have been specified:</p>
 <pre class="literal-block">
@@ -644,10 +645,10 @@ one, but now the following options have been specified:</p>
 <p class="caption">Another example output</p>
 </div>
 </div>
-<div class="section">
-<h4><a id="using-matplotlib-s-viewer" name="using-matplotlib-s-viewer">Using Matplotlib's Viewer</a></h4>
+<div class="section" id="using-matplotlib-s-viewer">
+<h4>Using Matplotlib's Viewer</h4>
 <p>This time there are more input files and the image has been opened
-in Matplotlib's viewer (that is, the <span class="cli">--output</span> option has not been
+in Matplotlib's viewer (that is, the <span class="opt">--output</span> option has not been
 used). The options used to create this example are the ones below:</p>
 <pre class="literal-block">
 -CAP -t d1_AND_d2 -t t1 -t sub3 -i Yet_Another_Example -x 20 -w 1000 -n Name
@@ -658,8 +659,8 @@ used). The options used to create this example are the ones below:</p>
 </div>
 </div>
 </div>
-<div class="section">
-<h3><a id="more-realistic-examples" name="more-realistic-examples">More Realistic Examples</a></h3>
+<div class="section" id="more-realistic-examples">
+<h3>More Realistic Examples</h3>
 <p>These examples are generated from actual test outputs using the following argument file:</p>
 <pre class="literal-block">
 --title Overview
@@ -688,7 +689,7 @@ path/\*/output.xml
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2008-06-11 10:12 UTC.
+Generated on: 2008-06-17 08:58 UTC.
 
 </div>
 </body>
