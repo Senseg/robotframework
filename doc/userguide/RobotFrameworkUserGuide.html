@@ -538,28 +538,29 @@ touching several technologies and interfaces.</p>
 <h3><a class="toc-backref" href="#id143">1.1.1&nbsp;&nbsp;&nbsp;Why Robot Framework?</a></h3>
 <ul class="simple">
 <li>Enables easy-to-use tabular syntax for <a class="reference internal" href="#creating-test-cases">creating test cases</a> in a uniform
-way regardless of the tested system.</li>
+way.</li>
 <li>Provides ability to create reusable <a class="reference internal" href="#creating-user-keywords">higher-level keywords</a> from the
 existing keywords.</li>
-<li>Has very good <a class="reference internal" href="#report-file">reports</a> and <a class="reference internal" href="#log-file">logs</a> in HTML format.</li>
-<li>Is platform- and application-independent.</li>
-<li>Can natively use both Python and Java test tools.</li>
-<li>Provides a simple <a class="reference internal" href="#creating-test-libraries">library API</a> for creating customized test libraries for
-wrapping existing tools or your own interfaces.</li>
-<li>The modular architecture supports creating tests even for applications with
-several diverse interfaces.</li>
-<li>Provides existing test libraries for web testing, Java GUI testing, running
+<li>Provides easy-to-read result reports and logs in HTML format.</li>
+<li>Is platform and application independent.</li>
+<li>Can natively use both Python and Java test code.</li>
+<li>Provides a simple <a class="reference internal" href="#creating-test-libraries">library API</a> for creating customized test libraries.</li>
+<li>Provides a <a class="reference internal" href="#executing-test-cases">command line interface</a> and XML based <a class="reference internal" href="#output-file">output files</a>  for
+integration into existing build infrastructure (continuous integration
+systems).</li>
+<li>Provides support for Selenium for web testing, Java GUI testing, running
 processes, Telnet, SSH, and so on.</li>
+<li>Supports creating data-driven tests.</li>
 <li>Has built-in support for <a class="reference internal" href="#variables">variables</a>, practical particularly for testing in
 different environments.</li>
-<li>Provides tagging to categorize and select the test cases to be executed, to
-provide metadata, to generate statistics, and so on.</li>
+<li>Provides tagging to categorize and select test cases to be executed.</li>
 <li>Enables easy integration with source control: <a class="reference internal" href="#creating-test-suites">test suites</a> are just files
 and directories that can be versioned with the production code.</li>
-<li>Provides a <a class="reference internal" href="#executing-test-cases">command line interface</a> and XML based <a class="reference internal" href="#output-file">output files</a>  for
-integration into existing test and build infrastructure.</li>
 <li>Provides test-case and test-suite-level setup and teardown.</li>
+<li>The modular architecture supports creating tests even for applications with
+several diverse interfaces.</li>
 </ul>
+<p>TODO: Add content from wiki frontpage</p>
 </div>
 <div class="section" id="screenshots">
 <h3><a class="toc-backref" href="#id144">1.1.2&nbsp;&nbsp;&nbsp;Screenshots</a></h3>
@@ -688,11 +689,12 @@ with dynamic languages, such as Jython. Both Sun and IBM Java versions
 are supported.</p>
 <p>Robot Framework requires Jython version 2.2. The earlier Jython
 version 2.1 is not compatible with Robot, and also 2.2 betas and
-alphas have some problems and are not supported. Unfortunately,
-also Jython 2.2.1 has certain Unicode problems (for more information,
-see <a class="reference external" href="http://bugs.jython.org/issue1802339">http://bugs.jython.org/issue1802339</a> and
+alphas have some problems and are not supported. Unfortunately, also
+Jython 2.2.1 has certain Unicode problems (for more information, see
+<a class="reference external" href="http://bugs.jython.org/issue1802339">http://bugs.jython.org/issue1802339</a> and
 <a class="reference external" href="http://bugs.jython.org/issue1032">http://bugs.jython.org/issue1032</a>), which makes it incompatible with
-Robot Framework.</p>
+Robot Framework. Hopefully these problems will be fixed in future
+versions.</p>
 <p>Installing Jython is a fairly easy procedure. First you need to get an
 installer from the <a class="reference external" href="http://www.jython.org/">Jython homepage</a> or directly from
 <a class="reference external" href="http://downloads.sourceforge.net/jython/jython_installer-2.2.jar">http://downloads.sourceforge.net/jython/jython_installer-2.2.jar</a>.
@@ -702,7 +704,7 @@ system, the installer runs either in the graphical or the textual
 mode, but in both cases, the actual installation procedure is very
 easy.</p>
 <p>When installing Robot Framework, its installer tries to find the
-Jython executable on the system to create the <span class="cli">jybot</span> start-up script
+Jython executable on the system to create the <span class="prog">jybot</span> runner script
 correctly. Jython is found if:</p>
 <ol class="arabic">
 <li><p class="first">Jython can be executed in the system directly (i.e. it is in the PATH).</p>
@@ -738,13 +740,21 @@ package (which you need to extract somewhere) or directly from version
 control. In both cases, you should have a directory containing the source
 code, documentation, tools, templates, and so on. The first
 installation step is going to the created directory from the command line
-and after that installing Robot Framework by running the
-following command:</p>
+and after that installing Robot Framework by running either of the following
+commands:</p>
 <pre class="literal-block">
 python setup.py install
+python install.py install
 </pre>
-<p>You get a rather long output, and something like the following text should
-appear at the end:</p>
+<p><span class="prog">setup.py</span> is a standard Python installer script. It can take
+several parameters allowing, for example, installation into
+non-default locations not requiring administrative rights. It is also
+be used also for creating distribution packages.</p>
+<p><span class="prog">install.py</span> is a custom installation and <a class="reference internal" href="#uninstallation">uninstallation</a> script
+for Robot Framework. When it is used for installation, it simply uses
+<span class="prog">setup.py</span>, and thus above commands are totally equivelant.</p>
+<p>With both of these commands you get a rather long output, and
+something like the following text should appear at the end:</p>
 <pre class="literal-block">
 Creating Robot start-up scripts...
 
@@ -757,9 +767,10 @@ Rebot script: /usr/bin/rebot
 </pre>
 <div class="note">
 <p class="first admonition-title">Note</p>
-<p class="last">The paths vary based on your environment. Robot Framework uses the
-standard Python installation system and should operate in
-accordance with the host operating system conventions.</p>
+<p class="last">The paths vary based on your environment. Robot Framework
+uses the standard Python installation system and should
+operate in accordance with the host operating system
+conventions.</p>
 </div>
 </div>
 <div class="section" id="using-binary-installers">
@@ -779,7 +790,7 @@ Python) called <span class="path">robot</span>. If you have a source distributio
 a version control checkout, you can find it from the <span class="path">src</span>
 directory, but you can also get it from an earlier installation.</li>
 <li>Copy the source code where you want to.</li>
-<li>Create the needed start-up scripts. If you have a source package or
+<li>Create the needed runner scripts. If you have a source package or
 a checkout, you can get templates from <span class="path">src/bin</span>.</li>
 </ol>
 </div>
@@ -792,8 +803,8 @@ operating system, it is normally something like
 <span class="path">/usr/lib/[PythonVer]/site-packages</span>, and on Windows it is
 <span class="path">[PythonInstallationDir]\Lib\site-packages</span>. The actual Robot
 Framework code is in a directory named <span class="path">robot</span>.</p>
-<p>Robot Framework start-up scripts (<span class="cli">pybot</span>, <span class="cli">jybot</span> and
-<span class="cli">rebot</span>) are created and copied into another platform-specific
+<p>Robot Framework runner scripts (<span class="prog">pybot</span>, <span class="prog">jybot</span> and
+<span class="prog">rebot</span>) are created and copied into another platform-specific
 location. On UNIX-like systems, they normally go to <span class="path">/usr/bin</span>
 and are thus immediately available from the command line. On Windows,
 the operating system does not provide a similar natural place, and
@@ -803,7 +814,7 @@ Python copies these scripts into
 <div class="section" id="setting-up-the-environment">
 <h4><a class="toc-backref" href="#id154">Setting up the environment</a></h4>
 <p>After the installation, you might want to make Robot Framework's
-start-up scripts easily available from the command line. On UNIX-like
+runner scripts easily available from the command line. On UNIX-like
 systems, that should be the case automatically, but for example on
 Windows, it is not. In environments where startup scripts are not
 available, the directory containing them must be set to the PATH
@@ -843,14 +854,18 @@ Jython's package manager upon the first execution.</p>
 </div>
 <div class="section" id="uninstallation">
 <h3><a class="toc-backref" href="#id156">1.3.3&nbsp;&nbsp;&nbsp;Uninstallation</a></h3>
+<p>If Robot Framework has been installed using a source distribution, it
+can be uninstalled with command:</p>
+<pre class="literal-block">
+python install.py uninstall
+</pre>
 <p>If Robot Framework is installed from a binary distribution, it can be
 uninstalled via the mechanism offered by the operating system. For
 example, in Windows you simply go to <tt class="docutils literal"><span class="pre">Control</span> <span class="pre">Panel</span> <span class="pre">&gt;</span>
 <span class="pre">Add/Remove</span> <span class="pre">Programs</span></tt>, where Robot Framework is listed under Python.</p>
-<p>If Robot Framework has been installed using a source distribution, it
-can be uninstalled by removing the framework code and start-up scripts
-manually. For more information on where to find them, see <a class="reference internal" href="#where-files-are-installed">Where files
-are installed</a>.</p>
+<p>If uninstallation fails somehow, Robot Framework can be uninstalled by
+emoving the framework code and runner scripts manually. For more
+information on where to find them, see <a class="reference internal" href="#where-files-are-installed">Where files are installed</a>.</p>
 </div>
 <div class="section" id="upgrading">
 <h3><a class="toc-backref" href="#id157">1.3.4&nbsp;&nbsp;&nbsp;Upgrading</a></h3>
@@ -866,6 +881,10 @@ recommended to uninstall the old version before the new
 installation.</li>
 <li>If you are downgrading, the rules are the same as for upgrading.</li>
 </ul>
+<p>With source distributions upgrading is easy with command:</p>
+<pre class="literal-block">
+python install.py reinstall
+</pre>
 </div>
 </div>
 <div class="section" id="demonstration">
@@ -10074,7 +10093,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2008-06-17 14:30 UTC.
+<p>Generated on: 2008-06-19 22:09 UTC.
 </p>
 
 </div>
