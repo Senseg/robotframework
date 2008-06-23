@@ -630,7 +630,7 @@ limitations under the License.
 </ul>
 </li>
 <li><a class="reference internal" href="#installation" id="id157">1.3.3&nbsp;&nbsp;&nbsp;Installation</a><ul>
-<li><a class="reference internal" href="#installing-from-the-source" id="id158">Installing from the source</a></li>
+<li><a class="reference internal" href="#installing-from-source" id="id158">Installing from source</a></li>
 <li><a class="reference internal" href="#using-binary-installers" id="id159">Using binary installers</a></li>
 <li><a class="reference internal" href="#manual-installation" id="id160">Manual installation</a></li>
 <li><a class="reference internal" href="#where-files-are-installed" id="id161">Where files are installed</a></li>
@@ -645,25 +645,23 @@ limitations under the License.
 <div class="section" id="id9">
 <h3><a class="toc-backref" href="#id153">1.3.1&nbsp;&nbsp;&nbsp;Introduction</a></h3>
 <p>There are two ways to install Robot Framework:</p>
-<p><a class="reference internal" href="#installing-from-the-source">Installing from the source</a></p>
-<blockquote>
-You can get the source code either as a source distribution
-package or directly from <a class="reference external" href="http://source.robotframework.org">version control</a>. In the former case,
-first extract the package somewhere, and as a result, you have a
-directory named <tt class="docutils literal"><span class="pre">robotframework-&lt;version&gt;</span></tt>. Detailed
+<dl class="docutils">
+<dt><a class="reference internal" href="#installing-from-source">Installing from source</a></dt>
+<dd>You can get the source code either as a source distribution
+package or directly from version control system. In the former
+case, first extract the package somewhere, and as a result, you
+have a directory named <tt class="docutils literal"><span class="pre">robotframework-&lt;version&gt;</span></tt>. Detailed
 instructions follow, but in short, what you need to do is to go to
 the created directory and run the <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt>
-command.</blockquote>
-<p><a class="reference internal" href="#using-binary-installers">Using binary installers</a></p>
-<blockquote>
-Binary installers are platform-specific. There is currently only
+command.</dd>
+<dt><a class="reference internal" href="#using-binary-installers">Using binary installers</a></dt>
+<dd>Binary installers are platform-specific. There is currently only
 one binary distribution available, a graphical installer for
-Windows.</blockquote>
+Windows.</dd>
+</dl>
 <p>Installation packages are available from
 <a class="reference external" href="http://downloads.robotframework.org">http://downloads.robotframework.org</a>, and source code from
-<a class="reference external" href="http://source.robotframework.org/">http://source.robotframework.org/</a>.  For more information about
-different installation packages and possible future formats, see the
-<span class="path">PACKAGING.txt</span> file included in the source distribution.</p>
+<a class="reference external" href="http://source.robotframework.org">http://source.robotframework.org</a>.</p>
 </div>
 <div class="section" id="preconditions">
 <h3><a class="toc-backref" href="#id154">1.3.2&nbsp;&nbsp;&nbsp;Preconditions</a></h3>
@@ -742,15 +740,16 @@ installation</a> or have some custom installer.</p>
 </div>
 <div class="section" id="installation">
 <h3><a class="toc-backref" href="#id157">1.3.3&nbsp;&nbsp;&nbsp;Installation</a></h3>
-<div class="section" id="installing-from-the-source">
-<h4><a class="toc-backref" href="#id158">Installing from the source</a></h4>
-<p>You can get the Robot Framework source either as a source distribution
-package (which you need to extract somewhere) or directly from version
-control. In both cases, you should have a directory containing the source
-code, documentation, tools, templates, and so on. The first
-installation step is going to the created directory from the command line
-and after that installing Robot Framework by running either of the following
-commands:</p>
+<div class="section" id="installing-from-source">
+<h4><a class="toc-backref" href="#id158">Installing from source</a></h4>
+<p>You can get Robot Framework source code either directly from version
+control or as a source distribution package that needs to be extracted
+somewhere. In both cases, you should have a directory containing the
+source code, documentation, tools, templates, and so on.</p>
+<p>You should be able to install Robot Framework to any environment where
+Python runs using a source distribution. The installation is done by
+going to the created directory from the command line, and after that
+running either of the following commands:</p>
 <pre class="literal-block">
 python setup.py install
 python install.py install
@@ -873,8 +872,7 @@ uninstalled via the mechanism offered by the operating system. For
 example, in Windows you simply go to <tt class="docutils literal"><span class="pre">Control</span> <span class="pre">Panel</span> <span class="pre">&gt;</span>
 <span class="pre">Add/Remove</span> <span class="pre">Programs</span></tt>, where Robot Framework is listed under Python.</p>
 <p>If uninstallation fails somehow, Robot Framework can be uninstalled by
-removing the framework code and runner scripts manually. For more
-information on where to find them, see <a class="reference internal" href="#where-files-are-installed">Where files are installed</a>.</p>
+removing the <a class="reference internal" href="#where-files-are-installed">framework code and runner scripts</a> manually.</p>
 </div>
 <div class="section" id="upgrading">
 <h3><a class="toc-backref" href="#id165">1.3.5&nbsp;&nbsp;&nbsp;Upgrading</a></h3>
@@ -898,15 +896,15 @@ python install.py reinstall
 </div>
 <div class="section" id="demonstration">
 <h2><a class="toc-backref" href="#id149">1.4&nbsp;&nbsp;&nbsp;Demonstration</a></h2>
-<p>Robot Framework does not currently have a standalone demo, but we plan to add
-one soon. However, Selenium test library has an easily executable
-demonstration test suite available. It contains a simple standalone HTTP
-server and an application that is used as a system under test. The actual test
-case files and scripts for running the demonstration in different systems are
-also provided.</p>
-<p>The demonstration can be downloaded from the <a class="reference external" href="http://code.google.com/p/robotframework-seleniumlibrary">SeleniumLibrary page</a>, where
-also the instructions for running the demonstration can be found.</p>
-<!-- TODO: new demo for quick start -->
+<p>Robot Framework does not currently have a standalone demo, but we plan
+to add one soon. However, SeleniumLibrary has an easily executable
+demonstration test suite available. It contains a simple standalone
+HTTP server and an application that is used as a system under
+test. The actual test case files and scripts for running the
+demonstration in different systems are also provided.</p>
+<p>The demonstration, as well as instructions for running it, can be
+downloaded from SeleniumLibrary project page at
+<a class="reference external" href="http://code.google.com/p/robotframework-seleniumlibrary">http://code.google.com/p/robotframework-seleniumlibrary</a>.</p>
 </div>
 </div>
 <div class="section" id="creating-test-data">
@@ -8858,13 +8856,13 @@ library has the required <span class="code">get_keyword_names</span> and
 <span class="code">run_keyword</span> methods. Additionally,
 <span class="code">get_keyword_arguments</span> and <span class="code">get_keyword_documentation</span>
 are completely optional.</p>
-<div class="highlight"><pre><span class="k">public</span> <span class="k">interface</span> <span class="n">RobotFrameworkDynamicAPI</span> <span class="o">{</span>
+<div class="highlight"><pre><span class="k">public</span> <span class="k">interface</span> <span class="nc">RobotFrameworkDynamicAPI</span> <span class="o">{</span>
 
-    <span class="n">String</span><span class="o">[]</span> <span class="n">getKeywordNames</span><span class="o">();</span>
+    <span class="n">String</span><span class="o">[]</span> <span class="nf">getKeywordNames</span><span class="o">();</span>
 
     <span class="n">Object</span> <span class="nf">runKeyword</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">arguments</span><span class="o">);</span>
 
-    <span class="n">String</span><span class="o">[]</span> <span class="n">getKeywordArguments</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+    <span class="n">String</span><span class="o">[]</span> <span class="nf">getKeywordArguments</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
 
     <span class="n">String</span> <span class="nf">getKeywordDocumentation</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
 
@@ -9079,7 +9077,7 @@ them, have been executed.</td>
 <p>The available methods and their arguments are also shown in a formal Java interface
 specification below. It should be remembered that a listener <em>does not</em>
 need to implement any explicit interface or have all these methods.</p>
-<div class="highlight"><pre><span class="k">public</span> <span class="k">interface</span> <span class="n">RobotListenerInterface</span> <span class="o">{</span>
+<div class="highlight"><pre><span class="k">public</span> <span class="k">interface</span> <span class="nc">RobotListenerInterface</span> <span class="o">{</span>
 
     <span class="kt">void</span> <span class="nf">startSuite</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">doc</span><span class="o">);</span>
 
@@ -10109,7 +10107,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2008-06-23 11:29 UTC.
+<p>Generated on: 2008-06-23 14:36 UTC.
 </p>
 
 </div>
