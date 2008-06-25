@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
-<title>risto.py</title>
+<title>risto.py -- Robot Framework's Historical Reporting Tool</title>
 <style type="text/css">
 
 /* Robot Framework User Guide Style Sheet
@@ -448,13 +448,30 @@ pre.literal-block, pre.doctest-block {
 </style>
 </head>
 <body>
-<div class="document" id="risto-py">
-<h1 class="title">risto.py</h1>
+<div class="document" id="risto-py-robot-framework-s-historical-reporting-tool">
+<h1 class="title">risto.py -- Robot Framework's Historical Reporting Tool</h1>
 
-<p>A tool for plotting graphs about test execution history based on statistics
-read from Robot output files.</p>
+<p><span class="prog">risto.py</span> is a tool for plotting graphs about test execution
+history based on statistics read from Robot Framework output files.
+Actual drawing is handled by Matplotlib tool, which must be installed
+separately.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></li>
+<li><a class="reference internal" href="#options" id="id2">Options</a></li>
+<li><a class="reference internal" href="#description" id="id3">Description</a></li>
+<li><a class="reference internal" href="#installation" id="id4">Installation</a></li>
+<li><a class="reference internal" href="#screenshots" id="id5">Screenshots</a><ul>
+<li><a class="reference internal" href="#default-settings" id="id6">Default settings</a></li>
+<li><a class="reference internal" href="#various-settings" id="id7">Various settings</a></li>
+<li><a class="reference internal" href="#using-matplotlib-s-viewer" id="id8">Using Matplotlib's viewer</a></li>
+<li><a class="reference internal" href="#more-realistic-examples" id="id9">More realistic examples</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="synopsis">
-<h1>Synopsis</h1>
+<h1><a class="toc-backref" href="#id1">Synopsis</a></h1>
 <pre class="literal-block">
 risto.py options input files
 risto.py options1 --- options2 --- optionsN --- input files
@@ -462,7 +479,7 @@ risto.py --argumentfile path
 </pre>
 </div>
 <div class="section" id="options">
-<h1>Options</h1>
+<h1><a class="toc-backref" href="#id2">Options</a></h1>
 <blockquote>
 <table class="docutils option-list" frame="void" rules="none">
 <col class="option" />
@@ -487,14 +504,15 @@ risto.py --argumentfile path
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-t</span>, <span class="option">--tag <var>&lt;name&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Adds graphs for these tags. The name can contain &quot;*&quot; and
-&quot;?&quot; as wildcards. &quot;AND&quot; in the tag name is converted
-to &quot; &amp; &quot;, to make it easier to plot combined tags.</td></tr>
+<tr><td>&nbsp;</td><td>Adds graphs for these tags. The name can contain &quot;*&quot;
+and &quot;?&quot; as wildcards. &quot;AND&quot; in the given name is
+converted to &quot; &amp; &quot;, to make it easier to plot
+combined tags.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-o</span>, <span class="option">--output <var>&lt;path&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>The path to the image file to create. If not given, the
-image is opened into Matplotlib viewer.</td></tr>
+<tr><td>&nbsp;</td><td>The path to the image file to create. If not given,
+the image is opened into Matplotlib viewer.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-i</span>, <span class="option">--title <var>&lt;title&gt;</var></span></kbd></td>
 </tr>
@@ -512,21 +530,24 @@ title.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-f</span>, <span class="option">--font <var>&lt;size&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>The font size used for legends and labels. The default is 8.</td></tr>
+<tr><td>&nbsp;</td><td>The font size used for legends and labels.
+The default is 8.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-m</span>, <span class="option">--marker <var>&lt;size&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>The size of the marker used with tag graphs. The default is 5.</td></tr>
+<tr><td>&nbsp;</td><td>The size of the marker used with tag graphs.
+The default is 5.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-x</span>, <span class="option">--xticks <var>&lt;num&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>The maximum number of ticks on the x-axis. The default is 15.</td></tr>
+<tr><td>&nbsp;</td><td>The maximum number of ticks on the x-axis.
+The default is 15.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-n</span>, <span class="option">--namemeta <var>&lt;name&gt;</var></span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>The name of the metadata of the top-level test suite
-where to get the name of the test round. By default, names
-are got from the paths to input files.</td></tr>
+where to get the name of the test round. By default,
+names are got from the paths to input files.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--argumentfile <var>&lt;path&gt;</var></span></kbd></td>
 </tr>
@@ -547,94 +568,102 @@ are got from the paths to input files.</td></tr>
 images at once.</p>
 </div>
 <div class="section" id="description">
-<h1>Description</h1>
-<p>risto.py plots graphs about test execution history, based on statistics read
-from Robot output files. By default, it draws total, passed and failed graphs
-for critical tests and all tests, but it is possible to omit some of these
-graphs and also to add graphs by tags. The actual drawing is handled by the Matplotlib
-tool that must be installed separately. More information on Matplotlib, including
-the installation instructions, can be found from <a class="reference external" href="http://matplotlib.sourceforge.net">http://matplotlib.sourceforge.net</a>.</p>
-<p>Names of test rounds that are shown on the x-axis are, by default, obtained from the
-paths to input files. Alternatively, names can be obtained from the metadata of the
-top-level test suite (for more information, see Robot Framework's <span class="opt">--metadata</span> option).</p>
-<p>Graphs are saved to a file specified with the <span class="opt">--output</span> option, and the output
-format is determined by the file extension. The supported formats depend on the installed
-Matplotlib back-ends, but at least PNG ought to be always available. If the output
-file is omitted, the graph is opened into Matplotlib's image viewer (which
-requires Matplotlib to be installed with some graphical front end).</p>
-<p>It is possible to draw several graphs with different options at once. This is
-done by separating different option groups with three or more hyphens (<span class="opt">---</span>).
-Note that in this case, also paths to input files need to be separated from
-the options similarly.</p>
-<p>Instead of giving all options from the command line, it is possible to read them
-from a file specified with the <span class="opt">--argument</span> option. In an argument file, options
-and their possible arguments are listed one per line, and option groups are
-separated with lines of three or more hyphens. Empty lines and lines starting
-with a hash mark (#) are ignored.</p>
+<h1><a class="toc-backref" href="#id3">Description</a></h1>
+<p><span class="prog">risto.py</span> plots graphs about test execution history, based on
+statistics read from Robot Framework's XML output files. By default,
+it draws total, passed and failed graphs for critical tests and all
+tests, but it is possible to omit some of these graphs and also to add
+graphs by tags.</p>
+<p>Names of test rounds that are shown on the x-axis are, by default,
+obtained from the paths to input files. Alternatively, names can be
+obtained from the metadata of the top-level test suite (for more
+information, see Robot Framework's <span class="opt">--metadata</span> option).</p>
+<p>Graphs are saved to a file specified with the <span class="opt">--output</span> option,
+and the output format is determined by the file extension. The
+supported formats depend on the installed Matplotlib back-ends, but at
+least PNG ought to be always available. If the output file is omitted,
+the graph is opened into Matplotlib's image viewer (which requires
+Matplotlib to be installed with some graphical front-end).</p>
 <p>Examples:</p>
-<div class="highlight"><pre><span class="n">risto</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">output</span> <span class="n">history</span><span class="o">.</span><span class="n">png</span> <span class="n">output1</span><span class="o">.</span><span class="n">xml</span> <span class="n">output2</span><span class="o">.</span><span class="n">xml</span> <span class="n">output3</span><span class="o">.</span><span class="n">xml</span>
-        <span class="n">risto</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">title</span> <span class="n">My_Report</span> <span class="o">--</span><span class="n">noall</span> <span class="o">--</span><span class="n">namemeta</span> <span class="n">Date</span> <span class="o">--</span><span class="n">output</span> <span class="n">out</span><span class="o">.</span><span class="n">png</span> \<span class="o">*.</span><span class="n">xml</span>
-<span class="n">risto</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">nopassed</span> <span class="o">--</span><span class="n">tag</span> <span class="n">smoke</span> <span class="o">--</span><span class="n">tag</span> <span class="nb">iter</span><span class="o">-*</span> <span class="n">results</span><span class="o">/</span>\<span class="o">*/</span><span class="n">output</span><span class="o">.</span><span class="n">xml</span>
-<span class="n">risto</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">CAP</span> <span class="o">-</span><span class="n">t</span> <span class="n">tag1</span> <span class="o">---</span> <span class="o">-</span><span class="n">CAP</span> <span class="o">-</span><span class="n">t</span> <span class="n">tag2</span> <span class="o">---</span> <span class="o">-</span><span class="n">CAP</span> <span class="o">-</span><span class="n">t</span> <span class="n">tag3</span> <span class="o">---</span> <span class="n">outputs</span><span class="o">/*.</span><span class="n">xml</span>
-<span class="n">risto</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">argumentfile</span> <span class="n">arguments</span><span class="o">.</span><span class="n">txt</span>
-
- <span class="o">====</span><span class="p">[</span><span class="n">arguments</span><span class="o">.</span><span class="n">txt</span><span class="p">]</span><span class="o">===================</span>
-<span class="o">--</span><span class="n">title</span> <span class="n">Overview</span>
-<span class="o">--</span><span class="n">output</span> <span class="n">overview</span><span class="o">.</span><span class="n">png</span>
-<span class="o">----------------------</span>
-<span class="o">--</span><span class="n">nocritical</span>
-<span class="o">--</span><span class="n">noall</span>
-<span class="o">--</span><span class="n">nopassed</span>
-<span class="o">--</span><span class="n">tag</span> <span class="n">smoke1</span>
-<span class="o">--</span><span class="n">title</span> <span class="n">Smoke</span> <span class="n">Tests</span>
-<span class="o">--</span><span class="n">output</span> <span class="n">smoke</span><span class="o">.</span><span class="n">png</span>
-<span class="o">----------------------</span>
-<span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/*.</span><span class="n">xml</span>
-<span class="o">======================================</span>
-</pre></div>
+<pre class="literal-block">
+risto.py --output history.png output1.xml output2.xml output3.xml
+risto.py --title My_Report --noall --namemeta Date --output out.png *.xml
+risto.py --nopassed --tag smoke --tag iter-* results/*/output.xml
+</pre>
+<p>It is possible to draw several graphs with different options at
+once. This is done by separating different option groups with three or
+more hyphens (<span class="opt">---</span>).  Note that in this case, also paths to
+input files need to be separated from the options similarly:</p>
+<pre class="literal-block">
+risto.py -CAP -t tag1 --- -CAP -t tag2 --- -CAP -t tag3 --- outputs/*.xml
+</pre>
+<p>Instead of giving all options from the command line, it is possible to
+read them from a file specified with the <span class="opt">--argument</span> option. In
+an argument file, options and their possible arguments are listed one
+per line, and option groups are separated with lines of three or more
+hyphens. Empty lines and lines starting with a hash mark (#) are
+ignored:</p>
+<pre class="literal-block">
+risto.py --argumentfile arguments.txt
+</pre>
+<pre class="literal-block">
+====[arguments.txt]===================
+--title Overview
+--output overview.png
+----------------------
+--nocritical
+--noall
+--nopassed
+--tag smoke1
+--title Smoke Tests
+--output smoke.png
+----------------------
+path/to/*.xml
+======================================
+</pre>
 </div>
 <div class="section" id="installation">
-<h1>Installation</h1>
-<p>Here you can find the instructions for the installation of risto.py.</p>
-<div class="section" id="preconditions">
-<h2>Preconditions</h2>
-<p>risto.py requires Python. It has been tested both on releases 2.4 and
-2.5, and it should work also in 2.3. Also some Robot Framwork modules are
-needed, and thus some Robot Framework version 1.8 needs to be
-installed.</p>
+<h1><a class="toc-backref" href="#id4">Installation</a></h1>
+<p><span class="prog">risto.py</span> does not need to be installed, but it has some
+preconditions. The most obvious one is Python. <span class="prog">risto.py</span> has
+been tested both on releases 2.4 and 2.5, and it should work also in
+2.3. Some Robot Framework internal modules are also needed, and thus
+Robot Framework version 1.8 or newer needs to be installed.</p>
 <p>The Matplotlib tool is used for plotting graphs, and it needs to be
 installed separately. Matplotlib has its own preconditions, and at
 least NumPy needs to be installed. The default Matplotlib installation
 should always support at least PNG, but if more output formats are
-needed, some extra back ends may need to be installed. Additionally,
-you may need to install graphical front ends to be able to use
+needed, some extra back-ends may need to be installed. Additionally,
+you may need to install graphical front-ends to be able to use
 Matplotlib's own viewer for opening graphs without saving them to a
 file.</p>
-<p>risto.py reads statistics from output files using the ElementTree
-module. Python 2.5 has this module in its standard library, but for
-older versions, it needs to be installed separately.</p>
+<p><span class="prog">risto.py</span> reads statistics from XML output files using the
+ElementTree module. Python 2.5 and newer have this module in standard
+library, but for older versions it needs to be installed separately.</p>
 <p>Links to the needed software:</p>
-<ul class="simple">
-<li><a class="reference external" href="http://matplotlib.sourceforge.net/">Matplotlib</a></li>
-<li><a class="reference external" href="http://numpy.scipy.org/">NumPy</a></li>
-<li><a class="reference external" href="http://effbot.org/zone/element-index.htm">ElementTree</a></li>
-</ul>
+<dl class="docutils">
+<dt>Matplotlib</dt>
+<dd><a class="reference external" href="http://matplotlib.sourceforge.net/">http://matplotlib.sourceforge.net/</a></dd>
+<dt>NumPy</dt>
+<dd><a class="reference external" href="http://numpy.scipy.org/">http://numpy.scipy.org/</a></dd>
+<dt>ElementTree</dt>
+<dd><a class="reference external" href="http://effbot.org/zone/element-index.htm">http://effbot.org/zone/element-index.htm</a></dd>
+</dl>
+</div>
 <div class="section" id="screenshots">
-<h3>Screenshots</h3>
-<p>Here you can find some screenshots of risto.py.</p>
+<h1><a class="toc-backref" href="#id5">Screenshots</a></h1>
 <div class="section" id="default-settings">
-<h4>Default settings</h4>
+<h2><a class="toc-backref" href="#id6">Default settings</a></h2>
 <p>The screenshot below uses some very simple example outputs, thus the lines
 are mainly straight. The default settings have been used otherwise,
 but the output has been saved into a file with the <span class="opt">--output
 default.png</span> option.</p>
 <div class="figure">
 <img alt="risto_default.png" src="risto_default.png" style="width: 800px; height: 400px;" />
-<p class="caption">Simple example output</p>
 </div>
 </div>
 <div class="section" id="various-settings">
-<h4>Various settings</h4>
+<h2><a class="toc-backref" href="#id7">Various settings</a></h2>
 <p>The example outputs used in this screenshot are the same as in the previous
 one, but now the following options have been specified:</p>
 <pre class="literal-block">
@@ -642,11 +671,10 @@ one, but now the following options have been specified:</p>
 </pre>
 <div class="figure">
 <img alt="risto_another.png" src="risto_another.png" style="width: 600px; height: 250px;" />
-<p class="caption">Another example output</p>
 </div>
 </div>
 <div class="section" id="using-matplotlib-s-viewer">
-<h4>Using Matplotlib's Viewer</h4>
+<h2><a class="toc-backref" href="#id8">Using Matplotlib's viewer</a></h2>
 <p>This time there are more input files and the image has been opened
 in Matplotlib's viewer (that is, the <span class="opt">--output</span> option has not been
 used). The options used to create this example are the ones below:</p>
@@ -655,13 +683,12 @@ used). The options used to create this example are the ones below:</p>
 </pre>
 <div class="figure">
 <img alt="risto_yetanother.png" src="risto_yetanother.png" style="width: 820px; height: 393px;" />
-<p class="caption">More complex example output</p>
-</div>
 </div>
 </div>
 <div class="section" id="more-realistic-examples">
-<h3>More Realistic Examples</h3>
-<p>These examples are generated from actual test outputs using the following argument file:</p>
+<h2><a class="toc-backref" href="#id9">More realistic examples</a></h2>
+<p>These examples are generated from actual test outputs using the
+following argument file:</p>
 <pre class="literal-block">
 --title Overview
 --output overview.png
@@ -673,23 +700,20 @@ used). The options used to create this example are the ones below:</p>
 -nofailed
 --output drt.png
 ------------------
-path/\*/output.xml
+path/*/output.xml
 </pre>
 <div class="figure">
 <img alt="risto_overview.png" src="risto_overview.png" style="width: 800px; height: 400px;" />
-<p class="caption">Example overview</p>
 </div>
 <div class="figure">
 <img alt="risto_drt.png" src="risto_drt.png" style="width: 800px; height: 400px;" />
-<p class="caption">Example DRT tests</p>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2008-06-23 12:05 UTC.
+Generated on: 2008-06-25 22:09 UTC.
 
 </div>
 </body>
