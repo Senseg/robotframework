@@ -61,8 +61,7 @@
 <a href="#Count Directories In Directory" title="Returns the number of subdirectories in the given directory.">Count&nbsp;Directories&nbsp;In&nbsp;Directory</a>&nbsp;
 <a href="#Count Files In Directory" title="Returns the number of files in the given directory.">Count&nbsp;Files&nbsp;In&nbsp;Directory</a>&nbsp;
 <a href="#Count Items In Directory" title="Returns the number of all items in the given directory.">Count&nbsp;Items&nbsp;In&nbsp;Directory</a>&nbsp;
-<a href="#Create Dir" title="Creates a directory, and all the intermediate ones, with the given path.">Create&nbsp;Dir</a>&nbsp;
-<a href="#Create Directory" title="Creates a directory, and all the intermediate ones, with the given path.">Create&nbsp;Directory</a>&nbsp;
+<a href="#Create Directory" title="Creates the specified directory.">Create&nbsp;Directory</a>&nbsp;
 <a href="#Create File" title="Creates a file to the given path with the given content.">Create&nbsp;File</a>&nbsp;
 <a href="#Directory Should Be Empty" title="Fails unless the specified directory is empty.">Directory&nbsp;Should&nbsp;Be&nbsp;Empty</a>&nbsp;
 <a href="#Directory Should Exist" title="Fails unless the given path points to an existing directory.">Directory&nbsp;Should&nbsp;Exist</a>&nbsp;
@@ -78,13 +77,12 @@
 <a href="#Get Environment Variable" title="Returns the value of an environment variable with the given name.">Get&nbsp;Environment&nbsp;Variable</a>&nbsp;
 <a href="#Get File" title="Returns the contents of a specified file.">Get&nbsp;File</a>&nbsp;
 <a href="#Get File Size" title="Returns file size as an integer in bytes">Get&nbsp;File&nbsp;Size</a>&nbsp;
-<a href="#Get File With Encoding" title="Deprecated. Will be removed in Robot 1.9">Get&nbsp;File&nbsp;With&nbsp;Encoding</a>&nbsp;
 <a href="#Get Modified Time" title="Returns the last modification time of a file or directory.">Get&nbsp;Modified&nbsp;Time</a>&nbsp;
 <a href="#Grep File" title="Returns the contents of a specified file grepped using 'pattern'.">Grep&nbsp;File</a>&nbsp;
 <a href="#Join Path" title="Joins the given path part(s) to the given base path.">Join&nbsp;Path</a>&nbsp;
 <a href="#Join Paths" title="Joins given paths with base and returns resulted paths.">Join&nbsp;Paths</a>&nbsp;
 <a href="#List Directories In Directory" title="A wrapper for 'List Directory' that returns only directories.">List&nbsp;Directories&nbsp;In&nbsp;Directory</a>&nbsp;
-<a href="#List Directory" title="Returns items from the given directory, optionally filtered with">List&nbsp;Directory</a>&nbsp;
+<a href="#List Directory" title="Returns items from a directory, optionally filtered with 'pattern'.">List&nbsp;Directory</a>&nbsp;
 <a href="#List Files In Directory" title="A wrapper for 'List Directory' that returns only files.">List&nbsp;Files&nbsp;In&nbsp;Directory</a>&nbsp;
 <a href="#Log File" title="Wrapper for 'Get File' that also logs the returned file.">Log&nbsp;File</a>&nbsp;
 <a href="#Move Directory" title="Moves the source directory into a destination.">Move&nbsp;Directory</a>&nbsp;
@@ -95,9 +93,9 @@
 <a href="#Remove Environment Variable" title="Deletes the specified environment variable.">Remove&nbsp;Environment&nbsp;Variable</a>&nbsp;
 <a href="#Remove File" title="Removes a file with the given path.">Remove&nbsp;File</a>&nbsp;
 <a href="#Remove Files" title="Uses 'Remove File' to remove multiple files one-by-one.">Remove&nbsp;Files</a>&nbsp;
-<a href="#Run" title="Runs the given command in the system and returns a return code and/or stdout.">Run</a>&nbsp;
+<a href="#Run" title="Runs the given command in the system and returns an RC and/or stdout.">Run</a>&nbsp;
 <a href="#Run And Return Rc" title="Wrapper for 'Run' keyword that returns only the return code.">Run&nbsp;And&nbsp;Return&nbsp;Rc</a>&nbsp;
-<a href="#Run And Return Rc And Output" title="Wrapper for the 'Run' keyword that returns the return code and output.">Run&nbsp;And&nbsp;Return&nbsp;Rc&nbsp;And&nbsp;Output</a>&nbsp;
+<a href="#Run And Return Rc And Output" title="Wrapper for the 'Run' keyword that returns both the RC and stdout.">Run&nbsp;And&nbsp;Return&nbsp;Rc&nbsp;And&nbsp;Output</a>&nbsp;
 <a href="#Set Environment Variable" title="Sets an environment variable to a specified value.">Set&nbsp;Environment&nbsp;Variable</a>&nbsp;
 <a href="#Set Modified Time" title="Sets the file modification time.">Set&nbsp;Modified&nbsp;Time</a>&nbsp;
 <a href="#Should Exist" title="Fails unless the given path (file or directory) exists.">Should&nbsp;Exist</a>&nbsp;
@@ -107,7 +105,7 @@
 <a href="#Start Process" title="Starts the given command as a background process.">Start&nbsp;Process</a>&nbsp;
 <a href="#Stop All Processes" title="Stops all the processes and removes them from the process list.">Stop&nbsp;All&nbsp;Processes</a>&nbsp;
 <a href="#Stop Process" title="Stops the current process without reading from it.">Stop&nbsp;Process</a>&nbsp;
-<a href="#Switch Process" title="Switches the current process to the process found with 'index_or_alias'.">Switch&nbsp;Process</a>&nbsp;
+<a href="#Switch Process" title="Switches the active process to the specified process.">Switch&nbsp;Process</a>&nbsp;
 <a href="#Touch" title="Emulates the UNIX touch command.">Touch</a>&nbsp;
 <a href="#Wait Until Created" title="Waits until the given file or directory is created.">Wait&nbsp;Until&nbsp;Created</a>&nbsp;
 <a href="#Wait Until Removed" title="Waits until the given file or directory is removed.">Wait&nbsp;Until&nbsp;Removed</a>&nbsp;
@@ -136,12 +134,15 @@ directories are created.</td>
 <br />
 1) If the destination is an existing file, the source file is copied<br />
 over it.<br />
+<br />
 2) If the destination is an existing directory, the source file is<br />
 copied into it. A possible file with the same name is overwritten.<br />
+<br />
 3) If the destination does not exist and it ends with a path separator<br />
 ('/' in UNIX-like systems, '\' in Windows), it is considered a<br />
 directory. That directory is created and a source file copied into it.<br />
 Possible missing intermediate directories are also created.<br />
+<br />
 4) If the destination does not exist and it does not end with a path<br />
 separator, it is considered a file. If the path to the file does not<br />
 exist, it is created.</td>
@@ -177,20 +178,13 @@ it must be checked e.g. with the built-in keyword<br />
 'Should Be Equal As Integers'.</td>
 </tr>
 <tr>
-  <td class="kw"><a name="Create Dir"></a>Create Dir</td>
-  <td class="arg">path</td>
-  <td class="doc">Creates a directory, and all the intermediate ones, with the given path.<br />
-<br />
-Passes if the directory does not exist and fails if the path does not<br />
-point to a regular file (e.g. it points to a directory).</td>
-</tr>
-<tr>
   <td class="kw"><a name="Create Directory"></a>Create Directory</td>
   <td class="arg">path</td>
-  <td class="doc">Creates a directory, and all the intermediate ones, with the given path.<br />
+  <td class="doc">Creates the specified directory.<br />
 <br />
-Passes if the directory does not exist and fails if the path does not<br />
-point to a regular file (e.g. it points to a directory).</td>
+Also possible intermediate directories are created. Passes if the<br />
+directory already exists, and fails if the path points to a regular<br />
+file.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Create File"></a>Create File</td>
@@ -200,7 +194,7 @@ point to a regular file (e.g. it points to a directory).</td>
 If the mode contains any of the strings 'False', 'No', "Don't"<br />
 (case-insensitive, so e.g. "Do not" also works) the keyword fails,<br />
 if the file already exists and the file is not overwritten. If it<br />
-contains the word 'Append'(case-insensitive), the content is appended.<br />
+contains the word 'Append' (case-insensitive), the content is appended.<br />
 Otherwise the file is overwritten.<br />
 <br />
 If the directory where to create file does not exist it, and possible<br />
@@ -219,9 +213,9 @@ The default error message can be overridden with the 'msg' argument.</td>
   <td class="doc">Fails unless the given path points to an existing directory.<br />
 <br />
 The path can be given as an exact path or as a pattern where<br />
-'*' &nbsp; &nbsp; &nbsp; &nbsp;- matches everything<br />
-'?' &nbsp; &nbsp; &nbsp; &nbsp;- matches any single character<br />
-'[chars]' &nbsp;- matches any character inside square brackets (e.g. '[abc]'<br />
+'*' - matches everything<br />
+'?' - matches any single character<br />
+'[chars]' - matches any character inside square brackets (e.g. '[abc]'<br />
 matches either 'a', 'b' or 'c')<br />
 '[!chars]' - matches any character not inside square brackets<br />
 <br />
@@ -240,9 +234,9 @@ The default error message can be overridden with the 'msg' argument.</td>
   <td class="doc">Fails if the given path points to an existing file.<br />
 <br />
 The path can be given as an exact path or as a pattern where<br />
-'*' &nbsp; &nbsp; &nbsp; &nbsp;- matches everything<br />
-'?' &nbsp; &nbsp; &nbsp; &nbsp;- matches any single character<br />
-'[chars]' &nbsp;- matches any character inside square brackets (e.g. '[abc]'<br />
+'*' - matches everything<br />
+'?' - matches any single character<br />
+'[chars]' - matches any character inside square brackets (e.g. '[abc]'<br />
 matches either 'a', 'b' or 'c')<br />
 '[!chars]' - matches any character not inside square brackets<br />
 <br />
@@ -280,9 +274,9 @@ The default error message can be overridden with the 'msg' argument.</td>
   <td class="doc">Fails unless the given path points to an existing file.<br />
 <br />
 The path can be given as an exact path or as a pattern where<br />
-'*' &nbsp; &nbsp; &nbsp; &nbsp;- matches everything<br />
-'?' &nbsp; &nbsp; &nbsp; &nbsp;- matches any single character<br />
-'[chars]' &nbsp;- matches any character inside square brackets (e.g. '[abc]'<br />
+'*' - matches everything<br />
+'?' - matches any single character<br />
+'[chars]' - matches any character inside square brackets (e.g. '[abc]'<br />
 matches either 'a', 'b' or 'c')<br />
 '[!chars]' - matches any character not inside square brackets<br />
 <br />
@@ -301,9 +295,9 @@ The default error message can be overridden with the 'msg' argument.</td>
   <td class="doc">Fails if the given path points to an existing file.<br />
 <br />
 The path can be given as an exact path or as a pattern where<br />
-'*' &nbsp; &nbsp; &nbsp; &nbsp;- matches everything<br />
-'?' &nbsp; &nbsp; &nbsp; &nbsp;- matches any single character<br />
-'[chars]' &nbsp;- matches any character inside square brackets (e.g. '[abc]'<br />
+'*' - matches everything<br />
+'?' - matches any single character<br />
+'[chars]' - matches any character inside square brackets (e.g. '[abc]'<br />
 matches either 'a', 'b' or 'c')<br />
 '[!chars]' - matches any character not inside square brackets<br />
 <br />
@@ -327,23 +321,13 @@ the variable syntax %{ENV_VAR_NAME}.</td>
 <br />
 This keyword reads the specified file and returns the contents.<br />
 'encoding' defines the encoding of the file. By default, the value is<br />
-'UTF-8', which means that UTF-8 and ASCII-encoded files are<br />
-read correctly.</td>
+'UTF-8', which means that UTF-8 and ASCII-encoded files are read<br />
+correctly.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get File Size"></a>Get File Size</td>
   <td class="arg">path</td>
   <td class="doc">Returns file size as an integer in bytes</td>
-</tr>
-<tr>
-  <td class="kw"><a name="Get File With Encoding"></a>Get File With Encoding</td>
-  <td class="arg">path, encoding=UTF-8</td>
-  <td class="doc">Deprecated. Will be removed in Robot 1.9<br />
-<br />
-This keyword reads the specified file and returns the contents.<br />
-'encoding' defines the encoding of the file. By default, the value is<br />
-'UTF-8', which means that UTF-8 and ASCII-encoded files are<br />
-read correctly.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Modified Time"></a>Get Modified Time</td>
@@ -355,12 +339,14 @@ follows. Note that all checks are case-insensitive.<br />
 <br />
 - If 'format' contains the word 'epoch', the time is returned in seconds<br />
 after the UNIX epoch. The return value is always an integer.<br />
+<br />
 - If 'format' contains any of the words 'year', 'month', 'day', 'hour',<br />
 'min' or 'sec', only the selected parts are returned. The order of the<br />
 returned parts is always the one in the previous sentence and the<br />
 order of the words in 'format' is not significant. The parts are<br />
 returned as zero-padded strings (e.g. May -&gt; '05').<br />
-- Otherwise (and by default) the time is returned as a timestamp string<br />
+<br />
+- Otherwise, and by default, the time is returned as a timestamp string<br />
 in the format '2006-02-24 15:08:31'.<br />
 <br />
 Examples (when the modified time of the ${CURDIR} is<br />
@@ -430,8 +416,8 @@ they match it. (1)<br />
 'regexp', the 'pattern' is considered a regular expression and only<br />
 lines matching it returned. (2)<br />
 - If 'pattern_type' contains the string 'case insensitive' the 'pattern'<br />
-is considered a literal string and lines returned, if they contain the<br />
-string, regardless of the case.<br />
+is considered a literal string and lines returned, if they contain<br />
+the string, regardless of the case.<br />
 - Otherwise the pattern is considered a literal string and lines<br />
 returned, if they contain the string exactly. This is the default.<br />
 <br />
@@ -439,8 +425,8 @@ returned, if they contain the string exactly. This is the default.<br />
 it is always case-sensitive. In the pattern, '*' matches to anything<br />
 and '?' matches to any single character.<br />
 <br />
-2) Regular expression check is done using the Python 're' module,<br />
-which has a pattern syntax derived from Perl and thus also very similar to the<br />
+2) Regular expression check is done using the Python 're' module, which<br />
+has a pattern syntax derived from Perl and thus also very similar to the<br />
 one in Java. See the following documents from more details about regexps<br />
 in general and their Python implementation in particular.<br />
 <br />
@@ -555,8 +541,7 @@ Examples (assuming a UNIX environment):<br />
 <tr>
   <td class="kw"><a name="List Directory"></a>List Directory</td>
   <td class="arg">path, pattern=None, pattern_type=simple, absolute=False</td>
-  <td class="doc">Returns items from the given directory, optionally filtered with<br />
-'pattern'.<br />
+  <td class="doc">Returns items from a directory, optionally filtered with 'pattern'.<br />
 <br />
 File and directory names are returned in case-sensitive alphabetical<br />
 order, e.g. 'A Name', 'Second', 'a lower case name', 'one more'].<br />
@@ -584,15 +569,15 @@ returned, if they contain the string.<br />
 1) Simple pattern matching is similar as matching files in a shell, and<br />
 it is always case-sensitive. The special characters are listed below.<br />
 <br />
-'*' &nbsp; &nbsp; &nbsp; &nbsp;- matches everything<br />
-'?' &nbsp; &nbsp; &nbsp; &nbsp;- matches any single character<br />
-'[chars]' &nbsp;- matches any character inside square brackets (e.g. '[abc]'<br />
+'*' - matches everything<br />
+'?' - matches any single character<br />
+'[chars]' - matches any character inside square brackets (e.g. '[abc]'<br />
 matches either 'a', 'b' or 'c')<br />
 '[!chars]' - matches any character not inside square brackets<br />
 <br />
-Simple pattern matching is implemented using the Python 'fnmatch' module's<br />
-'fnmatchcase' method. For more information, see its documentation at<br />
-<a href="http://docs.python.org/lib/module-fnmatch.html">http://docs.python.org/lib/module-fnmatch.html</a>.<br />
+Simple pattern matching is implemented using the Python 'fnmatch'<br />
+module's 'fnmatchcase' method. For more information, see its<br />
+documentation at <a href="http://docs.python.org/lib/module-fnmatch.html">http://docs.python.org/lib/module-fnmatch.html</a>.<br />
 <br />
 2) Regular expression check is done using the Python 're' module, which<br />
 has a pattern syntax derived from Perl and thus also very similar to the<br />
@@ -728,9 +713,9 @@ Passes if the file does not exist, but fails if the path does not point<br />
 to a regular file (e.g. it points to a directory).<br />
 <br />
 The path can be given as an exact path or as a pattern where<br />
-'*' &nbsp; &nbsp; &nbsp; &nbsp;- matches everything<br />
-'?' &nbsp; &nbsp; &nbsp; &nbsp;- matches any single character<br />
-'[chars]' &nbsp;- matches any character inside square brackets (e.g. '[abc]'<br />
+'*' - matches everything<br />
+'?' - matches any single character<br />
+'[chars]' - matches any character inside square brackets (e.g. '[abc]'<br />
 matches either 'a', 'b' or 'c')<br />
 '[!chars]' - matches any character not inside square brackets</td>
 </tr>
@@ -742,32 +727,33 @@ matches either 'a', 'b' or 'c')<br />
 <tr>
   <td class="kw"><a name="Run"></a>Run</td>
   <td class="arg">command, return_mode=stdout</td>
-  <td class="doc">Runs the given command in the system and returns a return code and/or stdout.<br />
+  <td class="doc">Runs the given command in the system and returns an RC and/or stdout.<br />
 <br />
-'return_mode' defines how the return code (rc) and the standard output<br />
-(stdout) are returned as explained below. All checks are<br />
-case-insensitive.<br />
-* If it contains the word 'rc' and either the word 'stdout' or 'output', both<br />
-the rc and stdout are returned.<br />
-* Otherwise, if it contains the word 'rc', only the rc is returned.<br />
-* Otherwise, and by default, only the stdout is returned.<br />
+'return_mode' defines how the return code (RC) and the standard output<br />
+(stdout) are returned as explained below. All checks are case-insensitive.<br />
 <br />
-The rc is returned as an integer. It must thus be checked e.g. with the<br />
-keyword 'Should Be Equal As Integers' instead of 'Should Be Equal' (both<br />
-are built-in keywords). Return codes are positive integers within the<br />
-range from 0 to 255 as returned by the command (if the command returns<br />
-some other value, the system maps it into this range).<br />
+- If 'return_mode' contains the word 'RC' and either the word 'stdout'<br />
+or 'output', both the RC and stdout are returned.<br />
+- Otherwise, if it contains the word 'RC', only the RC is returned.<br />
+- Otherwise, and by default, only the stdout is returned.<br />
+<br />
+The RC is returned as a positive integer in range from 0 to 255 as<br />
+returned by the executed command. On some operating systems (notable<br />
+Windows) original return codes can be something else, but this keyword<br />
+always maps them to the 0-255 range. Since the RC is an integer, it must<br />
+be checked e.g. with the keyword 'Should Be Equal As Integers' instead<br />
+of 'Should Be Equal' (both are built-in keywords).<br />
 <br />
 The returned output contains everything written into the stdout by the<br />
 command. Many commands add an extra newline (\n) after the output to<br />
-ease reading it in the console. To ease processing the returned<br />
+make it easier to read in the console. To ease processing the returned<br />
 output, Robot Framework strips this possible newline.<br />
 <br />
 The possible standard error (stderr) from the executed command is NOT<br />
-captured by this keyword or other parts of Robot. If catching stderr is<br />
-important, it must be redirected into stdout or some file. The former<br />
-can be achieved (both in Windows and UNIX-like systems) with the syntax<br />
-'my_command 2&gt;&amp;1' and the latter with 'my_command 2&gt;stderr.txt'.<br />
+captured by this keyword or other parts of Robot Framework. If catching<br />
+the stderr is important, it must be redirected into stdout or some file.<br />
+The former can be achieved (both in Windows and UNIX-like systems) with<br />
+the syntax 'my_command 2&gt;&amp;1' and the latter with 'my_command 2&gt;stderr.txt'.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
@@ -807,14 +793,14 @@ Examples:<br />
 <td style="border: 1px solid gray; padding: 2px;">RC,Output</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Fail Unless</td>
+<td style="border: 1px solid gray; padding: 2px;">Should Be True</td>
 <td style="border: 1px solid gray; padding: 2px;">${rc} &gt; 0</td>
 <td style="border: 1px solid gray; padding: 2px;"></td>
 <td style="border: 1px solid gray; padding: 2px;"></td>
 <td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Contains</td>
+<td style="border: 1px solid gray; padding: 2px;">Should Contain</td>
 <td style="border: 1px solid gray; padding: 2px;">${out}</td>
 <td style="border: 1px solid gray; padding: 2px;">TEST PASSED</td>
 <td style="border: 1px solid gray; padding: 2px;"></td>
@@ -828,7 +814,8 @@ Examples:<br />
   <td class="doc">Wrapper for 'Run' keyword that returns only the return code.<br />
 <br />
 Following two examples are equivalent but the latter is easier to<br />
-understand and thus recommended.<br />
+understand and thus recommended. See 'Run' keyword for more information<br />
+about the characteristics of the returned RC.<br />
 <br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
 <tr>
@@ -848,7 +835,7 @@ understand and thus recommended.<br />
 <tr>
   <td class="kw"><a name="Run And Return Rc And Output"></a>Run And Return Rc And Output</td>
   <td class="arg">command</td>
-  <td class="doc">Wrapper for the 'Run' keyword that returns the return code and output.<br />
+  <td class="doc">Wrapper for the 'Run' keyword that returns both the RC and stdout.<br />
 <br />
 The following two examples are equivalent, but the latter is easier to<br />
 understand and thus recommended.<br />
@@ -870,9 +857,8 @@ understand and thus recommended.<br />
 </tr>
 </table><br />
 Note that similarly as the normal 'Run', this keyword only returns the<br />
-standard output and not the standard error. Use either the format<br />
-'my_command 2&gt;/tmp/stderr.txt' to redirect the stderr into a specific<br />
-file or 'my_command 2&gt;&amp;1' to return it along with the stdout.</td>
+standard output and not the standard error. See 'Run' keyword for more<br />
+information.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Environment Variable"></a>Set Environment Variable</td>
@@ -899,8 +885,8 @@ used.<br />
 <br />
 4) If 'mtime' is in the format 'NOW - 1 day' or 'NOW + 1 hour 30 min',<br />
 the current time plus/minus the time specified with the time string is<br />
-used. The time string format is described in section Time format in<br />
-Robot Framework User Guide.<br />
+used. The time string format is described in an appendix of Robot<br />
+Framework User Guide.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
@@ -942,9 +928,9 @@ Examples:<br />
   <td class="doc">Fails unless the given path (file or directory) exists.<br />
 <br />
 The path can be given as an exact path or as a pattern where<br />
-'*' &nbsp; &nbsp; &nbsp; &nbsp;- matches everything<br />
-'?' &nbsp; &nbsp; &nbsp; &nbsp;- matches any single character<br />
-'[chars]' &nbsp;- matches any character inside square brackets (e.g. '[abc]'<br />
+'*' - matches everything<br />
+'?' - matches any single character<br />
+'[chars]' - matches any character inside square brackets (e.g. '[abc]'<br />
 matches either 'a', 'b' or 'c')<br />
 '[!chars]' - matches any character not inside square brackets<br />
 <br />
@@ -956,9 +942,9 @@ The default error message can be overridden with the 'msg' argument.</td>
   <td class="doc">Fails if the given path (file or directory) exists.<br />
 <br />
 The path can be given as an exact path or as a pattern where<br />
-'*' &nbsp; &nbsp; &nbsp; &nbsp;- matches everything<br />
-'?' &nbsp; &nbsp; &nbsp; &nbsp;- matches any single character<br />
-'[chars]' &nbsp;- matches any character inside square brackets (e.g. '[abc]'<br />
+'*' - matches everything<br />
+'?' - matches any single character<br />
+'[chars]' - matches any character inside square brackets (e.g. '[abc]'<br />
 matches either 'a', 'b' or 'c')<br />
 '[!chars]' - matches any character not inside square brackets<br />
 <br />
@@ -1105,15 +1091,15 @@ deleted.</td>
   <td class="doc">Stops the current process without reading from it.<br />
 <br />
 Stopping a process does not remove it from the process list. To reset<br />
-the process list (and indexes and aliases), 'Stop All Processes' must be<br />
-used.<br />
+the process list (and indexes and aliases), 'Stop All Processes' must<br />
+be used.<br />
 <br />
 See 'Start Process' and 'Switch Process' for more information.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Switch Process"></a>Switch Process</td>
   <td class="arg">index_or_alias</td>
-  <td class="doc">Switches the current process to the process found with 'index_or_alias'.<br />
+  <td class="doc">Switches the active process to the specified process.<br />
 <br />
 The index is the return value of the 'Start Process' keyword and an<br />
 alias may have been defined to it.</td>
@@ -1135,19 +1121,19 @@ file does not exist.</td>
   <td class="doc">Waits until the given file or directory is created.<br />
 <br />
 The path can be given as an exact path or as a pattern where<br />
-'*' &nbsp; &nbsp; &nbsp; &nbsp;- matches everything<br />
-'?' &nbsp; &nbsp; &nbsp; &nbsp;- matches any single character<br />
-'[chars]' &nbsp;- matches any character inside square brackets (e.g. '[abc]'<br />
+'*' - matches everything<br />
+'?' - matches any single character<br />
+'[chars]' - matches any character inside square brackets (e.g. '[abc]'<br />
 matches either 'a', 'b' or 'c')<br />
 '[!chars]' - matches any character not inside square brackets<br />
 <br />
 If the path is a pattern, the keyword returns when an item matching to<br />
 the pattern is created.<br />
 <br />
-The optional 'timeout' can be used to control the maximum time of waiting.<br />
-The timeout is given as a timeout string, e.g. in the format '15 min' or<br />
-'1min 10s'. The time string format is described in section Time formt in<br />
-Robot Framework User Guide.<br />
+The optional 'timeout' can be used to control the maximum time of<br />
+waiting. The timeout is given as a timeout string, e.g. in a format<br />
+'15 seconds' or '1min 10s'. The time string format is described in an<br />
+appendix of Robot Framework User Guide.<br />
 <br />
 If the timeout is negative, the keyword is never timed-out. The keyword<br />
 returns immediately, if the file/directory already exist.</td>
@@ -1158,19 +1144,19 @@ returns immediately, if the file/directory already exist.</td>
   <td class="doc">Waits until the given file or directory is removed.<br />
 <br />
 The path can be given as an exact path or as a pattern where<br />
-'*' &nbsp; &nbsp; &nbsp; &nbsp;- matches everything<br />
-'?' &nbsp; &nbsp; &nbsp; &nbsp;- matches any single character<br />
-'[chars]' &nbsp;- matches any character inside square brackets (e.g. '[abc]'<br />
+'*' - matches everything<br />
+'?' - matches any single character<br />
+'[chars]' - matches any character inside square brackets (e.g. '[abc]'<br />
 matches either 'a', 'b' or 'c')<br />
 '[!chars]' - matches any character not inside square brackets<br />
 <br />
 If the path is a pattern, the keyword waits until all matching items are<br />
 removed.<br />
 <br />
-The optional 'timeout' can be used to control the maximum time of waiting.<br />
-The timeout is given as a timeout string, e.g. in a format '15 min' or<br />
-'1min 10s'. The time string format is described in section Time format in<br />
-Robot Framework.<br />
+The optional 'timeout' can be used to control the maximum time of<br />
+waiting. The timeout is given as a timeout string, e.g. in a format<br />
+'15 seconds' or '1min 10s'. The time string format is described in an<br />
+appendix of Robot Framework User Guide.<br />
 <br />
 If the timeout is negative, the keyword is never timed out. The keyword<br />
 returns immediately, if the file/directory does not exist in the first<br />
@@ -1178,8 +1164,8 @@ place.</td>
 </tr>
 </table>
 <p class="footer">
-Altogether 55 keywords.
-Documentation generated 20080617 18:44:23.
+Altogether 53 keywords.
+Documentation generated 20080722 18:33:37.
 </p>
 </body>
 </html>
