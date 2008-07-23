@@ -52,34 +52,42 @@
 <h1>Collections - Documentation</h1>
 
 <h2>Introduction</h2>
-<p class='libdoc'>This Library provides keywords for handling Lists and Dictionaries.<br />
+<p class='libdoc'>A library providing keywords for handling lists and dictionaries.<br />
 <br />
-To use list keywords with a list variable (e.g. @{list}), convert it first<br />
-to a scalar variable (e.g. ${list}). A scalar variable containing a list can<br />
-also be converted to a list variable.<br />
+List keywords that do not alter given list can also be used with tuples,<br />
+and to some extend also with other iterables.<br />
 <br />
-Examples:<br />
+BuiltIn library has also some related keywords. 'Create List' can obviously<br />
+be used for creating new lists, and 'Should Be Empty' and 'Should Not Be<br />
+Empty' work both with lists and dictionaries.<br />
+<br />
+All list keywords expect a scalar variable (e.g. ${list}) as an argument,<br />
+and possible list variables (e.g. @{list}) must be converted to scalar<br />
+variables first. The example below shows how to convert between them.<br />
+<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">${list} =</td>
 <td style="border: 1px solid gray; padding: 2px;">Create List</td>
 <td style="border: 1px solid gray; padding: 2px;">@{list}</td>
 </tr>
-</table><br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">@{list} =</td>
 <td style="border: 1px solid gray; padding: 2px;">Set Variable</td>
 <td style="border: 1px solid gray; padding: 2px;">${list}</td>
 </tr>
 </table><br />
+<hr />
 <br />
-In the examples, ${Lx} always means a list that contains x times an alphabet,<br />
-as in ${L2} = ['a', 'b'].<br />
-Similarly, ${Dx} means a dictionary that contains x items with an alphabet<br />
-key and a number value, as in ${D2} {'a':1, 'b':2}.<br />
+List related keywords use variables in format ${Lx} in their examples.<br />
+this means a list with as many alphabetic characters as specified by 'x'.<br />
+For example ${L1}' means ['a'] and ${L3} means ['a', 'b', 'c'].<br />
 <br />
-Keywords that do not edit lists can be used with tuples.</p>
+Dictionary keywords use similar ${Dx} variable. For example ${D1} means<br />
+{'a': 1} and ${D3} means {'a': 1, 'b': 2, 'c': 3}.<br />
+<br />
+<hr />
+</p>
 
 <h2>Shortcuts</h2>
 <div class='links'>
@@ -102,7 +110,7 @@ Keywords that do not edit lists can be used with tuples.</p>
 <a href="#Get From Dictionary" title="Returns a value from the given dictionary based on the given key.">Get&nbsp;From&nbsp;Dictionary</a>&nbsp;
 <a href="#Get From List" title="Returns the value specified with an index from L.">Get&nbsp;From&nbsp;List</a>&nbsp;
 <a href="#Get Index From List" title="Returns the index of the first occurrence of the value on the list.">Get&nbsp;Index&nbsp;From&nbsp;List</a>&nbsp;
-<a href="#Get Slice From List" title="Returns the part of the given list specified with start and end">Get&nbsp;Slice&nbsp;From&nbsp;List</a>&nbsp;
+<a href="#Get Slice From List" title="Returns a slice of the given list between start and end indexes.">Get&nbsp;Slice&nbsp;From&nbsp;List</a>&nbsp;
 <a href="#Insert Into List" title="Inserts 'value' into 'L' to the position specified with 'index'.">Insert&nbsp;Into&nbsp;List</a>&nbsp;
 <a href="#Keep In Dictionary" title="Keeps the given keys in the dictionary and removes all other.">Keep&nbsp;In&nbsp;Dictionary</a>&nbsp;
 <a href="#List Should Contain Sub List" title="Fails if not all of the elements in L2 are found in L1.">List&nbsp;Should&nbsp;Contain&nbsp;Sub&nbsp;List</a>&nbsp;
@@ -265,8 +273,8 @@ ${z} == {'a':1, 'b':2}</td>
 <br />
 First the equality of dictionaries' keys is checked and after that all<br />
 the key value pairs. If there are differences between the values, those<br />
-are listed in an error message, e.g. with dictionaries<br />
-${D1} = {'a':1, 'b':2, 'c':3} and ${D2} = {'a':1, 'b':4, 'c':6}.<br />
+are listed in an error message, for example with dictionaries<br />
+"${D1} = {'a':1, 'b':2, 'c':3}" and "${D2} = {'a':1, 'b':4, 'c':6}".<br />
 <br />
 Dictionaries are different:<br />
 key, dict1 value, dict2 value<br />
@@ -401,7 +409,7 @@ ${value} == 2</td>
 <br />
 The given list is never altered by this keyword.<br />
 <br />
-Index '0' means the first position, '1' the second, and so on. Similarly,<br />
+Index '0' means the first position, '1' the second, and so on. Similarly<br />
 '-1' is the last position, '-2' the second last, and so on. Using an<br />
 index that does not exist on the list causes an error. The index can be<br />
 either an integer or a string that can be converted to an integer.<br />
@@ -454,13 +462,12 @@ ${L5} is not changed.</td>
 <tr>
   <td class="kw"><a name="Get Slice From List"></a>Get Slice From List</td>
   <td class="arg">L, start=0, end=None</td>
-  <td class="doc">Returns the part of the given list specified with start and end<br />
-indexes.<br />
+  <td class="doc">Returns a slice of the given list between start and end indexes.<br />
 <br />
 The given list is never altered by this keyword.<br />
 <br />
-If both 'start' and 'end' are given, a sublist containing values<br />
-from 'start' to 'end' is returned. This is the same as 'L[start:end]' in<br />
+If both 'start' and 'end' are given, a sublist containing values from<br />
+'start' to 'end' is returned. This is the same as 'L[start:end]' in<br />
 Python. To get all items from the beginning, use 0 as the start value,<br />
 and to get all items until the end, use 'None' as the end value. 'None'<br />
 is also a default value, so in this case, it is enough to give only<br />
@@ -507,11 +514,11 @@ ${L5} is not changed.</td>
   <td class="doc">Inserts 'value' into 'L' to the position specified with 'index'.<br />
 <br />
 Index '0' adds the value into the first position, '1' to the second, and<br />
-so on. Similarly, '-1' is the last position, '-2' second last, and so on.<br />
-If the absolute value of the index is greater than the length of the<br />
+so on. Similarly, '-1' is the last position, '-2' second last, and so<br />
+on. If the absolute value of the index is greater than the length of the<br />
 list, the value is added at the end (positive index) or the beginning<br />
-(negative index). An index can be given either as an integer or a string that can be<br />
-converted to an integer.<br />
+(negative index). An index can be given either as an integer or a string<br />
+that can be converted to an integer.<br />
 <br />
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
@@ -583,8 +590,8 @@ See 'List Should Contain Value' for an explanation of 'msg'.</td>
 <br />
 The first equality of lists' length is checked, and after that all<br />
 values. If there are differences between the values, those are listed in<br />
-an error message, e.g. with lists<br />
-${L1} = [1, 2, 3] and ${L2} = [0, 2, 4].<br />
+an error message, for example with lists "${L1} = [1, 2, 3]" and<br />
+"${L2} = [0, 2, 4]".<br />
 <br />
 Lists are different:<br />
 index, L1 value, L2 value<br />
@@ -730,7 +737,7 @@ ${L} == [1, 2, 'a', 'b', 'c']</td>
 </table>
 <p class="footer">
 Altogether 33 keywords.
-Documentation generated 20080617 18:44:23.
+Documentation generated 20080723 14:52:13.
 </p>
 </body>
 </html>
