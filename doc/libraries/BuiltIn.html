@@ -1196,12 +1196,38 @@ error message with 'msg' and 'values'.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Sleep"></a>Sleep</td>
-  <td class="arg">time</td>
+  <td class="arg">time, reason=None</td>
   <td class="doc">Sleeps for the given time.<br />
 <br />
 'time' may be either a number or a time string. Time strings are in<br />
-a format such as '1day 2h 3min 4s 5ms'. For more information on time<br />
-strings, see section Time format in Robot Framework User Guide.</td>
+a format such as '1 day 2 hours 3 minutes 4 seconds 5milliseconds' or<br />
+'1d 2h 3m 4s 5ms', and they are fully explained in an appendix of Robot<br />
+Framework User Guide. Optional 'reason' can be used to explain why<br />
+sleeping is necessary. Both the time slept and the reason are logged.<br />
+<br />
+Examples:<br />
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Sleep</td>
+<td style="border: 1px solid gray; padding: 2px;">42</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Sleep</td>
+<td style="border: 1px solid gray; padding: 2px;">1.5</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Sleep</td>
+<td style="border: 1px solid gray; padding: 2px;">2 minutes 10 seconds</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Sleep</td>
+<td style="border: 1px solid gray; padding: 2px;">10s</td>
+<td style="border: 1px solid gray; padding: 2px;">Wait for a reply</td>
+</tr>
+</table></td>
 </tr>
 <tr>
   <td class="kw"><a name="Syslog"></a>Syslog</td>
@@ -1261,7 +1287,7 @@ New in Robot Framework version 1.8.1.</td>
 </table>
 <p class="footer">
 Altogether 66 keywords.
-Documentation generated 20080617 18:44:23.
+Documentation generated 20080801 16:45:30.
 </p>
 </body>
 </html>
