@@ -325,9 +325,9 @@ Example:<br />
 'timeout' is given in Robot Framework's time format<br />
 (e.g. 1 minute 20 seconds).<br />
 <br />
-The read operations wait for this time before starting to read<br />
-from the output. To run operations that take a long time to generate<br />
-their complete output, this timeout must be set accordingly.<br />
+Read operations that expect some output to appear (Read Until, Read<br />
+Until Regexp, Read Until Prompt) use this timeout and fail if the<br />
+expected output has not appeared when this timeout expires.<br />
 <br />
 The old timeout is returned and can be used to restore it later.<br />
 <br />
@@ -494,7 +494,7 @@ New in Robot Framework version 1.8.2.</td>
 </table>
 <p class="footer">
 Altogether 16 keywords.
-Documentation generated 20080617 18:44:23.
+Documentation generated 20080805 09:44:19.
 </p>
 </body>
 </html>
