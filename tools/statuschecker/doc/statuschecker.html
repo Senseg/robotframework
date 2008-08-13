@@ -451,7 +451,8 @@ pre.literal-block, pre.doctest-block {
 <div class="document" id="statuschecker-py">
 <h1 class="title">statuschecker.py</h1>
 
-<p>A tool for further processing of Robot Framework output files.</p>
+<p>A tool for checking that Robot Framework test cases have expected
+statuses and log messages.</p>
 <div class="section" id="synopsis">
 <h1>Synopsis</h1>
 <pre class="literal-block">
@@ -460,42 +461,55 @@ statuschecker.py infile [outfile]
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>This tool processes Robot Framework output XML files and checks that test case
-statuses and messages are as expected. The main use case is post-processing output
-files got when testing Robot Framework test libraries using Robot Framework
-itself.</p>
-<p>If an output file is not given, the input file is considered to be also an output
-file and it is edited in place.</p>
-<div class="section" id="defining-the-expected-test-status">
-<h2>Defining the expected test status</h2>
-<p>By default, all test cases are expected to <span class="msg">PASS</span> and have no message. Changing
-the expected status to <span class="msg">FAIL</span> is done by having the word &quot;FAIL&quot; (in uppercase)
-somewhere in the test case documentation. The expected error message must then be
-given after &quot;FAIL&quot;. The error message can also be specified as a regular expression
-by prefixing it with &quot;REGEXP:&quot;. Having spaces between the status, the message
-or the possible &quot;regexp&quot; prefix is optional.</p>
+<p>This tool processes Robot Framework output XML files and checks that
+test case statuses and messages are as expected. The main use case is
+post-processing output files got when testing Robot Framework test
+libraries using Robot Framework itself.</p>
+<p>If an output file is not given, the input file is considered to be
+also an output file and it is edited in place.</p>
+<div class="section" id="defining-expected-test-status">
+<h2>Defining expected test status</h2>
+<p>By default, all test cases are expected to <span class="msg">PASS</span> and have no
+message. Changing the expected status to <span class="msg">FAIL</span> is done by having
+the word <span class="msg">FAIL</span> (in uppercase) somewhere in the test case
+documentation. The expected error message must then be given after
+<span class="msg">FAIL</span>. The error message can also be specified as a regular
+expression by prefixing it with <span class="msg">REGEXP:</span>. Having spaces between
+the status, the message or the possible regular expression prefix is
+optional.</p>
 </div>
-<div class="section" id="defining-the-expected-keyword-log-messages">
-<h2>Defining the expected keyword log messages</h2>
-<p>The expected keyword log messages can also be defined in the test case documentation
-using a syntax such as:</p>
+<div class="section" id="defining-expected-log-messages">
+<h2>Defining expected log messages</h2>
+<p>The expected keyword log messages can also be defined in the test case
+documentation using a syntax such as:</p>
 <pre class="literal-block">
-LOG x.y:z message
+LOG x.y:z LEVEL Actual message
 </pre>
-<p>For example, the following documentation expects that the test case fails with the
-message <span class="msg">Expected message</span>, and in addition, the second log message of the first keyword
-is <span class="msg">Log message</span>:</p>
+<p>The part before the colon is the number of the keyword to check. For
+example <span class="msg">1</span> means first keyword, <span class="msg">1.2</span> is the second child
+keyword of the first keyword, and so on.</p>
+<p>The part after the colon denotes the number of the message. For
+example <span class="msg">1:2</span> means the second message of the first keyword and
+<span class="msg">1.2:3</span> is the third message of the second child keyword of the
+first keyword. The message index is optional and defaults to <span class="msg">1</span>.</p>
+<p>Message level is specified before the actual message, and it can be
+any of the valid log levels in capital letters. If the level is not
+given it defaults to <span class="msg">INFO</span>.</p>
+<p>This syntax can be used multiple times to test multiple messages. It can be
+used together with <span class="msg">FAIL</span>, but it that case <span class="msg">FAIL</span> must be first.</p>
+<p>Examples:</p>
 <pre class="literal-block">
-FAIL: Expected failure LOG 1:2 Log message
+LOG 1 Hello, world!
+LOG 2.1:42 Some message LOG 2.2 Another message
+LOG 2:2 WARN Warning, warning!
+FAIL Error messagea LOG 1:2 Log message
 </pre>
-<p>The message index (the number after &quot;:&quot;) is by default 1, so if you check the first
-log message of the given keyword, it may be omitted.</p>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2008-06-17 09:00 UTC.
+Generated on: 2008-08-13 08:00 UTC.
 
 </div>
 </body>
