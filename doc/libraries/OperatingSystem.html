@@ -52,7 +52,56 @@
 <h1>OperatingSystem - Documentation</h1>
 
 <h2>Introduction</h2>
-<p class='libdoc'>This test library enables multiple operating-system-related tasks.</p>
+<p class='libdoc'>This test library enables multiple operating-system-related tasks.<br />
+<br />
+Example usage:<br />
+<br />
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<tr>
+<td style="border: 1px solid gray; padding: 2px;"><b>Setting</b></td>
+<td style="border: 1px solid gray; padding: 2px;"><b>Value</b></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Library</td>
+<td style="border: 1px solid gray; padding: 2px;">OperatingSystem</td>
+</tr>
+</table><br />
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<tr>
+<td style="border: 1px solid gray; padding: 2px;"><b>Variable</b></td>
+<td style="border: 1px solid gray; padding: 2px;"><b>Value</b></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">${PATH}</td>
+<td style="border: 1px solid gray; padding: 2px;">${CURDIR}${/}example.txt</td>
+</tr>
+</table><br />
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<tr>
+<td style="border: 1px solid gray; padding: 2px;"><b>Test Case</b></td>
+<td style="border: 1px solid gray; padding: 2px;"><b>Action</b></td>
+<td style="border: 1px solid gray; padding: 2px;"><b>Argument</b></td>
+<td style="border: 1px solid gray; padding: 2px;"><b>Argument</b></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Example</td>
+<td style="border: 1px solid gray; padding: 2px;">Create File</td>
+<td style="border: 1px solid gray; padding: 2px;">${PATH}</td>
+<td style="border: 1px solid gray; padding: 2px;">Some text</td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 2px;">File Should Exist</td>
+<td style="border: 1px solid gray; padding: 2px;">${PATH}</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 2px;">Copy File</td>
+<td style="border: 1px solid gray; padding: 2px;">${PATH}</td>
+<td style="border: 1px solid gray; padding: 2px;">${TEMPDIR}</td>
+</tr>
+</table></p>
 
 <h2>Shortcuts</h2>
 <div class='links'>
@@ -1177,7 +1226,7 @@ place.</td>
 </table>
 <p class="footer">
 Altogether 53 keywords.
-Documentation generated 20080801 16:46:04.
+Documentation generated 20080821 16:40:33.
 </p>
 </body>
 </html>
