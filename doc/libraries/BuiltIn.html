@@ -55,22 +55,22 @@
 <p class='libdoc'>BuiltIn library provides a set of often needed generic keywords.<br />
 <br />
 These keywords are available automatically without importing any library.<br />
-They allow functionality for verifications (e.g. Should Be<br />
-Equal), conversions (e.g. Convert To Integer) and for various other<br />
-purposes (e.g. Sleep).</p>
+They allow functionality for verifications (e.g. 'Should Be Equal'),<br />
+conversions (e.g. 'Convert To Integer') and for various other purposes<br />
+(e.g. 'Sleep', 'Run Keyword If').</p>
 
 <h2>Shortcuts</h2>
 <div class='links'>
 <a href="#Call Method" title="Calls the named method of the given object with the provided arguments.">Call&nbsp;Method</a>&nbsp;
 <a href="#Catenate" title="Catenates the given items together and returns the resulted string.">Catenate</a>&nbsp;
 <a href="#Comment" title="Displays the given messages in the log file as keyword arguments.">Comment</a>&nbsp;
-<a href="#Convert To Boolean" title="Converts the given item to Boolean.">Convert&nbsp;To&nbsp;Boolean</a>&nbsp;
+<a href="#Convert To Boolean" title="Converts the given item to Boolean true or false.">Convert&nbsp;To&nbsp;Boolean</a>&nbsp;
 <a href="#Convert To Integer" title="Converts the given item to an integer number.">Convert&nbsp;To&nbsp;Integer</a>&nbsp;
 <a href="#Convert To Number" title="Converts the given item to a floating point number.">Convert&nbsp;To&nbsp;Number</a>&nbsp;
-<a href="#Convert To String" title="Converts the given item to a string.">Convert&nbsp;To&nbsp;String</a>&nbsp;
+<a href="#Convert To String" title="Converts the given item to a Unicode string.">Convert&nbsp;To&nbsp;String</a>&nbsp;
 <a href="#Create List" title="Returns a list containing given items.">Create&nbsp;List</a>&nbsp;
 <a href="#Evaluate" title="Evaluates the given expression in Python and returns the results.">Evaluate</a>&nbsp;
-<a href="#Fail" title="Fails the test immediately with the given message.">Fail</a>&nbsp;
+<a href="#Fail" title="Fails the test immediately with the given (optional) message.">Fail</a>&nbsp;
 <a href="#Get Length" title="Returns the length of the given item.">Get&nbsp;Length</a>&nbsp;
 <a href="#Get Time" title="Returns the current time in the requested format.">Get&nbsp;Time</a>&nbsp;
 <a href="#Grep" title="Returns the text grepped using 'pattern'.">Grep</a>&nbsp;
@@ -80,7 +80,7 @@ purposes (e.g. Sleep).</p>
 <a href="#Log" title="Logs the given message with the given level">Log</a>&nbsp;
 <a href="#Log Many" title="Logs the given messages as separate entries with the INFO level.">Log&nbsp;Many</a>&nbsp;
 <a href="#Log Variables" title="Logs all variables in the current scope with given log level.">Log&nbsp;Variables</a>&nbsp;
-<a href="#No Operation" title="No operation.">No&nbsp;Operation</a>&nbsp;
+<a href="#No Operation" title="Does absolutely nothing.">No&nbsp;Operation</a>&nbsp;
 <a href="#Regexp Escape" title="Returns each argument string escaped for use as a regular expression.">Regexp&nbsp;Escape</a>&nbsp;
 <a href="#Replace Variables" title="Replaces variables in the given text with their current values.">Replace&nbsp;Variables</a>&nbsp;
 <a href="#Run Keyword" title="Executes the given keyword with the given arguments.">Run&nbsp;Keyword</a>&nbsp;
@@ -106,7 +106,7 @@ purposes (e.g. Sleep).</p>
 <a href="#Should Be Equal As Numbers" title="Fails if objects are unequal after converting them to real numbers.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>&nbsp;
 <a href="#Should Be Equal As Strings" title="Fails if objects are unequal after converting them to strings.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
 <a href="#Should Be True" title="Fails if the given expression (or item) is not true.">Should&nbsp;Be&nbsp;True</a>&nbsp;
-<a href="#Should Contain" title="Fails if the string 'str1' does not contain the string 'str2' one or more times.">Should&nbsp;Contain</a>&nbsp;
+<a href="#Should Contain" title="Fails if 'item1' does not contain 'item2' one or more times.">Should&nbsp;Contain</a>&nbsp;
 <a href="#Should End With" title="Fails if the string 'str1' does not end with the string 'str2'.">Should&nbsp;End&nbsp;With</a>&nbsp;
 <a href="#Should Match" title="Fails unless the given 'string' matches the given 'pattern'.">Should&nbsp;Match</a>&nbsp;
 <a href="#Should Match Regexp" title="Fails if 'string' does not match 'pattern' as a regular expression.">Should&nbsp;Match&nbsp;Regexp</a>&nbsp;
@@ -116,16 +116,16 @@ purposes (e.g. Sleep).</p>
 <a href="#Should Not Be Equal As Numbers" title="Fails if objects are equal after converting them to real numbers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>&nbsp;
 <a href="#Should Not Be Equal As Strings" title="Fails if objects are equal after converting them to strings.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
 <a href="#Should Not Be True" title="Fails if the the given expression (or item) is true.">Should&nbsp;Not&nbsp;Be&nbsp;True</a>&nbsp;
-<a href="#Should Not Contain" title="Fails if the string 'str1' contains the string 'str2' one or more times.">Should&nbsp;Not&nbsp;Contain</a>&nbsp;
+<a href="#Should Not Contain" title="Fails if 'item1' contains 'item2' one or more times.">Should&nbsp;Not&nbsp;Contain</a>&nbsp;
 <a href="#Should Not End With" title="Fails if the string 'str1' ends with the string 'str2'.">Should&nbsp;Not&nbsp;End&nbsp;With</a>&nbsp;
 <a href="#Should Not Match" title="Fails if the given 'string' matches the given 'pattern'.">Should&nbsp;Not&nbsp;Match</a>&nbsp;
 <a href="#Should Not Match Regexp" title="Fails if 'string' matches 'pattern' as a regular expression.">Should&nbsp;Not&nbsp;Match&nbsp;Regexp</a>&nbsp;
 <a href="#Should Not Start With" title="Fails if the string 'str1' starts with the string 'str2'.">Should&nbsp;Not&nbsp;Start&nbsp;With</a>&nbsp;
 <a href="#Should Start With" title="Fails if the string 'str1' does not start with the string 'str2'.">Should&nbsp;Start&nbsp;With</a>&nbsp;
-<a href="#Sleep" title="Sleeps for the given time.">Sleep</a>&nbsp;
+<a href="#Sleep" title="Pauses the test executed for the given time.">Sleep</a>&nbsp;
 <a href="#Syslog" title="Logs the given message with the given level into syslog.">Syslog</a>&nbsp;
-<a href="#Variable Should Exist" title="Fails unless a variable with the given name exists within the current scope.">Variable&nbsp;Should&nbsp;Exist</a>&nbsp;
-<a href="#Variable Should Not Exist" title="Fails if the variable with the given name exists within the current scope.">Variable&nbsp;Should&nbsp;Not&nbsp;Exist</a>&nbsp;
+<a href="#Variable Should Exist" title="Fails unless the given variable exists within the current scope.">Variable&nbsp;Should&nbsp;Exist</a>&nbsp;
+<a href="#Variable Should Not Exist" title="Fails if the given variable exists within the current scope.">Variable&nbsp;Should&nbsp;Not&nbsp;Exist</a>&nbsp;
 <a href="#Wait Until Keyword Succeeds" title="Waits until the specified keyword succeeds or the given timeout expires.">Wait&nbsp;Until&nbsp;Keyword&nbsp;Succeeds</a>&nbsp;
 </div>
 
@@ -206,7 +206,7 @@ Examples:<br />
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">${str2} =</td>
 <td style="border: 1px solid gray; padding: 2px;">Catenate</td>
-<td style="border: 1px solid gray; padding: 2px;">SEPARATOR=-</td>
+<td style="border: 1px solid gray; padding: 2px;">SEPARATOR=---</td>
 <td style="border: 1px solid gray; padding: 2px;">Hello</td>
 <td style="border: 1px solid gray; padding: 2px;">world</td>
 </tr>
@@ -219,7 +219,7 @@ Examples:<br />
 </tr>
 </table>=&gt;<br />
 ${str1} = 'Hello world'<br />
-${str2} = 'Hello-world'<br />
+${str2} = 'Hello---world'<br />
 ${str3} = 'Helloworld'</td>
 </tr>
 <tr>
@@ -229,21 +229,25 @@ ${str3} = 'Helloworld'</td>
 <br />
 This keyword does nothing with the arguments it receives, but as they<br />
 are visible in the log, this keyword can be used to display simple<br />
-messages. In more complicated cases, the Log or Log Many keywords should<br />
-be used.</td>
+messages. In more complicated cases, the 'Log' or 'Log Many keywords'<br />
+should be used.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Boolean"></a>Convert To Boolean</td>
   <td class="arg">item</td>
-  <td class="doc">Converts the given item to Boolean.<br />
+  <td class="doc">Converts the given item to Boolean true or false.<br />
 <br />
-Handles also the strings 'True' and 'False' (case-insensitive) as<br />
-expected.</td>
+Handles strings 'True' and 'False' (case-insensitive) as expected,<br />
+otherwise returns item's truth value [1] using Python's 'bool' method.<br />
+<br />
+[1] <a href="http://docs.python.org/lib/truth.html">http://docs.python.org/lib/truth.html</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Integer"></a>Convert To Integer</td>
   <td class="arg">item</td>
-  <td class="doc">Converts the given item to an integer number.</td>
+  <td class="doc">Converts the given item to an integer number.<br />
+<br />
+Uses always long integers so there cannot be overflow.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Number"></a>Convert To Number</td>
@@ -253,9 +257,10 @@ expected.</td>
 <tr>
   <td class="kw"><a name="Convert To String"></a>Convert To String</td>
   <td class="arg">item</td>
-  <td class="doc">Converts the given item to a string.<br />
+  <td class="doc">Converts the given item to a Unicode string.<br />
 <br />
-Note that if the item is a Java object, its 'toString' method is called.</td>
+Uses '__unicode__' or '__str__' method with Python objects and<br />
+'toString' with Java objects.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Create List"></a>Create List</td>
@@ -263,8 +268,8 @@ Note that if the item is a Java object, its 'toString' method is called.</td>
   <td class="doc">Returns a list containing given items.<br />
 <br />
 The returned list can be assigned both to ${scalar} and @{list}<br />
-variables. The earlier can be used e.g. with Java keywords expecting an array as an<br />
-argument.<br />
+variables. The earlier can be used e.g. with Java keywords expecting<br />
+an array as an argument.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
@@ -276,7 +281,7 @@ Examples:<br />
 <td style="border: 1px solid gray; padding: 2px;">c</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">${scaler} =</td>
+<td style="border: 1px solid gray; padding: 2px;">${scalar} =</td>
 <td style="border: 1px solid gray; padding: 2px;">Create List</td>
 <td style="border: 1px solid gray; padding: 2px;">a</td>
 <td style="border: 1px solid gray; padding: 2px;">b</td>
@@ -315,18 +320,19 @@ ${dict} = { 'a':1, 'b':2, 'c':3 }</td>
 <tr>
   <td class="kw"><a name="Fail"></a>Fail</td>
   <td class="arg">msg=None</td>
-  <td class="doc">Fails the test immediately with the given message.</td>
+  <td class="doc">Fails the test immediately with the given (optional) message.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Length"></a>Get Length</td>
   <td class="arg">item</td>
   <td class="doc">Returns the length of the given item.<br />
 <br />
-The keyword first tries to get the length with the Python function 'len',<br />
-which calls the item's '__len__' method internally. If that fails, the<br />
-keyword tries to call the item's 'length' and 'size' methods directly.<br />
-The final attempt is trying to get the value of the item's 'length'<br />
-attribute. If all these attempts are unsuccessful, the keyword fails.<br />
+The keyword first tries to get the length with the Python function<br />
+'len', which calls the item's '__len__' method internally. If that<br />
+fails, the keyword tries to call the item's 'length' and 'size' methods<br />
+directly. The final attempt is trying to get the value of the item's<br />
+'length' attribute. If all these attempts are unsuccessful, the keyword<br />
+fails.<br />
 <br />
 New in Robot Framework version 1.8.2.</td>
 </tr>
@@ -338,13 +344,15 @@ New in Robot Framework version 1.8.2.</td>
 How time is returned is determined based on the given 'format' string<br />
 as follows. Note that all checks are case-insensitive.<br />
 <br />
-- If 'format' contains the word 'epoch', the time is returned in seconds<br />
-after the UNIX epoch. The return value is always an integer.<br />
+- If 'format' contains the word 'epoch', the time is returned in<br />
+seconds after the UNIX epoch. The return value is always an integer.<br />
+<br />
 - If 'format' contains any of the words 'year', 'month', 'day', 'hour',<br />
 'min', or 'sec', only the selected parts are returned. The order of<br />
 the returned parts is always the one in the previous sentence and the<br />
 order of words in 'format' is not significant. The parts are returned<br />
 as zero-padded strings (e.g. May -&gt; '05').<br />
+<br />
 - Otherwise (and by default) the time is returned as a timestamp string<br />
 in the format '2006-02-24 15:08:31'.<br />
 <br />
@@ -427,10 +435,10 @@ returned, if they contain the string exactly. This is the default.<br />
 it is always case-sensitive. In the pattern, '*' matches to anything<br />
 and '?' matches to any single character.<br />
 <br />
-2) Regular expression check is done using Python's 're' module which has<br />
-a pattern syntax derived from Perl and thus is also very similar to the<br />
-one in Java. See the following documents from more details about regexps<br />
-in general and their Python implementation in particular.<br />
+2) Regular expression check is done using Python's 're' module which<br />
+has a pattern syntax derived from Perl and thus is also very similar to<br />
+the one in Java. See the following documents from more details about<br />
+regexps in general and their Python implementation in particular.<br />
 <br />
 're' Module Documentation: <a href="http://docs.python.org/lib/module-re.html">http://docs.python.org/lib/module-re.html</a><br />
 Regular Expression HOWTO: <a href="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</a><br />
@@ -510,15 +518,15 @@ New in Robot Framework version 1.8.2.</td>
 <tr>
   <td class="kw"><a name="No Operation"></a>No Operation</td>
   <td class="arg"></td>
-  <td class="doc">No operation.</td>
+  <td class="doc">Does absolutely nothing.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Regexp Escape"></a>Regexp Escape</td>
   <td class="arg">*patterns</td>
   <td class="doc">Returns each argument string escaped for use as a regular expression.<br />
 <br />
-This keyword can be used to escape strings to be used with 'Should<br />
-Match Regexp' and 'Should Not Match Regexp' keywords.<br />
+This keyword can be used to escape strings to be used with<br />
+'Should Match Regexp' and 'Should Not Match Regexp' keywords.<br />
 <br />
 Escaping is done with Python's re.escape() function.<br />
 <br />
@@ -544,10 +552,9 @@ New in Robot Framework version 1.8.3.</td>
 <br />
 If the text contains undefined variables, this keyword fails.<br />
 <br />
-<br />
 Example:<br />
-The file 'template.txt' contains 'Hello ${NAME}!' and variable '${NAME}'<br />
-has the value 'Robot'.<br />
+The file 'template.txt' contains 'Hello ${NAME}!' and variable<br />
+'${NAME}' has the value 'Robot'.<br />
 <br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
 <tr>
@@ -581,10 +588,10 @@ another keyword or from the command line.</td>
   <td class="arg">expected_error, name, *args</td>
   <td class="doc">Runs the keyword and checks that the expected error occurred.<br />
 <br />
-The expected error must be given in the same format as in Robot Framework<br />
-reports. It can be a pattern containing characters '?', which matches to<br />
-any single character and '*'. which matches to any number of any<br />
-characters.<br />
+The expected error must be given in the same format as in Robot<br />
+Framework reports. It can be a pattern containing characters '?',<br />
+which matches to any single character and '*'. which matches to any<br />
+number of any characters.<br />
 <br />
 If the expected error occurs, the error message is returned and it can<br />
 be further processed/tested, if needed. If there is no error, or the<br />
@@ -621,8 +628,9 @@ Examples:<br />
   <td class="doc">Runs the given keyword with the given arguments and ignores possible error.<br />
 <br />
 This keyword returns two values, so that the first is either 'PASS' or<br />
-'FAIL', depending on the status of the executed keyword. The second value<br />
-is either the return value of the keyword or the received error message.<br />
+'FAIL', depending on the status of the executed keyword. The second<br />
+value is either the return value of the keyword or the received error<br />
+message.<br />
 <br />
 The keyword name and arguments work as in 'Run Keyword'.<br />
 <br />
@@ -670,8 +678,8 @@ New in Robot Framework version 1.8.3.</td>
   <td class="arg">name, *args</td>
   <td class="doc">Runs the given keyword with the given arguments, if all critical tests passed.<br />
 <br />
-This keyword can only be used in suite teardown. Trying to use it in any<br />
-other place will result in an error.<br />
+This keyword can only be used in suite teardown. Trying to use it in<br />
+any other place will result in an error.<br />
 <br />
 Otherwise, this keyword works exactly like 'Run Keyword', see its<br />
 documentation for more details.</td>
@@ -745,11 +753,11 @@ New in Robot Framework version 1.8.3.</td>
   <td class="arg">name, *values</td>
   <td class="doc">Makes a variable available globally in all tests and suites.<br />
 <br />
-Variables set with this keyword are globally available in all test cases<br />
-and suites executed after setting them. Setting variables with this<br />
-keyword thus has the same effect as creating from the command line<br />
-using the options --variable or --variablefile. Because this keyword<br />
-can change variables everywhere, it should be used with care.<br />
+Variables set with this keyword are globally available in all test<br />
+cases and suites executed after setting them. Setting variables with<br />
+this keyword thus has the same effect as creating from the command line<br />
+using the options '--variable' or '--variablefile'. Because this<br />
+keyword can change variables everywhere, it should be used with care.<br />
 <br />
 See 'Set Suite Variable' for more information and examples.</td>
 </tr>
@@ -773,8 +781,8 @@ logging).</td>
 Variables set with this keyword are available everywhere within the<br />
 scope of the currently executed test suite. Setting variables with this<br />
 keyword thus has the same effect as creating them using the Variable<br />
-table in the test data file or importing them from variable files. Other<br />
-test suites will not see variables set with this keyword.<br />
+table in the test data file or importing them from variable files.<br />
+Other test suites will not see variables set with this keyword.<br />
 <br />
 The variable name must be given either in the escaped format<br />
 (e.g. \${scalar} or \@{list}) or without curly braces (e.g. $scalar<br />
@@ -812,8 +820,8 @@ Examples:<br />
 Variables set with this keyword are available everywhere within the<br />
 scope of the currently executed test case. For example, if you set a<br />
 variable in a user keyword, it is available both in the test case level<br />
-and also in all other user keywords used in the current test. Other test<br />
-cases will not see variables set with this keyword.<br />
+and also in all other user keywords used in the current test. Other<br />
+test cases will not see variables set with this keyword.<br />
 <br />
 See 'Set Suite Variable' for more information and examples.</td>
 </tr>
@@ -914,8 +922,7 @@ New in Robot 1.8.2.</td>
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if the given objects are unequal.<br />
 <br />
-- If 'msg' is not given, the possible error message is<br />
-'first != second'.<br />
+- If 'msg' is not given, the error message is 'first != second'.<br />
 - If 'msg' is given and 'values' is either Boolean False or the<br />
 string 'False' or 'No Values', the error message is simply 'msg'.<br />
 - Otherwise the error message is 'msg: first != second'.</td>
@@ -955,7 +962,7 @@ decided based on the result. If a non-string item is given, the status<br />
 is got directly from its truth value as explained at<br />
 <a href="http://docs.python.org/lib/truth.html">http://docs.python.org/lib/truth.html</a>.<br />
 <br />
-The default error message ('&lt;expr&gt; should be true') maybe is not very<br />
+The default error message ('&lt;expr&gt; should be true') is not very<br />
 informative, but it can be overridden with the 'msg' argument.<br />
 <br />
 Examples:<br />
@@ -986,11 +993,26 @@ old keyword 'Fail Unless', which still continues to work.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Contain"></a>Should Contain</td>
-  <td class="arg">str1, str2, msg=None, values=True</td>
-  <td class="doc">Fails if the string 'str1' does not contain the string 'str2' one or more times.<br />
+  <td class="arg">item1, item2, msg=None, values=True</td>
+  <td class="doc">Fails if 'item1' does not contain 'item2' one or more times.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default<br />
-error message with 'msg' and 'values'.</td>
+Works with strings, lists, and anything that supports Python's 'in'<br />
+keyword. See 'Should Be Equal' for an explanation on how to override<br />
+the default error message with 'msg' and 'values'.<br />
+<br />
+Examples:<br />
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Should Contain</td>
+<td style="border: 1px solid gray; padding: 2px;">${output}</td>
+<td style="border: 1px solid gray; padding: 2px;">PASS</td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Should Contain</td>
+<td style="border: 1px solid gray; padding: 2px;">${some_list}</td>
+<td style="border: 1px solid gray; padding: 2px;">value</td>
+</tr>
+</table></td>
 </tr>
 <tr>
   <td class="kw"><a name="Should End With"></a>Should End With</td>
@@ -1017,10 +1039,10 @@ error message with 'msg' and 'values'.</td>
   <td class="arg">string, pattern, msg=None, values=True</td>
   <td class="doc">Fails if 'string' does not match 'pattern' as a regular expression.<br />
 <br />
-Regular expression check is done using the Python 're' module, which has<br />
-a pattern syntax derived from Perl, and thus also very similar to the<br />
-one in Java. See the following documents for more details about regexps<br />
-in general and Python implementation in particular.<br />
+Regular expression check is done using the Python 're' module, which<br />
+has a pattern syntax derived from Perl, and thus also very similar to<br />
+the one in Java. See the following documents for more details about<br />
+regexps in general and Python implementation in particular.<br />
 <br />
 * <a href="http://docs.python.org/lib/module-re.html">http://docs.python.org/lib/module-re.html</a><br />
 * <a href="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</a><br />
@@ -1031,23 +1053,24 @@ Things to note about the regexp syntax in Robot Framework test data:<br />
 backslaches in the pattern must thus be escaped with another backslash<br />
 (e.g. '\\d\\w+').<br />
 <br />
-2) Strings that may contain special characters, but should be handled as<br />
-literal strings, can be escaped with the 'Regexp Escape' keyword.<br />
+2) Strings that may contain special characters, but should be handled<br />
+as literal strings, can be escaped with the 'Regexp Escape' keyword.<br />
 <br />
-3) The given pattern does not need to match the whole string. For example,<br />
-the pattern 'ello' matches the string 'Hello world!'. If a full match is<br />
-needed, the '^' and '$' characters can be used to denote the beginning and<br />
-end of the string, respectively. For example, '^ello$' only matches the<br />
-exact string 'ello'.<br />
+3) The given pattern does not need to match the whole string. For<br />
+example, the pattern 'ello' matches the string 'Hello world!'. If<br />
+a full match is needed, the '^' and '$' characters can be used to<br />
+denote the beginning and end of the string, respectively. For example,<br />
+'^ello$' only matches the exact string 'ello'.<br />
 <br />
-4) Possible flags altering how the expression is parsed (e.g. re.IGNORECASE,<br />
-re.MULTILINE) can be set by prefixing the pattern with the '(?iLmsux)'<br />
-group (e.g. '(?im)pattern'). The available flags are 'IGNORECASE': 'i',<br />
-'MULTILINE': 'm', 'DOTALL': 's', 'VERBOSE': 'x', 'UNICODE': 'u', and<br />
-'LOCALE': 'L'.<br />
+4) Possible flags altering how the expression is parsed (e.g.<br />
+re.IGNORECASE, re.MULTILINE) can be set by prefixing the pattern with<br />
+the '(?iLmsux)' group (e.g. '(?im)pattern'). The available flags are<br />
+'IGNORECASE': 'i', 'MULTILINE': 'm', 'DOTALL': 's', 'VERBOSE': 'x',<br />
+'UNICODE': 'u', and 'LOCALE': 'L'.<br />
 <br />
-If this keyword passes, it returns the portion of the string that matched<br />
-the pattern. Additionally, the possible captured groups are returned.<br />
+If this keyword passes, it returns the portion of the string that<br />
+matched the pattern. Additionally, the possible captured groups are<br />
+returned.<br />
 <br />
 See the 'Should Be Equal' keyword for an explanation on how to override<br />
 the default error message with the 'msg' and 'values' arguments.<br />
@@ -1105,7 +1128,7 @@ New in Robot Framework version 1.8.2.</td>
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if the given objects are equal.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override gthe default<br />
+See 'Should Be Equal' for an explanation on how to override the default<br />
 error message with 'msg' and 'values'.</td>
 </tr>
 <tr>
@@ -1145,11 +1168,26 @@ old keyword 'Fail If', which still continues to work.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Contain"></a>Should Not Contain</td>
-  <td class="arg">str1, str2, msg=None, values=True</td>
-  <td class="doc">Fails if the string 'str1' contains the string 'str2' one or more times.<br />
+  <td class="arg">item1, item2, msg=None, values=True</td>
+  <td class="doc">Fails if 'item1' contains 'item2' one or more times.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default<br />
-error message with 'msg' and 'values'.</td>
+Works with strings, lists, and anything that supports Python's 'in'<br />
+keyword. See 'Should Be Equal' for an explanation on how to override<br />
+the default error message with 'msg' and 'values'.<br />
+<br />
+Examples:<br />
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Should Not Contain</td>
+<td style="border: 1px solid gray; padding: 2px;">${output}</td>
+<td style="border: 1px solid gray; padding: 2px;">FAILED</td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Should Not Contain</td>
+<td style="border: 1px solid gray; padding: 2px;">${some_list}</td>
+<td style="border: 1px solid gray; padding: 2px;">value</td>
+</tr>
+</table></td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not End With"></a>Should Not End With</td>
@@ -1197,7 +1235,7 @@ error message with 'msg' and 'values'.</td>
 <tr>
   <td class="kw"><a name="Sleep"></a>Sleep</td>
   <td class="arg">time, reason=None</td>
-  <td class="doc">Sleeps for the given time.<br />
+  <td class="doc">Pauses the test executed for the given time.<br />
 <br />
 'time' may be either a number or a time string. Time strings are in<br />
 a format such as '1 day 2 hours 3 minutes 4 seconds 5milliseconds' or<br />
@@ -1237,10 +1275,10 @@ Examples:<br />
 <tr>
   <td class="kw"><a name="Variable Should Exist"></a>Variable Should Exist</td>
   <td class="arg">name, msg=None</td>
-  <td class="doc">Fails unless a variable with the given name exists within the current scope.<br />
+  <td class="doc">Fails unless the given variable exists within the current scope.<br />
 <br />
-The variable name must be given in the escaped format, e.g. \${scalar} or<br />
-\@{list} to prevent it from being resolved. Alternatively, in this<br />
+The variable name must be given in the escaped format, e.g. \${scalar}<br />
+or \@{list} to prevent it from being resolved. Alternatively, in this<br />
 case, it is possible to give the variable name in a special format<br />
 without curly braces, e.g. $scalar or @list.<br />
 <br />
@@ -1249,7 +1287,7 @@ The default error message can be overridden with the 'msg' argument.</td>
 <tr>
   <td class="kw"><a name="Variable Should Not Exist"></a>Variable Should Not Exist</td>
   <td class="arg">name, msg=None</td>
-  <td class="doc">Fails if the variable with the given name exists within the current scope.<br />
+  <td class="doc">Fails if the given variable exists within the current scope.<br />
 <br />
 The variable name must be given in the escaped format, e.g. \${scalar}<br />
 or \@{list} to prevent it from being resolved. Alternatively, in this<br />
@@ -1287,7 +1325,7 @@ New in Robot Framework version 1.8.1.</td>
 </table>
 <p class="footer">
 Altogether 66 keywords.
-Documentation generated 20080801 16:45:30.
+Documentation generated 20080824 20:28:06.
 </p>
 </body>
 </html>
