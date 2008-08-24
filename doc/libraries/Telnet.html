@@ -54,8 +54,8 @@
 <h2>Introduction</h2>
 <p class='libdoc'>A test library providing Telnet connections and communicating with them.<br />
 <br />
-This library takes the optional arguments timeout, newline, regexp and<br />
-regexp_is_prompt. These are default values used when a new connection is<br />
+This library takes the optional arguments timeout, newline, prompt and<br />
+prompt_is_regexp. These are default values used when a new connection is<br />
 opened with the keyword 'Open', and they can be overridden. The purpose of<br />
 these parameters can be found from the documentation of 'Open'.<br />
 <br />
@@ -169,7 +169,7 @@ See 'Read' for more information on 'loglevel'.</td>
   <td class="doc">Logs in to the Telnet server with the given user information.<br />
 <br />
 The login keyword reads from the connection until login_prompt is<br />
-encountered and then types the username. Then it reads until<br />
+encountered and then types the user name. Then it reads until<br />
 password_prompt is encountered and types the password. The rest of the<br />
 output (if any) is also read, and all the text that has been read is<br />
 returned as a single string.<br />
@@ -494,7 +494,7 @@ New in Robot Framework version 1.8.2.</td>
 </table>
 <p class="footer">
 Altogether 16 keywords.
-Documentation generated 20080805 09:44:19.
+Documentation generated 20080825 02:27:11.
 </p>
 </body>
 </html>
