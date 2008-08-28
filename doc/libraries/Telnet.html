@@ -122,6 +122,7 @@ Examples (use only one of these):<br />
 <div class='links'>
 <a href="#Close All Connections" title="Closes all open connections and empties the connection cache.">Close&nbsp;All&nbsp;Connections</a>&nbsp;
 <a href="#Close Connection" title="Closes the current Telnet connection and returns any remaining output.">Close&nbsp;Connection</a>&nbsp;
+<a href="#Execute Command" title="Executes given command and reads and returns everything until prompt.">Execute&nbsp;Command</a>&nbsp;
 <a href="#Login" title="Logs in to the Telnet server with the given user information.">Login</a>&nbsp;
 <a href="#Open Connection" title="Opens a new Telnet connection to the given host and port.">Open&nbsp;Connection</a>&nbsp;
 <a href="#Read" title="Reads and returns/logs everything that is currently available in the output.">Read</a>&nbsp;
@@ -150,8 +151,8 @@ Examples (use only one of these):<br />
   <td class="arg"></td>
   <td class="doc">Closes all open connections and empties the connection cache.<br />
 <br />
-After this keyword, new indexes got from the 'Open' keyword are reset<br />
-to 1.<br />
+After this keyword, new indexes got from the 'Open Connection' keyword<br />
+are reset to 1.<br />
 <br />
 This keyword should be used in a test or suite teardown to make sure<br />
 all connections are closed.</td>
@@ -160,6 +161,35 @@ all connections are closed.</td>
   <td class="kw"><a name="Close Connection"></a>Close Connection</td>
   <td class="arg">loglevel=None</td>
   <td class="doc">Closes the current Telnet connection and returns any remaining output.<br />
+<br />
+See 'Read' for more information on 'loglevel'.</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Execute Command"></a>Execute Command</td>
+  <td class="arg">command, loglevel=None</td>
+  <td class="doc">Executes given command and reads and returns everything until prompt.<br />
+<br />
+This is a convenience keyword; following two are functionally identical:<br />
+<br />
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">${out} =</td>
+<td style="border: 1px solid gray; padding: 2px;">Execute Command</td>
+<td style="border: 1px solid gray; padding: 2px;">Some command</td>
+</tr>
+</table><br />
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Write</td>
+<td style="border: 1px solid gray; padding: 2px;">Some command</td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">${out} =</td>
+<td style="border: 1px solid gray; padding: 2px;">Read Until Prompt</td>
+</tr>
+</table><br />
+This keyword expects a prompt to be set, see 'Read Until Prompt' for<br />
+details.<br />
 <br />
 See 'Read' for more information on 'loglevel'.</td>
 </tr>
@@ -194,17 +224,17 @@ The optional alias is a name for the connection, and it can be used for<br />
 switching between connections, similarly as the index. See 'Switch<br />
 Connection' for more details about that.<br />
 <br />
-The timeout newline and prompt attributes got default values when the<br />
+The timeout, newline and prompt attributes got default values when the<br />
 library was taken into use, but they can be overridden for each opened<br />
 connection and also set after opening the connection using the<br />
 'Set Timeout', 'Set Newline' and 'Set Prompt' keywords.<br />
 <br />
 Timeout is used with keywords that start 'Read Until'. If the text they<br />
-are searching is not found within the timeout, the keywords fail.<br />
+are searching is not found within the timeout, those keywords fail.<br />
 <br />
 Newline is the newline character in the target system.<br />
 <br />
-Prompt is the prompt character of the taget system, and it can be given<br />
+Prompt is the prompt character of the target system, and it can be given<br />
 as a regular expression when promp_is_regexp is set to True.</td>
 </tr>
 <tr>
@@ -242,9 +272,9 @@ See 'Read' for more information on 'loglevel'.</td>
   <td class="arg">*expected</td>
   <td class="doc">Reads from the current output, until a match to a regexp in expected.<br />
 <br />
-Expected is a list of regular expressions, and keyword returns the text<br />
-up to and including the first match to any of the regular<br />
-expressions.<br />
+Expected is a list of regular expression patterns as strings, or compiled<br />
+regular expressions. The keyword returns the text up to and including<br />
+the first match to any of the regular expressions.<br />
 <br />
 If the last argument in *excpected is a valid log level, it is used<br />
 as 'loglevel' in the keyword 'Read'.<br />
@@ -325,9 +355,9 @@ Example:<br />
 'timeout' is given in Robot Framework's time format<br />
 (e.g. 1 minute 20 seconds).<br />
 <br />
-Read operations that expect some output to appear (Read Until, Read<br />
-Until Regexp, Read Until Prompt) use this timeout and fail if the<br />
-expected output has not appeared when this timeout expires.<br />
+Read operations that expect some output to appear ('Read Until',<br />
+'Read Until Regexp', 'Read Until Prompt') use this timeout and fail if<br />
+the expected output has not appeared when this timeout expires.<br />
 <br />
 The old timeout is returned and can be used to restore it later.<br />
 <br />
@@ -355,41 +385,51 @@ Example:<br />
   <td class="arg">index_or_alias</td>
   <td class="doc">Switches between active connections using an index or alias.<br />
 <br />
-The index is got from Open keywords, and an alias can be given to it.<br />
+The index is got from 'Open Connection' keyword, and an alias can be<br />
+given to it.<br />
+<br />
+Returns the index of previously active connection.<br />
 <br />
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Open</td>
+<td style="border: 1px solid gray; padding: 2px;">Open Connection</td>
 <td style="border: 1px solid gray; padding: 2px;">myhost.net</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
 <td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">Login</td>
 <td style="border: 1px solid gray; padding: 2px;">john</td>
 <td style="border: 1px solid gray; padding: 2px;">secret</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">Write</td>
 <td style="border: 1px solid gray; padding: 2px;">some command</td>
 <td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Open</td>
+<td style="border: 1px solid gray; padding: 2px;">Open Connection</td>
 <td style="border: 1px solid gray; padding: 2px;">yourhost.com</td>
 <td style="border: 1px solid gray; padding: 2px;">2nd conn</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">Login</td>
 <td style="border: 1px solid gray; padding: 2px;">root</td>
 <td style="border: 1px solid gray; padding: 2px;">password</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">Write</td>
 <td style="border: 1px solid gray; padding: 2px;">another cmd</td>
 <td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 <tr>
+<td style="border: 1px solid gray; padding: 2px;">${old index}=</td>
 <td style="border: 1px solid gray; padding: 2px;">Switch Connection</td>
 <td style="border: 1px solid gray; padding: 2px;">1</td>
 <td style="border: 1px solid gray; padding: 2px;"># index</td>
@@ -398,20 +438,30 @@ Example:<br />
 <td style="border: 1px solid gray; padding: 2px;">Write</td>
 <td style="border: 1px solid gray; padding: 2px;">something</td>
 <td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">Switch Connection</td>
 <td style="border: 1px solid gray; padding: 2px;">2nd conn</td>
 <td style="border: 1px solid gray; padding: 2px;"># alias</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">Write</td>
 <td style="border: 1px solid gray; padding: 2px;">whatever</td>
 <td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 2px;">Switch Connection</td>
+<td style="border: 1px solid gray; padding: 2px;">${old index}</td>
+<td style="border: 1px solid gray; padding: 2px;"># back to original again</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">[Teardown]</td>
 <td style="border: 1px solid gray; padding: 2px;">Close All Connections</td>
+<td style="border: 1px solid gray; padding: 2px;"></td>
 <td style="border: 1px solid gray; padding: 2px;"></td>
 </tr>
 </table><br />
@@ -423,7 +473,7 @@ index into a variable as shown below.<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
 <tr>
 <td style="border: 1px solid gray; padding: 2px;">${id} =</td>
-<td style="border: 1px solid gray; padding: 2px;">Open</td>
+<td style="border: 1px solid gray; padding: 2px;">Open Connection</td>
 <td style="border: 1px solid gray; padding: 2px;">myhost.net</td>
 </tr>
 <tr>
@@ -448,7 +498,9 @@ and returns it. The given text must not contain newlines.<br />
 <br />
 Note: This keyword does not return the possible output of the executed<br />
 command. To get the output, one of the 'Read XXX' keywords must be<br />
-used.</td>
+used.<br />
+<br />
+See 'Read' for more information on 'loglevel'.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Write Bare"></a>Write Bare</td>
@@ -493,8 +545,8 @@ New in Robot Framework version 1.8.2.</td>
 </tr>
 </table>
 <p class="footer">
-Altogether 16 keywords.
-Documentation generated 20080825 02:27:11.
+Altogether 17 keywords.
+Documentation generated 20080828 19:28:24.
 </p>
 </body>
 </html>
