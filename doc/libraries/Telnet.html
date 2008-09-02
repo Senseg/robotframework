@@ -16,11 +16,11 @@
     border: 1px solid black;
     border-collapse: collapse;
     empty-cells: show;
-    margin: 0px 1px;
+    margin: 0.3em 0em;
   }
   th, td {
     border: 1px solid black;
-    padding: 1px 5px;
+    padding: 0.2em;
   }
   th {
     background: #C6C6C6;
@@ -36,6 +36,7 @@
   }
   td.arg {
     width: 300px;
+    font-style: italic;
   }
   td.doc {
   }
@@ -45,7 +46,23 @@
   .libdoc, .links {
     width: 800px;
   }
-  /* 
+
+  /* Misc */
+  a.name, span.name {  
+    font-style: italic;
+    background: #f4f4f4;
+    text-decoration: none;
+  }
+  a:link, a:visited {
+    color: blue;
+  }
+  a:hover, a:active {
+    text-decoration: underline;
+    color: purple;
+  }
+  .footer {
+    font-size: 0.9em;
+  }
 </style>
 </head>
 <body>
@@ -54,67 +71,73 @@
 <h2>Introduction</h2>
 <p class='libdoc'>A test library providing Telnet connections and communicating with them.<br />
 <br />
-This library takes the optional arguments timeout, newline, prompt and<br />
-prompt_is_regexp. These are default values used when a new connection is<br />
-opened with the keyword 'Open', and they can be overridden. The purpose of<br />
-these parameters can be found from the documentation of 'Open'.<br />
+This library takes the optional arguments <span class="name">timeout</span>, <span class="name">newline</span>, <span class="name">prompt</span> and <span class="name">prompt_is_regexp</span>. These are default values used when a new connection is opened with the keyword <a href="#Open Connection" class="name">Open Connection</a>, and they can be overridden. The purpose of these parameters can be found from the documentation of <a href="#Open Connection" class="name">Open Connection</a>.<br />
 <br />
 Examples (use only one of these):<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Library</td>
-<td style="border: 1px solid gray; padding: 2px;">Telnet</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"># default values</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Setting</b></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Value</b></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Value</b></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Value</b></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Value</b></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Value</b></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Comment</b></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Library</td>
-<td style="border: 1px solid gray; padding: 2px;">Telnet</td>
-<td style="border: 1px solid gray; padding: 2px;">0.5</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"># set only timeout</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Library</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Telnet</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># default values</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Library</td>
-<td style="border: 1px solid gray; padding: 2px;">Telnet</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;">LF</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"># set only newline</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Library</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Telnet</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">0.5</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># set only timeout</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Library</td>
-<td style="border: 1px solid gray; padding: 2px;">Telnet</td>
-<td style="border: 1px solid gray; padding: 2px;">2.0</td>
-<td style="border: 1px solid gray; padding: 2px;">LF</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"># set timeout and newline</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Library</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Telnet</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">LF</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># set only newline</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Library</td>
-<td style="border: 1px solid gray; padding: 2px;">Telnet</td>
-<td style="border: 1px solid gray; padding: 2px;">2.0</td>
-<td style="border: 1px solid gray; padding: 2px;">LF</td>
-<td style="border: 1px solid gray; padding: 2px;">$</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"># set also prompt</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Library</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Telnet</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2.0</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">LF</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># set timeout and newline</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Library</td>
-<td style="border: 1px solid gray; padding: 2px;">Telnet</td>
-<td style="border: 1px solid gray; padding: 2px;">2.0</td>
-<td style="border: 1px solid gray; padding: 2px;">LF</td>
-<td style="border: 1px solid gray; padding: 2px;">($|~)</td>
-<td style="border: 1px solid gray; padding: 2px;">True</td>
-<td style="border: 1px solid gray; padding: 2px;"># set prompt with simple regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Library</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Telnet</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2.0</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">CRLF</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">$</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># set also prompt</td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Library</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Telnet</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2.0</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">LF</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">($|~)</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">True</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># set prompt with simple regexp</td>
 </tr>
 </table></p>
 
@@ -130,13 +153,13 @@ Examples (use only one of these):<br />
 <a href="#Read Until Prompt" title="Reads from the current output, until a prompt is found.">Read&nbsp;Until&nbsp;Prompt</a>&nbsp;
 <a href="#Read Until Regexp" title="Reads from the current output, until a match to a regexp in expected.">Read&nbsp;Until&nbsp;Regexp</a>&nbsp;
 <a href="#Set Default Log Level" title="Sets the default log level used by all read keywords.">Set&nbsp;Default&nbsp;Log&nbsp;Level</a>&nbsp;
-<a href="#Set Newline" title="Sets the newline used by the 'Write' keyword.">Set&nbsp;Newline</a>&nbsp;
-<a href="#Set Prompt" title="Sets the prompt used in this connection to 'prompt'.">Set&nbsp;Prompt</a>&nbsp;
+<a href="#Set Newline" title="Sets the newline used by the `Write` keyword.">Set&nbsp;Newline</a>&nbsp;
+<a href="#Set Prompt" title="Sets the prompt used in this connection to `prompt`.">Set&nbsp;Prompt</a>&nbsp;
 <a href="#Set Timeout" title="Sets the timeout used in read operations to the given value.">Set&nbsp;Timeout</a>&nbsp;
 <a href="#Switch Connection" title="Switches between active connections using an index or alias.">Switch&nbsp;Connection</a>&nbsp;
 <a href="#Write" title="Writes the given text over the connection and appends a newline.">Write</a>&nbsp;
 <a href="#Write Bare" title="Writes the given text over the connection without appending a newline.">Write&nbsp;Bare</a>&nbsp;
-<a href="#Write Until Expected Output" title="Writes the given text repeatedly, until 'expected' appears in the output.">Write&nbsp;Until&nbsp;Expected&nbsp;Output</a>&nbsp;
+<a href="#Write Until Expected Output" title="Writes the given text repeatedly, until `expected` appears in the output.">Write&nbsp;Until&nbsp;Expected&nbsp;Output</a>&nbsp;
 </div>
 
 <h2>Keywords</h2>
@@ -151,18 +174,16 @@ Examples (use only one of these):<br />
   <td class="arg"></td>
   <td class="doc">Closes all open connections and empties the connection cache.<br />
 <br />
-After this keyword, new indexes got from the 'Open Connection' keyword<br />
-are reset to 1.<br />
+After this keyword, new indexes got from the <a href="#Open Connection" class="name">Open Connection</a> keyword are reset to 1.<br />
 <br />
-This keyword should be used in a test or suite teardown to make sure<br />
-all connections are closed.</td>
+This keyword should be used in a test or suite teardown to make sure all connections are closed.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Close Connection"></a>Close Connection</td>
   <td class="arg">loglevel=None</td>
   <td class="doc">Closes the current Telnet connection and returns any remaining output.<br />
 <br />
-See 'Read' for more information on 'loglevel'.</td>
+See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Execute Command"></a>Execute Command</td>
@@ -171,43 +192,35 @@ See 'Read' for more information on 'loglevel'.</td>
 <br />
 This is a convenience keyword; following two are functionally identical:<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">${out} =</td>
-<td style="border: 1px solid gray; padding: 2px;">Execute Command</td>
-<td style="border: 1px solid gray; padding: 2px;">Some command</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${out} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Execute Command</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Some command</td>
 </tr>
 </table><br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Write</td>
-<td style="border: 1px solid gray; padding: 2px;">Some command</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Write</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Some command</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">${out} =</td>
-<td style="border: 1px solid gray; padding: 2px;">Read Until Prompt</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${out} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Read Until Prompt</td>
 </tr>
 </table><br />
-This keyword expects a prompt to be set, see 'Read Until Prompt' for<br />
-details.<br />
+This keyword expects a prompt to be set, see <a href="#Read Until Prompt" class="name">Read Until Prompt</a> for details.<br />
 <br />
-See 'Read' for more information on 'loglevel'.</td>
+See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Login"></a>Login</td>
   <td class="arg">username, password, login_prompt=login: , password_prompt=Password: </td>
   <td class="doc">Logs in to the Telnet server with the given user information.<br />
 <br />
-The login keyword reads from the connection until login_prompt is<br />
-encountered and then types the user name. Then it reads until<br />
-password_prompt is encountered and types the password. The rest of the<br />
-output (if any) is also read, and all the text that has been read is<br />
-returned as a single string.<br />
+The login keyword reads from the connection until login_prompt is encountered and then types the user name. Then it reads until password_prompt is encountered and types the password. The rest of the output (if any) is also read, and all the text that has been read is returned as a single string.<br />
 <br />
-If a prompt has been set to this connection, either with 'Open Connection'<br />
-or 'Set Prompt', this keyword reads the output until the prompt is<br />
-found. Otherwise, the keyword sleeps for a second and reads everything<br />
-that is available.</td>
+If a prompt has been set to this connection, either with <a href="#Open Connection" class="name">Open Connection</a> or <a href="#Set Prompt" class="name">Set Prompt</a>, this keyword reads the output until the prompt is found. Otherwise, the keyword sleeps for a second and reads everything that is available.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Open Connection"></a>Open Connection</td>
@@ -216,85 +229,62 @@ that is available.</td>
 <br />
 Possible already opened connections are cached.<br />
 <br />
-Returns the index of this connection, which can be used later to switch<br />
-back to the connection. The index starts from 1 and is reset back to it<br />
-when the 'Close All Connections' keyword is used.<br />
+Returns the index of this connection, which can be used later to switch back to the connection. The index starts from 1 and is reset back to it when the <a href="#Close All Connections" class="name">Close All Connections</a> keyword is used.<br />
 <br />
-The optional alias is a name for the connection, and it can be used for<br />
-switching between connections, similarly as the index. See 'Switch<br />
-Connection' for more details about that.<br />
+The optional <span class="name">alias</span> is a name for the connection, and it can be used for switching between connections, similarly as the index. See <a href="#Switch Connection" class="name">Switch Connection</a> for more details about that.<br />
 <br />
-The timeout, newline and prompt attributes got default values when the<br />
-library was taken into use, but they can be overridden for each opened<br />
-connection and also set after opening the connection using the<br />
-'Set Timeout', 'Set Newline' and 'Set Prompt' keywords.<br />
-<br />
-Timeout is used with keywords that start 'Read Until'. If the text they<br />
-are searching is not found within the timeout, those keywords fail.<br />
-<br />
-Newline is the newline character in the target system.<br />
-<br />
-Prompt is the prompt character of the target system, and it can be given<br />
-as a regular expression when promp_is_regexp is set to True.</td>
+The <span class="name">timeout</span>, <span class="name">newline</span>, <span class="name">prompt</span> and <span class="name">prompt_is_regexp</span> arguments got default values when the library is taken into use, but setting them here overrides those values for the opened connection. They can also be set after opening the connection using the <a href="#Set Timeout" class="name">Set Timeout</a>, <a href="#Set Newline" class="name">Set Newline</a> and <a href="#Set Prompt" class="name">Set Prompt</a> keywords. See these keywords for more information about possible values for these arguments.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Read"></a>Read</td>
   <td class="arg">loglevel=None</td>
   <td class="doc">Reads and returns/logs everything that is currently available in the output.<br />
 <br />
-The read message is always returned and logged. The default log level is<br />
-either 'INFO', or the level set with 'Set Default Log Level'.<br />
-'loglevel' can be used to override the default log level, and the<br />
-available levels are TRACE, DEBUG, INFO, and WARN.</td>
+The read message is always returned and logged. The default log level is either 'INFO', or the level set with <a href="#Set Default Log Level" class="name">Set Default Log Level</a>. &nbsp;<span class="name">loglevel</span> can be used to override the default log level, and the available levels are TRACE, DEBUG, INFO, and WARN.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Read Until"></a>Read Until</td>
   <td class="arg">expected, loglevel=None</td>
   <td class="doc">Reads from the current output, until expected is encountered.<br />
 <br />
-Text up to and including the match is returned. If no match is<br />
-found, the keyword fails.<br />
+Text up to and including the match is returned. If no match is found, the keyword fails.<br />
 <br />
-See 'Read' for more information on 'loglevel'.</td>
+See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Read Until Prompt"></a>Read Until Prompt</td>
   <td class="arg">loglevel=None</td>
   <td class="doc">Reads from the current output, until a prompt is found.<br />
 <br />
-The prompt must have been set, either in the Library import or at login<br />
-time, or by using the 'Set Prompt' keyword.<br />
+The prompt must have been set, either in the library import or at login time, or by using the <a href="#Set Prompt" class="name">Set Prompt</a> keyword.<br />
 <br />
-See 'Read' for more information on 'loglevel'.</td>
+See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Read Until Regexp"></a>Read Until Regexp</td>
   <td class="arg">*expected</td>
   <td class="doc">Reads from the current output, until a match to a regexp in expected.<br />
 <br />
-Expected is a list of regular expression patterns as strings, or compiled<br />
-regular expressions. The keyword returns the text up to and including<br />
-the first match to any of the regular expressions.<br />
+Expected is a list of regular expression patterns as strings, or compiled regular expressions. The keyword returns the text up to and including the first match to any of the regular expressions.<br />
 <br />
-If the last argument in *excpected is a valid log level, it is used<br />
-as 'loglevel' in the keyword 'Read'.<br />
+If the last argument in <span class="name">*expected</span> is a valid log level, it is used as <span class="name">loglevel</span> in the keyword <a href="#Read" class="name">Read</a>.<br />
 <br />
 Examples:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Read Until Regexp</td>
-<td style="border: 1px solid gray; padding: 2px;">(#|$)</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Read Until Regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">(#|$)</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Read Until Regexp</td>
-<td style="border: 1px solid gray; padding: 2px;">first_regexp</td>
-<td style="border: 1px solid gray; padding: 2px;">second_regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Read Until Regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">first_regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">second_regexp</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Read Until Regexp</td>
-<td style="border: 1px solid gray; padding: 2px;">some regexp</td>
-<td style="border: 1px solid gray; padding: 2px;">DEBUG</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Read Until Regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">some regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">DEBUG</td>
 </tr>
 </table></td>
 </tr>
@@ -303,47 +293,58 @@ Examples:<br />
   <td class="arg">level</td>
   <td class="doc">Sets the default log level used by all read keywords.<br />
 <br />
-The possible values are TRACE, DEBUG, INFO and WARN. The default is<br />
-INFO. The old value is returned and can be used to restore it later,<br />
-similarly as with 'Set Timeout'.</td>
+The possible values are TRACE, DEBUG, INFO and WARN. The default is INFO. The old value is returned and can be used to restore it later, similarly as with <a href="#Set Timeout" class="name">Set Timeout</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Newline"></a>Set Newline</td>
   <td class="arg">newline</td>
-  <td class="doc">Sets the newline used by the 'Write' keyword.<br />
+  <td class="doc">Sets the newline used by the <a href="#Write" class="name">Write</a> keyword.<br />
 <br />
-The old newline is returned and can be used to restore it later.<br />
-See 'Set Timeout' for an example.</td>
+Newline can be given either in escaped format using '\n' and '\r', or with special 'LF' and 'CR' syntax.<br />
+<br />
+Examples:<br />
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Newline</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">\n</td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Newline</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">CRLF</td>
+</tr>
+</table><br />
+Correct newline to use depends on the system and the default value is 'CRLF'.<br />
+<br />
+The old newline is returned and can be used to restore it later. See <a href="#Set Prompt" class="name">Set Prompt</a> or <a href="#Set Timeout" class="name">Set Timeout</a> for an example.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Prompt"></a>Set Prompt</td>
   <td class="arg">prompt, prompt_is_regexp=False</td>
-  <td class="doc">Sets the prompt used in this connection to 'prompt'.<br />
+  <td class="doc">Sets the prompt used in this connection to <span class="name">prompt</span>.<br />
 <br />
-If 'prompt_is_regexp' is a non-empty string, the given prompt is<br />
-considered to be a regular expression.<br />
+If <span class="name">prompt_is_regexp</span> is a non-empty string, the given prompt is considered to be a regular expression.<br />
 <br />
 The old prompt is returned and can be used to restore it later.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">${prompt}</td>
-<td style="border: 1px solid gray; padding: 2px;">${regexp} =</td>
-<td style="border: 1px solid gray; padding: 2px;">Set Prompt</td>
-<td style="border: 1px solid gray; padding: 2px;">$</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${prompt}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${regexp} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Prompt</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">$</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Do Something</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Do Something</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Set Prompt</td>
-<td style="border: 1px solid gray; padding: 2px;">${prompt}</td>
-<td style="border: 1px solid gray; padding: 2px;">${regexp}</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Prompt</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${prompt}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${regexp}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 </table></td>
 </tr>
@@ -352,31 +353,28 @@ Example:<br />
   <td class="arg">timeout</td>
   <td class="doc">Sets the timeout used in read operations to the given value.<br />
 <br />
-'timeout' is given in Robot Framework's time format<br />
-(e.g. 1 minute 20 seconds).<br />
+<span class="name">timeout</span> is given in Robot Framework's time format (e.g. 1 minute 20 seconds).<br />
 <br />
-Read operations that expect some output to appear ('Read Until',<br />
-'Read Until Regexp', 'Read Until Prompt') use this timeout and fail if<br />
-the expected output has not appeared when this timeout expires.<br />
+Read operations that expect some output to appear (<a href="#Read Until" class="name">Read Until</a>, <a href="#Read Until Regexp" class="name">Read Until Regexp</a>, <a href="#Read Until Prompt" class="name">Read Until Prompt</a>) use this timeout and fail if the expected output has not appeared when this timeout expires.<br />
 <br />
 The old timeout is returned and can be used to restore it later.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">${tout} =</td>
-<td style="border: 1px solid gray; padding: 2px;">Set Timeout</td>
-<td style="border: 1px solid gray; padding: 2px;">2 minute 30 seconds</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${tout} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Timeout</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2 minute 30 seconds</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Do Something</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Do Something</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Set Timeout</td>
-<td style="border: 1px solid gray; padding: 2px;">${tout}</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Timeout</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${tout}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 </table></td>
 </tr>
@@ -385,106 +383,102 @@ Example:<br />
   <td class="arg">index_or_alias</td>
   <td class="doc">Switches between active connections using an index or alias.<br />
 <br />
-The index is got from 'Open Connection' keyword, and an alias can be<br />
-given to it.<br />
+The index is got from <a href="#Open Connection" class="name">Open Connection</a> keyword, and an alias can be given to it.<br />
 <br />
 Returns the index of previously active connection.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Open Connection</td>
-<td style="border: 1px solid gray; padding: 2px;">myhost.net</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Open Connection</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">myhost.net</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Login</td>
-<td style="border: 1px solid gray; padding: 2px;">john</td>
-<td style="border: 1px solid gray; padding: 2px;">secret</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Login</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">john</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">secret</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Write</td>
-<td style="border: 1px solid gray; padding: 2px;">some command</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Write</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">some command</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Open Connection</td>
-<td style="border: 1px solid gray; padding: 2px;">yourhost.com</td>
-<td style="border: 1px solid gray; padding: 2px;">2nd conn</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Open Connection</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">yourhost.com</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2nd conn</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Login</td>
-<td style="border: 1px solid gray; padding: 2px;">root</td>
-<td style="border: 1px solid gray; padding: 2px;">password</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Login</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">root</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">password</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Write</td>
-<td style="border: 1px solid gray; padding: 2px;">another cmd</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Write</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">another cmd</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">${old index}=</td>
-<td style="border: 1px solid gray; padding: 2px;">Switch Connection</td>
-<td style="border: 1px solid gray; padding: 2px;">1</td>
-<td style="border: 1px solid gray; padding: 2px;"># index</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${old index}=</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Switch Connection</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">1</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># index</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Write</td>
-<td style="border: 1px solid gray; padding: 2px;">something</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Write</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">something</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Switch Connection</td>
-<td style="border: 1px solid gray; padding: 2px;">2nd conn</td>
-<td style="border: 1px solid gray; padding: 2px;"># alias</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Switch Connection</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2nd conn</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># alias</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Write</td>
-<td style="border: 1px solid gray; padding: 2px;">whatever</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Write</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">whatever</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Switch Connection</td>
-<td style="border: 1px solid gray; padding: 2px;">${old index}</td>
-<td style="border: 1px solid gray; padding: 2px;"># back to original again</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Switch Connection</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${old index}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># back to original again</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">[Teardown]</td>
-<td style="border: 1px solid gray; padding: 2px;">Close All Connections</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">[Teardown]</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Close All Connections</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 </table><br />
-The example above expects that there were no other open connections when<br />
-opening the first one, because it used index '1' when switching to the<br />
-connection later. If you are not sure about that, you can store the<br />
-index into a variable as shown below.<br />
+The example above expects that there were no other open connections when opening the first one, because it used index '1' when switching to the connection later. If you are not sure about that, you can store the index into a variable as shown below.<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">${id} =</td>
-<td style="border: 1px solid gray; padding: 2px;">Open Connection</td>
-<td style="border: 1px solid gray; padding: 2px;">myhost.net</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${id} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Open Connection</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">myhost.net</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;"># Do something ...</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># Do something ...</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Switch Connection</td>
-<td style="border: 1px solid gray; padding: 2px;">${id}</td>
-<td style="border: 1px solid gray; padding: 2px;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Switch Connection</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${id}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
 </table></td>
 </tr>
@@ -493,14 +487,11 @@ index into a variable as shown below.<br />
   <td class="arg">text, loglevel=None</td>
   <td class="doc">Writes the given text over the connection and appends a newline.<br />
 <br />
-Consumes the written text (until the appended newline) from the output<br />
-and returns it. The given text must not contain newlines.<br />
+Consumes the written text (until the appended newline) from the output and returns it. The given text must not contain newlines.<br />
 <br />
-Note: This keyword does not return the possible output of the executed<br />
-command. To get the output, one of the 'Read XXX' keywords must be<br />
-used.<br />
+Note: This keyword does not return the possible output of the executed command. To get the output, one of the <span class="name">Read XXX</span> keywords must be used.<br />
 <br />
-See 'Read' for more information on 'loglevel'.</td>
+See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Write Bare"></a>Write Bare</td>
@@ -512,41 +503,36 @@ Does not consume the written text.</td>
 <tr>
   <td class="kw"><a name="Write Until Expected Output"></a>Write Until Expected Output</td>
   <td class="arg">text, expected, timeout, retry_interval, loglevel=None</td>
-  <td class="doc">Writes the given text repeatedly, until 'expected' appears in the output.<br />
+  <td class="doc">Writes the given text repeatedly, until <span class="name">expected</span> appears in the output.<br />
 <br />
-'text' is written without appending a newline. 'retry_interval' defines<br />
-the time waited before writing 'text' again. 'text' is consumed<br />
-from the output before 'expected' is tried to be read.<br />
+<span class="name">text</span> is written without appending a newline. <span class="name">retry_interval</span> defines the time waited before writing <span class="name">text</span> again. <span class="name">text</span> is consumed from the output before <span class="name">expected</span> is tried to be read.<br />
 <br />
-If 'expected' does not appear in the output within 'timeout', this<br />
-keyword fails.<br />
+If <span class="name">expected</span> does not appear in the output within <span class="name">timeout</span>, this keyword fails.<br />
 <br />
-See 'Read' for more information on 'loglevel'.<br />
+See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; empty-cells: show;">
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">Write Until Expected Output</td>
-<td style="border: 1px solid gray; padding: 2px;">ps -ef| grep myprocess\n</td>
-<td style="border: 1px solid gray; padding: 2px;">myprocess</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Write Until Expected Output</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">ps -ef| grep myprocess\n</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">myprocess</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 2px;">...</td>
-<td style="border: 1px solid gray; padding: 2px;">5s</td>
-<td style="border: 1px solid gray; padding: 2px;">0.5s</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">...</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">5s</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em;">0.5s</td>
 </tr>
 </table><br />
-This writes the 'ps -ef | grep myprocess\n', until 'myprocess'<br />
-appears on the output. The command is written every 0.5 seconds and<br />
-the keyword ,fails if 'myprocess' does not appear in the output in<br />
-5 seconds.<br />
+This writes the 'ps -ef | grep myprocess\n', until 'myprocess' appears on the output. The command is written every 0.5 seconds and the keyword ,fails if 'myprocess' does not appear in the output in 5 seconds.<br />
 <br />
 New in Robot Framework version 1.8.2.</td>
 </tr>
 </table>
 <p class="footer">
-Altogether 17 keywords.
-Documentation generated 20080828 19:28:24.
+Altogether 17 keywords.<br />
+Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
+on 2008-09-02 20:44:46.
 </p>
 </body>
 </html>
