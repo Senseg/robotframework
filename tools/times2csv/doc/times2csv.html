@@ -462,12 +462,21 @@ and keyword execution times (start/end/elapsed time).</p>
 <div class="section" id="synopsis">
 <h1>Synopsis</h1>
 <pre class="literal-block">
-times2csv.py input-xml [output-csv]
+times2csv.py input-xml [output-csv] [include-items]
 </pre>
 </div>
 <div class="section" id="description">
 <h1>Description</h1>
-<p>This script reads the start, end, and elapsed times from all suites, tests and
+<p>This script reads start, end, and elapsed times from all suites, tests
+and/or keywords from the given output file, and writes them into an file
+in comma-separated-values (CSV) format. CSV files can then be further
+processed with spreadsheet programs. If the CSV output file is not
+given, its name is got from the input file by replacing the <span class="path">.xml</span>
+extension with <span class="path">.csv</span>. Include-items can be used for defining which
+items are written. Possible include values are suite, test and keyword and
+those are separated with -. For example when suites' and test cases'
+information is needed include-items needs to be suite-test.</p>
+<p>This script reads the start, end, and elapsed times from all suites, tests and/or
 keywords in the given Robot Framework output file and writes them into a file in the
 comma-separated-values (CSV) format. If the CSV output file is not given, its
 name is obtained from the input file by replacing the <span class="path">.xml</span> extension with
@@ -476,7 +485,7 @@ name is obtained from the input file by replacing the <span class="path">.xml</s
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2008-08-24 23:53 UTC.
+Generated on: 2008-09-02 12:03 UTC.
 
 </div>
 </body>
