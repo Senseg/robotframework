@@ -73,7 +73,7 @@
 <br />
 List keywords that do not alter given list can also be used with tuples, and to some extend also with other iterables.<br />
 <br />
-BuiltIn library has also some related keywords. 'Create List' can obviously be used for creating new lists, and 'Should Be Empty' and 'Should Not Be Empty' work both with lists and dictionaries.<br />
+BuiltIn library has also some related keywords. <span class="name">Create List</span> can obviously be used for creating new lists, and <span class="name">Should Be Empty</span> and <span class="name">Should Not Be Empty</span> work both with lists and dictionaries.<br />
 <br />
 All list keywords expect a scalar variable (e.g. ${list}) as an argument, and possible list variables (e.g. @{list}) must be converted to scalar variables first. The example below shows how to convert between them.<br />
 <br />
@@ -100,38 +100,38 @@ Dictionary keywords use similar ${Dx} variable. For example ${D1} means {'a': 1}
 
 <h2>Shortcuts</h2>
 <div class='links'>
-<a href="#Append To List" title="Adds 'values' to the end of L.">Append&nbsp;To&nbsp;List</a>&nbsp;
-<a href="#Combine Lists" title="Combines the given 'lists' together and returns the result.">Combine&nbsp;Lists</a>&nbsp;
-<a href="#Convert To List" title="Converts the given 'item' to a list.">Convert&nbsp;To&nbsp;List</a>&nbsp;
+<a href="#Append To List" title="Adds `values` to the end of `L`.">Append&nbsp;To&nbsp;List</a>&nbsp;
+<a href="#Combine Lists" title="Combines the given `lists` together and returns the result.">Combine&nbsp;Lists</a>&nbsp;
+<a href="#Convert To List" title="Converts the given `item` to a list.">Convert&nbsp;To&nbsp;List</a>&nbsp;
 <a href="#Copy Dictionary" title="Returns a copy of the given dictionary.">Copy&nbsp;Dictionary</a>&nbsp;
 <a href="#Copy List" title="Returns a copy of the given list.">Copy&nbsp;List</a>&nbsp;
-<a href="#Count Values In List" title="Returns the number of occurrences of the given value in L.">Count&nbsp;Values&nbsp;In&nbsp;List</a>&nbsp;
-<a href="#Create Dictionary" title="Creates and returns a dictionary from the given 'key_value_pairs'.">Create&nbsp;Dictionary</a>&nbsp;
+<a href="#Count Values In List" title="Returns the number of occurrences of the given `value` in `L`.">Count&nbsp;Values&nbsp;In&nbsp;List</a>&nbsp;
+<a href="#Create Dictionary" title="Creates and returns a dictionary from the given `key_value_pairs`.">Create&nbsp;Dictionary</a>&nbsp;
 <a href="#Dictionaries Should Be Equal" title="Fails if the given dictionaries are not equal.">Dictionaries&nbsp;Should&nbsp;Be&nbsp;Equal</a>&nbsp;
-<a href="#Dictionary Should Contain Key" title="Fails if 'key' is not found from 'dictionary'.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Key</a>&nbsp;
-<a href="#Dictionary Should Contain Sub Dictionary" title="Fails unless all items in 'dict2' are found from 'dict1.'">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Sub&nbsp;Dictionary</a>&nbsp;
-<a href="#Dictionary Should Contain Value" title="Fails if 'value' is not found from 'dictionary'.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Value</a>&nbsp;
-<a href="#Dictionary Should Not Contain Key" title="Fails if 'key' is found from 'dictionary'.">Dictionary&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Key</a>&nbsp;
-<a href="#Dictionary Should Not Contain Value" title="Fails if 'value' is found from 'dictionary'.">Dictionary&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Value</a>&nbsp;
-<a href="#Get Dictionary Items" title="Returns items of the given dictionary.">Get&nbsp;Dictionary&nbsp;Items</a>&nbsp;
-<a href="#Get Dictionary Keys" title="Returns keys of the given dictionary.">Get&nbsp;Dictionary&nbsp;Keys</a>&nbsp;
+<a href="#Dictionary Should Contain Key" title="Fails if `key` is not found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Key</a>&nbsp;
+<a href="#Dictionary Should Contain Sub Dictionary" title="Fails unless all items in `dict2` are found from `dict1`.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Sub&nbsp;Dictionary</a>&nbsp;
+<a href="#Dictionary Should Contain Value" title="Fails if `value` is not found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Value</a>&nbsp;
+<a href="#Dictionary Should Not Contain Key" title="Fails if `key` is found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Key</a>&nbsp;
+<a href="#Dictionary Should Not Contain Value" title="Fails if `value` is found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Value</a>&nbsp;
+<a href="#Get Dictionary Items" title="Returns items of the given `dictionary`.">Get&nbsp;Dictionary&nbsp;Items</a>&nbsp;
+<a href="#Get Dictionary Keys" title="Returns `keys` of the given `dictionary`.">Get&nbsp;Dictionary&nbsp;Keys</a>&nbsp;
 <a href="#Get Dictionary Values" title="Returns values of the given dictionary.">Get&nbsp;Dictionary&nbsp;Values</a>&nbsp;
-<a href="#Get From Dictionary" title="Returns a value from the given dictionary based on the given key.">Get&nbsp;From&nbsp;Dictionary</a>&nbsp;
-<a href="#Get From List" title="Returns the value specified with an index from L.">Get&nbsp;From&nbsp;List</a>&nbsp;
-<a href="#Get Index From List" title="Returns the index of the first occurrence of the value on the list.">Get&nbsp;Index&nbsp;From&nbsp;List</a>&nbsp;
-<a href="#Get Slice From List" title="Returns a slice of the given list between start and end indexes.">Get&nbsp;Slice&nbsp;From&nbsp;List</a>&nbsp;
-<a href="#Insert Into List" title="Inserts 'value' into 'L' to the position specified with 'index'.">Insert&nbsp;Into&nbsp;List</a>&nbsp;
-<a href="#Keep In Dictionary" title="Keeps the given keys in the dictionary and removes all other.">Keep&nbsp;In&nbsp;Dictionary</a>&nbsp;
-<a href="#List Should Contain Sub List" title="Fails if not all of the elements in L2 are found in L1.">List&nbsp;Should&nbsp;Contain&nbsp;Sub&nbsp;List</a>&nbsp;
-<a href="#List Should Contain Value" title="Fails if the value is not found from L.">List&nbsp;Should&nbsp;Contain&nbsp;Value</a>&nbsp;
-<a href="#List Should Not Contain Value" title="Fails if the value is not found from L.">List&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Value</a>&nbsp;
+<a href="#Get From Dictionary" title="Returns a value from the given `dictionary` based on the given `key`.">Get&nbsp;From&nbsp;Dictionary</a>&nbsp;
+<a href="#Get From List" title="Returns the value specified with an `index` from `L`.">Get&nbsp;From&nbsp;List</a>&nbsp;
+<a href="#Get Index From List" title="Returns the index of the first occurrence of the `value` on the list.">Get&nbsp;Index&nbsp;From&nbsp;List</a>&nbsp;
+<a href="#Get Slice From List" title="Returns a slice of the given list between `start` and `end` indexes.">Get&nbsp;Slice&nbsp;From&nbsp;List</a>&nbsp;
+<a href="#Insert Into List" title="Inserts `value` into `L` to the position specified with `index`.">Insert&nbsp;Into&nbsp;List</a>&nbsp;
+<a href="#Keep In Dictionary" title="Keeps the given `keys` in the `dictionary` and removes all other.">Keep&nbsp;In&nbsp;Dictionary</a>&nbsp;
+<a href="#List Should Contain Sub List" title="Fails if not all of the elements in `L2` are found in `L1`.">List&nbsp;Should&nbsp;Contain&nbsp;Sub&nbsp;List</a>&nbsp;
+<a href="#List Should Contain Value" title="Fails if the `value` is not found from `L`.">List&nbsp;Should&nbsp;Contain&nbsp;Value</a>&nbsp;
+<a href="#List Should Not Contain Value" title="Fails if the `value` is not found from `L`.">List&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Value</a>&nbsp;
 <a href="#Lists Should Be Equal" title="Fails if given lists are unequal.">Lists&nbsp;Should&nbsp;Be&nbsp;Equal</a>&nbsp;
-<a href="#Remove From Dictionary" title="Removes the given keys from the dictionary.">Remove&nbsp;From&nbsp;Dictionary</a>&nbsp;
-<a href="#Remove From List" title="Removes and returns the value specified with an index from L.">Remove&nbsp;From&nbsp;List</a>&nbsp;
-<a href="#Remove Values From List" title="Removes all occurences of given value(s) from L.">Remove&nbsp;Values&nbsp;From&nbsp;List</a>&nbsp;
+<a href="#Remove From Dictionary" title="Removes the given `keys` from the `dictionary`.">Remove&nbsp;From&nbsp;Dictionary</a>&nbsp;
+<a href="#Remove From List" title="Removes and returns the value specified with an `index` from `L`.">Remove&nbsp;From&nbsp;List</a>&nbsp;
+<a href="#Remove Values From List" title="Removes all occurences of given `values` from `L`.">Remove&nbsp;Values&nbsp;From&nbsp;List</a>&nbsp;
 <a href="#Reverse List" title="Reverses the given list in place.">Reverse&nbsp;List</a>&nbsp;
-<a href="#Set List Value" title="Sets the value of 'L' specified by 'index' to the given 'value'.">Set&nbsp;List&nbsp;Value</a>&nbsp;
-<a href="#Set To Dictionary" title="Adds the given 'key_value_pairs' to the dictionary.">Set&nbsp;To&nbsp;Dictionary</a>&nbsp;
+<a href="#Set List Value" title="Sets the value of `L` specified by `index` to the given `value`.">Set&nbsp;List&nbsp;Value</a>&nbsp;
+<a href="#Set To Dictionary" title="Adds the given `key_value_pairs` to the `dictionary`.">Set&nbsp;To&nbsp;Dictionary</a>&nbsp;
 <a href="#Sort List" title="Sorts the given list in place.">Sort&nbsp;List</a>&nbsp;
 </div>
 
@@ -145,7 +145,7 @@ Dictionary keywords use similar ${Dx} variable. For example ${D1} means {'a': 1}
 <tr>
   <td class="kw"><a name="Append To List"></a>Append To List</td>
   <td class="arg">L, *values</td>
-  <td class="doc">Adds 'values' to the end of L.<br />
+  <td class="doc">Adds <span class="name">values</span> to the end of <span class="name">L</span>.<br />
 <br />
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -170,7 +170,7 @@ Example:<br />
 <tr>
   <td class="kw"><a name="Combine Lists"></a>Combine Lists</td>
   <td class="arg">*lists</td>
-  <td class="doc">Combines the given 'lists' together and returns the result.<br />
+  <td class="doc">Combines the given <span class="name">lists</span> together and returns the result.<br />
 <br />
 The given lists are never altered by this keyword.<br />
 <br />
@@ -198,9 +198,9 @@ Example:<br />
 <tr>
   <td class="kw"><a name="Convert To List"></a>Convert To List</td>
   <td class="arg">item</td>
-  <td class="doc">Converts the given 'item' to a list.<br />
+  <td class="doc">Converts the given <span class="name">item</span> to a list.<br />
 <br />
-Mainly useful for converting tuples to lists. Use 'Create List' from the BuiltIn library for constructing new lists.</td>
+Mainly useful for converting tuples to lists. Use <span class="name">Create List</span> from the BuiltIn library for constructing new lists.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Copy Dictionary"></a>Copy Dictionary</td>
@@ -219,9 +219,9 @@ The given list is never altered by this keyword.</td>
 <tr>
   <td class="kw"><a name="Count Values In List"></a>Count Values In List</td>
   <td class="arg">L, value, start=0, end=None</td>
-  <td class="doc">Returns the number of occurrences of the given value in L.<br />
+  <td class="doc">Returns the number of occurrences of the given <span class="name">value</span> in <span class="name">L</span>.<br />
 <br />
-The search can be narrowed to the selected sublist by the 'start' and 'end' indexes having the same semantics as in the 'Get Slice From List' keyword. The given list is never altered by this keyword.<br />
+The search can be narrowed to the selected sublist by the <span class="name">start</span> and <span class="name">end</span> indexes having the same semantics as in the <a href="#Get Slice From List" class="name">Get Slice From List</a> keyword. The given list is never altered by this keyword.<br />
 <br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
@@ -237,7 +237,7 @@ The search can be narrowed to the selected sublist by the 'start' and 'end' inde
 <tr>
   <td class="kw"><a name="Create Dictionary"></a>Create Dictionary</td>
   <td class="arg">*key_value_pairs</td>
-  <td class="doc">Creates and returns a dictionary from the given 'key_value_pairs'.<br />
+  <td class="doc">Creates and returns a dictionary from the given <span class="name">key_value_pairs</span>.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -279,57 +279,57 @@ First the equality of dictionaries' keys is checked and after that all the key v
 <br />
 Following keys have different values: Key b: 2 != 4 Key c: 3 != 6<br />
 <br />
-See 'List Should Be Equal' for an explanation of 'msg'. The given dictionaries are never altered by this keyword.</td>
+See <a href="#Lists Should Be Equal" class="name">Lists Should Be Equal</a> for an explanation of <span class="name">msg</span>. The given dictionaries are never altered by this keyword.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Dictionary Should Contain Key"></a>Dictionary Should Contain Key</td>
   <td class="arg">dictionary, key, msg=None</td>
-  <td class="doc">Fails if 'key' is not found from 'dictionary'.<br />
+  <td class="doc">Fails if <span class="name">key</span> is not found from <span class="name">dictionary</span>.<br />
 <br />
-See 'List Should Contain Value' for an explanation of 'msg'.<br />
+See <a href="#List Should Contain Value" class="name">List Should Contain Value</a> for an explanation of <span class="name">msg</span>.<br />
 <br />
 The given dictionary is never altered by this keyword.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Dictionary Should Contain Sub Dictionary"></a>Dictionary Should Contain Sub Dictionary</td>
   <td class="arg">dict1, dict2, msg=None, values=True</td>
-  <td class="doc">Fails unless all items in 'dict2' are found from 'dict1.'<br />
+  <td class="doc">Fails unless all items in <span class="name">dict2</span> are found from <span class="name">dict1</span>.<br />
 <br />
-See 'Lists Should Be Equal' for an explanation of 'msg'. The given dictionaries are never altered by this keyword.</td>
+See <a href="#Lists Should Be Equal" class="name">Lists Should Be Equal</a> for an explanation of <span class="name">msg</span>. The given dictionaries are never altered by this keyword.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Dictionary Should Contain Value"></a>Dictionary Should Contain Value</td>
   <td class="arg">dictionary, value, msg=None</td>
-  <td class="doc">Fails if 'value' is not found from 'dictionary'.<br />
+  <td class="doc">Fails if <span class="name">value</span> is not found from <span class="name">dictionary</span>.<br />
 <br />
-See 'List Should Contain Value' for an explanation of 'msg'.<br />
+See <a href="#List Should Contain Value" class="name">List Should Contain Value</a> for an explanation of <span class="name">msg</span>.<br />
 <br />
 The given dictionary is never altered by this keyword.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Dictionary Should Not Contain Key"></a>Dictionary Should Not Contain Key</td>
   <td class="arg">dictionary, key, msg=None</td>
-  <td class="doc">Fails if 'key' is found from 'dictionary'.<br />
+  <td class="doc">Fails if <span class="name">key</span> is found from <span class="name">dictionary</span>.<br />
 <br />
-See 'List Should Contain Value' for an explanation of 'msg'.<br />
+See <a href="#List Should Contain Value" class="name">List Should Contain Value</a> for an explanation of <span class="name">msg</span>.<br />
 <br />
 The given dictionary is never altered by this keyword.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Dictionary Should Not Contain Value"></a>Dictionary Should Not Contain Value</td>
   <td class="arg">dictionary, value, msg=None</td>
-  <td class="doc">Fails if 'value' is found from 'dictionary'.<br />
+  <td class="doc">Fails if <span class="name">value</span> is found from <span class="name">dictionary</span>.<br />
 <br />
-See 'List Should Contain Value' for an explanation of 'msg'.<br />
+See <a href="#List Should Contain Value" class="name">List Should Contain Value</a> for an explanation of <span class="name">msg</span>.<br />
 <br />
 The given dictionary is never altered by this keyword.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Dictionary Items"></a>Get Dictionary Items</td>
   <td class="arg">dictionary</td>
-  <td class="doc">Returns items of the given dictionary.<br />
+  <td class="doc">Returns items of the given <span class="name">dictionary</span>.<br />
 <br />
-Items are returned sorted by keys. The given dictionary is never altered by this keyword.<br />
+Items are returned sorted by keys. The given <span class="name">dictionary</span> is never altered by this keyword.<br />
 <br />
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -344,9 +344,9 @@ Example:<br />
 <tr>
   <td class="kw"><a name="Get Dictionary Keys"></a>Get Dictionary Keys</td>
   <td class="arg">dictionary</td>
-  <td class="doc">Returns keys of the given dictionary.<br />
+  <td class="doc">Returns <span class="name">keys</span> of the given <span class="name">dictionary</span>.<br />
 <br />
-Keys are returned in sorted order. The given dictionary is never altered by this keyword.<br />
+<span class="name">Keys</span> are returned in sorted order. The given <span class="name">dictionary</span> is never altered by this keyword.<br />
 <br />
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -378,9 +378,9 @@ Example:<br />
 <tr>
   <td class="kw"><a name="Get From Dictionary"></a>Get From Dictionary</td>
   <td class="arg">dictionary, key</td>
-  <td class="doc">Returns a value from the given dictionary based on the given key.<br />
+  <td class="doc">Returns a value from the given <span class="name">dictionary</span> based on the given <span class="name">key</span>.<br />
 <br />
-If the given key cannot be found from the dictionary, this keyword fails.<br />
+If the given <span class="name">key</span> cannot be found from the <span class="name">dictionary</span>, this keyword fails.<br />
 <br />
 The given dictionary is never altered by this keyword.<br />
 <br />
@@ -398,7 +398,7 @@ Example:<br />
 <tr>
   <td class="kw"><a name="Get From List"></a>Get From List</td>
   <td class="arg">L, index</td>
-  <td class="doc">Returns the value specified with an index from L.<br />
+  <td class="doc">Returns the value specified with an <span class="name">index</span> from <span class="name">L</span>.<br />
 <br />
 The given list is never altered by this keyword.<br />
 <br />
@@ -428,9 +428,9 @@ Examples (including Python equivalents in comments):<br />
 <tr>
   <td class="kw"><a name="Get Index From List"></a>Get Index From List</td>
   <td class="arg">L, value, start=0, end=None</td>
-  <td class="doc">Returns the index of the first occurrence of the value on the list.<br />
+  <td class="doc">Returns the index of the first occurrence of the <span class="name">value</span> on the list.<br />
 <br />
-The search can be narrowed to the selected sublist by the 'start' and 'end' indexes having the same semantics as in the 'Get Slice From List' keyword. In case the value is not found, -1 is returned. The given list is never altered by this keyword.<br />
+The search can be narrowed to the selected sublist by the <span class="name">start</span> and <span class="name">end</span> indexes having the same semantics as in the <a href="#Get Slice From List" class="name">Get Slice From List</a> keyword. In case the value is not found, -1 is returned. The given list is never altered by this keyword.<br />
 <br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
@@ -446,13 +446,13 @@ The search can be narrowed to the selected sublist by the 'start' and 'end' inde
 <tr>
   <td class="kw"><a name="Get Slice From List"></a>Get Slice From List</td>
   <td class="arg">L, start=0, end=None</td>
-  <td class="doc">Returns a slice of the given list between start and end indexes.<br />
+  <td class="doc">Returns a slice of the given list between <span class="name">start</span> and <span class="name">end</span> indexes.<br />
 <br />
 The given list is never altered by this keyword.<br />
 <br />
-If both 'start' and 'end' are given, a sublist containing values from 'start' to 'end' is returned. This is the same as 'L[start:end]' in Python. To get all items from the beginning, use 0 as the start value, and to get all items until the end, use 'None' as the end value. 'None' is also a default value, so in this case, it is enough to give only 'start'. If only 'end' is given, 'start' gets the value 0.<br />
+If both <span class="name">start</span> and <span class="name">end</span> are given, a sublist containing values from <span class="name">start</span> to <span class="name">end</span> is returned. This is the same as 'L[start:end]' in Python. To get all items from the beginning, use 0 as the start value, and to get all items until the end, use 'None' as the end value. 'None' is also a default value, so in this case, it is enough to give only <span class="name">start</span>. If only <span class="name">end</span> is given, <span class="name">start</span> gets the value 0.<br />
 <br />
-Using 'start' or 'end' not found on the list is the same as using the largest (or smallest) available index.<br />
+Using <span class="name">start</span> or <span class="name">end</span> not found on the list is the same as using the largest (or smallest) available index.<br />
 <br />
 Examples (incl. Python equivelants in comments):<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -489,7 +489,7 @@ Examples (incl. Python equivelants in comments):<br />
 <tr>
   <td class="kw"><a name="Insert Into List"></a>Insert Into List</td>
   <td class="arg">L, index, value</td>
-  <td class="doc">Inserts 'value' into 'L' to the position specified with 'index'.<br />
+  <td class="doc">Inserts <span class="name">value</span> into <span class="name">L</span> to the position specified with <span class="name">index</span>.<br />
 <br />
 Index '0' adds the value into the first position, '1' to the second, and so on. Similarly, '-1' is the last position, '-2' second last, and so on. If the absolute value of the index is greater than the length of the list, the value is added at the end (positive index) or the beginning (negative index). An index can be given either as an integer or a string that can be converted to an integer.<br />
 <br />
@@ -514,9 +514,9 @@ Example:<br />
 <tr>
   <td class="kw"><a name="Keep In Dictionary"></a>Keep In Dictionary</td>
   <td class="arg">dictionary, *keys</td>
-  <td class="doc">Keeps the given keys in the dictionary and removes all other.<br />
+  <td class="doc">Keeps the given <span class="name">keys</span> in the <span class="name">dictionary</span> and removes all other.<br />
 <br />
-If the given key cannot be found from the dictionary, it is ignored.<br />
+If the given <span class="name">key</span> cannot be found from the <span class="name">dictionary</span>, it is ignored.<br />
 <br />
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -533,25 +533,25 @@ Example:<br />
 <tr>
   <td class="kw"><a name="List Should Contain Sub List"></a>List Should Contain Sub List</td>
   <td class="arg">L1, L2, msg=None, values=True</td>
-  <td class="doc">Fails if not all of the elements in L2 are found in L1.<br />
+  <td class="doc">Fails if not all of the elements in <span class="name">L2</span> are found in <span class="name">L1</span>.<br />
 <br />
 The order of values and the number of values are not taken into acount.<br />
 <br />
-See the use of 'msg' and 'values' from the 'List Should Be Equal' keyword.</td>
+See the use of <span class="name">msg</span> and <span class="name">values</span> from the <a href="#Lists Should Be Equal" class="name">Lists Should Be Equal</a> keyword.</td>
 </tr>
 <tr>
   <td class="kw"><a name="List Should Contain Value"></a>List Should Contain Value</td>
   <td class="arg">L, value, msg=None</td>
-  <td class="doc">Fails if the value is not found from L.<br />
+  <td class="doc">Fails if the <span class="name">value</span> is not found from <span class="name">L</span>.<br />
 <br />
-If 'msg' is not given, the default error message "[ a | b | c ] does not contain the value 'x'" is shown in case of a failure. Otherwise, the given 'msg' is used in case of a failure.</td>
+If <span class="name">msg</span> is not given, the default error message "[ a | b | c ] does not contain the value 'x'" is shown in case of a failure. Otherwise, the given <span class="name">msg</span> is used in case of a failure.</td>
 </tr>
 <tr>
   <td class="kw"><a name="List Should Not Contain Value"></a>List Should Not Contain Value</td>
   <td class="arg">L, value, msg=None</td>
-  <td class="doc">Fails if the value is not found from L.<br />
+  <td class="doc">Fails if the <span class="name">value</span> is not found from <span class="name">L</span>.<br />
 <br />
-See 'List Should Contain Value' for an explanation of 'msg'.</td>
+See <a href="#List Should Contain Value" class="name">List Should Contain Value</a> for an explanation of <span class="name">msg</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Lists Should Be Equal"></a>Lists Should Be Equal</td>
@@ -562,16 +562,16 @@ The first equality of lists' length is checked, and after that all values. If th
 <br />
 Lists are different: Index 0: 1 != 0 Index 2: 3 != 4<br />
 <br />
-- If 'msg' is not given, the possible error message is the default.<br />
-- If 'msg' is given and 'values' is either Boolean False or a string 'False' or 'No Values', the error message is simply 'msg'.<br />
-- Otherwise the error message is 'msg' + 'new line' + default.</td>
+- If <span class="name">msg</span> is not given, the possible error message is the default.<br />
+- If <span class="name">msg</span> is given and <span class="name">values</span> is either Boolean False or a string 'False' or 'No Values', the error message is simply <span class="name">msg</span>.<br />
+- Otherwise the error message is <span class="name">msg</span> + 'new line' + default.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Remove From Dictionary"></a>Remove From Dictionary</td>
   <td class="arg">dictionary, *keys</td>
-  <td class="doc">Removes the given keys from the dictionary.<br />
+  <td class="doc">Removes the given <span class="name">keys</span> from the <span class="name">dictionary</span>.<br />
 <br />
-If the given key cannot be found from the dictionary, it is ignored.<br />
+If the given <span class="name">key</span> cannot be found from the <span class="name">dictionary</span>, it is ignored.<br />
 <br />
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -588,7 +588,7 @@ Example:<br />
 <tr>
   <td class="kw"><a name="Remove From List"></a>Remove From List</td>
   <td class="arg">L, index</td>
-  <td class="doc">Removes and returns the value specified with an index from L.<br />
+  <td class="doc">Removes and returns the value specified with an <span class="name">index</span> from <span class="name">L</span>.<br />
 <br />
 Index '0' means the first position, '1' the second and so on. Similarly, '-1' is the last position, '-2' the second last, and so on. Using an index that does not exist on the list causes an error. The index can be either an integer or a string that can be converted to an integer.<br />
 <br />
@@ -607,7 +607,7 @@ Example:<br />
 <tr>
   <td class="kw"><a name="Remove Values From List"></a>Remove Values From List</td>
   <td class="arg">L, *values</td>
-  <td class="doc">Removes all occurences of given value(s) from L.<br />
+  <td class="doc">Removes all occurences of given <span class="name">values</span> from <span class="name">L</span>.<br />
 <br />
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -627,7 +627,7 @@ Example:<br />
   <td class="arg">L</td>
   <td class="doc">Reverses the given list in place.<br />
 <br />
-Note that the given list is changed and nothing is returned. Use 'Copy List' first, if you need to keep also the original order.<br />
+Note that the given list is changed and nothing is returned. Use <a href="#Copy List" class="name">Copy List</a> first, if you need to keep also the original order.<br />
 <br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
@@ -640,7 +640,7 @@ Note that the given list is changed and nothing is returned. Use 'Copy List' fir
 <tr>
   <td class="kw"><a name="Set List Value"></a>Set List Value</td>
   <td class="arg">L, index, value</td>
-  <td class="doc">Sets the value of 'L' specified by 'index' to the given 'value'.<br />
+  <td class="doc">Sets the value of <span class="name">L</span> specified by <span class="name">index</span> to the given <span class="name">value</span>.<br />
 <br />
 Index '0' means the first position, '1' the second and so on. Similarly, '-1' is the last position, '-2' second last, and so on. Using an index that does not exist on the list causes an error. The index can be either an integer or a string that can be converted to an integer.<br />
 <br />
@@ -658,7 +658,7 @@ Example:<br />
 <tr>
   <td class="kw"><a name="Set To Dictionary"></a>Set To Dictionary</td>
   <td class="arg">dictionary, *key_value_pairs</td>
-  <td class="doc">Adds the given 'key_value_pairs' to the dictionary.<br />
+  <td class="doc">Adds the given <span class="name">key_value_pairs</span> to the <span class="name">dictionary</span>.<br />
 <br />
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -678,7 +678,7 @@ Example:<br />
 <br />
 The strings are sorted alphabetically and the numbers numerically.<br />
 <br />
-Note that the given list is changed and nothing is returned. Use 'Copy List' first, if you need to keep also the original order.<br />
+Note that the given list is changed and nothing is returned. Use <a href="#Copy List" class="name">Copy List</a> first, if you need to keep also the original order.<br />
 <br />
 ${L} = [2,1,'a','c','b']<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -693,7 +693,7 @@ ${L} = [2,1,'a','c','b']<br />
 <p class="footer">
 Altogether 33 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2008-09-02 20:35:18.
+on 2008-09-03 18:23:49.
 </p>
 </body>
 </html>
