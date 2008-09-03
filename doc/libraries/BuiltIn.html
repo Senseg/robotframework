@@ -71,7 +71,7 @@
 <h2>Introduction</h2>
 <p class='libdoc'>BuiltIn library provides a set of often needed generic keywords.<br />
 <br />
-These keywords are available automatically without importing any library. They allow functionality for verifications (e.g. 'Should Be Equal'), conversions (e.g. 'Convert To Integer') and for various other purposes (e.g. 'Sleep', 'Run Keyword If').</p>
+These keywords are available automatically without importing any library. They allow functionality for verifications (e.g. <a href="#Should Be Equal" class="name">Should Be Equal</a>), conversions (e.g. <a href="#Convert To Integer" class="name">Convert To Integer</a>) and for various other purposes (e.g. <a href="#Sleep" class="name">Sleep</a>, <a href="#Run Keyword If" class="name">Run Keyword If</a>).</p>
 
 <h2>Shortcuts</h2>
 <div class='links'>
@@ -87,11 +87,11 @@ These keywords are available automatically without importing any library. They a
 <a href="#Fail" title="Fails the test immediately with the given (optional) message.">Fail</a>&nbsp;
 <a href="#Get Length" title="Returns the length of the given item.">Get&nbsp;Length</a>&nbsp;
 <a href="#Get Time" title="Returns the current time in the requested format.">Get&nbsp;Time</a>&nbsp;
-<a href="#Grep" title="Returns the text grepped using 'pattern'.">Grep</a>&nbsp;
+<a href="#Grep" title="Returns the text grepped using `pattern`.">Grep</a>&nbsp;
 <a href="#Import Library" title="Imports a library with the given name and optional arguments.">Import&nbsp;Library</a>&nbsp;
 <a href="#Import Variables" title="Imports a variable file with the given path and optional arguments.">Import&nbsp;Variables</a>&nbsp;
 <a href="#Length Should Be" title="Verifies that the length of the given item is correct.">Length&nbsp;Should&nbsp;Be</a>&nbsp;
-<a href="#Log" title="Logs the given message with the given level">Log</a>&nbsp;
+<a href="#Log" title="Logs the given message with the given level.">Log</a>&nbsp;
 <a href="#Log Many" title="Logs the given messages as separate entries with the INFO level.">Log&nbsp;Many</a>&nbsp;
 <a href="#Log Variables" title="Logs all variables in the current scope with given log level.">Log&nbsp;Variables</a>&nbsp;
 <a href="#No Operation" title="Does absolutely nothing.">No&nbsp;Operation</a>&nbsp;
@@ -100,42 +100,42 @@ These keywords are available automatically without importing any library. They a
 <a href="#Run Keyword" title="Executes the given keyword with the given arguments.">Run&nbsp;Keyword</a>&nbsp;
 <a href="#Run Keyword And Expect Error" title="Runs the keyword and checks that the expected error occurred.">Run&nbsp;Keyword&nbsp;And&nbsp;Expect&nbsp;Error</a>&nbsp;
 <a href="#Run Keyword And Ignore Error" title="Runs the given keyword with the given arguments and ignores possible error.">Run&nbsp;Keyword&nbsp;And&nbsp;Ignore&nbsp;Error</a>&nbsp;
-<a href="#Run Keyword If" title="Runs the given keyword with the given arguments, if 'expr' is true.">Run&nbsp;Keyword&nbsp;If</a>&nbsp;
+<a href="#Run Keyword If" title="Runs the given keyword with the given arguments, if `expr` is true.">Run&nbsp;Keyword&nbsp;If</a>&nbsp;
 <a href="#Run Keyword If All Critical Tests Passed" title="Runs the given keyword with the given arguments, if all critical tests passed.">Run&nbsp;Keyword&nbsp;If&nbsp;All&nbsp;Critical&nbsp;Tests&nbsp;Passed</a>&nbsp;
 <a href="#Run Keyword If All Tests Passed" title="Runs the given keyword with the given arguments, if all tests passed.">Run&nbsp;Keyword&nbsp;If&nbsp;All&nbsp;Tests&nbsp;Passed</a>&nbsp;
 <a href="#Run Keyword If Any Critical Tests Failed" title="Runs the given keyword with the given arguments, if any critical tests failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Any&nbsp;Critical&nbsp;Tests&nbsp;Failed</a>&nbsp;
 <a href="#Run Keyword If Any Tests Failed" title="Runs the given keyword with the given arguments, if one or more tests failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Any&nbsp;Tests&nbsp;Failed</a>&nbsp;
 <a href="#Run Keyword If Test Failed" title="Runs the given keyword with the given arguments, if the test failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Test&nbsp;Failed</a>&nbsp;
 <a href="#Run Keyword If Test Passed" title="Runs the given keyword with the given arguments, if the test passed.">Run&nbsp;Keyword&nbsp;If&nbsp;Test&nbsp;Passed</a>&nbsp;
-<a href="#Run Keyword Unless" title="Runs the given keyword with the given arguments, if 'expr' is false.">Run&nbsp;Keyword&nbsp;Unless</a>&nbsp;
+<a href="#Run Keyword Unless" title="Runs the given keyword with the given arguments, if `expr` is false.">Run&nbsp;Keyword&nbsp;Unless</a>&nbsp;
 <a href="#Set Global Variable" title="Makes a variable available globally in all tests and suites.">Set&nbsp;Global&nbsp;Variable</a>&nbsp;
 <a href="#Set Log Level" title="Sets the log threshold to the specified level and returns the old level.">Set&nbsp;Log&nbsp;Level</a>&nbsp;
 <a href="#Set Suite Variable" title="Makes a variable available everywhere within the scope of the current suite.">Set&nbsp;Suite&nbsp;Variable</a>&nbsp;
 <a href="#Set Test Variable" title="Makes a variable available everywhere within the scope of the current test.">Set&nbsp;Test&nbsp;Variable</a>&nbsp;
 <a href="#Set Variable" title="Returns the given arguments -- can be used to set variables.">Set&nbsp;Variable</a>&nbsp;
-<a href="#Set Variable If" title="If 'expr' is true, returns 'value1', and otherwise returns 'value2'.">Set&nbsp;Variable&nbsp;If</a>&nbsp;
+<a href="#Set Variable If" title="If `expr` is true, returns `value1`, and otherwise returns `value2`.">Set&nbsp;Variable&nbsp;If</a>&nbsp;
 <a href="#Should Be Empty" title="Verifies that the given item is empty.">Should&nbsp;Be&nbsp;Empty</a>&nbsp;
 <a href="#Should Be Equal" title="Fails if the given objects are unequal.">Should&nbsp;Be&nbsp;Equal</a>&nbsp;
 <a href="#Should Be Equal As Integers" title="Fails if objects are unequal after converting them to integers.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Integers</a>&nbsp;
 <a href="#Should Be Equal As Numbers" title="Fails if objects are unequal after converting them to real numbers.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>&nbsp;
 <a href="#Should Be Equal As Strings" title="Fails if objects are unequal after converting them to strings.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
 <a href="#Should Be True" title="Fails if the given expression (or item) is not true.">Should&nbsp;Be&nbsp;True</a>&nbsp;
-<a href="#Should Contain" title="Fails if 'item1' does not contain 'item2' one or more times.">Should&nbsp;Contain</a>&nbsp;
-<a href="#Should End With" title="Fails if the string 'str1' does not end with the string 'str2'.">Should&nbsp;End&nbsp;With</a>&nbsp;
-<a href="#Should Match" title="Fails unless the given 'string' matches the given 'pattern'.">Should&nbsp;Match</a>&nbsp;
-<a href="#Should Match Regexp" title="Fails if 'string' does not match 'pattern' as a regular expression.">Should&nbsp;Match&nbsp;Regexp</a>&nbsp;
+<a href="#Should Contain" title="Fails if `item1` does not contain `item2` one or more times.">Should&nbsp;Contain</a>&nbsp;
+<a href="#Should End With" title="Fails if the string `str1` does not end with the string `str2`.">Should&nbsp;End&nbsp;With</a>&nbsp;
+<a href="#Should Match" title="Fails unless the given `string` matches the given `pattern`.">Should&nbsp;Match</a>&nbsp;
+<a href="#Should Match Regexp" title="Fails if `string` does not match `pattern` as a regular expression.">Should&nbsp;Match&nbsp;Regexp</a>&nbsp;
 <a href="#Should Not Be Empty" title="Verifies that the given item is not empty.">Should&nbsp;Not&nbsp;Be&nbsp;Empty</a>&nbsp;
 <a href="#Should Not Be Equal" title="Fails if the given objects are equal.">Should&nbsp;Not&nbsp;Be&nbsp;Equal</a>&nbsp;
 <a href="#Should Not Be Equal As Integers" title="Fails if objects are equal after converting them to integers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Integers</a>&nbsp;
 <a href="#Should Not Be Equal As Numbers" title="Fails if objects are equal after converting them to real numbers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>&nbsp;
 <a href="#Should Not Be Equal As Strings" title="Fails if objects are equal after converting them to strings.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
 <a href="#Should Not Be True" title="Fails if the the given expression (or item) is true.">Should&nbsp;Not&nbsp;Be&nbsp;True</a>&nbsp;
-<a href="#Should Not Contain" title="Fails if 'item1' contains 'item2' one or more times.">Should&nbsp;Not&nbsp;Contain</a>&nbsp;
-<a href="#Should Not End With" title="Fails if the string 'str1' ends with the string 'str2'.">Should&nbsp;Not&nbsp;End&nbsp;With</a>&nbsp;
-<a href="#Should Not Match" title="Fails if the given 'string' matches the given 'pattern'.">Should&nbsp;Not&nbsp;Match</a>&nbsp;
-<a href="#Should Not Match Regexp" title="Fails if 'string' matches 'pattern' as a regular expression.">Should&nbsp;Not&nbsp;Match&nbsp;Regexp</a>&nbsp;
-<a href="#Should Not Start With" title="Fails if the string 'str1' starts with the string 'str2'.">Should&nbsp;Not&nbsp;Start&nbsp;With</a>&nbsp;
-<a href="#Should Start With" title="Fails if the string 'str1' does not start with the string 'str2'.">Should&nbsp;Start&nbsp;With</a>&nbsp;
+<a href="#Should Not Contain" title="Fails if `item1` contains `item2` one or more times.">Should&nbsp;Not&nbsp;Contain</a>&nbsp;
+<a href="#Should Not End With" title="Fails if the string `str1` ends with the string `str2`.">Should&nbsp;Not&nbsp;End&nbsp;With</a>&nbsp;
+<a href="#Should Not Match" title="Fails if the given `string` matches the given `pattern`.">Should&nbsp;Not&nbsp;Match</a>&nbsp;
+<a href="#Should Not Match Regexp" title="Fails if `string` matches `pattern` as a regular expression.">Should&nbsp;Not&nbsp;Match&nbsp;Regexp</a>&nbsp;
+<a href="#Should Not Start With" title="Fails if the string `str1` starts with the string `str2`.">Should&nbsp;Not&nbsp;Start&nbsp;With</a>&nbsp;
+<a href="#Should Start With" title="Fails if the string `str1` does not start with the string `str2`.">Should&nbsp;Start&nbsp;With</a>&nbsp;
 <a href="#Sleep" title="Pauses the test executed for the given time.">Sleep</a>&nbsp;
 <a href="#Syslog" title="Logs the given message with the given level into syslog.">Syslog</a>&nbsp;
 <a href="#Variable Should Exist" title="Fails unless the given variable exists within the current scope.">Variable&nbsp;Should&nbsp;Exist</a>&nbsp;
@@ -236,7 +236,7 @@ Examples:<br />
   <td class="arg">*messages</td>
   <td class="doc">Displays the given messages in the log file as keyword arguments.<br />
 <br />
-This keyword does nothing with the arguments it receives, but as they are visible in the log, this keyword can be used to display simple messages. In more complicated cases, the 'Log' or 'Log Many keywords' should be used.</td>
+This keyword does nothing with the arguments it receives, but as they are visible in the log, this keyword can be used to display simple messages. In more complicated cases, the <a href="#Log" class="name">Log</a> or <a href="#Log Many" class="name">Log Many</a> keywords should be used.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Boolean"></a>Convert To Boolean</td>
@@ -338,11 +338,11 @@ New in Robot Framework version 1.8.2.</td>
   <td class="arg">format=timestamp</td>
   <td class="doc">Returns the current time in the requested format.<br />
 <br />
-How time is returned is determined based on the given 'format' string as follows. Note that all checks are case-insensitive.<br />
+How time is returned is determined based on the given <span class="name">format</span> string as follows. Note that all checks are case-insensitive.<br />
 <br />
-- If 'format' contains the word 'epoch', the time is returned in seconds after the UNIX epoch. The return value is always an integer.<br />
+- If <span class="name">format</span> contains the word 'epoch', the time is returned in seconds after the UNIX epoch. The return value is always an integer.<br />
 <br />
-- If 'format' contains any of the words 'year', 'month', 'day', 'hour', 'min', or 'sec', only the selected parts are returned. The order of the returned parts is always the one in the previous sentence and the order of words in 'format' is not significant. The parts are returned as zero-padded strings (e.g. May -&gt; '05').<br />
+- If <span class="name">format</span> contains any of the words 'year', 'month', 'day', 'hour', 'min', or 'sec', only the selected parts are returned. The order of the returned parts is always the one in the previous sentence and the order of words in <span class="name">format</span> is not significant. The parts are returned as zero-padded strings (e.g. May -&gt; '05').<br />
 <br />
 - Otherwise (and by default) the time is returned as a timestamp string in the format '2006-02-24 15:08:31'.<br />
 <br />
@@ -395,20 +395,20 @@ Examples (expecting the current time is 2006-03-29 15:06:21):<br />
 - ${secs} = 1143637581<br />
 - ${year} = '2006'<br />
 - ${yyyy} = '2006', ${mm} = '03', ${dd} = '29'<br />
-- @{time} = [ '2006', '03', '29', '15', '06', '21' ]<br />
+- @{time} = ['2006', '03', '29', '15', '06', '21']<br />
 - ${y} = '2006'<br />
 - ${s} = '21'</td>
 </tr>
 <tr>
   <td class="kw"><a name="Grep"></a>Grep</td>
   <td class="arg">text, pattern, pattern_type=literal string</td>
-  <td class="doc">Returns the text grepped using 'pattern'.<br />
+  <td class="doc">Returns the text grepped using <span class="name">pattern</span>.<br />
 <br />
-'pattern_type' defines how the given pattern is interpreted, as explained below. It is case-insensitive and may contain other text. For example, 'regexp', 'REGEXP' and 'Pattern is a regexp' are all considered equal.<br />
+<span class="name">pattern_type</span> defines how the given pattern is interpreted, as explained below. It is case-insensitive and may contain other text. For example, 'regexp', 'REGEXP' and 'Pattern is a regexp' are all considered equal.<br />
 <br />
-- If 'pattern_type' contains either the string 'simple' or 'glob', the 'pattern' is considered a simple pattern and lines returned only if they match it. (1)<br />
-- If 'pattern_type' contains either the string 'regular expression' or 'regexp', the 'pattern' is considered a regular expression and only lines matching it returned. (2)<br />
-- If 'pattern_type' contains the string 'case insensitive', the 'pattern' is considered a literal string and lines returned, if they contain the string, regardless of the case.<br />
+- If <span class="name">pattern_type</span> contains either the string 'simple' or 'glob', the <span class="name">pattern</span> is considered a simple pattern and lines returned only if they match it. (1)<br />
+- If <span class="name">pattern_type</span> contains either the string 'regular expression' or 'regexp', the <span class="name">pattern</span> is considered a regular expression and only lines matching it returned. (2)<br />
+- If <span class="name">pattern_type</span> contains the string 'case insensitive', the <span class="name">pattern</span> is considered a literal string and lines returned, if they contain the string, regardless of the case.<br />
 - Otherwise the pattern is considered a literal string and lines returned, if they contain the string exactly. This is the default.<br />
 <br />
 1) Simple pattern matching is similar to matching files in a shell, and it is always case-sensitive. In the pattern, '*' matches to anything and '?' matches to any single character.<br />
@@ -455,14 +455,18 @@ The given path must be absolute and path separators ('/' or '\') must be set cor
   <td class="arg">item, length, msg=None</td>
   <td class="doc">Verifies that the length of the given item is correct.<br />
 <br />
-The length of the item is got using the 'Get Length' keyword. The default error message can be overridden with the 'msg' argument.<br />
+The length of the item is got using the <a href="#Get Length" class="name">Get Length</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.<br />
 <br />
 New in Robot Framework version 1.8.2.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Log"></a>Log</td>
   <td class="arg">message, level=INFO</td>
-  <td class="doc">Logs the given message with the given level</td>
+  <td class="doc">Logs the given message with the given level.<br />
+<br />
+Valid levels are TRACE, DEBUG, INFO (default), HTML and WARN.<br />
+<br />
+HTML level is special because it writes the message into the log file without escaping HTML code from it. For example logging a message like '&lt;img src="image.png"&gt;' with that level creates an image, but with other levels you see just that string. &nbsp;Logging HTML messages should be used with care, because invalid messages can corrupt the whole log file. &nbsp;The actual log level used for HTML messages is INFO.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Log Many"></a>Log Many</td>
@@ -484,7 +488,7 @@ New in Robot Framework version 1.8.2.</td>
   <td class="arg">*patterns</td>
   <td class="doc">Returns each argument string escaped for use as a regular expression.<br />
 <br />
-This keyword can be used to escape strings to be used with 'Should Match Regexp' and 'Should Not Match Regexp' keywords.<br />
+This keyword can be used to escape strings to be used with <a href="#Should Match Regexp" class="name">Should Match Regexp</a> and <a href="#Should Not Match Regexp" class="name">Should Not Match Regexp</a> keywords.<br />
 <br />
 Escaping is done with Python's re.escape() function.<br />
 <br />
@@ -578,18 +582,18 @@ Examples:<br />
 <br />
 This keyword returns two values, so that the first is either 'PASS' or 'FAIL', depending on the status of the executed keyword. The second value is either the return value of the keyword or the received error message.<br />
 <br />
-The keyword name and arguments work as in 'Run Keyword'.<br />
+The keyword name and arguments work as in <a href="#Run Keyword" class="name">Run Keyword</a>.<br />
 <br />
-See 'Run Keyword If' for a usage example.<br />
+See <a href="#Run Keyword If" class="name">Run Keyword If</a> for a usage example.<br />
 <br />
 Note: In versions prior to Robot Framework version 1.8.3, this keyword only returns the return value or error message of the executed keyword.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword If"></a>Run Keyword If</td>
   <td class="arg">expr, name, *args</td>
-  <td class="doc">Runs the given keyword with the given arguments, if 'expr' is true.<br />
+  <td class="doc">Runs the given keyword with the given arguments, if <span class="name">expr</span> is true.<br />
 <br />
-'expr' is evaluated in the same way as with the 'Should Be True' keyword.<br />
+The given <span class="name">expr</span> is evaluated similarly as with <a href="#Should Be True" class="name">Should Be True</a> keyword, and <span class="name">name</span> and <span class="name">*args</span> have same semantics as with <a href="#Run Keyword" class="name">Run Keyword</a>.<br />
 <br />
 Example, a simple if/else construct:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -623,7 +627,7 @@ New in Robot Framework version 1.8.3.</td>
 <br />
 This keyword can only be used in suite teardown. Trying to use it in any other place will result in an error.<br />
 <br />
-Otherwise, this keyword works exactly like 'Run Keyword', see its documentation for more details.</td>
+Otherwise, this keyword works exactly like <a href="#Run Keyword" class="name">Run Keyword</a>, see its documentation for more details.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword If All Tests Passed"></a>Run Keyword If All Tests Passed</td>
@@ -632,7 +636,7 @@ Otherwise, this keyword works exactly like 'Run Keyword', see its documentation 
 <br />
 This keyword can only be used in a suite teardown. Trying to use it anywhere else results in an error.<br />
 <br />
-Otherwise, this keyword works exactly like 'Run Keyword', see its documentation for more details.</td>
+Otherwise, this keyword works exactly like <a href="#Run Keyword" class="name">Run Keyword</a>, see its documentation for more details.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword If Any Critical Tests Failed"></a>Run Keyword If Any Critical Tests Failed</td>
@@ -641,7 +645,7 @@ Otherwise, this keyword works exactly like 'Run Keyword', see its documentation 
 <br />
 This keyword can only be used in a suite teardown. Trying to use it anywhere else results in an error.<br />
 <br />
-Otherwise, this keyword works exactly like 'Run Keyword', see its documentation for more details.</td>
+Otherwise, this keyword works exactly like <a href="#Run Keyword" class="name">Run Keyword</a>, see its documentation for more details.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword If Any Tests Failed"></a>Run Keyword If Any Tests Failed</td>
@@ -650,7 +654,7 @@ Otherwise, this keyword works exactly like 'Run Keyword', see its documentation 
 <br />
 This keyword can only be used in a suite teardown. Trying to use it anywhere else results in an error.<br />
 <br />
-Otherwise, this keyword works exactly like 'Run Keyword'; see its documentation for more details.</td>
+Otherwise, this keyword works exactly like <a href="#Run Keyword" class="name">Run Keyword</a>, see its documentation for more details.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword If Test Failed"></a>Run Keyword If Test Failed</td>
@@ -659,7 +663,7 @@ Otherwise, this keyword works exactly like 'Run Keyword'; see its documentation 
 <br />
 This keyword can only be used in a test teardown. Trying to use it anywhere else results in an error.<br />
 <br />
-Otherwise, this keyword works exactly like 'Run Keyword', see its documentation for more details.</td>
+Otherwise, this keyword works exactly like <a href="#Run Keyword" class="name">Run Keyword</a>, see its documentation for more details.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword If Test Passed"></a>Run Keyword If Test Passed</td>
@@ -668,14 +672,14 @@ Otherwise, this keyword works exactly like 'Run Keyword', see its documentation 
 <br />
 This keyword can only be used in a test teardown. Trying to use it anywhere else results in an error.<br />
 <br />
-Otherwise, this keyword works exactly like 'Run Keyword', see its documentation for more details.</td>
+Otherwise, this keyword works exactly like <a href="#Run Keyword" class="name">Run Keyword</a>, see its documentation for more details.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword Unless"></a>Run Keyword Unless</td>
   <td class="arg">expr, name, *args</td>
-  <td class="doc">Runs the given keyword with the given arguments, if 'expr' is false.<br />
+  <td class="doc">Runs the given keyword with the given arguments, if <span class="name">expr</span> is false.<br />
 <br />
-See 'Run Keyword If' for more information and an example.<br />
+See <a href="#Run Keyword If" class="name">Run Keyword If</a> for more information and an example.<br />
 <br />
 New in Robot Framework version 1.8.3.</td>
 </tr>
@@ -686,7 +690,7 @@ New in Robot Framework version 1.8.3.</td>
 <br />
 Variables set with this keyword are globally available in all test cases and suites executed after setting them. Setting variables with this keyword thus has the same effect as creating from the command line using the options '--variable' or '--variablefile'. Because this keyword can change variables everywhere, it should be used with care.<br />
 <br />
-See 'Set Suite Variable' for more information and examples.</td>
+See <a href="#Set Suite Variable" class="name">Set Suite Variable</a> for more information and examples.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Log Level"></a>Set Log Level</td>
@@ -725,7 +729,8 @@ Examples:<br />
 <td style="border: 1px solid gray; padding: 0.1em 0.3em;">\${ID}</td>
 <td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
 </tr>
-</table></td>
+</table><br />
+See also <a href="#Set Global Variable" class="name">Set Global Variable</a> and <a href="#Set Test Variable" class="name">Set Test Variable</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Test Variable"></a>Set Test Variable</td>
@@ -734,7 +739,7 @@ Examples:<br />
 <br />
 Variables set with this keyword are available everywhere within the scope of the currently executed test case. For example, if you set a variable in a user keyword, it is available both in the test case level and also in all other user keywords used in the current test. Other test cases will not see variables set with this keyword.<br />
 <br />
-See 'Set Suite Variable' for more information and examples.</td>
+See <a href="#Set Suite Variable" class="name">Set Suite Variable</a> for more information and examples.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Variable"></a>Set Variable</td>
@@ -779,14 +784,16 @@ Examples:<br />
 - ${var} = 'Hello'<br />
 - ${var1} = 'Hello' &amp; ${var2} = 'world'<br />
 - @{list} = ['Hi','again'] i.e. @{list}[0] = 'Hi' &amp; @{list}[1] = 'again'<br />
-- ${scal} = ['Hi','again']</td>
+- ${scal} = ['Hi','again']<br />
+<br />
+Variables created with this keyword are available only in the scope where they are created. See <a href="#Set Global Variable" class="name">Set Global Variable</a>, <a href="#Set Test Variable" class="name">Set Test Variable</a> and <a href="#Set Suite Variable" class="name">Set Suite Variable</a> for information how to set a variable so that it is available also in a larger scope.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Variable If"></a>Set Variable If</td>
   <td class="arg">expr, value1, value2=None</td>
-  <td class="doc">If 'expr' is true, returns 'value1', and otherwise returns 'value2'.<br />
+  <td class="doc">If <span class="name">expr</span> is true, returns <span class="name">value1</span>, and otherwise returns <span class="name">value2</span>.<br />
 <br />
-'expr' is evaluated as with the 'Should Be True' keyword.<br />
+<span class="name">expr</span> is evaluated as with the <a href="#Should Be True" class="name">Should Be True</a> keyword.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -823,7 +830,7 @@ New in Robot Framework version 1.8.3.</td>
   <td class="arg">item, msg=None</td>
   <td class="doc">Verifies that the given item is empty.<br />
 <br />
-The length of the item is got using the 'Get Length' keyword. The default error message can be overridden with the 'msg' argument.<br />
+The length of the item is got using the <a href="#Get Length" class="name">Get Length</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.<br />
 <br />
 New in Robot 1.8.2.</td>
 </tr>
@@ -832,39 +839,39 @@ New in Robot 1.8.2.</td>
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if the given objects are unequal.<br />
 <br />
-- If 'msg' is not given, the error message is 'first != second'.<br />
-- If 'msg' is given and 'values' is either Boolean False or the string 'False' or 'No Values', the error message is simply 'msg'.<br />
-- Otherwise the error message is 'msg: first != second'.</td>
+- If <span class="name">msg</span> is not given, the error message is 'first != second'.<br />
+- If <span class="name">msg</span> is given and <span class="name">values</span> is either Boolean False or the string 'False' or 'No Values', the error message is simply <span class="name">msg</span>.<br />
+- Otherwise the error message is '<span class="name">msg</span>: <span class="name">first</span> != <span class="name">second</span>'.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Be Equal As Integers"></a>Should Be Equal As Integers</td>
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if objects are unequal after converting them to integers.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Be Equal As Numbers"></a>Should Be Equal As Numbers</td>
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if objects are unequal after converting them to real numbers.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Be Equal As Strings"></a>Should Be Equal As Strings</td>
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if objects are unequal after converting them to strings.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Be True"></a>Should Be True</td>
   <td class="arg">expr, msg=None</td>
   <td class="doc">Fails if the given expression (or item) is not true.<br />
 <br />
-If 'expr' is a string (e.g. '${rc} &lt; 10'), it is evaluated as a Python expression using the built-in 'eval' function and the keyword status is decided based on the result. If a non-string item is given, the status is got directly from its truth value as explained at <a href="http://docs.python.org/lib/truth.html">http://docs.python.org/lib/truth.html</a>.<br />
+If <span class="name">expr</span> is a string (e.g. '${rc} &lt; 10'), it is evaluated as a Python expression using the built-in 'eval' function and the keyword status is decided based on the result. If a non-string item is given, the status is got directly from its truth value as explained at <a href="http://docs.python.org/lib/truth.html">http://docs.python.org/lib/truth.html</a>.<br />
 <br />
-The default error message ('&lt;expr&gt; should be true') is not very informative, but it can be overridden with the 'msg' argument.<br />
+The default error message ('&lt;expr&gt; should be true') is not very informative, but it can be overridden with the <span class="name">msg</span> argument.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -889,14 +896,14 @@ Examples:<br />
 <td style="border: 1px solid gray; padding: 0.1em 0.3em;"># Passes if ${list} is not empty</td>
 </tr>
 </table><br />
-New in Robot Framework version 1.8.3. This is intended to replace the old keyword 'Fail Unless', which still continues to work.</td>
+New in Robot Framework version 1.8.3. This is intended to replace the old keyword <span class="name">Fail Unless</span>, which still continues to work.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Contain"></a>Should Contain</td>
   <td class="arg">item1, item2, msg=None, values=True</td>
-  <td class="doc">Fails if 'item1' does not contain 'item2' one or more times.<br />
+  <td class="doc">Fails if <span class="name">item1</span> does not contain <span class="name">item2</span> one or more times.<br />
 <br />
-Works with strings, lists, and anything that supports Python's 'in' keyword. See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.<br />
+Works with strings, lists, and anything that supports Python's 'in' keyword. See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -915,23 +922,23 @@ Examples:<br />
 <tr>
   <td class="kw"><a name="Should End With"></a>Should End With</td>
   <td class="arg">str1, str2, msg=None, values=True</td>
-  <td class="doc">Fails if the string 'str1' does not end with the string 'str2'.<br />
+  <td class="doc">Fails if the string <span class="name">str1</span> does not end with the string <span class="name">str2</span>.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Match"></a>Should Match</td>
   <td class="arg">string, pattern, msg=None, values=True</td>
-  <td class="doc">Fails unless the given 'string' matches the given 'pattern'.<br />
+  <td class="doc">Fails unless the given <span class="name">string</span> matches the given <span class="name">pattern</span>.<br />
 <br />
 Pattern matching is similar as matching files in a shell, and it is always case-sensitive. In the pattern, '*' matches to anything and '?' matches to any single character.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Match Regexp"></a>Should Match Regexp</td>
   <td class="arg">string, pattern, msg=None, values=True</td>
-  <td class="doc">Fails if 'string' does not match 'pattern' as a regular expression.<br />
+  <td class="doc">Fails if <span class="name">string</span> does not match <span class="name">pattern</span> as a regular expression.<br />
 <br />
 Regular expression check is done using the Python 're' module, which has a pattern syntax derived from Perl, and thus also very similar to the one in Java. See the following documents for more details about regexps in general and Python implementation in particular.<br />
 <br />
@@ -942,7 +949,7 @@ Things to note about the regexp syntax in Robot Framework test data:<br />
 <br />
 1) Backslash is an escape character in the test data, and possible backslaches in the pattern must thus be escaped with another backslash (e.g. '\\d\\w+').<br />
 <br />
-2) Strings that may contain special characters, but should be handled as literal strings, can be escaped with the 'Regexp Escape' keyword.<br />
+2) Strings that may contain special characters, but should be handled as literal strings, can be escaped with the <a href="#Regexp Escape" class="name">Regexp Escape</a> keyword.<br />
 <br />
 3) The given pattern does not need to match the whole string. For example, the pattern 'ello' matches the string 'Hello world!'. If a full match is needed, the '^' and '$' characters can be used to denote the beginning and end of the string, respectively. For example, '^ello$' only matches the exact string 'ello'.<br />
 <br />
@@ -950,7 +957,7 @@ Things to note about the regexp syntax in Robot Framework test data:<br />
 <br />
 If this keyword passes, it returns the portion of the string that matched the pattern. Additionally, the possible captured groups are returned.<br />
 <br />
-See the 'Should Be Equal' keyword for an explanation on how to override the default error message with the 'msg' and 'values' arguments.<br />
+See the <a href="#Should Be Equal" class="name">Should Be Equal</a> keyword for an explanation on how to override the default error message with the <span class="name">msg</span> and <span class="name">values</span> arguments.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -995,7 +1002,7 @@ Examples:<br />
   <td class="arg">item, msg=None</td>
   <td class="doc">Verifies that the given item is not empty.<br />
 <br />
-The length of the item is got using the 'Get Length' keyword. The default error message can be overridden with the 'msg' argument.<br />
+The length of the item is got using the <a href="#Get Length" class="name">Get Length</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.<br />
 <br />
 New in Robot Framework version 1.8.2.</td>
 </tr>
@@ -1004,44 +1011,44 @@ New in Robot Framework version 1.8.2.</td>
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if the given objects are equal.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Be Equal As Integers"></a>Should Not Be Equal As Integers</td>
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if objects are equal after converting them to integers.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Be Equal As Numbers"></a>Should Not Be Equal As Numbers</td>
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if objects are equal after converting them to real numbers.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Be Equal As Strings"></a>Should Not Be Equal As Strings</td>
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if objects are equal after converting them to strings.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Be True"></a>Should Not Be True</td>
   <td class="arg">expr, msg=None</td>
   <td class="doc">Fails if the the given expression (or item) is true.<br />
 <br />
-See 'Should Be True' for details about how 'expr' is evaluated and 'msg' used to override the default error message.<br />
+See <a href="#Should Be True" class="name">Should Be True</a> for details about how <span class="name">expr</span> is evaluated and <span class="name">msg</span> used to override the default error message.<br />
 <br />
-New in Robot Framework version 1.8.3. This is intended to replace the old keyword 'Fail If', which still continues to work.</td>
+New in Robot Framework version 1.8.3. This is intended to replace the old keyword <span class="name">Fail If</span>, which still continues to work.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Contain"></a>Should Not Contain</td>
   <td class="arg">item1, item2, msg=None, values=True</td>
-  <td class="doc">Fails if 'item1' contains 'item2' one or more times.<br />
+  <td class="doc">Fails if <span class="name">item1</span> contains <span class="name">item2</span> one or more times.<br />
 <br />
-Works with strings, lists, and anything that supports Python's 'in' keyword. See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.<br />
+Works with strings, lists, and anything that supports Python's 'in' keyword. See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -1060,46 +1067,46 @@ Examples:<br />
 <tr>
   <td class="kw"><a name="Should Not End With"></a>Should Not End With</td>
   <td class="arg">str1, str2, msg=None, values=True</td>
-  <td class="doc">Fails if the string 'str1' ends with the string 'str2'.<br />
+  <td class="doc">Fails if the string <span class="name">str1</span> ends with the string <span class="name">str2</span>.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Match"></a>Should Not Match</td>
   <td class="arg">string, pattern, msg=None, values=True</td>
-  <td class="doc">Fails if the given 'string' matches the given 'pattern'.<br />
+  <td class="doc">Fails if the given <span class="name">string</span> matches the given <span class="name">pattern</span>.<br />
 <br />
 Pattern matching is similar as matching files in a shell, and it is always case-sensitive. In the pattern '*' matches to anything and '?' matches to any single character.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Match Regexp"></a>Should Not Match Regexp</td>
   <td class="arg">string, pattern, msg=None, values=True</td>
-  <td class="doc">Fails if 'string' matches 'pattern' as a regular expression.<br />
+  <td class="doc">Fails if <span class="name">string</span> matches <span class="name">pattern</span> as a regular expression.<br />
 <br />
-See 'Should Match Regexp' for more information about arguments.</td>
+See <a href="#Should Match Regexp" class="name">Should Match Regexp</a> for more information about arguments.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Start With"></a>Should Not Start With</td>
   <td class="arg">str1, str2, msg=None, values=True</td>
-  <td class="doc">Fails if the string 'str1' starts with the string 'str2'.<br />
+  <td class="doc">Fails if the string <span class="name">str1</span> starts with the string <span class="name">str2</span>.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Start With"></a>Should Start With</td>
   <td class="arg">str1, str2, msg=None, values=True</td>
-  <td class="doc">Fails if the string 'str1' does not start with the string 'str2'.<br />
+  <td class="doc">Fails if the string <span class="name">str1</span> does not start with the string <span class="name">str2</span>.<br />
 <br />
-See 'Should Be Equal' for an explanation on how to override the default error message with 'msg' and 'values'.</td>
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Sleep"></a>Sleep</td>
   <td class="arg">time, reason=None</td>
   <td class="doc">Pauses the test executed for the given time.<br />
 <br />
-'time' may be either a number or a time string. Time strings are in a format such as '1 day 2 hours 3 minutes 4 seconds 5milliseconds' or '1d 2h 3m 4s 5ms', and they are fully explained in an appendix of Robot Framework User Guide. Optional 'reason' can be used to explain why sleeping is necessary. Both the time slept and the reason are logged.<br />
+<span class="name">time</span> may be either a number or a time string. Time strings are in a format such as '1 day 2 hours 3 minutes 4 seconds 5milliseconds' or '1d 2h 3m 4s 5ms', and they are fully explained in an appendix of Robot Framework User Guide. Optional <span class="name">reason</span> can be used to explain why sleeping is necessary. Both the time slept and the reason are logged.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -1137,7 +1144,7 @@ Examples:<br />
 <br />
 The variable name must be given in the escaped format, e.g. \${scalar} or \@{list} to prevent it from being resolved. Alternatively, in this case, it is possible to give the variable name in a special format without curly braces, e.g. $scalar or @list.<br />
 <br />
-The default error message can be overridden with the 'msg' argument.</td>
+The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Variable Should Not Exist"></a>Variable Should Not Exist</td>
@@ -1146,16 +1153,16 @@ The default error message can be overridden with the 'msg' argument.</td>
 <br />
 The variable name must be given in the escaped format, e.g. \${scalar} or \@{list} to prevent it from being resolved. Alternatively, in this case, it is possible to give the variable name in the special format without curly braces, e.g. $scalar or @list.<br />
 <br />
-The default error message can be overridden with the 'msg' argument.</td>
+The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Wait Until Keyword Succeeds"></a>Wait Until Keyword Succeeds</td>
   <td class="arg">timeout, retry_interval, name, *args</td>
   <td class="doc">Waits until the specified keyword succeeds or the given timeout expires.<br />
 <br />
-'name' and 'args' define the keyword that is executed. If the specified keyword does not succeed within 'timeout', this keyword fails. 'retry_interval' is the time to wait before trying to run the keyword again after the previous run has failed.<br />
+<span class="name">name</span> and <span class="name">args</span> define the keyword that is executed similarly as with <a href="#Run Keyword" class="name">Run Keyword</a>. If the specified keyword does not succeed within <span class="name">timeout</span>, this keyword fails. <span class="name">retry_interval</span> is the time to wait before trying to run the keyword again after the previous run has failed.<br />
 <br />
-Both 'timeout' and 'retry_interval' must be given in Robot Framework's time format (e.g. '1 minute', '2 min 3 s', '4.5').<br />
+Both <span class="name">timeout</span> and <span class="name">retry_interval</span> must be given in Robot Framework's time format (e.g. '1 minute', '2 min 3 s', '4.5').<br />
 <br />
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
@@ -1174,7 +1181,7 @@ New in Robot Framework version 1.8.1.</td>
 <p class="footer">
 Altogether 66 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2008-09-02 20:35:18.
+on 2008-09-03 19:13:30.
 </p>
 </body>
 </html>
