@@ -101,26 +101,26 @@ These keywords are available automatically without importing any library. They a
 <a href="#Run Keyword" title="Executes the given keyword with the given arguments.">Run&nbsp;Keyword</a>&nbsp;
 <a href="#Run Keyword And Expect Error" title="Runs the keyword and checks that the expected error occurred.">Run&nbsp;Keyword&nbsp;And&nbsp;Expect&nbsp;Error</a>&nbsp;
 <a href="#Run Keyword And Ignore Error" title="Runs the given keyword with the given arguments and ignores possible error.">Run&nbsp;Keyword&nbsp;And&nbsp;Ignore&nbsp;Error</a>&nbsp;
-<a href="#Run Keyword If" title="Runs the given keyword with the given arguments, if `expr` is true.">Run&nbsp;Keyword&nbsp;If</a>&nbsp;
+<a href="#Run Keyword If" title="Runs the given keyword with the given arguments, if `condition` is true.">Run&nbsp;Keyword&nbsp;If</a>&nbsp;
 <a href="#Run Keyword If All Critical Tests Passed" title="Runs the given keyword with the given arguments, if all critical tests passed.">Run&nbsp;Keyword&nbsp;If&nbsp;All&nbsp;Critical&nbsp;Tests&nbsp;Passed</a>&nbsp;
 <a href="#Run Keyword If All Tests Passed" title="Runs the given keyword with the given arguments, if all tests passed.">Run&nbsp;Keyword&nbsp;If&nbsp;All&nbsp;Tests&nbsp;Passed</a>&nbsp;
 <a href="#Run Keyword If Any Critical Tests Failed" title="Runs the given keyword with the given arguments, if any critical tests failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Any&nbsp;Critical&nbsp;Tests&nbsp;Failed</a>&nbsp;
 <a href="#Run Keyword If Any Tests Failed" title="Runs the given keyword with the given arguments, if one or more tests failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Any&nbsp;Tests&nbsp;Failed</a>&nbsp;
 <a href="#Run Keyword If Test Failed" title="Runs the given keyword with the given arguments, if the test failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Test&nbsp;Failed</a>&nbsp;
 <a href="#Run Keyword If Test Passed" title="Runs the given keyword with the given arguments, if the test passed.">Run&nbsp;Keyword&nbsp;If&nbsp;Test&nbsp;Passed</a>&nbsp;
-<a href="#Run Keyword Unless" title="Runs the given keyword with the given arguments, if `expr` is false.">Run&nbsp;Keyword&nbsp;Unless</a>&nbsp;
+<a href="#Run Keyword Unless" title="Runs the given keyword with the given arguments, if `condition` is false.">Run&nbsp;Keyword&nbsp;Unless</a>&nbsp;
 <a href="#Set Global Variable" title="Makes a variable available globally in all tests and suites.">Set&nbsp;Global&nbsp;Variable</a>&nbsp;
 <a href="#Set Log Level" title="Sets the log threshold to the specified level and returns the old level.">Set&nbsp;Log&nbsp;Level</a>&nbsp;
 <a href="#Set Suite Variable" title="Makes a variable available everywhere within the scope of the current suite.">Set&nbsp;Suite&nbsp;Variable</a>&nbsp;
 <a href="#Set Test Variable" title="Makes a variable available everywhere within the scope of the current test.">Set&nbsp;Test&nbsp;Variable</a>&nbsp;
 <a href="#Set Variable" title="Returns the given arguments -- can be used to set variables.">Set&nbsp;Variable</a>&nbsp;
-<a href="#Set Variable If" title="If `expr` is true, returns `value1`, and otherwise returns `value2`.">Set&nbsp;Variable&nbsp;If</a>&nbsp;
+<a href="#Set Variable If" title="Sets variable based on the given condition.">Set&nbsp;Variable&nbsp;If</a>&nbsp;
 <a href="#Should Be Empty" title="Verifies that the given item is empty.">Should&nbsp;Be&nbsp;Empty</a>&nbsp;
 <a href="#Should Be Equal" title="Fails if the given objects are unequal.">Should&nbsp;Be&nbsp;Equal</a>&nbsp;
 <a href="#Should Be Equal As Integers" title="Fails if objects are unequal after converting them to integers.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Integers</a>&nbsp;
 <a href="#Should Be Equal As Numbers" title="Fails if objects are unequal after converting them to real numbers.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>&nbsp;
 <a href="#Should Be Equal As Strings" title="Fails if objects are unequal after converting them to strings.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
-<a href="#Should Be True" title="Fails if the given expression (or item) is not true.">Should&nbsp;Be&nbsp;True</a>&nbsp;
+<a href="#Should Be True" title="Fails if the given condition is not true.">Should&nbsp;Be&nbsp;True</a>&nbsp;
 <a href="#Should Contain" title="Fails if `item1` does not contain `item2` one or more times.">Should&nbsp;Contain</a>&nbsp;
 <a href="#Should End With" title="Fails if the string `str1` does not end with the string `str2`.">Should&nbsp;End&nbsp;With</a>&nbsp;
 <a href="#Should Match" title="Fails unless the given `string` matches the given `pattern`.">Should&nbsp;Match</a>&nbsp;
@@ -130,7 +130,7 @@ These keywords are available automatically without importing any library. They a
 <a href="#Should Not Be Equal As Integers" title="Fails if objects are equal after converting them to integers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Integers</a>&nbsp;
 <a href="#Should Not Be Equal As Numbers" title="Fails if objects are equal after converting them to real numbers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>&nbsp;
 <a href="#Should Not Be Equal As Strings" title="Fails if objects are equal after converting them to strings.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
-<a href="#Should Not Be True" title="Fails if the the given expression (or item) is true.">Should&nbsp;Not&nbsp;Be&nbsp;True</a>&nbsp;
+<a href="#Should Not Be True" title="Fails if the the given condition is true.">Should&nbsp;Not&nbsp;Be&nbsp;True</a>&nbsp;
 <a href="#Should Not Contain" title="Fails if `item1` contains `item2` one or more times.">Should&nbsp;Not&nbsp;Contain</a>&nbsp;
 <a href="#Should Not End With" title="Fails if the string `str1` ends with the string `str2`.">Should&nbsp;Not&nbsp;End&nbsp;With</a>&nbsp;
 <a href="#Should Not Match" title="Fails if the given `string` matches the given `pattern`.">Should&nbsp;Not&nbsp;Match</a>&nbsp;
@@ -161,39 +161,39 @@ The possible return value from the method is returned and can be assigned to a v
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Call Method</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${hashtable}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">put</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">myname</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">myvalue</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Call Method</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${hashtable}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">put</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">myname</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">myvalue</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${isempty} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Call Method</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${hashtable}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">isEmpty</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${isempty} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Call Method</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${hashtable}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">isEmpty</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Not Be True</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${isempty}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Not Be True</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${isempty}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${value} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Call Method</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${hashtable}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">get</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">myname</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${value} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Call Method</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${hashtable}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">get</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">myname</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Be Equal</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${value}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">myvalue</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Be Equal</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${value}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">myvalue</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 </table></td>
 </tr>
@@ -207,25 +207,25 @@ By default, items are catenated with spaces, but if the first item contains the 
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${str1} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Catenate</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Hello</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">world</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${str1} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Catenate</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Hello</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">world</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${str2} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Catenate</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">SEPARATOR=---</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Hello</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">world</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${str2} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Catenate</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">SEPARATOR=---</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Hello</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">world</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${str3} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Catenate</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">SEPARATOR=</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Hello</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">world</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${str3} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Catenate</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">SEPARATOR=</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Hello</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">world</td>
 </tr>
 </table>=&gt;<br />
 - ${str1} = 'Hello world'<br />
@@ -277,25 +277,25 @@ The returned list can be assigned both to ${scalar} and @{list} variables. The e
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{list} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Create List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">a</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">b</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">c</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">@{list} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Create List</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">a</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">b</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">c</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${scalar} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Create List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">a</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">b</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">c</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${scalar} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Create List</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">a</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">b</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">c</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${ints} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Create List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${2}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${3}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${ints} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Create List</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${1}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${2}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${3}</td>
 </tr>
 </table></td>
 </tr>
@@ -307,14 +307,14 @@ Examples:<br />
 Examples (expecting ${RC} is -1):<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${status} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Evaluate</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">0 &lt; ${RC} &lt; 10</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${status} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Evaluate</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">0 &lt; ${RC} &lt; 10</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${dict} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Evaluate</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">{ 'a':1, 'b':2, 'c':3 }</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${dict} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Evaluate</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">{ 'a':1, 'b':2, 'c':3 }</td>
 </tr>
 </table>=&gt;<br />
 - ${status} = False<br />
@@ -350,46 +350,46 @@ How time is returned is determined based on the given <span class="name">format<
 Examples (expecting the current time is 2006-03-29 15:06:21):<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${time} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${time} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Get Time</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${secs} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">epoch</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${secs} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Get Time</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">epoch</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${year} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">return year</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${year} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Get Time</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">return year</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${yyyy}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${mm}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${dd} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">year,month,day</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${yyyy}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${mm}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${dd} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Get Time</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">year,month,day</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{time} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">year month day hour min sec</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">@{time} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Get Time</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">year month day hour min sec</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${y}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${s} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">seconds and year</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${y}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${s} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Get Time</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">seconds and year</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 </table>=&gt;<br />
 - ${time} = '2006-03-29 15:06:21'<br />
@@ -438,16 +438,16 @@ The given path must be absolute and path separators ('/' or '\') must be set cor
 <br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Import Variables</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${CURDIR}${/}variables.py</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Import Variables</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${CURDIR}${/}variables.py</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Import Variables</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${CURDIR}${/}..${/}vars${/}env.py</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">arg1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">arg2</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Import Variables</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${CURDIR}${/}..${/}vars${/}env.py</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">arg1</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">arg2</td>
 </tr>
 </table></td>
 </tr>
@@ -496,14 +496,14 @@ Escaping is done with Python's re.escape() function.<br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${escaped} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Regexp Escape</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${original}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${escaped} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Regexp Escape</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${original}</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{strings} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Regexp Escape</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{strings}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">@{strings} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Regexp Escape</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">@{strings}</td>
 </tr>
 </table><br />
 New in Robot Framework version 1.8.3.</td>
@@ -519,19 +519,19 @@ Example: The file 'template.txt' contains 'Hello ${NAME}!' and variable '${NAME}
 <br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${template} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get File</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${CURDIR}${/}template.txt}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${template} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Get File</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${CURDIR}${/}template.txt}</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${message} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Replace Variables</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${template}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${message} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Replace Variables</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${template}</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Be Equal</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${message}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Hello Robot!</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Be Equal</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${message}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Hello Robot!</td>
 </tr>
 </table></td>
 </tr>
@@ -554,25 +554,25 @@ If the expected error occurs, the error message is returned and it can be furthe
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run Keyword And Expect Error</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">My error</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Some Keyword</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">arg1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">arg2</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Run Keyword And Expect Error</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">My error</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Some Keyword</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">arg1</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">arg2</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${msg} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run Keyword And Expect Error</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">*</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">My KW</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${msg} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Run Keyword And Expect Error</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">*</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">My KW</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Start With</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${msg}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Once upon a time in</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Start With</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${msg}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Once upon a time in</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 </table></td>
 </tr>
@@ -591,30 +591,30 @@ Note: In versions prior to Robot Framework version 1.8.3, this keyword only retu
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword If"></a>Run Keyword If</td>
-  <td class="arg">expr, name, *args</td>
-  <td class="doc">Runs the given keyword with the given arguments, if <span class="name">expr</span> is true.<br />
+  <td class="arg">condition, name, *args</td>
+  <td class="doc">Runs the given keyword with the given arguments, if <span class="name">condition</span> is true.<br />
 <br />
-The given <span class="name">expr</span> is evaluated similarly as with <a href="#Should Be True" class="name">Should Be True</a> keyword, and <span class="name">name</span> and <span class="name">*args</span> have same semantics as with <a href="#Run Keyword" class="name">Run Keyword</a>.<br />
+The given <span class="name">condition</span> is evaluated similarly as with <a href="#Should Be True" class="name">Should Be True</a> keyword, and <span class="name">name</span> and <span class="name">*args</span> have same semantics as with <a href="#Run Keyword" class="name">Run Keyword</a>.<br />
 <br />
 Example, a simple if/else construct:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${status}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${value} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run Keyword And Ignore Error</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">My Keyword</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${status}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${value} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Run Keyword And Ignore Error</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">My Keyword</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run Keyword If</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">'${status}' == 'PASS'</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Some Action</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Run Keyword If</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">'${status}' == 'PASS'</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Some Action</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run Keyword Unless</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">'${status}' == 'PASS'</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Another Action</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Run Keyword Unless</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">'${status}' == 'PASS'</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Another Action</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 </table><br />
 In this example, only either 'Some Action' or 'Another Action' is executed, based on the status of 'My Keyword'.<br />
@@ -677,8 +677,8 @@ Otherwise, this keyword works exactly like <a href="#Run Keyword" class="name">R
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword Unless"></a>Run Keyword Unless</td>
-  <td class="arg">expr, name, *args</td>
-  <td class="doc">Runs the given keyword with the given arguments, if <span class="name">expr</span> is false.<br />
+  <td class="arg">condition, name, *args</td>
+  <td class="doc">Runs the given keyword with the given arguments, if <span class="name">condition</span> is false.<br />
 <br />
 See <a href="#Run Keyword If" class="name">Run Keyword If</a> for more information and an example.<br />
 <br />
@@ -716,19 +716,19 @@ If a variable already exists within the new scope, its value will be overwritten
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Suite Variable</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">$GREET</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Hello, world!</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Suite Variable</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">$GREET</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Hello, world!</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${ID} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get ID</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${ID} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Get ID</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Suite Variable</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">\${ID}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Suite Variable</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">\${ID}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 </table><br />
 See also <a href="#Set Global Variable" class="name">Set Global Variable</a> and <a href="#Set Test Variable" class="name">Set Test Variable</a>.</td>
@@ -750,36 +750,36 @@ See <a href="#Set Suite Variable" class="name">Set Suite Variable</a> for more i
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${var} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Variable</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Hello</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${var} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Variable</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Hello</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${var1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${var2} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Variable</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Hello</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">world</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${var1}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${var2} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Variable</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Hello</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">world</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{list} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Variable</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Hi</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">again</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># list variable</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">@{list} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Variable</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Hi</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">again</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"># list variable</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${scal} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Variable</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Hi</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">again</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># scalar variable</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${scal} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Variable</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Hi</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">again</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"># scalar variable</td>
 </tr>
 </table>=&gt;<br />
 - ${var} = 'Hello'<br />
@@ -791,42 +791,97 @@ Variables created with this keyword are available only in the scope where they a
 </tr>
 <tr>
   <td class="kw"><a name="Set Variable If"></a>Set Variable If</td>
-  <td class="arg">expr, *values</td>
-  <td class="doc">If <span class="name">expr</span> is true, returns <span class="name">value1</span>, and otherwise returns <span class="name">value2</span>.<br />
+  <td class="arg">condition, *values</td>
+  <td class="doc">Sets variable based on the given condition.<br />
 <br />
-<span class="name">expr</span> is evaluated as with the <a href="#Should Be True" class="name">Should Be True</a> keyword.<br />
+The basic usage is giving a condition and two values. The given condition is first evaluated the same way as with the <a href="#Should Be True" class="name">Should Be True</a> keyword. If the condition is true, then the first value is returned, and otherwise the second value is returned. The second value can also be omitted, in which case it has a default value None. This usage is illustrated in the examples below, where ${rc} is assumed to be zero.<br />
 <br />
-Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${var1} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Variable If</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">1 &gt; 0</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">v1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">v2</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${var1} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Variable If</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} == 0</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">zero</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">nonzero</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${var2} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Variable If</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">False</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">v1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">v2</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${var2} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Variable If</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} &gt; 0</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">value1</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">value2</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${var3} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Variable If</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">1 &gt; 0 and False</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">v1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${var3} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Variable If</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} &gt; 0</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">whatever</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 </table>=&gt;<br />
-- ${var1} = 'v1'<br />
-- ${var2} = 'v2'<br />
+- ${var1} = 'zero'<br />
+- ${var2} = 'value2'<br />
 - ${var3} = None<br />
 <br />
-New in Robot Framework version 1.8.3.<br />
+It is also possible to have 'Else If' support by replacing the second value with another condition, and having two new values after it. &nbsp;If the first condition is not true, the second is evaluated and one of the values after it is returned based on its truth value. This can be continued by adding more conditions without a limit.<br />
 <br />
-TODO: Explain 'else if' functionality, mention nonex vars are ok.</td>
+<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${var} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Variable If</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} == 0</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">zero</td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">...</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} &gt; 0</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">greater than zero</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">less then zero</td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${var} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Set Variable If</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">...</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} == 0</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">zero</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">...</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} == 1</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">one</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">...</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} == 2</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">two</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">...</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} &gt; 2</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">greater than two</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+</tr>
+<tr>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">...</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} &lt; 0</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">less than zero</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
+</tr>
+</table><br />
+This keyword was added in Robot Framework version 1.8.3, and support for 'Else If' was added in 2.0.2.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Be Empty"></a>Should Be Empty</td>
@@ -869,34 +924,34 @@ See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanati
 </tr>
 <tr>
   <td class="kw"><a name="Should Be True"></a>Should Be True</td>
-  <td class="arg">expr, msg=None</td>
-  <td class="doc">Fails if the given expression (or item) is not true.<br />
+  <td class="arg">condition, msg=None</td>
+  <td class="doc">Fails if the given condition is not true.<br />
 <br />
-If <span class="name">expr</span> is a string (e.g. '${rc} &lt; 10'), it is evaluated as a Python expression using the built-in 'eval' function and the keyword status is decided based on the result. If a non-string item is given, the status is got directly from its truth value as explained at <a href="http://docs.python.org/lib/truth.html">http://docs.python.org/lib/truth.html</a>.<br />
+If <span class="name">condition</span> is a string (e.g. '${rc} &lt; 10'), it is evaluated as a Python expression using the built-in 'eval' function and the keyword status is decided based on the result. If a non-string item is given, the status is got directly from its truth value as explained at <a href="http://docs.python.org/lib/truth.html">http://docs.python.org/lib/truth.html</a>.<br />
 <br />
-The default error message ('&lt;expr&gt; should be true') is not very informative, but it can be overridden with the <span class="name">msg</span> argument.<br />
+The default error message ('&lt;condition&gt; should be true') is not very informative, but it can be overridden with the <span class="name">msg</span> argument.<br />
 <br />
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Be True</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${rc} &lt; 10</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Be True</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${rc} &lt; 10</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Be True</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">'${status}' == 'PASS'</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># Strings must be quoted</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Be True</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">'${status}' == 'PASS'</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"># Strings must be quoted</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Be True</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${number}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># Passes if ${number} is not zero</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Be True</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${number}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"># Passes if ${number} is not zero</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Be True</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${list}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># Passes if ${list} is not empty</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Be True</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${list}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"># Passes if ${list} is not empty</td>
 </tr>
 </table><br />
 New in Robot Framework version 1.8.3. This is intended to replace the old keyword <span class="name">Fail Unless</span>, which still continues to work.</td>
@@ -911,14 +966,14 @@ Works with strings, lists, and anything that supports Python's 'in' keyword. See
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Contain</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${output}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">PASS</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Contain</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${output}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">PASS</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Contain</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${some_list}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">value</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Contain</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${some_list}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">value</td>
 </tr>
 </table></td>
 </tr>
@@ -965,34 +1020,34 @@ See the <a href="#Should Be Equal" class="name">Should Be Equal</a> keyword for 
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Match Regexp</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${output}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">\\d{6}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># Output contains six numbers</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Match Regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${output}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">\\d{6}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"># Output contains six numbers</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Match Regexp</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${output}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">^\\d{6}$</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># Six numbers and nothing more</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Match Regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${output}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">^\\d{6}$</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"># Six numbers and nothing more</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${ret} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Match Regexp</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Foo: 42</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">(?i)foo: \\d+</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${ret} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Match Regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Foo: 42</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">(?i)foo: \\d+</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${match}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${group1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${group2} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${match}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${group1}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${group2} =</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">...</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Match Regexp</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Bar: 43</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">(Foo|Bar): (\\d+)</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">...</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Match Regexp</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Bar: 43</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">(Foo|Bar): (\\d+)</td>
 </tr>
 </table>=&gt;<br />
 - ${ret} = 'Foo: 42'<br />
@@ -1039,10 +1094,10 @@ See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanati
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Be True"></a>Should Not Be True</td>
-  <td class="arg">expr, msg=None</td>
-  <td class="doc">Fails if the the given expression (or item) is true.<br />
+  <td class="arg">condition, msg=None</td>
+  <td class="doc">Fails if the the given condition is true.<br />
 <br />
-See <a href="#Should Be True" class="name">Should Be True</a> for details about how <span class="name">expr</span> is evaluated and <span class="name">msg</span> used to override the default error message.<br />
+See <a href="#Should Be True" class="name">Should Be True</a> for details about how <span class="name">condition</span> is evaluated and how <span class="name">msg</span> can be used to override the default error message.<br />
 <br />
 New in Robot Framework version 1.8.3. This is intended to replace the old keyword <span class="name">Fail If</span>, which still continues to work.</td>
 </tr>
@@ -1056,14 +1111,14 @@ Works with strings, lists, and anything that supports Python's 'in' keyword. See
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Not Contain</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${output}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">FAILED</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Not Contain</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${output}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">FAILED</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Not Contain</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${some_list}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">value</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Should Not Contain</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">${some_list}</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">value</td>
 </tr>
 </table></td>
 </tr>
@@ -1114,24 +1169,24 @@ See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanati
 Examples:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Sleep</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">42</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Sleep</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">42</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Sleep</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">1.5</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Sleep</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">1.5</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Sleep</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2 minutes 10 seconds</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Sleep</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">2 minutes 10 seconds</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Sleep</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">10s</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Wait for a reply</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Sleep</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">10s</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Wait for a reply</td>
 </tr>
 </table></td>
 </tr>
@@ -1170,12 +1225,12 @@ Both <span class="name">timeout</span> and <span class="name">retry_interval</sp
 Example:<br />
 <table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Wait Until Keyword Succeeds</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2 min</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">5 sec</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">My keyword</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">arg1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">arg2</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">Wait Until Keyword Succeeds</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">2 min</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">5 sec</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">My keyword</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">arg1</td>
+<td style="border: 1px solid gray; padding: 0.1em 0.3em; height: 1.2em;">arg2</td>
 </tr>
 </table><br />
 New in Robot Framework version 1.8.1.</td>
@@ -1184,7 +1239,7 @@ New in Robot Framework version 1.8.1.</td>
 <p class="footer">
 Altogether 66 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2008-09-11 15:15:03.
+on 2008-09-12 14:57:22.
 </p>
 </body>
 </html>
