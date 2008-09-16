@@ -133,9 +133,15 @@ Example usage:<br />
 <td>${PATH}</td>
 <td>${TEMPDIR}/stuff</td>
 </tr>
+<tr>
+<td></td>
+<td>${output} =</td>
+<td>Run</td>
+<td>${CURDIR}${/}script.py arg</td>
+</tr>
 </table>
 <br />
-Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments always accept a forward slash as a path separator regardless the operating system. This only works if an argument is only a path, <b>not</b> if a path is part of an argument, like it often is with <a href="#Run" class="name">Run</a> and <a href="#Start Process" class="name">Start Process</a> keywords. In these cases, and with earlier versions, built-in variable ${/} can be used to keep the test data platform independent.</p>
+Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments accept a forward slash as a path separator regardless the operating system. This only works if an argument is only a path, <b>not if a path is part of an argument</b>, like it often is with <a href="#Run" class="name">Run</a> and <a href="#Start Process" class="name">Start Process</a> keywords. In these cases, and with earlier versions, built-in variable ${/} can be used to keep the test data platform independent.</p>
 
 <h2>Shortcuts</h2>
 <div class='links'>
@@ -176,7 +182,7 @@ Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments a
 <a href="#Remove Environment Variable" title="Deletes the specified environment variable.">Remove&nbsp;Environment&nbsp;Variable</a>&nbsp;
 <a href="#Remove File" title="Removes a file with the given path.">Remove&nbsp;File</a>&nbsp;
 <a href="#Remove Files" title="Uses `Remove File` to remove multiple files one-by-one.">Remove&nbsp;Files</a>&nbsp;
-<a href="#Run" title="Runs the given command in the system and returns the RC and/or stdout.">Run</a>&nbsp;
+<a href="#Run" title="Runs the given command in the system and returns the RC and/or output.">Run</a>&nbsp;
 <a href="#Run And Return Rc" title="Wrapper for `Run` keyword that returns only the return code.">Run&nbsp;And&nbsp;Return&nbsp;Rc</a>&nbsp;
 <a href="#Run And Return Rc And Output" title="Wrapper for the `Run` keyword that returns both the RC and stdout.">Run&nbsp;And&nbsp;Return&nbsp;Rc&nbsp;And&nbsp;Output</a>&nbsp;
 <a href="#Set Environment Variable" title="Sets an environment variable to a specified value.">Set&nbsp;Environment&nbsp;Variable</a>&nbsp;
@@ -670,16 +676,14 @@ Examples:<br />
 </tr>
 <tr>
   <td class="kw"><a name="Read Process Output"></a>Read Process Output</td>
-  <td class="arg">mode=None</td>
+  <td class="arg">mode=<deprecated></td>
   <td class="doc">Waits for the process to finish and returns its output.<br />
 <br />
-<span class="name">mode</span> defines which outputs are returned. If it contains 'stdout', the standard output is returned. If it contains 'stderr', the &nbsp;standard error is returned. If it contains 'stderr' and 'stdout' or 'both', the standard output and standard error are returned.<br />
-<br />
-If the <span class="name">mode</span> contains only 'stdout', but there are contents on stderr, this keyword fails.<br />
+In Robot Framework versions prior to 2.0.2 it was possible to read either the standard output, standard error or both. As mentioned in the documentation of <a href="#Start Process" class="name">Start Process</a>, the standard error is nowadays automatically redirected to the standard output. This keyword thus always returns all the output and <span class="name">mode</span> argument is ignored. &nbsp;As explained in <a href="#Run" class="name">Run</a> keyword, it is still possible to redirect the standard error, or output, using e.g. '2&gt;stderr.txt' after the command.<br />
 <br />
 Note that although the process is finished, it is not removed from the process list. Trying to read from a stopped process nevertheless fails. To reset the process list (and indexes and aliases), <a href="#Stop All Processes" class="name">Stop All Processes</a> must be used.<br />
 <br />
-See <a href="#Start Process" class="name">Start Process</a> and <a href="#Switch Process" class="name">Switch Process</a> for more information.</td>
+See <a href="#Start Process" class="name">Start Process</a> and <a href="#Switch Process" class="name">Switch Process</a> for more information and examples about running processes.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Remove Directory"></a>Remove Directory</td>
@@ -724,24 +728,26 @@ Example:<br />
 </tr>
 <tr>
   <td class="kw"><a name="Run"></a>Run</td>
-  <td class="arg">command, return_mode=stdout</td>
-  <td class="doc">Runs the given command in the system and returns the RC and/or stdout.<br />
+  <td class="arg">command, return_mode=output</td>
+  <td class="doc">Runs the given command in the system and returns the RC and/or output.<br />
 <br />
-The execution status of the command is NOT checked by this keyword. It can be done afterwards based on the return code (RC), standard output (stdout) or standard error (stderr). Documentation below explains how to control returning RC and stdout, and how to handle also stderr which is not caught by this keyword otherwise. Examples at the end illustrate few different possibilities for checking the outcome.<br />
+The execution status of the command <b>is not checked</b> by this keyword, and it must be done separately based on the return code (RC) or the returned output. Documentation below explains how to control returning RC and output, and examples at the end illustrate few different possibilities for checking the outcome.<br />
+<br />
+Starting from Robot Framework 2.0.2, the standard error stream is automatically redirected to the standard output stream by adding ' 2&gt;&amp;1' after the executed command. This is done mainly as a workaround for a bug in Jython that makes it hang if a lot of text is written to the standard error (<a href="http://bugs.jython.org/issue1124">http://bugs.jython.org/issue1124</a>), but it also makes possible errors in executing the command available automatically.<br />
+<br />
+The automatic redirection of the standard error is done only when the executed command does not contain additional output redirections. You can thus freely forward the standard error somewhere else, for example, like 'my_command 2&gt;stderr.txt'.<br />
 <br />
 <hr />
 <br />
-<span class="name">return_mode</span> defines how the return code (RC) and the standard output (stdout) are returned as explained below. All checks are case-insensitive.<br />
+<span class="name">return_mode</span> defines whether the RC, output or both is retured. All checks explained below are case-insensitive.<br />
 <br />
-- If <span class="name">return_mode</span> contains the word 'RC' and either the word 'stdout' or 'output', both the RC and stdout are returned.<br />
+- If <span class="name">return_mode</span> contains the word 'RC' and the word 'output', both the RC and output are returned.<br />
 - Otherwise, if it contains the word 'RC', only the RC is returned.<br />
-- Otherwise, and by default, only the stdout is returned.<br />
+- Otherwise, and by default, only the output is returned.<br />
 <br />
 The RC is returned as a positive integer in range from 0 to 255 as returned by the executed command. On some operating systems (notable Windows) original return codes can be something else, but this keyword always maps them to the 0-255 range. Since the RC is an integer, it must be checked e.g. with the keyword <span class="name">Should Be Equal As Integers</span> instead of <span class="name">Should Be Equal</span> (both are built-in keywords).<br />
 <br />
-The returned output contains everything written into the stdout by the command. Many commands add an extra newline (\n) after the output to make it easier to read in the console. To ease processing the returned output, Robot Framework strips this possible newline.<br />
-<br />
-The possible standard error (stderr) from the executed command is NOT captured by this keyword or other parts of Robot Framework. If catching the stderr is important, it must be redirected into stdout or some file. &nbsp;The former can be achieved (both in Windows and UNIX-like systems) with the syntax 'my_command 2&gt;&amp;1' and the latter with 'my_command 2&gt;stderr.txt'.<br />
+The returned output contains everything written into the standard output or error by the command (unless either of them is redirected explicityly). Many commands add an extra newline (\n) after the output to make it easier to read in the console. To ease processing the returned output, Robot Framework strips this possible newline.<br />
 <br />
 <hr />
 <br />
@@ -763,9 +769,16 @@ Examples:<br />
 <td></td>
 </tr>
 <tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>${rc} =</td>
 <td>Run</td>
-<td>${CURDIR}${/}script.py</td>
+<td>${CURDIR}${/}script.py arg</td>
 <td>Return RC</td>
 <td></td>
 </tr>
@@ -777,15 +790,22 @@ Examples:<br />
 <td></td>
 </tr>
 <tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>${rc}</td>
 <td>${out} =</td>
 <td>Run</td>
-<td>/opt/script.py 2&gt;&amp;1</td>
+<td>/opt/script.sh 2&gt;/tmp/stderr.txt</td>
 <td>RC,Output</td>
 </tr>
 <tr>
 <td>Should Be True</td>
-<td>${rc} &gt; 0</td>
+<td>${rc} &gt; 42</td>
 <td></td>
 <td></td>
 <td></td>
@@ -794,6 +814,13 @@ Examples:<br />
 <td>Should Contain</td>
 <td>${out}</td>
 <td>TEST PASSED</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>File Should Be Empty</td>
+<td>/tmp/stderr.txt</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -993,22 +1020,24 @@ Examples:<br />
 </tr>
 <tr>
   <td class="kw"><a name="Start Process"></a>Start Process</td>
-  <td class="arg">command, stdin=, alias=None</td>
+  <td class="arg">command, stdin=None, alias=None</td>
   <td class="doc">Starts the given command as a background process.<br />
 <br />
-Starts the process in the background and sets this process as the current process. The following calls of the keywords <a href="#Read Process Output" class="name">Read Process Output</a> and <a href="#Stop Process" class="name">Stop Process</a> affect this process, unless the keyword <a href="#Switch Process" class="name">Switch Process</a> is used. Then these keywords affect the selected process.<br />
+Starts the process in the background and sets this process as the current process. The following calls of the keywords <a href="#Read Process Output" class="name">Read Process Output</a> or <a href="#Stop Process" class="name">Stop Process</a> affect this process, unless the keyword <a href="#Switch Process" class="name">Switch Process</a> is used.<br />
 <br />
-If the command needs input, it can be defined with the <span class="name">stdin</span> argument. &nbsp;It is not possible to give input to the command later.<br />
+If the command needs input through the standard input stream, it can be defined with the <span class="name">stdin</span> argument. &nbsp;It is not possible to give input to the command later. Possible command line arguments must be given as part of the command like '/tmp/script.sh arg1 arg2'.<br />
 <br />
 Returns the index of this process. The indexing starts from 1, and it can be used to switch between the processes with the <a href="#Switch Process" class="name">Switch Process</a> keyword. To end all processes and reset indexing, the <a href="#Stop All Processes" class="name">Stop All Processes</a> keyword must be used.<br />
 <br />
 The optional <span class="name">alias</span> is a name for this process that may be used with <a href="#Switch Process" class="name">Switch Process</a> instead of the returned index.<br />
 <br />
+Starting from Robot Framework 2.0.2, the standard error stream is redirected to the standard input stream automatically by adding '2&gt;&amp;1' after the executed command. This is done the same way, and for the same reasons, as with <a href="#Run" class="name">Run</a> keyword.<br />
+<br />
 Example:<br />
 <table border="1" class="doc">
 <tr>
 <td>Start Process</td>
-<td>longlasting.sh</td>
+<td>/path/longlasting.sh</td>
 <td></td>
 </tr>
 <tr>
@@ -1017,13 +1046,13 @@ Example:<br />
 <td></td>
 </tr>
 <tr>
-<td>${stdout}=</td>
+<td>${output} =</td>
 <td>Read Process Output</td>
 <td></td>
 </tr>
 <tr>
 <td>Should Contain</td>
-<td>${stdout}</td>
+<td>${output}</td>
 <td>Expected text</td>
 </tr>
 <tr>
@@ -1039,14 +1068,16 @@ Example:<br />
   <td class="arg"></td>
   <td class="doc">Stops all the processes and removes them from the process list.<br />
 <br />
-Resets the indexing that <a href="#Start Process" class="name">Start Process</a> uses. All aliases are also deleted.</td>
+Resets the indexing that <a href="#Start Process" class="name">Start Process</a> uses. All aliases are also deleted. It does not matter have some of the processes already been closed or not.<br />
+<br />
+It is highly recommened to use this keyword in test or suite level teardown to make sure all the started processes are closed.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Stop Process"></a>Stop Process</td>
   <td class="arg"></td>
   <td class="doc">Stops the current process without reading from it.<br />
 <br />
-Stopping a process does not remove it from the process list. To reset the process list (and indexes and aliases), <a href="#Stop All Processes" class="name">Stop All Processes</a> must be used.<br />
+Stopping a process does not remove it from the process list. To reset the process list (and indexes and aliases), <a href="#Stop All Processes" class="name">Stop All Processes</a> must be used. Stopping an already stopped process has no effect.<br />
 <br />
 See <a href="#Start Process" class="name">Start Process</a> and <a href="#Switch Process" class="name">Switch Process</a> for more information.</td>
 </tr>
@@ -1055,7 +1086,60 @@ See <a href="#Start Process" class="name">Start Process</a> and <a href="#Switch
   <td class="arg">index_or_alias</td>
   <td class="doc">Switches the active process to the specified process.<br />
 <br />
-The index is the return value of the <a href="#Start Process" class="name">Start Process</a> keyword and an alias may have been defined to it.</td>
+The index is the return value of the <a href="#Start Process" class="name">Start Process</a> keyword and an alias may have been defined to it.<br />
+<br />
+Example:<br />
+<table border="1" class="doc">
+<tr>
+<td>Start Process</td>
+<td>/path/script.sh arg</td>
+<td></td>
+<td>1st process</td>
+</tr>
+<tr>
+<td>${2nd} =</td>
+<td>Start Process</td>
+<td>/path/script2.sh</td>
+<td></td>
+</tr>
+<tr>
+<td>Switch Process</td>
+<td>1st process</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>${out1} =</td>
+<td>Read Process Output</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Switch Process</td>
+<td>${2nd}</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>${out2} =</td>
+<td>Read Process Output</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Log Many</td>
+<td>1st processs: ${out1}</td>
+<td>2nd processs: ${out1}</td>
+<td></td>
+</tr>
+<tr>
+<td>[Teardown]</td>
+<td>Stop All Processes</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Touch"></a>Touch</td>
@@ -1092,7 +1176,7 @@ If the timeout is negative, the keyword is never timed out. The keyword returns 
 <p class="footer">
 Altogether 53 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2008-09-16 13:43:57.
+on 2008-09-17 00:31:16.
 </p>
 </body>
 </html>
