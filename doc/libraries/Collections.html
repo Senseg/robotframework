@@ -10,7 +10,6 @@
   }
 
   /* Generic Table Styles */
-  
   table {
     background: white;
     border: 1px solid black;
@@ -30,7 +29,6 @@
   }    
 
   /* Columns */
-
   td.kw {
     font-weight: bold;
   }
@@ -41,8 +39,22 @@
   td.doc {
   }
 
-  /* Paragraphs */
+  /* Tables in documentation */
+  table.doc {
+    border: 1px solid gray;
+    background: transparent;
+    border-collapse: collapse;
+    empty-cells: show;
+    font-size: 0.85em;
+    font-family: arial,helvetica,sans-serif;
+  }
+  table.doc td {
+    border: 1px solid gray;
+    padding: 0.1em 0.3em;
+    height: 1.2em;
+  }
 
+  /* Paragraphs */
   .libdoc, .links {
     width: 800px;
   }
@@ -84,18 +96,19 @@ Following keywords from the BuiltIn library can also be used with lists and dict
 <br />
 All list keywords expect a scalar variable (e.g. ${list}) as an argument. Possible list variables (e.g. @{list}) must thus be converted to scalar variables first. The example below shows how to convert between them.<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${list} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Create List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{list}</td>
+<td>${list} =</td>
+<td>Create List</td>
+<td>@{list}</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{list} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Variable</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${list}</td>
+<td>@{list} =</td>
+<td>Set Variable</td>
+<td>${list}</td>
 </tr>
-</table><br />
+</table>
+<br />
 <hr />
 <br />
 List related keywords use variables in format ${Lx} in their examples. this means a list with as many alphabetic characters as specified by 'x'. For example ${L1}' means ['a'] and ${L3} means ['a', 'b', 'c'].<br />
@@ -157,22 +170,23 @@ Dictionary keywords use similar ${Dx} variable. For example ${D1} means {'a': 1}
   <td class="doc">Adds <span class="name">values</span> to the end of <span class="name">list</span>.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Append To List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">xxx</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>Append To List</td>
+<td>${L1}</td>
+<td>xxx</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Append To List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L2}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">x</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">y</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">z</td>
+<td>Append To List</td>
+<td>${L2}</td>
+<td>x</td>
+<td>y</td>
+<td>z</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${L1} = ['a', 'xxx']<br />
 - ${L2} = ['a', 'b', 'x', 'y', 'z']</td>
 </tr>
@@ -184,22 +198,23 @@ Example:<br />
 The given lists are never altered by this keyword.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${x} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Combine List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L2}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${x} =</td>
+<td>Combine List</td>
+<td>${L1}</td>
+<td>${L2}</td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${y} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Combine List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L2}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L1}</td>
+<td>${y} =</td>
+<td>Combine List</td>
+<td>${L1}</td>
+<td>${L2}</td>
+<td>${L1}</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${x} = ['a', 'a', 'b']<br />
 - ${y} = ['a', 'a', 'b', 'a']<br />
 - ${L1} and ${L2} are not changed.</td>
@@ -232,14 +247,15 @@ The given list is never altered by this keyword.</td>
 <br />
 The search can be narrowed to the selected sublist by the <span class="name">start</span> and <span class="name">end</span> indexes having the same semantics as in the <a href="#Get Slice From List" class="name">Get Slice From List</a> keyword. The given list is never altered by this keyword.<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${x} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Count Values In List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L3}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">b</td>
+<td>${x} =</td>
+<td>Count Values In List</td>
+<td>${L3}</td>
+<td>b</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${x} = 1<br />
 - ${L3} is not changed.</td>
 </tr>
@@ -249,32 +265,33 @@ The search can be narrowed to the selected sublist by the <span class="name">sta
   <td class="doc">Creates and returns a dictionary from the given <span class="name">key_value_pairs</span>.<br />
 <br />
 Examples:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${x} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Create Dictionary</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">name</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">value</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${x} =</td>
+<td>Create Dictionary</td>
+<td>name</td>
+<td>value</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${y} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Create Dictionary</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">a</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">b</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2</td>
+<td>${y} =</td>
+<td>Create Dictionary</td>
+<td>a</td>
+<td>1</td>
+<td>b</td>
+<td>2</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${z} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Create Dictionary</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">a</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">b</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${2}</td>
+<td>${z} =</td>
+<td>Create Dictionary</td>
+<td>a</td>
+<td>${1}</td>
+<td>b</td>
+<td>${2}</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${x} = {'name': 'value'}<br />
 - ${y} = {'a': '1', 'b': '2'}<br />
 - ${z} = {'a': 1, 'b': 2}</td>
@@ -341,13 +358,14 @@ The given dictionary is never altered by this keyword.</td>
 Items are returned sorted by keys. The given <span class="name">dictionary</span> is never altered by this keyword.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${items} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Dictionary Items</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${D3}</td>
+<td>${items} =</td>
+<td>Get Dictionary Items</td>
+<td>${D3}</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${items} = ['a', 1, 'b', 2, 'c', 3]</td>
 </tr>
 <tr>
@@ -358,13 +376,14 @@ Example:<br />
 <span class="name">Keys</span> are returned in sorted order. The given <span class="name">dictionary</span> is never altered by this keyword.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${keys} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Dictionary Keys</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${D3}</td>
+<td>${keys} =</td>
+<td>Get Dictionary Keys</td>
+<td>${D3}</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${keys} = ['a', 'b', 'c']</td>
 </tr>
 <tr>
@@ -375,13 +394,14 @@ Example:<br />
 Values are returned sorted according to keys. The given dictionary is never altered by this keyword.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${values} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Dictionary Values</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${D3}</td>
+<td>${values} =</td>
+<td>Get Dictionary Values</td>
+<td>${D3}</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${values} = [1, 2, 3]</td>
 </tr>
 <tr>
@@ -394,14 +414,15 @@ If the given <span class="name">key</span> cannot be found from the <span class=
 The given dictionary is never altered by this keyword.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${value} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get From Dictionary</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${D3}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">b</td>
+<td>${value} =</td>
+<td>Get From Dictionary</td>
+<td>${D3}</td>
+<td>b</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${value} = 2</td>
 </tr>
 <tr>
@@ -414,22 +435,23 @@ The given list is never altered by this keyword.<br />
 Index '0' means the first position, '1' the second, and so on. Similarly, '-1' is the last position, '-2' the second last, and so on. Using an index that does not exist on the list causes an error. The index can be either an integer or a string that can be converted to an integer.<br />
 <br />
 Examples (including Python equivalents in comments):<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${x} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get From List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L5}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">0</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># L5[0]</td>
+<td>${x} =</td>
+<td>Get From List</td>
+<td>${L5}</td>
+<td>0</td>
+<td># L5[0]</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${y} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get From List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L5}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># L5[2]</td>
+<td>${y} =</td>
+<td>Get From List</td>
+<td>${L5}</td>
+<td>2</td>
+<td># L5[2]</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${x} = 'a'<br />
 - ${y} = 'c'<br />
 - ${L1} and ${L2} are not changed.</td>
@@ -441,14 +463,15 @@ Examples (including Python equivalents in comments):<br />
 <br />
 The search can be narrowed to the selected sublist by the <span class="name">start</span> and <span class="name">end</span> indexes having the same semantics as in the <a href="#Get Slice From List" class="name">Get Slice From List</a> keyword. In case the value is not found, -1 is returned. The given list is never altered by this keyword.<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${x} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Index From List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L5}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">d</td>
+<td>${x} =</td>
+<td>Get Index From List</td>
+<td>${L5}</td>
+<td>d</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${x} = 3<br />
 - ${L5} is not changed.</td>
 </tr>
@@ -464,32 +487,33 @@ If both <span class="name">start</span> and <span class="name">end</span> are gi
 Using <span class="name">start</span> or <span class="name">end</span> not found on the list is the same as using the largest (or smallest) available index.<br />
 <br />
 Examples (incl. Python equivelants in comments):<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${x} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Slice From List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L5}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">4</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># L5[2:4]</td>
+<td>${x} =</td>
+<td>Get Slice From List</td>
+<td>${L5}</td>
+<td>2</td>
+<td>4</td>
+<td># L5[2:4]</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${y} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Slice From List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L5}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># L5[1:None]</td>
+<td>${y} =</td>
+<td>Get Slice From List</td>
+<td>${L5}</td>
+<td>1</td>
+<td></td>
+<td># L5[1:None]</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${z} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Slice From List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L5}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">-1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># L5[0:-2]</td>
+<td>${z} =</td>
+<td>Get Slice From List</td>
+<td>${L5}</td>
+<td></td>
+<td>-1</td>
+<td># L5[0:-2]</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${x} = ['c', 'd']<br />
 - ${y} = ['b', 'c', 'd', 'e']<br />
 - ${z} = ['a', 'b', 'c']<br />
@@ -503,20 +527,21 @@ Examples (incl. Python equivelants in comments):<br />
 Index '0' adds the value into the first position, '1' to the second, and so on. Similarly, '-1' is the last position, '-2' second last, and so on. If the absolute value of the index is greater than the length of the list, the value is added at the end (positive index) or the beginning (negative index). An index can be given either as an integer or a string that can be converted to an integer.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Insert Into List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">0</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">xxx</td>
+<td>Insert Into List</td>
+<td>${L1}</td>
+<td>0</td>
+<td>xxx</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Insert Into List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L2}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${-1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">xxx</td>
+<td>Insert Into List</td>
+<td>${L2}</td>
+<td>${-1}</td>
+<td>xxx</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${L1} = ['xxx', 'a']<br />
 - ${L2} = ['a', 'xxx', 'b']</td>
 </tr>
@@ -528,15 +553,16 @@ Example:<br />
 If the given <span class="name">key</span> cannot be found from the <span class="name">dictionary</span>, it is ignored.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Keep In Dictionary</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${D5}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">b</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">x</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">d</td>
+<td>Keep In Dictionary</td>
+<td>${D5}</td>
+<td>b</td>
+<td>x</td>
+<td>d</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${D5} = {'b': 2, 'd': 4}</td>
 </tr>
 <tr>
@@ -601,15 +627,16 @@ In case you want only log the length, use keyword <span class="name">Get Length<
 If the given <span class="name">key</span> cannot be found from the <span class="name">dictionary</span>, it is ignored.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Remove From Dictionary</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${D3}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">b</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">x</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">y</td>
+<td>Remove From Dictionary</td>
+<td>${D3}</td>
+<td>b</td>
+<td>x</td>
+<td>y</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${D3} = {'a': 1, 'c': 3}</td>
 </tr>
 <tr>
@@ -620,14 +647,15 @@ Example:<br />
 Index '0' means the first position, '1' the second and so on. Similarly, '-1' is the last position, '-2' the second last, and so on. Using an index that does not exist on the list causes an error. The index can be either an integer or a string that can be converted to an integer.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${x} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Remove From List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L2}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">0</td>
+<td>${x} =</td>
+<td>Remove From List</td>
+<td>${L2}</td>
+<td>0</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${x} = 'a'<br />
 - ${L2} = ['b']</td>
 </tr>
@@ -637,16 +665,17 @@ Example:<br />
   <td class="doc">Removes all occurences of given <span class="name">values</span> from <span class="name">list</span>.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Remove Values From List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L4}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">a</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">c</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">e</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">f</td>
+<td>Remove Values From List</td>
+<td>${L4}</td>
+<td>a</td>
+<td>c</td>
+<td>e</td>
+<td>f</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${L4} = ['b', 'd']</td>
 </tr>
 <tr>
@@ -656,12 +685,13 @@ Example:<br />
 <br />
 Note that the given list is changed and nothing is returned. Use <a href="#Copy List" class="name">Copy List</a> first, if you need to keep also the original order.<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Reverse List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L3}</td>
+<td>Reverse List</td>
+<td>${L3}</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${L3} = ['c', 'b', 'a']</td>
 </tr>
 <tr>
@@ -672,14 +702,15 @@ Note that the given list is changed and nothing is returned. Use <a href="#Copy 
 Index '0' means the first position, '1' the second and so on. Similarly, '-1' is the last position, '-2' second last, and so on. Using an index that does not exist on the list causes an error. The index can be either an integer or a string that can be converted to an integer.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set List Value</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L3}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">xxx</td>
+<td>Set List Value</td>
+<td>${L3}</td>
+<td>1</td>
+<td>xxx</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${L3} = ['a', 'xxx', 'c']</td>
 </tr>
 <tr>
@@ -688,14 +719,15 @@ Example:<br />
   <td class="doc">Adds the given <span class="name">key_value_pairs</span> to the <span class="name">dictionary</span>.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set To Dictionary</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${D1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">key</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">value</td>
+<td>Set To Dictionary</td>
+<td>${D1}</td>
+<td>key</td>
+<td>value</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${D1} = {'a': 1, 'key': 'value'}</td>
 </tr>
 <tr>
@@ -708,19 +740,20 @@ The strings are sorted alphabetically and the numbers numerically.<br />
 Note that the given list is changed and nothing is returned. Use <a href="#Copy List" class="name">Copy List</a> first, if you need to keep also the original order.<br />
 <br />
 ${L} = [2,1,'a','c','b']<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Sort List</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${L}</td>
+<td>Sort List</td>
+<td>${L}</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${L} = [1, 2, 'a', 'b', 'c']</td>
 </tr>
 </table>
 <p class="footer">
 Altogether 35 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2008-09-11 15:15:03.
+on 2008-09-16 13:43:57.
 </p>
 </body>
 </html>

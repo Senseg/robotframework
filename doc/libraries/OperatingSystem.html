@@ -10,7 +10,6 @@
   }
 
   /* Generic Table Styles */
-  
   table {
     background: white;
     border: 1px solid black;
@@ -30,7 +29,6 @@
   }    
 
   /* Columns */
-
   td.kw {
     font-weight: bold;
   }
@@ -41,8 +39,22 @@
   td.doc {
   }
 
-  /* Paragraphs */
+  /* Tables in documentation */
+  table.doc {
+    border: 1px solid gray;
+    background: transparent;
+    border-collapse: collapse;
+    empty-cells: show;
+    font-size: 0.85em;
+    font-family: arial,helvetica,sans-serif;
+  }
+  table.doc td {
+    border: 1px solid gray;
+    padding: 0.1em 0.3em;
+    height: 1.2em;
+  }
 
+  /* Paragraphs */
   .libdoc, .links {
     width: 800px;
   }
@@ -74,52 +86,56 @@
 <br />
 Example usage:<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Setting</b></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Value</b></td>
+<td><b>Setting</b></td>
+<td><b>Value</b></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Library</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">OperatingSystem</td>
+<td>Library</td>
+<td>OperatingSystem</td>
 </tr>
-</table><br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+</table>
+<br />
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Variable</b></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Value</b></td>
-</tr>
-<tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${PATH}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${CURDIR}${/}example.txt</td>
-</tr>
-</table><br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
-<tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Test Case</b></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Action</b></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Argument</b></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"><b>Argument</b></td>
+<td><b>Variable</b></td>
+<td><b>Value</b></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Example</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Create File</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${PATH}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Some text</td>
+<td>${PATH}</td>
+<td>${CURDIR}/example.txt</td>
+</tr>
+</table>
+<br />
+<table border="1" class="doc">
+<tr>
+<td><b>Test Case</b></td>
+<td><b>Action</b></td>
+<td><b>Argument</b></td>
+<td><b>Argument</b></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">File Should Exist</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${PATH}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>Example</td>
+<td>Create File</td>
+<td>${PATH}</td>
+<td>Some text</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Copy File</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${PATH}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${TEMPDIR}</td>
+<td></td>
+<td>File Should Exist</td>
+<td>${PATH}</td>
+<td></td>
 </tr>
-</table></p>
+<tr>
+<td></td>
+<td>Copy File</td>
+<td>${PATH}</td>
+<td>${TEMPDIR}/stuff</td>
+</tr>
+</table>
+<br />
+Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments always accept a forward slash as a path separator regardless the operating system. This only works if an argument is only a path, <b>not</b> if a path is part of an argument, like it often is with <a href="#Run" class="name">Run</a> and <a href="#Start Process" class="name">Start Process</a> keywords. In these cases, and with earlier versions, built-in variable ${/} can be used to keep the test data platform independent.</p>
 
 <h2>Shortcuts</h2>
 <div class='links'>
@@ -143,7 +159,7 @@ Example usage:<br />
 <a href="#File Should Not Exist" title="Fails if the given path points to an existing file.">File&nbsp;Should&nbsp;Not&nbsp;Exist</a>&nbsp;
 <a href="#Get Environment Variable" title="Returns the value of an environment variable with the given name.">Get&nbsp;Environment&nbsp;Variable</a>&nbsp;
 <a href="#Get File" title="Returns the contents of a specified file.">Get&nbsp;File</a>&nbsp;
-<a href="#Get File Size" title="Returns file size as an integer in bytes">Get&nbsp;File&nbsp;Size</a>&nbsp;
+<a href="#Get File Size" title="Returns and logs file size as an integer in bytes">Get&nbsp;File&nbsp;Size</a>&nbsp;
 <a href="#Get Modified Time" title="Returns the last modification time of a file or directory.">Get&nbsp;Modified&nbsp;Time</a>&nbsp;
 <a href="#Grep File" title="Returns the contents of a specified file grepped using `pattern`.">Grep&nbsp;File</a>&nbsp;
 <a href="#Join Path" title="Joins the given path part(s) to the given base path.">Join&nbsp;Path</a>&nbsp;
@@ -201,7 +217,7 @@ If the destination exists, the source is copied under it. Otherwise the destinat
 <br />
 2) If the destination is an existing directory, the source file is copied into it. A possible file with the same name is overwritten.<br />
 <br />
-3) If the destination does not exist and it ends with a path separator ('/' in UNIX-like systems, '\' in Windows), it is considered a directory. That directory is created and a source file copied into it. Possible missing intermediate directories are also created.<br />
+3) If the destination does not exist and it ends with a path separator ('/' or '\'), it is considered a directory. That directory is created and a source file copied into it. Possible missing intermediate directories are also created.<br />
 <br />
 4) If the destination does not exist and it does not end with a path separator, it is considered a file. If the path to the file does not exist, it is created.</td>
 </tr>
@@ -254,9 +270,7 @@ The default error message can be overridden with the <span class="name">msg</spa
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails unless the given path points to an existing directory.<br />
 <br />
-The path can be given as an exact path or as a pattern where '*' - matches everything '?' - matches any single character '[chars]' - matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c') '[!chars]' - matches any character not inside square brackets<br />
-<br />
-The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Directory Should Not Be Empty"></a>Directory Should Not Be Empty</td>
@@ -270,9 +284,7 @@ The default error message can be overridden with the <span class="name">msg</spa
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails if the given path points to an existing file.<br />
 <br />
-The path can be given as an exact path or as a pattern where '*' - matches everything '?' - matches any single character '[chars]' - matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c') '[!chars]' - matches any character not inside square brackets<br />
-<br />
-The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Empty Directory"></a>Empty Directory</td>
@@ -305,7 +317,27 @@ The default error message can be overridden with the <span class="name">msg</spa
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails unless the given path points to an existing file.<br />
 <br />
-The path can be given as an exact path or as a pattern where '*' - matches everything '?' - matches any single character '[chars]' - matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c') '[!chars]' - matches any character not inside square brackets<br />
+The path can be given as an exact path or as a pattern where:<br />
+<table border="1" class="doc">
+<tr>
+<td>*</td>
+<td>matches everything</td>
+</tr>
+<tr>
+<td>?</td>
+<td>matches any single character</td>
+</tr>
+<tr>
+<td>[chars]</td>
+<td>matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c')</td>
+</tr>
+<tr>
+<td>[!chars]</td>
+<td>matches any character not inside square brackets</td>
+</tr>
+</table>
+<br />
+Pattern matching is implemented with the Python 'fnmatch' module. For more information, see <a href="http://docs.python.org/lib/module-fnmatch.html">http://docs.python.org/lib/module-fnmatch.html</a><br />
 <br />
 The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
@@ -321,9 +353,7 @@ The default error message can be overridden with the <span class="name">msg</spa
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails if the given path points to an existing file.<br />
 <br />
-The path can be given as an exact path or as a pattern where '*' - matches everything '?' - matches any single character '[chars]' - matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c') '[!chars]' - matches any character not inside square brackets<br />
-<br />
-The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Environment Variable"></a>Get Environment Variable</td>
@@ -344,7 +374,7 @@ This keyword reads the specified file and returns the contents. <span class="nam
 <tr>
   <td class="kw"><a name="Get File Size"></a>Get File Size</td>
   <td class="arg">path</td>
-  <td class="doc">Returns file size as an integer in bytes</td>
+  <td class="doc">Returns and logs file size as an integer in bytes</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Modified Time"></a>Get Modified Time</td>
@@ -353,50 +383,51 @@ This keyword reads the specified file and returns the contents. <span class="nam
 <br />
 How time is returned is determined based on the given <span class="name">format</span> string as follows. Note that all checks are case-insensitive.<br />
 <br />
-- If <span class="name">format</span> contains the word 'epoch', the time is returned in seconds after the UNIX epoch. The return value is always an integer.<br />
+1) If <span class="name">format</span> contains the word 'epoch', the time is returned in seconds after the UNIX epoch. The return value is always an integer.<br />
 <br />
-- If <span class="name">format</span> contains any of the words 'year', 'month', 'day', 'hour', 'min' or 'sec', only the selected parts are returned. The order of the returned parts is always the one in the previous sentence and the order of the words in <span class="name">format</span> is not significant. The parts are returned as zero-padded strings (e.g. May -&gt; '05').<br />
+2) If <span class="name">format</span> contains any of the words 'year', 'month', 'day', 'hour', 'min' or 'sec', only the selected parts are returned. The order of the returned parts is always the one in the previous sentence and the order of the words in <span class="name">format</span> is not significant. The parts are returned as zero-padded strings (e.g. May -&gt; '05').<br />
 <br />
-- Otherwise, and by default, the time is returned as a timestamp string in the format '2006-02-24 15:08:31'.<br />
+3) Otherwise, and by default, the time is returned as a timestamp string in the format '2006-02-24 15:08:31'.<br />
 <br />
 Examples (when the modified time of the ${CURDIR} is 2006-03-29 15:06:21):<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${time} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Modified Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${CURDIR}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${time} =</td>
+<td>Get Modified Time</td>
+<td>${CURDIR}</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${secs} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Modified Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${CURDIR}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">epoch</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${secs} =</td>
+<td>Get Modified Time</td>
+<td>${CURDIR}</td>
+<td>epoch</td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${year} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Modified Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${CURDIR}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">return year</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${year} =</td>
+<td>Get Modified Time</td>
+<td>${CURDIR}</td>
+<td>return year</td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${y}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${d} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Modified Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${CURDIR}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">year,day</td>
+<td>${y}</td>
+<td>${d} =</td>
+<td>Get Modified Time</td>
+<td>${CURDIR}</td>
+<td>year,day</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{time} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Get Modified Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${CURDIR}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">year,month,day,hour,min,sec</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>@{time} =</td>
+<td>Get Modified Time</td>
+<td>${CURDIR}</td>
+<td>year,month,day,hour,min,sec</td>
+<td></td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${time} = '2006-03-29 15:06:21'<br />
 - ${secs} = 1143637581<br />
 - ${year} = '2006'<br />
@@ -408,22 +439,19 @@ Examples (when the modified time of the ${CURDIR} is 2006-03-29 15:06:21):<br />
   <td class="arg">path, pattern, pattern_type=literal string, encoding=UTF-8</td>
   <td class="doc">Returns the contents of a specified file grepped using <span class="name">pattern</span>.<br />
 <br />
-This keyword reads the specified file and returns only lines matching the <span class="name">pattern</span>. <span class="name">encoding</span> defines the encoding of the file. By default, the value is 'UTF-8', which means that UTF-8 and ASCII-encoded files are read correctly.<br />
+This keyword reads the specified file and returns only lines matching the <span class="name">pattern</span>. <span class="name">encoding</span> specifies the encoding of the file the same way as with <a href="#Get File" class="name">Get File</a> keyword.<br />
 <br />
 <span class="name">pattern_type</span> defines how the given pattern is interpreted as explained below. <span class="name">pattern_type</span> argument is case-insensitive and may contain other text. For example, 'regexp', 'REGEXP' and 'Pattern is a regexp' are all considered equal.<br />
 <br />
-- If <span class="name">pattern_type</span> contains either the string 'simple' or 'glob', the <span class="name">pattern</span> is considered a simple pattern and lines returned only if they match it. (1)<br />
-- If <span class="name">pattern_type</span> contains either the string 'regular expression' or 'regexp', the <span class="name">pattern</span> is considered a regular expression and only lines matching it returned. (2)<br />
-- If <span class="name">pattern_type</span> contains the string 'case insensitive' the <span class="name">pattern</span> is considered a literal string and lines returned, if they contain the string, regardless of the case.<br />
-- Otherwise the pattern is considered a literal string and lines returned, if they contain the string exactly. This is the default.<br />
+1) If <span class="name">pattern_type</span> contains either the strings 'simple' or 'glob', the <span class="name">pattern</span> is considered a simple glob pattern having same semantics as patterns given to <a href="#File Should Exist" class="name">File Should Exist</a> keyword.<br />
 <br />
-1) Simple pattern matching is similar as matching files in a shell, and it is always case-sensitive. In the pattern, '*' matches to anything and '?' matches to any single character.<br />
+2) If <span class="name">pattern_type</span> contains either 'simple' or 'glob', and additionally contains 'case-insensitive' or 'case insensitive', the glob pattern is considered case-insensitive. This functionality is available in 2.0.2 version and newer.<br />
 <br />
-2) Regular expression check is done using the Python 're' module, which has a pattern syntax derived from Perl and thus also very similar to the one in Java. See the following documents from more details about regexps in general and their Python implementation in particular.<br />
+3) If <span class="name">pattern_type</span> contains either the string 'regular expression' or 'regexp', the <span class="name">pattern</span> is considered a regular expression. See built-in keyword <span class="name">Should Match Regexp</span> for more information about how to use regular expressions in the test data.<br />
 <br />
-'re' Module Documentation: <a href="http://docs.python.org/lib/module-re.html">http://docs.python.org/lib/module-re.html</a> Regular Expression HOWTO: <a href="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</a><br />
+4) If <span class="name">pattern_type</span> contains either 'case-insensitive' or 'case insensitive' (but does not contain 'simple' or 'glob'), <span class="name">pattern</span> is considered a literal string and lines returned, if they contain the string, regardless of the case.<br />
 <br />
-Note that if you want to use flags (e.g. re.IGNORECASE), you have to embed them into the pattern (e.g. '(?i)pattern'). Note also that backslash is an escape character in Robot Framework test data, and possible backslashes in patterns must thus be escaped with another backslash (e.g. '\\d\\w+').</td>
+5) Otherwise the pattern is considered a literal string and lines returned, if they contain the string.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Join Path"></a>Join Path</td>
@@ -432,49 +460,50 @@ Note that if you want to use flags (e.g. re.IGNORECASE), you have to embed them 
 <br />
 The path separator ('/' or '\') is inserted when needed and the possible absolute paths handled as expected. The resulted path is also normalized.<br />
 <br />
-Examples (assuming a UNIX environment):<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+Examples:<br />
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${path} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Join Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">my</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${path} =</td>
+<td>Join Path</td>
+<td>my</td>
+<td>path</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p2} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Join Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">my/</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">path/</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${p2} =</td>
+<td>Join Path</td>
+<td>my/</td>
+<td>path/</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p3} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Join Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">my</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">my</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">file.txt</td>
+<td>${p3} =</td>
+<td>Join Path</td>
+<td>my</td>
+<td>path</td>
+<td>my</td>
+<td>file.txt</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p4} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Join Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">my</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">/path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${p4} =</td>
+<td>Join Path</td>
+<td>my</td>
+<td>/path</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p5} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Join Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">/my/path/</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">..</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">path2</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${p5} =</td>
+<td>Join Path</td>
+<td>/my/path/</td>
+<td>..</td>
+<td>path2</td>
+<td></td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${path} = 'my/path'<br />
 - ${p2} = 'my/path'<br />
 - ${p3} = 'my/path/my/file.txt'<br />
@@ -486,33 +515,36 @@ Examples (assuming a UNIX environment):<br />
   <td class="arg">base, *paths</td>
   <td class="doc">Joins given paths with base and returns resulted paths.<br />
 <br />
-Examples (assuming a UNIX environment):<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+See <a href="#Join Path" class="name">Join Path</a> for more information.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{p1} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Join Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">base</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">example</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">other</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>@{p1} =</td>
+<td>Join Path</td>
+<td>base</td>
+<td>example</td>
+<td>other</td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{p2} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Join Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">/my/base</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">/example</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">other</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>@{p2} =</td>
+<td>Join Path</td>
+<td>/my/base</td>
+<td>/example</td>
+<td>other</td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">@{p3} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Join Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">my/base</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">example/path/</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">other</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">one/more</td>
+<td>@{p3} =</td>
+<td>Join Path</td>
+<td>my/base</td>
+<td>example/path/</td>
+<td>other</td>
+<td>one/more</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - @{p1} = ['base/example', 'base/other']<br />
 - @{p2} = ['/example', '/my/base/other']<br />
 - @{p3} = ['my/base/example/path', 'my/base/other', 'my/base/one/more']</td>
@@ -527,27 +559,48 @@ Examples (assuming a UNIX environment):<br />
   <td class="arg">path, pattern=None, pattern_type=simple, absolute=False</td>
   <td class="doc">Returns items from a directory, optionally filtered with <span class="name">pattern</span>.<br />
 <br />
-File and directory names are returned in case-sensitive alphabetical order, e.g. 'A Name', 'Second', 'a lower case name', 'one more']. Implicit directories '.' and '..' are not returned. The returned items are automatically logged.<br />
+File and directory names are returned in case-sensitive alphabetical order, e.g. ['A Name', 'Second', 'a lower case name', 'one more']. Implicit directories '.' and '..' are not returned. The returned items are automatically logged.<br />
 <br />
 By default, the file and directory names are returned relative to the given path (e.g. 'file.txt'). If you want them be returned in the absolute format (e.g. '/home/robot/file.txt'), set the <span class="name">absolute</span> argument value to 'True', 'Yes' or 'absolute' (case-insensitive).<br />
 <br />
-If no <span class="name">pattern</span> is given, all item names are returned. If <span class="name">pattern</span> is given, only names matching it are returned. <span class="name">pattern_type</span> defines how the given pattern is interpreted, as explained below.<br />
+If <span class="name">pattern</span> is given, only items matching it are returned. <span class="name">pattern</span> and <span class="name">pattern_type</span> arguments have same semantics as with <a href="#Grep File" class="name">Grep File</a> keyword.<br />
 <br />
-- If <span class="name">pattern_type</span> contains the string 'simple' (case-insensitive), the <span class="name">pattern</span> is considered a simple pattern and items returned only if they match it. This is the default. (1)<br />
-- If <span class="name">pattern_type</span> contains either the string 'regular expression' or 'regexp' (case-insensitive), the <span class="name">pattern</span> is considered a regular expression and only items matching it returned. (2)<br />
-- Otherwise the pattern is considered a literal string and items returned, if they contain the string.<br />
-<br />
-1) Simple pattern matching is similar as matching files in a shell, and it is always case-sensitive. The special characters are listed below.<br />
-<br />
-'*' - matches everything '?' - matches any single character '[chars]' - matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c') '[!chars]' - matches any character not inside square brackets<br />
-<br />
-Simple pattern matching is implemented using the Python 'fnmatch' module's 'fnmatchcase' method. For more information, see its documentation at <a href="http://docs.python.org/lib/module-fnmatch.html">http://docs.python.org/lib/module-fnmatch.html</a>.<br />
-<br />
-2) Regular expression check is done using the Python 're' module, which has a pattern syntax derived from Perl and thus also very similar to the one in Java. See the following documents for more details about regexps in general and their Python implementation in particular.<br />
-<br />
-'re' Module Documentation: <a href="http://docs.python.org/lib/module-re.html">http://docs.python.org/lib/module-re.html</a> Regular Expression HOWTO: <a href="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</a><br />
-<br />
-Note that if you want to use flags (e.g. re.IGNORECASE), you have to embed them into the pattern (e.g. '(?i)pattern'). Note also that a backslash is an escape character in Robot Framework test data, and possible backslashes in patterns must thus be escaped with another backslash (e.g. '\\d\\w+').</td>
+Examples (using also other <a href="#List Directory" class="name">List Directory</a> variants):<br />
+<table border="1" class="doc">
+<tr>
+<td>@{items} =</td>
+<td>List Directory</td>
+<td>${TEMPDIR}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@{files} =</td>
+<td>List Files In Directory</td>
+<td>${CURDIR}</td>
+<td>*.txt</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@{files} =</td>
+<td>List Files In Directory</td>
+<td>${CURDIR}</td>
+<td>*.txt</td>
+<td>case-insensitive</td>
+<td>absolute</td>
+</tr>
+<tr>
+<td>@{dirs} =</td>
+<td>List Directories In Directory</td>
+<td>${CURDIR}</td>
+<td>^.*backup$</td>
+<td>regexp</td>
+<td></td>
+</tr>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="List Files In Directory"></a>List Files In Directory</td>
@@ -580,34 +633,35 @@ The destination may be a file or a directory. In the latter case, the file's ori
   <td class="arg">path</td>
   <td class="doc">Normalizes the given path.<br />
 <br />
-Examples (assuming a UNIX environment):<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+Examples:<br />
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${path} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Normalize Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">abc</td>
+<td>${path} =</td>
+<td>Normalize Path</td>
+<td>abc</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p2} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Normalize Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">abc/</td>
+<td>${p2} =</td>
+<td>Normalize Path</td>
+<td>abc/</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p3} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Normalize Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">abc/../def</td>
+<td>${p3} =</td>
+<td>Normalize Path</td>
+<td>abc/../def</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p4} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Normalize Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">abc/./def</td>
+<td>${p4} =</td>
+<td>Normalize Path</td>
+<td>abc/./def</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p5} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Normalize Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">abc//def</td>
+<td>${p5} =</td>
+<td>Normalize Path</td>
+<td>abc//def</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${path} = 'abc'<br />
 - ${p2} = 'abc'<br />
 - ${p3} = 'def'<br />
@@ -650,12 +704,23 @@ Does nothing if the environment variable is not set.</td>
 <br />
 Passes if the file does not exist, but fails if the path does not point to a regular file (e.g. it points to a directory).<br />
 <br />
-The path can be given as an exact path or as a pattern where '*' - matches everything '?' - matches any single character '[chars]' - matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c') '[!chars]' - matches any character not inside square brackets</td>
+The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. If the path is a pattern, all files matching it are removed.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Remove Files"></a>Remove Files</td>
   <td class="arg">*paths</td>
-  <td class="doc">Uses <a href="#Remove File" class="name">Remove File</a> to remove multiple files one-by-one.</td>
+  <td class="doc">Uses <a href="#Remove File" class="name">Remove File</a> to remove multiple files one-by-one.<br />
+<br />
+Example:<br />
+<table border="1" class="doc">
+<tr>
+<td>Remove Files</td>
+<td>${TEMPDIR}${/}foo.txt</td>
+<td>${TEMPDIR}${/}bar.txt</td>
+<td>${TEMPDIR}${/}zap.txt</td>
+</tr>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run"></a>Run</td>
@@ -676,63 +741,64 @@ The RC is returned as a positive integer in range from 0 to 255 as returned by t
 <br />
 The returned output contains everything written into the stdout by the command. Many commands add an extra newline (\n) after the output to make it easier to read in the console. To ease processing the returned output, Robot Framework strips this possible newline.<br />
 <br />
-The possible standard error (stderr) from the executed command is NOT captured by this keyword or other parts of Robot Framework. If catching the stderr is important, it must be redirected into stdout or some file. The former can be achieved (both in Windows and UNIX-like systems) with the syntax 'my_command 2&gt;&amp;1' and the latter with 'my_command 2&gt;stderr.txt'.<br />
+The possible standard error (stderr) from the executed command is NOT captured by this keyword or other parts of Robot Framework. If catching the stderr is important, it must be redirected into stdout or some file. &nbsp;The former can be achieved (both in Windows and UNIX-like systems) with the syntax 'my_command 2&gt;&amp;1' and the latter with 'my_command 2&gt;stderr.txt'.<br />
 <br />
 <hr />
 <br />
 Examples:<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${output} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">ls -lhF /tmp</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${output} =</td>
+<td>Run</td>
+<td>ls -lhF /tmp</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Log</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${output}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>Log</td>
+<td>${output}</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${rc} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${CURDIR}${/}script.py</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Return RC</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${rc} =</td>
+<td>Run</td>
+<td>${CURDIR}${/}script.py</td>
+<td>Return RC</td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Be Equal As Integers</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${rc}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">0</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>Should Be Equal As Integers</td>
+<td>${rc}</td>
+<td>0</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${rc}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${out} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">/opt/script.py 2&gt;&amp;1</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">RC,Output</td>
+<td>${rc}</td>
+<td>${out} =</td>
+<td>Run</td>
+<td>/opt/script.py 2&gt;&amp;1</td>
+<td>RC,Output</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Be True</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${rc} &gt; 0</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>Should Be True</td>
+<td>${rc} &gt; 0</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Contain</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${out}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">TEST PASSED</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>Should Contain</td>
+<td>${out}</td>
+<td>TEST PASSED</td>
+<td></td>
+<td></td>
 </tr>
-</table></td>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run And Return Rc"></a>Run And Return Rc</td>
@@ -741,20 +807,21 @@ Examples:<br />
 <br />
 Following two examples are equivalent but the latter is easier to understand and thus recommended. See <a href="#Run" class="name">Run</a> keyword for more information about the characteristics of the returned RC.<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${rc} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">my_command</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">RC</td>
+<td>${rc} =</td>
+<td>Run</td>
+<td>my_command</td>
+<td>RC</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${rc} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run and Return RC</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">my_command</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${rc} =</td>
+<td>Run and Return RC</td>
+<td>my_command</td>
+<td></td>
 </tr>
-</table></td>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run And Return Rc And Output"></a>Run And Return Rc And Output</td>
@@ -763,22 +830,23 @@ Following two examples are equivalent but the latter is easier to understand and
 <br />
 The following two examples are equivalent, but the latter is easier to understand and thus recommended.<br />
 <br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${rc}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${output} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">my_command</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">RC, Output</td>
+<td>${rc}</td>
+<td>${output} =</td>
+<td>Run</td>
+<td>my_command</td>
+<td>RC, Output</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${rc}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${output} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Run and Return RC and Output</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">my_command</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${rc}</td>
+<td>${output} =</td>
+<td>Run and Return RC and Output</td>
+<td>my_command</td>
+<td></td>
 </tr>
-</table><br />
+</table>
+<br />
 Note that similarly as the normal <a href="#Run" class="name">Run</a>, this keyword only returns the standard output and not the standard error. See <a href="#Run" class="name">Run</a> keyword for more information.</td>
 </tr>
 <tr>
@@ -802,91 +870,89 @@ Changes the modification and access times of the given file to the value determi
 4) If <span class="name">mtime</span> is in the format 'NOW - 1 day' or 'NOW + 1 hour 30 min', the current time plus/minus the time specified with the time string is used. The time string format is described in an appendix of Robot Framework User Guide.<br />
 <br />
 Examples:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Modified Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">/path/file</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">1177654467</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">#(2007-04-27 9:14:27)</td>
+<td>Set Modified Time</td>
+<td>/path/file</td>
+<td>1177654467</td>
+<td>#(2007-04-27 9:14:27)</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Modified Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">/path/file</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">2007-04-27 9:14:27</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>Set Modified Time</td>
+<td>/path/file</td>
+<td>2007-04-27 9:14:27</td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Modified Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">/path/file</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">NOW</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># The time of execution</td>
+<td>Set Modified Time</td>
+<td>/path/file</td>
+<td>NOW</td>
+<td># The time of execution</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Modified Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">/path/file</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">NOW - 1d</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># 1 day subtraced from NOW</td>
+<td>Set Modified Time</td>
+<td>/path/file</td>
+<td>NOW - 1d</td>
+<td># 1 day subtraced from NOW</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Set Modified Time</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">/path/file</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">NOW + 1h 2min 3s</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"># 1h 2min 3s added to NOW</td>
+<td>Set Modified Time</td>
+<td>/path/file</td>
+<td>NOW + 1h 2min 3s</td>
+<td># 1h 2min 3s added to NOW</td>
 </tr>
-</table></td>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Exist"></a>Should Exist</td>
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails unless the given path (file or directory) exists.<br />
 <br />
-The path can be given as an exact path or as a pattern where '*' - matches everything '?' - matches any single character '[chars]' - matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c') '[!chars]' - matches any character not inside square brackets<br />
-<br />
-The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Exist"></a>Should Not Exist</td>
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails if the given path (file or directory) exists.<br />
 <br />
-The path can be given as an exact path or as a pattern where '*' - matches everything '?' - matches any single character '[chars]' - matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c') '[!chars]' - matches any character not inside square brackets<br />
-<br />
-The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Split Extension"></a>Split Extension</td>
   <td class="arg">path</td>
   <td class="doc">Splits the extension from the given path.<br />
 <br />
-The given path is first normalized (e.g. a possible trailing path separator removed, special directories '..' and '.' removed). The splitted parts are returned as separate components. If the path contains no extension, an empty string is returned for it.<br />
+The given path is first normalized (e.g. a possible trailing path separator removed, special directories '..' and '.' removed). &nbsp;The splitted parts are returned as separate components. If the path contains no extension, an empty string is returned for it.<br />
 <br />
-Examples (assuming a UNIX environment):<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+Examples:<br />
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${path}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${ext} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Split Extension</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">file.extension</td>
+<td>${path}</td>
+<td>${ext} =</td>
+<td>Split Extension</td>
+<td>file.extension</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p2}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${e2} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Split Extension</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">path/file.ext</td>
+<td>${p2}</td>
+<td>${e2} =</td>
+<td>Split Extension</td>
+<td>path/file.ext</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p3}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${e3} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Split Extension</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">path/file</td>
+<td>${p3}</td>
+<td>${e3} =</td>
+<td>Split Extension</td>
+<td>path/file</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${p4}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${e4} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Split Extension</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">p1/../p2/file.ext</td>
+<td>${p4}</td>
+<td>${e4} =</td>
+<td>Split Extension</td>
+<td>p1/../p2/file.ext</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${path} = 'file' &amp; ${ext} = 'extension'<br />
 - ${p2} = 'path/file' &amp; ${e2} = 'ext'<br />
 - ${p3} = 'path/file' &amp; ${e3} = ''<br />
@@ -897,29 +963,30 @@ Examples (assuming a UNIX environment):<br />
   <td class="arg">path</td>
   <td class="doc">Splits the given path from the last path separator ('/' or '\').<br />
 <br />
-The given path is first normalized (e.g. a possible trailing path separator is removed, special directories '..' and '.' removed). The splitted parts are returned as separate components.<br />
+The given path is first normalized (e.g. a possible trailing path separator is removed, special directories '..' and '.' removed). &nbsp;The splitted parts are returned as separate components.<br />
 <br />
-Examples (assuming a UNIX environment):<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+Examples:<br />
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${path1}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${dir} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Split Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">abc/def</td>
+<td>${path1}</td>
+<td>${dir} =</td>
+<td>Split Path</td>
+<td>abc/def</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${path2}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${file} =</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Split Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">abc/def/ghi.txt</td>
+<td>${path2}</td>
+<td>${file} =</td>
+<td>Split Path</td>
+<td>abc/def/ghi.txt</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${path3}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${d2} &nbsp;=</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Split Path</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">abc/../def/ghi/</td>
+<td>${path3}</td>
+<td>${d2} &nbsp;=</td>
+<td>Split Path</td>
+<td>abc/../def/ghi/</td>
 </tr>
-</table>=&gt;<br />
+</table>
+=&gt;<br />
 - ${path1} = 'abc' &amp; ${dir} = 'def'<br />
 - ${path2} = 'abc/def' &amp; ${file} = 'ghi.txt'<br />
 - ${path3} = 'def' &amp; ${d2} = 'ghi'</td>
@@ -931,40 +998,41 @@ Examples (assuming a UNIX environment):<br />
 <br />
 Starts the process in the background and sets this process as the current process. The following calls of the keywords <a href="#Read Process Output" class="name">Read Process Output</a> and <a href="#Stop Process" class="name">Stop Process</a> affect this process, unless the keyword <a href="#Switch Process" class="name">Switch Process</a> is used. Then these keywords affect the selected process.<br />
 <br />
-If the command needs input, it can be defined with the <span class="name">stdin</span> argument. It is not possible to give input to the command later.<br />
+If the command needs input, it can be defined with the <span class="name">stdin</span> argument. &nbsp;It is not possible to give input to the command later.<br />
 <br />
 Returns the index of this process. The indexing starts from 1, and it can be used to switch between the processes with the <a href="#Switch Process" class="name">Switch Process</a> keyword. To end all processes and reset indexing, the <a href="#Stop All Processes" class="name">Stop All Processes</a> keyword must be used.<br />
 <br />
 The optional <span class="name">alias</span> is a name for this process that may be used with <a href="#Switch Process" class="name">Switch Process</a> instead of the returned index.<br />
 <br />
 Example:<br />
-<table border="1" style="border: 1px solid gray; background: transparent; border-collapse: collapse; font-size: 0.9em; empty-cells: show;">
+<table border="1" class="doc">
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Start Process</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">longlasting.sh</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>Start Process</td>
+<td>longlasting.sh</td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Do Something</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>Do Something</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${stdout}=</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Read Process Output</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>${stdout}=</td>
+<td>Read Process Output</td>
+<td></td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Should Contain</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">${stdout}</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Expected text</td>
+<td>Should Contain</td>
+<td>${stdout}</td>
+<td>Expected text</td>
 </tr>
 <tr>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">[Teardown]</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;">Stop All Processes</td>
-<td style="border: 1px solid gray; padding: 0.1em 0.3em;"></td>
+<td>[Teardown]</td>
+<td>Stop All Processes</td>
+<td></td>
 </tr>
-</table></td>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Stop All Processes"></a>Stop All Processes</td>
@@ -1003,9 +1071,7 @@ Fails if used with the directories or the parent directory of the given file doe
   <td class="arg">path, timeout=1 minute</td>
   <td class="doc">Waits until the given file or directory is created.<br />
 <br />
-The path can be given as an exact path or as a pattern where '*' - matches everything '?' - matches any single character '[chars]' - matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c') '[!chars]' - matches any character not inside square brackets<br />
-<br />
-If the path is a pattern, the keyword returns when an item matching to the pattern is created.<br />
+The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. If the path is a pattern, the keyword returns when an item matching to the pattern is created.<br />
 <br />
 The optional <span class="name">timeout</span> can be used to control the maximum time of waiting. The timeout is given as a timeout string, e.g. in a format '15 seconds' or '1min 10s'. The time string format is described in an appendix of Robot Framework User Guide.<br />
 <br />
@@ -1016,9 +1082,7 @@ If the timeout is negative, the keyword is never timed-out. The keyword returns 
   <td class="arg">path, timeout=1 minute</td>
   <td class="doc">Waits until the given file or directory is removed.<br />
 <br />
-The path can be given as an exact path or as a pattern where '*' - matches everything '?' - matches any single character '[chars]' - matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c') '[!chars]' - matches any character not inside square brackets<br />
-<br />
-If the path is a pattern, the keyword waits until all matching items are removed.<br />
+The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. If the path is a pattern, the keyword waits until all matching items are removed.<br />
 <br />
 The optional <span class="name">timeout</span> can be used to control the maximum time of waiting. The timeout is given as a timeout string, e.g. in a format '15 seconds' or '1min 10s'. The time string format is described in an appendix of Robot Framework User Guide.<br />
 <br />
@@ -1028,7 +1092,7 @@ If the timeout is negative, the keyword is never timed out. The keyword returns 
 <p class="footer">
 Altogether 53 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2008-09-11 15:15:03.
+on 2008-09-16 13:43:57.
 </p>
 </body>
 </html>
