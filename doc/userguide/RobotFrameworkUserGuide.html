@@ -473,7 +473,7 @@ pre.literal-block, pre.doctest-block {
 <body>
 <div class="document" id="robot-framework-user-guide">
 <h1 class="title">Robot Framework User Guide</h1>
-<h2 class="subtitle" id="version-version">Version trunk 20080910</h2>
+<h2 class="subtitle" id="version-version">Version trunk 20080917</h2>
 
 <!-- This data file has been placed in the public domain. -->
 <!-- Derived from the Unicode character mappings available from
@@ -4531,9 +4531,12 @@ documentation</a>. This setting documents the user keyword in the test
 data. It is also shown in a more formal keyword documentation, which
 the <a class="reference internal" href="#library-documentation-tool">libdoc</a> tool can create from <a class="reference internal" href="#resource-files">resource files</a>. Finally, the
 first row of the documentation, everything until the first <span class="code">n</span>
-sequence, is shown as a keyword documentation in test logs. If documentation is
-started with <span class="code">*DEPRECATED*</span>, the user keyword is handled as deprecated
-keyword during runtime. See more from <a class="reference internal" href="#deprecating-keywords">deprecating keywords</a>.</p>
+sequence, is shown as a keyword documentation in test logs.</p>
+<p>Sometimes keywords need to be removed, replaced with new ones, or
+deprecated for other reasons.  User keywords can be marked deprecated
+by starting the documentation with <span class="code">*DEPRECATED*</span>, which will
+cause a warning when the keyoword is used. For more information, see
+<a class="reference internal" href="#deprecating-keywords">Deprecating keywords</a> section.</p>
 </div>
 <div class="section" id="user-keyword-arguments">
 <h3><a class="toc-backref" href="#id260">2.6.3&nbsp;&nbsp;&nbsp;User keyword arguments</a></h3>
@@ -8207,21 +8210,26 @@ easily closing all open browsers.</p>
 </div>
 <div class="section" id="specifying-library-version">
 <h4><a class="toc-backref" href="#id355">Specifying library version</a></h4>
-<p>When a test library is taken into use, Robot Framework tries to determine its
-version. This version is read from attribute <span class="code">ROBOT_LIBRARY_VERSION</span> or
-<span class="code">__version__</span>, similarly as <a class="reference internal" href="#test-library-scope">test library scope</a>. If both attributes
-are defined, the former takes precedence. The attribute must be a class or
-module attribute depending whether the library is implemented as a class or a
-module. The value will be written in <a class="reference internal" href="#system-log">syslog</a>, mainly to provide debugging
-information.</p>
-<p>Library documentation tool <a class="reference internal" href="#library-documentation-tool">libdoc</a> also writes this information into keyword
-documentation if available. For Java libraries, the version attribute must be
-declared as <span class="code">static final</span> as the second example below demonstrates:</p>
+<p>When a test library is taken into use, Robot Framework tries to
+determine its version. This information is then written into the <a class="reference internal" href="#system-log">syslog</a>
+to provide debugging information. Library documentation tool
+<a class="reference internal" href="#library-documentation-tool">libdoc.py</a> also writes this information into the keyword
+documentations it generates.</p>
+<p>Version information is read from attribute
+<span class="code">ROBOT_LIBRARY_VERSION</span>, similarly as <a class="reference internal" href="#test-library-scope">test library scope</a> is
+read from <span class="code">ROBOT_LIBRARY_SCOPE</span>. If
+<span class="code">ROBOT_LIBRARY_VERSION</span> does not exist, information is tried to
+be read from <span class="code">__version__</span> attribute. These attributes must be a
+class or module attributes, depending whether the library is
+implemented as a class or a module.  For Java libraries, the version
+attribute must be declared as <span class="code">static final</span>.</p>
+<p>An example Python module using <span class="code">__version__</span>:</p>
 <div class="highlight"><pre><span class="n">__version__</span> <span class="o">=</span> <span class="s">&#39;0.1&#39;</span>
 
 <span class="k">def</span> <span class="nf">keyword</span><span class="p">():</span>
     <span class="k">pass</span>
 </pre></div>
+<p>A Java class using <span class="code">ROBOT_LIBRARY_VERSION</span>:</p>
 <div class="highlight"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">VersionExample</span> <span class="o">{</span>
 
     <span class="k">public</span> <span class="k">static</span> <span class="k">final</span> <span class="n">String</span> <span class="n">ROBOT_LIBRARY_VERSION</span> <span class="o">=</span> <span class="s">&quot;1.0.2&quot;</span><span class="o">;</span>
@@ -8918,11 +8926,12 @@ does that automatically.</p>
 </div>
 <div class="section" id="deprecating-keywords">
 <h4><a class="toc-backref" href="#id367">Deprecating keywords</a></h4>
-<p>Sometimes there is a need to replace existing keywords with new ones. Just
-informing the users about the change may not always be enough, and it is more
-efficient to get warnings at runtime. Starting from Robot Framework 2.0.2 this
-is possible by marking these keywords <em>deprecated</em>. This makes it easier to
-find old keywords from the test data and remove or replace them.</p>
+<p>Sometimes there is a need to replace existing keywords with new ones
+or remove them altogether. Just informing the users about the change
+may not always be enough, and it is more efficient to get warnings at
+runtime. Starting from Robot Framework 2.0.2 this is possible by
+marking these keywords <em>deprecated</em>. This makes it easier to find old
+keywords from the test data and remove or replace them.</p>
 <p>Keywords are deprecated by starting their documentation with
 <span class="code">*DEPRECATED*</span>. When these keywords are executed, a warning containing rest
 of the <a class="reference internal" href="#documenting-libraries">short documentation</a> is written into the <a class="reference internal" href="#system-log">syslog</a> and the <a class="reference internal" href="#log-file">log file</a>.
@@ -8946,7 +8955,7 @@ The only exception are keywords implemented in a Java test library that uses
 the <a class="reference internal" href="#creating-static-keywords">static library interface</a> because their documentation is not available
 at runtime. With such keywords, it possible to use user keywords as wrappers and
 deprecate them.</p>
-<p>There is a plan to implement a tool that can use this same deprecation
+<p>There is a plan to implement a tool that can use the deprecation
 information for automatically replacing deprecated keywords. The tool will most
 likely get the name of the new keyword from the documentation so that it searches
 words inside backticks (<span class="code">`</span>). Thus it would find <span class="name">Other Keyword</span> from
@@ -9285,11 +9294,11 @@ the keyword name and arguments.</p>
 <div class="section" id="using-listener-interface">
 <h2><a class="toc-backref" href="#id346">4.2&nbsp;&nbsp;&nbsp;Using listener interface</a></h2>
 <p>Robot Framework has a listener interface that can be used to receive
-notifications about test execution. Listeners are classes with certain
-special methods, and they can be implemented both with Python and
-Java. Example uses of the listener interface include external test
-monitors, sending a mail message when a test fails, and communicating with
-other systems.</p>
+notifications about test execution. Listeners are classes with certain special
+methods, and they can be implemented both with Python and Java. Starting from
+version 2.0.2, it is also possible to implement listeners as Python modules.
+Example uses of the listener interface include external test monitors, sending
+a mail message when a test fails, and communicating with other systems.</p>
 <div class="contents local topic" id="id104">
 <ul class="auto-toc simple">
 <li><a class="reference internal" href="#taking-listeners-into-use" id="id379">4.2.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></li>
@@ -9299,21 +9308,28 @@ other systems.</p>
 </div>
 <div class="section" id="taking-listeners-into-use">
 <h3><a class="toc-backref" href="#id379">4.2.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></h3>
-<p>Listeners are taken into use from the command line with the
-<span class="opt">--listener</span> option, so that the name of the listener is
-given to it as an argument. The listener name is got from the name of
-the class implementing the listener interface, similarly as <a class="reference internal" href="#test-library-names">test
-library names</a> are got from classes implementing them. The specified
-listeners must be in the same <a class="reference internal" href="#adjusting-library-search-path">module search path</a> where test
-libraries are searched from when they are imported. Other option is to give
-the path to the listener file <a class="reference internal" href="#using-physical-path-to-library">similarly as with test libraries</a>. It is
-possible to take multiple listeners into use by using this option several times.</p>
+<p>Listeners are taken into use from the command line with the <span class="opt">--listener</span>
+option, so that the name of the listener is given to it as an argument. The
+listener name is got from the name of the class or module implementing the
+listener interface, similarly as <a class="reference internal" href="#test-library-names">test library names</a> are got from classes
+implementing them. The specified listeners must be in the same <a class="reference internal" href="#adjusting-library-search-path">module search
+path</a> where test libraries are searched from when they are imported. Other
+option is to give an absolute or a relative path to the listener file
+<a class="reference internal" href="#using-physical-path-to-library">similarly as with test libraries</a>. It is possible to take multiple listeners
+into use by using this option several times.</p>
+<p>Starting from version 2.0.2, it is also possible to give arguments to listener
+classes from the command line. Arguments are specified after the listener name
+(or path) using a colon as a separator. This approach provides only string
+type arguments and arguments obviously cannot contain colons. However, it
+should be pretty easy to listeners to go around these limitations.</p>
 <p>Examples:</p>
 <pre class="literal-block">
 pybot --listener MyListener tests.html
 jybot --listener com.company.package.Listener tests.html
 pybot --listener path/to/MyListener.py tests.html
 pybot --listener module.Listener --listener AnotherListener tests.html
+pybot --listener ListenerWithArgs:arg1:arg2
+pybot --listener path/to/MyListener.java:argument tests.html
 </pre>
 </div>
 <div class="section" id="available-listener-interface-methods">
@@ -9449,36 +9465,34 @@ need to implement any explicit interface or have all these methods.</p>
 </div>
 <div class="section" id="listener-examples">
 <h3><a class="toc-backref" href="#id381">4.2.3&nbsp;&nbsp;&nbsp;Listener examples</a></h3>
-<p>The first simple example is implemented with Python. It mainly
+<p>The first simple example is implemented in a Python module. It mainly
 illustrates that using the listener interface is not very complicated.</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">SimpleListener</span><span class="p">:</span>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">start_test</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">documentation</span><span class="p">,</span> <span class="n">tags</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&#39;Executing test </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">name</span>
 
-    <span class="k">def</span> <span class="nf">start_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">documentation</span><span class="p">,</span> <span class="n">tags</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&#39;Executing test </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">name</span>
+<span class="k">def</span> <span class="nf">start_keyword</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&#39;Executing keyword </span><span class="si">%s</span><span class="s"> with arguments </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">start_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&#39;Executing keyword </span><span class="si">%s</span><span class="s"> with arguments </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">log_file</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&#39;Test log available at </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">path</span>
 
-    <span class="k">def</span> <span class="nf">log_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&#39;Test log available at </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">path</span>
-
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&#39;All tests executed&#39;</span>
+<span class="k">def</span> <span class="nf">close</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&#39;All tests executed&#39;</span>
 </pre></div>
-<p>The second example, which still uses Python, is slightly more
-complicated. It writes all the information it gets into a text file in
-a temporary directory without much formatting. Note that in real
-usage, the <a class="reference internal" href="#debug-file">debug file</a> functionality available through the command
-line option <span class="cli">--debugfile</span> is probably more useful than this
-example.</p>
+<p>The second example, which still uses Python, is slightly more complicated. It
+writes all the information it gets into a text file in a temporary directory
+without much formatting. The filename may be given from the command line, but
+also has a default value. Note that in real usage, the <a class="reference internal" href="#debug-file">debug file</a>
+functionality available through the command line option <span class="cli">--debugfile</span> is
+probably more useful than this example.</p>
 <div class="highlight"><pre><span class="k">import</span> <span class="nn">os.path</span>
 <span class="k">import</span> <span class="nn">tempfile</span>
 
 
 <span class="k">class</span> <span class="nc">PythonListener</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">outpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span> <span class="s">&#39;listen.txt&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s">&#39;listen.txt&#39;</span><span class="p">):</span>
+        <span class="n">outpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span> <span class="n">filename</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outpath</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">start_suite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">doc</span><span class="p">):</span>
@@ -9505,12 +9519,17 @@ example.</p>
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">JavaListener</span> <span class="o">{</span>
 
-    <span class="n">BufferedWriter</span> <span class="n">outfile</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">final</span> <span class="n">String</span> <span class="n">DEFAULT_FILENAME</span> <span class="o">=</span> <span class="s">&quot;listen_java.txt&quot;</span><span class="o">;</span>
+    <span class="k">private</span> <span class="n">BufferedWriter</span> <span class="n">outfile</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
     <span class="k">public</span> <span class="nf">JavaListener</span><span class="o">()</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">DEFAULT_FILENAME</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">public</span> <span class="nf">JavaListener</span><span class="o">(</span><span class="n">String</span> <span class="n">filename</span><span class="o">)</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
         <span class="n">String</span> <span class="n">tmpdir</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;java.io.tmpdir&quot;</span><span class="o">);</span>
         <span class="n">String</span> <span class="n">sep</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&quot;file.separator&quot;</span><span class="o">);</span>
-        <span class="n">String</span> <span class="n">outpath</span> <span class="o">=</span> <span class="n">tmpdir</span> <span class="o">+</span> <span class="n">sep</span> <span class="o">+</span> <span class="s">&quot;listen_java.txt&quot;</span><span class="o">;</span>
+        <span class="n">String</span> <span class="n">outpath</span> <span class="o">=</span> <span class="n">tmpdir</span> <span class="o">+</span> <span class="n">sep</span> <span class="o">+</span> <span class="n">filename</span><span class="o">;</span>
         <span class="n">outfile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedWriter</span><span class="o">(</span><span class="k">new</span> <span class="n">FileWriter</span><span class="o">(</span><span class="n">outpath</span><span class="o">));</span>
     <span class="o">}</span>
 
@@ -9969,7 +9988,7 @@ by Suite</span> table in outputs.</td></tr>
 <tr><td>&nbsp;</td><td><a class="reference internal" href="#including-and-excluding-tag-statistics">Excludes these tags</a> from the <span class="name">Statistics by Tag</span> and
 <span class="name">Test Details by Tag</span> tables in outputs.</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">--tagstatcombine <var>&lt;tags&gt;</var></span></kbd></td>
+<kbd><span class="option">--tagstatcombine <var>&lt;tags:title&gt;</var></span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Creates <a class="reference internal" href="#generating-combined-tag-statistics">combined statistics based on tags</a>.</td></tr>
 <tr><td class="option-group" colspan="2">
@@ -9982,7 +10001,7 @@ by Suite</span> table in outputs.</td></tr>
 <tr><td>&nbsp;</td><td>Adds <a class="reference internal" href="#creating-links-from-tag-names">external links</a> to the <span class="name">Statistics by
 Tag</span> table in outputs.</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">--listener <var>&lt;class&gt;</var></span></kbd></td>
+<kbd><span class="option">--listener <var>&lt;name:args&gt;</var></span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td><a class="reference internal" href="#setting-listeners">Sets a listener</a> for monitoring test execution.</td></tr>
 <tr><td class="option-group" colspan="2">
@@ -10118,7 +10137,7 @@ table in outputs.</td></tr>
 <tr><td>&nbsp;</td><td><a class="reference internal" href="#including-and-excluding-tag-statistics">Excludes these tags</a> from the <span class="name">Statistics by Tag</span> and
 <span class="name">Test Details by Tag</span> tables in outputs.</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">--tagstatcombine <var>&lt;tags&gt;</var></span></kbd></td>
+<kbd><span class="option">--tagstatcombine <var>&lt;tags:title&gt;</var></span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Creates <a class="reference internal" href="#generating-combined-tag-statistics">combined statistics based on tags</a>.</td></tr>
 <tr><td class="option-group" colspan="2">
@@ -10495,7 +10514,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2008-09-14 18:59 UTC.
+<p>Generated on: 2008-09-17 12:08 UTC.
 </p>
 
 </div>
