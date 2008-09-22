@@ -79,7 +79,7 @@
 </head>
 <body>
 <h1>OperatingSystem - Documentation</h1>
-<p><b>Version:</b> trunk 20080910</p>
+<p><b>Version:</b> trunk 20080922</p>
 
 <h2>Introduction</h2>
 <p class='libdoc'>This test library enables multiple operating-system-related tasks.<br />
@@ -625,7 +625,7 @@ The file is logged with the INFO level. If you want something else, just use <a 
   <td class="arg">source, destination</td>
   <td class="doc">Moves the source directory into a destination.<br />
 <br />
-If a destination exists, the source is moved under it. Oherwise the destination directory and the possible missing intermediate directories are created.</td>
+If a destination exists, the source is moved under it. Otherwise the destination directory and the possible missing intermediate directories are created.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Move File"></a>Move File</td>
@@ -733,13 +733,13 @@ Example:<br />
 <br />
 The execution status of the command <b>is not checked</b> by this keyword, and it must be done separately based on the return code (RC) or the returned output. Documentation below explains how to control returning RC and output, and examples at the end illustrate few different possibilities for checking the outcome.<br />
 <br />
-Starting from Robot Framework 2.0.2, the standard error stream is automatically redirected to the standard output stream by adding '2&gt;&amp;1' after the executed command. This is done mainly as a workaround for a bug in Jython that makes it hang if a lot of text is written to the standard error (<a href="http://bugs.jython.org/issue1124">http://bugs.jython.org/issue1124</a>), but it also makes possible errors in executing the command available automatically.<br />
+Starting from Robot Framework 2.0.2, the standard error stream is automatically redirected to the standard output stream by adding '2&gt;&amp;1' after the executed command. This is done mainly as a workaround for a bug in Jython that makes it hang if a lot of text is written to the standard error (<a href="http://bugs.jython.org/issue1124">http://bugs.jython.org/issue1124</a>). Additionally, it also makes possible errors in executing the command available automatically.<br />
 <br />
 The automatic redirection of the standard error is done only when the executed command does not contain additional output redirections. You can thus freely forward the standard error somewhere else, for example, like 'my_command 2&gt;stderr.txt'.<br />
 <br />
 <hr />
 <br />
-<span class="name">return_mode</span> defines whether the RC, output or both is retured. All checks explained below are case-insensitive.<br />
+<span class="name">return_mode</span> defines whether the RC, output or both is returned. All checks explained below are case-insensitive.<br />
 <br />
 - If <span class="name">return_mode</span> contains the word 'RC' and the word 'output', both the RC and output are returned.<br />
 - Otherwise, if it contains the word 'RC', only the RC is returned.<br />
@@ -747,7 +747,7 @@ The automatic redirection of the standard error is done only when the executed c
 <br />
 The RC is returned as a positive integer in range from 0 to 255 as returned by the executed command. On some operating systems (notable Windows) original return codes can be something else, but this keyword always maps them to the 0-255 range. Since the RC is an integer, it must be checked e.g. with the keyword <span class="name">Should Be Equal As Integers</span> instead of <span class="name">Should Be Equal</span> (both are built-in keywords).<br />
 <br />
-The returned output contains everything written into the standard output or error by the command (unless either of them is redirected explicityly). Many commands add an extra newline (\n) after the output to make it easier to read in the console. To ease processing the returned output, Robot Framework strips this possible newline.<br />
+The returned output contains everything written into the standard output or error by the command (unless either of them is redirected explicitly). Many commands add an extra newline (\n) after the output to make it easier to read in the console. To ease processing the returned output, Robot Framework strips this possible newline.<br />
 <br />
 <hr />
 <br />
@@ -950,7 +950,7 @@ The path can be given as an exact path or as a pattern similarly as with <a href
   <td class="arg">path</td>
   <td class="doc">Splits the extension from the given path.<br />
 <br />
-The given path is first normalized (e.g. a possible trailing path separator removed, special directories '..' and '.' removed). &nbsp;The splitted parts are returned as separate components. If the path contains no extension, an empty string is returned for it.<br />
+The given path is first normalized (e.g. possible trailing path separators removed, special directories '..' and '.' removed). The base path and extension are returned as separate components so that the dot used as an extension separator is removed. If the path contains no extension, an empty string is returned for it. Starting from Robot Framework 2.0.2, possible leading and trailing dots in the file name are never considered to be extension separators.<br />
 <br />
 Examples:<br />
 <table border="1" class="doc">
@@ -978,19 +978,33 @@ Examples:<br />
 <td>Split Extension</td>
 <td>p1/../p2/file.ext</td>
 </tr>
+<tr>
+<td>${p5}</td>
+<td>${e5} =</td>
+<td>Split Extension</td>
+<td>path/.file.ext</td>
+</tr>
+<tr>
+<td>${p6}</td>
+<td>${e6} =</td>
+<td>Split Extension</td>
+<td>path/.file</td>
+</tr>
 </table>
 =&gt;<br />
 - ${path} = 'file' &amp; ${ext} = 'extension'<br />
 - ${p2} = 'path/file' &amp; ${e2} = 'ext'<br />
 - ${p3} = 'path/file' &amp; ${e3} = ''<br />
-- ${p4} = 'p2/file' &amp; ${e4} = 'ext'</td>
+- ${p4} = 'p2/file' &amp; ${e4} = 'ext'<br />
+- ${p5} = 'path/.file' &amp; ${e5} = 'ext'<br />
+- ${p6} = 'path/.file' &amp; ${e6} = ''</td>
 </tr>
 <tr>
   <td class="kw"><a name="Split Path"></a>Split Path</td>
   <td class="arg">path</td>
   <td class="doc">Splits the given path from the last path separator ('/' or '\').<br />
 <br />
-The given path is first normalized (e.g. a possible trailing path separator is removed, special directories '..' and '.' removed). &nbsp;The splitted parts are returned as separate components.<br />
+The given path is first normalized (e.g. a possible trailing path separator is removed, special directories '..' and '.' removed). The parts that are split are returned as separate components.<br />
 <br />
 Examples:<br />
 <table border="1" class="doc">
@@ -1070,7 +1084,7 @@ Example:<br />
 <br />
 Resets the indexing that <a href="#Start Process" class="name">Start Process</a> uses. All aliases are also deleted. It does not matter have some of the processes already been closed or not.<br />
 <br />
-It is highly recommened to use this keyword in test or suite level teardown to make sure all the started processes are closed.</td>
+It is highly recommended to use this keyword in test or suite level teardown to make sure all the started processes are closed.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Stop Process"></a>Stop Process</td>
@@ -1128,8 +1142,8 @@ Example:<br />
 </tr>
 <tr>
 <td>Log Many</td>
-<td>1st processs: ${out1}</td>
-<td>2nd processs: ${out1}</td>
+<td>1st process: ${out1}</td>
+<td>2nd process: ${out1}</td>
 <td></td>
 </tr>
 <tr>
@@ -1176,7 +1190,7 @@ If the timeout is negative, the keyword is never timed out. The keyword returns 
 <p class="footer">
 Altogether 53 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2008-09-17 00:44:35.
+on 2008-09-22 15:38:39.
 </p>
 </body>
 </html>
