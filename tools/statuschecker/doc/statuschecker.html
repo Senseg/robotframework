@@ -509,10 +509,49 @@ also an output file and it is edited in place.</p>
 message. Changing the expected status to <span class="msg">FAIL</span> is done by having
 the word <span class="msg">FAIL</span> (in uppercase) somewhere in the test case
 documentation. The expected error message must then be given after
-<span class="msg">FAIL</span>. The error message can also be specified as a regular
-expression by prefixing it with <span class="msg">REGEXP:</span>. Having spaces between
-the status, the message or the possible regular expression prefix is
-optional.</p>
+<span class="msg">FAIL</span>.</p>
+<p>The error message can also be specified as a regular expression by
+prefixing it with <span class="msg">REGEXP:</span>. The specified regular expression
+must match the error message fully. Having spaces between the status,
+the message or the possible regular expression prefix is optional.</p>
+<table border="1" class="example docutils">
+<caption>Examples</caption>
+<colgroup>
+<col width="24%" />
+<col width="21%" />
+<col width="13%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Test Case</th>
+<th class="head">Action</th>
+<th class="head">Arguments</th>
+<th class="head">Arguments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Simple Example</td>
+<td>[Documentation]</td>
+<td>FAIL</td>
+<td>Expected error message</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+<tr><td>Regexp Example</td>
+<td>[Documentation]</td>
+<td>FAIL</td>
+<td>REGEXP: (IOError|OSError): .*</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="defining-expected-log-messages">
 <h2>Defining expected log messages</h2>
@@ -531,21 +570,129 @@ first keyword. The message index is optional and defaults to <span class="msg">1
 <p>Message level is specified before the actual message, and it can be
 any of the valid log levels in capital letters. If the level is not
 given it defaults to <span class="msg">INFO</span>.</p>
-<p>This syntax can be used multiple times to test multiple messages. It can be
-used together with <span class="msg">FAIL</span>, but it that case <span class="msg">FAIL</span> must be first.</p>
-<p>Examples:</p>
-<pre class="literal-block">
-LOG 1 Hello, world!
-LOG 2.1:42 Some message LOG 2.2 Another message
-LOG 2:2 WARN Warning, warning!
-FAIL Error messagea LOG 1:2 Log message
-</pre>
+<p>This syntax can be used multiple times to test multiple messages.  It
+also workstogether with specifying the expected error message with
+<span class="msg">FAIL</span>, but it that case <span class="msg">FAIL</span> and the expected error must
+be first.</p>
+<table border="1" class="example docutils">
+<caption>Examples</caption>
+<colgroup>
+<col width="24%" />
+<col width="21%" />
+<col width="13%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Test Case</th>
+<th class="head">Action</th>
+<th class="head">Arguments</th>
+<th class="head">Arguments</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Simple Example</td>
+<td>[Documentation]</td>
+<td>LOG 1</td>
+<td>Hello, world!</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+<tr><td>Nested Keywords</td>
+<td>[Documentation]</td>
+<td>LOG 2.1</td>
+<td>1st child of 2nd kw</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+<tr><td>Message Index</td>
+<td>[Documentation]</td>
+<td>LOG 2:2</td>
+<td>2nd msg of 2nd kw</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+<tr><td>Nested and Index</td>
+<td>[Documentation]</td>
+<td>LOG 3.1:2</td>
+<td>2nd msg of 3rd kw's 1st child</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+<tr><td>Levels 1</td>
+<td>[Documentation]</td>
+<td>LOG 2</td>
+<td>DEBUG Debug level</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+<tr><td>Levels 2</td>
+<td>[Documentation]</td>
+<td>LOG 1.2:3</td>
+<td>WARN Warning</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+<tr><td>Multiple Messages</td>
+<td>[Documentation]</td>
+<td>LOG 1</td>
+<td>First tested message</td>
+</tr>
+<tr><td></td>
+<td>...</td>
+<td>LOG 1.2</td>
+<td>Second tested message</td>
+</tr>
+<tr><td></td>
+<td>...</td>
+<td>LOG 2.2.1</td>
+<td>DEBUG Third tested message</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+<tr><td>Status and Log</td>
+<td>[Documentation]</td>
+<td>FAIL</td>
+<td>Expected error message</td>
+</tr>
+<tr><td></td>
+<td>...</td>
+<td>LOG 1.2</td>
+<td>Expected log message</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2008-09-22 13:12 UTC.
+Generated on: 2008-09-24 10:52 UTC.
 
 </div>
 </body>
