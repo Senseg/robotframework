@@ -574,6 +574,10 @@ given it defaults to <span class="msg">INFO</span>.</p>
 also workstogether with specifying the expected error message with
 <span class="msg">FAIL</span>, but it that case <span class="msg">FAIL</span> and the expected error must
 be first.</p>
+<p>The log message can also be given as a regular expression pattern the
+same way as the <a class="reference internal" href="#defining-expected-test-status">expected error message</a>. Finally, to check that a
+keyword does not have a certain message, it is possible to use
+<span class="msg">NONE</span> in the place of the message.</p>
 <table border="1" class="example docutils">
 <caption>Examples</caption>
 <colgroup>
@@ -685,6 +689,31 @@ be first.</p>
 <td></td>
 <td></td>
 </tr>
+<tr><td>Regexp Message</td>
+<td>[Documentation]</td>
+<td>LOG 1</td>
+<td>REGEXP: (Hello|Hi) world!</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+<tr><td>No Message</td>
+<td>[Documentation]</td>
+<td>LOG 1:1</td>
+<td>Test that we have only 1 msg</td>
+</tr>
+<tr><td></td>
+<td>...</td>
+<td>LOG 1:2</td>
+<td>NONE</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -692,7 +721,7 @@ be first.</p>
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2008-09-24 10:52 UTC.
+Generated on: 2008-09-24 16:47 UTC.
 
 </div>
 </body>
