@@ -473,7 +473,7 @@ pre.literal-block, pre.doctest-block {
 <body>
 <div class="document" id="robot-framework-user-guide">
 <h1 class="title">Robot Framework User Guide</h1>
-<h2 class="subtitle" id="version-version">Version trunk 20080924</h2>
+<h2 class="subtitle" id="version-version">Version trunk 20081120</h2>
 
 <!-- This data file has been placed in the public domain. -->
 <!-- Derived from the Unicode character mappings available from
@@ -4254,8 +4254,8 @@ are available in different scopes.</p>
 <h4><a class="toc-backref" href="#id259">Variable priorities</a></h4>
 <p><em>Variables from the command line</em></p>
 <blockquote>
-<p>Variables <a class="reference internal" href="#setting-variables-in-command-line">set in the command line</a> have the highest priority of
-all variables set prior to the actual test execution starts. They
+<p>Variables <a class="reference internal" href="#setting-variables-in-command-line">set in the command line</a> have the highest priority of all
+variables that can be set before the actual test execution starts. They
 override possible variables created in Variable tables in test case
 files, as well as in resource and variable files imported in the
 test data.</p>
@@ -4279,7 +4279,8 @@ priority. If several resource and/or variable file have same
 variables, the ones in the file imported first are taken into use.</p>
 <p>If a resource file imports resource files or variable files,
 variables in its own Variable table have a higher priority than
-variables it imports.</p>
+variables it imports. All these variables are available for files that
+import this resource file.</p>
 </blockquote>
 <p><em>Variables set during test execution</em></p>
 <blockquote>
@@ -4292,10 +4293,12 @@ variables outside the scope they are defined.</blockquote>
 <p><em>Built-in variables</em></p>
 <blockquote>
 <a class="reference internal" href="#built-in-variables">Built-in variables</a> like <span class="var">${TEMPDIR}</span> and <span class="var">${TEST_NAME}</span>
-have the lowest priority of all variables. They are used only if there
-is no variable with the same name in the scope where they are used. An
-exception to this rule is <span class="var">${CURDIR}</span>, which is replaced with
-its value already during the test data processing time.</blockquote>
+have the highest priority of all variables. They cannot be overridden
+using Variable table or from command line, but even they can be reset during
+the test execution. An exception to this rule are <a class="reference internal" href="#number-variables">number variables</a>, which
+are resolved dynamically if no variable is found otherwise. They can thus be
+overridden, but that is generally a bad idea. Additionally <span class="var">${CURDIR}</span>
+is special because it is replaced already during the test data processing time.</blockquote>
 </div>
 <div class="section" id="variable-scopes">
 <h4><a class="toc-backref" href="#id260">Variable scopes</a></h4>
@@ -4308,8 +4311,8 @@ variables are normally <a class="reference internal" href="#setting-variables-in
 <span class="opt">--variable</span> and <span class="opt">--variablefile</span> options, but it is also
 possible to create new global variables or change the existing ones
 with the <a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="name">Set Global Variable</span> anywhere in
-the test data.</p>
-<p>It is recommended to use capital letters with global variables.</p>
+the test data. Additionally also <a class="reference internal" href="#built-in-variables">built-in variables</a> are global.</p>
+<p>It is recommended to use capital letters with all global variables.</p>
 </blockquote>
 <p><em>Test suite scope</em></p>
 <blockquote>
@@ -10402,7 +10405,7 @@ this appendix.</p>
 <ul class="auto-toc simple">
 <li><a class="reference internal" href="#internal-tools" id="id405">5.4.1&nbsp;&nbsp;&nbsp;Internal tools</a><ul>
 <li><a class="reference internal" href="#library-documentation-tool" id="id406">Library documentation tool</a></li>
-<li><a class="reference internal" href="#testdata-documentation-tool" id="id407">Testdata documentation tool</a></li>
+<li><a class="reference internal" href="#test-data-documentation-tool" id="id407">Test data documentation tool</a></li>
 <li><a class="reference internal" href="#historical-reporting-tool" id="id408">Historical reporting tool</a></li>
 <li><a class="reference internal" href="#test-data-tidying-tool" id="id409">Test data tidying tool</a></li>
 <li><a class="reference internal" href="#test-result-diffing-tool" id="id410">Test result diffing tool</a></li>
@@ -10430,10 +10433,10 @@ the source distribution and also available through
 <p><a class="reference external" href="../../tools/libdoc/doc/libdoc.html">libdoc.py</a> is tool for generating HTML or XML documentation from keywords of
 a test library or a resource file.</p>
 </div>
-<div class="section" id="testdata-documentation-tool">
-<h4><a class="toc-backref" href="#id407">Testdata documentation tool</a></h4>
+<div class="section" id="test-data-documentation-tool">
+<h4><a class="toc-backref" href="#id407">Test data documentation tool</a></h4>
 <p><a class="reference external" href="../../tools/libdoc/doc/testdoc.html">testdoc.py</a> is tool for generating high level documentation of a given test
-suite, including the names of suites and tests as well as toplevel keywords.</p>
+suite, including the names of suites and tests as well as top-level keywords.</p>
 </div>
 <div class="section" id="historical-reporting-tool">
 <h4><a class="toc-backref" href="#id408">Historical reporting tool</a></h4>
@@ -10706,7 +10709,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2008-11-19 11:28 UTC.
+<p>Generated on: 2008-11-20 21:45 UTC.
 </p>
 
 </div>
