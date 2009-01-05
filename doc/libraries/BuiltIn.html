@@ -111,6 +111,7 @@ These keywords are available automatically without importing any library. They a
 <a href="#No Operation" title="Does absolutely nothing.">No&nbsp;Operation</a>&nbsp;
 <a href="#Regexp Escape" title="Returns each argument string escaped for use as a regular expression.">Regexp&nbsp;Escape</a>&nbsp;
 <a href="#Remove Tags" title="Removes given `tags` from the current test or all tests in a suite.">Remove&nbsp;Tags</a>&nbsp;
+<a href="#Repeat Keyword" title="Executes the specified keyword multiple times.">Repeat&nbsp;Keyword</a>&nbsp;
 <a href="#Replace Variables" title="Replaces variables in the given text with their current values.">Replace&nbsp;Variables</a>&nbsp;
 <a href="#Run Keyword" title="Executes the given keyword with the given arguments.">Run&nbsp;Keyword</a>&nbsp;
 <a href="#Run Keyword And Expect Error" title="Runs the keyword and checks that the expected error occurred.">Run&nbsp;Keyword&nbsp;And&nbsp;Expect&nbsp;Error</a>&nbsp;
@@ -592,19 +593,49 @@ Example:<br />
 New in Robot Framework version 2.0.3.</td>
 </tr>
 <tr>
+  <td class="kw"><a name="Repeat Keyword"></a>Repeat Keyword</td>
+  <td class="arg">times, name, *args</td>
+  <td class="doc">Executes the specified keyword multiple times.<br />
+<br />
+<span class="name">name</span> and <span class="name">args</span> define the keyword that is executed similarly as with <a href="#Run Keyword" class="name">Run Keyword</a>, and <span class="name">times</span> specifies how many the keyword should be executed. <span class="name">times</span> can be given as an integer or as a string that can be converted to an integer. It can also have postfix 'times' or 'x' (case and space insensitive) to make the expression easier to read.<br />
+<br />
+If <span class="name">times</span> is zero or negative, the keyword is not executed at all. This keyword fails immediately if any of the execution rounds fails.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>Repeat Keyword</td>
+<td>5 times</td>
+<td>Goto Previous Page</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Repeat Keyword</td>
+<td>${var}</td>
+<td>Some Keyword</td>
+<td>arg1</td>
+<td>arg2</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
   <td class="kw"><a name="Replace Variables"></a>Replace Variables</td>
   <td class="arg">text</td>
   <td class="doc">Replaces variables in the given text with their current values.<br />
 <br />
 If the text contains undefined variables, this keyword fails.<br />
 <br />
-Example: The file 'template.txt' contains 'Hello ${NAME}!' and variable '${NAME}' has the value 'Robot'.<br />
+Example:<br />
+<br />
+The file 'template.txt' contains 'Hello ${NAME}!' and variable '${NAME}' has the value 'Robot'.<br />
 <br />
 <table border="1" class="doc">
 <tr>
 <td>${template} =</td>
 <td>Get File</td>
-<td>${CURDIR}${/}template.txt}</td>
+<td>${CURDIR}/template.txt</td>
 </tr>
 <tr>
 <td>${message} =</td>
@@ -632,7 +663,7 @@ Because the name of the keyword to execute is given as an argument, it can be a 
   <td class="arg">expected_error, name, *args</td>
   <td class="doc">Runs the keyword and checks that the expected error occurred.<br />
 <br />
-The expected error must be given in the same format as in Robot Framework reports. It can be a pattern containing characters '?', which matches to any single character and '*'. which matches to any number of any characters.<br />
+The expected error must be given in the same format as in Robot Framework reports. It can be a pattern containing characters '?', which matches to any single character and '*'. which matches to any number of any characters. <span class="name">name</span> and <span class="name">*args</span> have same semantics as with <a href="#Run Keyword" class="name">Run Keyword</a>.<br />
 <br />
 If the expected error occurs, the error message is returned and it can be further processed/tested, if needed. If there is no error, or the error does not match the expected error, this keyword fails.<br />
 <br />
@@ -669,9 +700,7 @@ Examples:<br />
 <br />
 This keyword returns two values, so that the first is either 'PASS' or 'FAIL', depending on the status of the executed keyword. The second value is either the return value of the keyword or the received error message.<br />
 <br />
-The keyword name and arguments work as in <a href="#Run Keyword" class="name">Run Keyword</a>.<br />
-<br />
-See <a href="#Run Keyword If" class="name">Run Keyword If</a> for a usage example.<br />
+The keyword name and arguments work as in <a href="#Run Keyword" class="name">Run Keyword</a>. See <a href="#Run Keyword If" class="name">Run Keyword If</a> for a usage example.<br />
 <br />
 Note: In versions prior to Robot Framework version 1.8.3, this keyword only returns the return value or error message of the executed keyword.</td>
 </tr>
@@ -1351,9 +1380,9 @@ New in Robot Framework version 1.8.1.</td>
 </tr>
 </table>
 <p class="footer">
-Altogether 68 keywords.<br />
+Altogether 69 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2008-12-09 20:03:42.
+on 2009-01-05 18:05:55.
 </p>
 </body>
 </html>
