@@ -92,16 +92,20 @@
 <a href="#Generate Random String" title="Generates a random string of the required length (8 by default).">Generate&nbsp;Random&nbsp;String</a>&nbsp;
 <a href="#Get All But Last Line" title="Returns all but the last line of input as string (cuts out the last line)">Get&nbsp;All&nbsp;But&nbsp;Last&nbsp;Line</a>&nbsp;
 <a href="#Get All But Last Line As List" title="Returns list of all but the last line of input">Get&nbsp;All&nbsp;But&nbsp;Last&nbsp;Line&nbsp;As&nbsp;List</a>&nbsp;
+<a href="#Get Column" title="Takes input text, splits into columns using delimiter">Get&nbsp;Column</a>&nbsp;
 <a href="#Get First Line" title="Returns the first line of input: head -1">Get&nbsp;First&nbsp;Line</a>&nbsp;
-<a href="#Get Head Lines As List" title="Returns the first lineCount lines of input: head -lineCount">Get&nbsp;Head&nbsp;Lines&nbsp;As&nbsp;List</a>&nbsp;
-<a href="#Get Last Line" title="Returns the last line of input: tail -1">Get&nbsp;Last&nbsp;Line</a>&nbsp;
+<a href="#Get Head Lines As List" title="Returns the first line_count lines of input: head -line_count">Get&nbsp;Head&nbsp;Lines&nbsp;As&nbsp;List</a>&nbsp;
+<a href="#Get Last Line" title="Returns the last line of input">Get&nbsp;Last&nbsp;Line</a>&nbsp;
 <a href="#Get Line Count" title="Returns the number of lines.">Get&nbsp;Line&nbsp;Count</a>&nbsp;
 <a href="#Get Lines As List" title="Converts multiline input to list of lines. Ends of lines removed.">Get&nbsp;Lines&nbsp;As&nbsp;List</a>&nbsp;
-<a href="#Get Lines Not Matching Any Of Elements" title="This keyword returns linesToMatch without lines where any of linesToExclude is a substring.">Get&nbsp;Lines&nbsp;Not&nbsp;Matching&nbsp;Any&nbsp;Of&nbsp;Elements</a>&nbsp;
-<a href="#Get Second Part Of Lines After String" title="Splits each line using splitString, returns second part">Get&nbsp;Second&nbsp;Part&nbsp;Of&nbsp;Lines&nbsp;After&nbsp;String</a>&nbsp;
-<a href="#Get Substring" title="Returns a substring from leftIndex to rightIndex, which should be numbers (0, len-1)">Get&nbsp;Substring</a>&nbsp;
-<a href="#Replace String" title="Searches stringToSearchFor in stringToReplaceIn and replaces with stringToReplaceWith)">Replace&nbsp;String</a>&nbsp;
-<a href="#Split String" title="Split stringToSplit, divided by splitString">Split&nbsp;String</a>&nbsp;
+<a href="#Get Lines Not Matching Any Of Elements" title="This keyword returns to_match without lines">Get&nbsp;Lines&nbsp;Not&nbsp;Matching&nbsp;Any&nbsp;Of&nbsp;Elements</a>&nbsp;
+<a href="#Get Second Part Of Lines After String" title="Splits each line using split_with, returns second part">Get&nbsp;Second&nbsp;Part&nbsp;Of&nbsp;Lines&nbsp;After&nbsp;String</a>&nbsp;
+<a href="#Get Substring" title="Returns a substring from left_index to right_index,">Get&nbsp;Substring</a>&nbsp;
+<a href="#Is A String" title="Checks whether item is a string. Returns true or false">Is&nbsp;A&nbsp;String</a>&nbsp;
+<a href="#Replace String" title="Searches search_for in replace_in and replaces with replace_with)">Replace&nbsp;String</a>&nbsp;
+<a href="#Should Be A String" title="Fails if item is not a string (e.g. list, number)">Should&nbsp;Be&nbsp;A&nbsp;String</a>&nbsp;
+<a href="#Should Not Be A String" title="Fails if item is a string (e.g. list, number)">Should&nbsp;Not&nbsp;Be&nbsp;A&nbsp;String</a>&nbsp;
+<a href="#Split String" title="Split to_split, divided by split_with">Split&nbsp;String</a>&nbsp;
 <a href="#Split To Last Line And Rest" title="Splits multiline input to all_but_last and last line.">Split&nbsp;To&nbsp;Last&nbsp;Line&nbsp;And&nbsp;Rest</a>&nbsp;
 </div>
 
@@ -119,17 +123,17 @@
 </tr>
 <tr>
   <td class="kw"><a name="Convert Csv To List"></a>Convert Csv To List</td>
-  <td class="arg">convertCsv</td>
+  <td class="arg">csv_string</td>
   <td class="doc">Converts a comma-separated element string to a list of elements 'a,b,c' =&gt; ['a','b','c']</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert List To Csv"></a>Convert List To Csv</td>
-  <td class="arg">convertList</td>
+  <td class="arg">convert_list</td>
   <td class="doc">Converts a list of elements to comma-separated element string ['a','b','c'] =&gt; 'a,b,c'</td>
 </tr>
 <tr>
   <td class="kw"><a name="Generate Random String"></a>Generate Random String</td>
-  <td class="arg">strLength=8, chars=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</td>
+  <td class="arg">length=8, chars=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</td>
   <td class="doc">Generates a random string of the required length (8 by default). Second argument is a set of characters to draw from, letters + digits for default</td>
 </tr>
 <tr>
@@ -143,19 +147,24 @@
   <td class="doc">Returns list of all but the last line of input</td>
 </tr>
 <tr>
+  <td class="kw"><a name="Get Column"></a>Get Column</td>
+  <td class="arg">input_text, column_number, delimiter= </td>
+  <td class="doc">Takes input text, splits into columns using delimiter and returns the column_number column. Column numbering starts from 1. Default delimiter is single space.</td>
+</tr>
+<tr>
   <td class="kw"><a name="Get First Line"></a>Get First Line</td>
   <td class="arg">lines</td>
   <td class="doc">Returns the first line of input: head -1</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Head Lines As List"></a>Get Head Lines As List</td>
-  <td class="arg">lines, lineCount</td>
-  <td class="doc">Returns the first lineCount lines of input: head -lineCount as a list</td>
+  <td class="arg">lines, line_count</td>
+  <td class="doc">Returns the first line_count lines of input: head -line_count as a list</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Last Line"></a>Get Last Line</td>
   <td class="arg">lines</td>
-  <td class="doc">Returns the last line of input: tail -1</td>
+  <td class="doc">Returns the last line of input</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Line Count"></a>Get Line Count</td>
@@ -164,44 +173,59 @@
 </tr>
 <tr>
   <td class="kw"><a name="Get Lines As List"></a>Get Lines As List</td>
-  <td class="arg">lines, removeEmptyLines=0</td>
+  <td class="arg">lines, remove_empty_lines=0</td>
   <td class="doc">Converts multiline input to list of lines. Ends of lines removed. If removeEmptyLines != 0, empty lines are removed</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Lines Not Matching Any Of Elements"></a>Get Lines Not Matching Any Of Elements</td>
-  <td class="arg">linesToMatch, linesToExcludeList</td>
-  <td class="doc">This keyword returns linesToMatch without lines where any of linesToExclude is a substring. Works like grep -v ???</td>
+  <td class="arg">to_match, to_exclude</td>
+  <td class="doc">This keyword returns to_match without lines where any of to_exclude is a substring.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Second Part Of Lines After String"></a>Get Second Part Of Lines After String</td>
-  <td class="arg">lines, splitString</td>
-  <td class="doc">Splits each line using splitString, returns second part Like awk -F 'splitString' '{print $2}' Only lines containing requested string are taken.</td>
+  <td class="arg">lines, split_string</td>
+  <td class="doc">Splits each line using split_with, returns second part Like awk -F 'split_with' '{print $2}' Only lines containing requested string are taken.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Substring"></a>Get Substring</td>
-  <td class="arg">sourceStr, leftIndex, rightIndex</td>
-  <td class="doc">Returns a substring from leftIndex to rightIndex, which should be numbers (0, len-1)</td>
+  <td class="arg">string, left_index, right_index</td>
+  <td class="doc">Returns a substring from left_index to right_index, which should be numbers (0, len-1)</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Is A String"></a>Is A String</td>
+  <td class="arg">item</td>
+  <td class="doc">Checks whether item is a string. Returns true or false</td>
 </tr>
 <tr>
   <td class="kw"><a name="Replace String"></a>Replace String</td>
-  <td class="arg">stringToReplaceIn, stringToSearchFor, stringToReplaceWith</td>
-  <td class="doc">Searches stringToSearchFor in stringToReplaceIn and replaces with stringToReplaceWith)</td>
+  <td class="arg">replace_in, search_for, replace_with</td>
+  <td class="doc">Searches search_for in replace_in and replaces with replace_with)</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Should Be A String"></a>Should Be A String</td>
+  <td class="arg">item, msg=None</td>
+  <td class="doc">Fails if item is not a string (e.g. list, number)</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Should Not Be A String"></a>Should Not Be A String</td>
+  <td class="arg">item, msg=None</td>
+  <td class="doc">Fails if item is a string (e.g. list, number)</td>
 </tr>
 <tr>
   <td class="kw"><a name="Split String"></a>Split String</td>
-  <td class="arg">stringToSplit, splitString</td>
-  <td class="doc">Split stringToSplit, divided by splitString</td>
+  <td class="arg">to_split, split_with</td>
+  <td class="doc">Split to_split, divided by split_with</td>
 </tr>
 <tr>
   <td class="kw"><a name="Split To Last Line And Rest"></a>Split To Last Line And Rest</td>
   <td class="arg">lines</td>
-  <td class="doc">Splits multiline input to all_but_last and last line. Returns a list [lastline, all_but_last_line] Used for getting RC and output from the command executed via SSH, RC being the last line.</td>
+  <td class="doc">Splits multiline input to all_but_last and last line. Returns a list [last_line, all_but_last_line] Used for getting RC and output from the command executed via SSH, RC being the last line.</td>
 </tr>
 </table>
 <p class="footer">
-Altogether 17 keywords.<br />
+Altogether 21 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-01-08 19:31:47.
+on 2009-01-20 15:48:16.
 </p>
 </body>
 </html>
