@@ -473,7 +473,7 @@ pre.literal-block, pre.doctest-block {
 <body>
 <div class="document" id="robot-framework-user-guide">
 <h1 class="title">Robot Framework User Guide</h1>
-<h2 class="subtitle" id="version-version">Version trunk 20090126</h2>
+<h2 class="subtitle" id="version-version">Version trunk 20090303</h2>
 
 <!-- This data file has been placed in the public domain. -->
 <!-- Derived from the Unicode character mappings available from
@@ -1364,42 +1364,44 @@ used for documentation of Python projects (including Python itself, as well as
 this user guide). Using reST with Robot Framework allows you to mix richly
 formatted documents and tables that specify test data in a concise text format that
 is easy to work with using simple text editors, diff tools, and source control
-systems.</p>
+systems. The support for reStructuredText was added to Robot Framework in version 2.1.</p>
 <p>Tools to process reStructuredText are freely available as part of the <a class="reference external" href="http://docutils.sourceforge.net/rst.html">docutils</a>
 project, and there is a <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">quick reference guide</a> that shows the most common
 formatting constructs including the tables used by Robot Framework.</p>
 <div class="note">
 <p class="first admonition-title">Note</p>
-<p>Using reST files with Robot Framework requires docutils to be
-installed.</p>
-<p class="last">reStructureText documents are not currently supported by
-Jybot/Jython. This is anticipated to change when Jython 2.5 fully
-supports docutils.</p>
+<p>Using reST files with Robot Framework requires the Python docutils
+module to be installed.</p>
+<p class="last">reStructureText documents are not currently supported when running
+tests on Jython. This is anticipated to change when Jython 2.5
+fully supports docutils. To use reST files with Jython earlier, it
+is possible to just convert them to HTML before running tests.</p>
 </div>
 <p>In reST files, test data is defined in tables within the document, similar to
 the HTML format. Robot Framework identifies <a class="reference internal" href="#test-data-tables">test data tables</a> based on the
-text in the first cell. All content outsided of the recognized table types is
-ignored by Robot.</p>
-<p>An example of each of the four types of test data dable is shown below using
-the reST &quot;Simple Tables&quot; syntax. Note that  &quot;\&quot; or &quot;..&quot; is used to indicate an
-empty cell in the first column of the table:</p>
+text in the first cell and all content outsided of the recognized table types is
+ignored.</p>
+<p>An example of each of the four types of test data dable is shown below
+using the reST <cite>Simple Tables</cite> syntax. Note that <span class="code">\</span> or
+<span class="code">..</span> must be used to indicate an empty cell in the first column
+of the table:</p>
 <pre class="literal-block">
 ============  ================  =======  =======
-Setting       Value             Value    Value
+  Setting          Value         Value    Value
 ============  ================  =======  =======
 Library       OperatingSystem
 ============  ================  =======  =======
 
 
 ============  ================  =======  =======
-Variable        Value           Value    Value
+  Variable         Value         Value    Value
 ============  ================  =======  =======
 ${MESSAGE}    Hello, world!
 ============  ================  =======  =======
 
 
 ============  ===================  ============  =============
-Test Case           Action         Argument      Argument
+ Test Case          Action           Argument      Argument
 ============  ===================  ============  =============
 My Test       [Documentation]      Example test
 \             Log                  ${MESSAGE}
@@ -1430,14 +1432,14 @@ files.</p>
 Instead, docutils is used to automatically transform reST source files into temporary HTML
 files that are subsequently read by Robot. These temporary files are removed
 immediately after being read. This HTML file generation and cleanup is handled
-internally by Robot, it does not require the user to directly invoke docutils tools.</p>
+internally by Robot Framework, it does not require the user to directly invoke docutils tools.</p>
 </div>
 <div class="section" id="syntax-errors-in-rest-source-files">
 <h5>Syntax errors in reST source files</h5>
 <p>If you create test data or other portions of a reST file that is not syntactically
 correct (a malformed table for example), the reST-to-HTML conversion will not
 take place and no test cases will be read from that file. When this occurs,
-Robot will show the docutils error message in it's console output showing the
+Robot Framework will show the docutils error message in it's console output showing the
 filename, line number, source context, and type of error.</p>
 </div>
 </div>
@@ -1842,19 +1844,19 @@ long...</td>
 <tr><td></td>
 <td>...</td>
 <td>6</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
 <div class="section" id="splitting-test-data-in-rest-tables">
 <h5>Splitting test data in reST tables</h5>
-<p>In the plaintext markup for reST tables, there are two types of table
-syntax that can be used to create test data. When using the &quot;Simple Tables&quot;
-syntax for test data tables that have data into several rows, a &quot;\&quot; or &quot;..&quot;
-is required in the first cell of a continued row
-in addition to the &quot;...&quot; required by Robot.</p>
-<p>Here is an example using reST &quot;Simple Table&quot; format:</p>
+<p>In the plain text markup for reST tables, there are two types of table
+syntax that can be used to create test data. When using the <cite>Simple
+Tables</cite> syntax for test data tables that have data into several rows,
+a <span class="code">\</span> or <span class="code">..</span> is required in the first cell of a
+continued row in addition to the <span class="code">...</span> required by Robot Framework.</p>
+<p>Here is an example using reST <cite>Simple Table</cite> format:</p>
 <pre class="literal-block">
 ===========  ================  ==============  ==========  ==========
  Test Case       Action           Argument      Argument    Argument
@@ -1870,30 +1872,30 @@ Example      [Documentation]   Documentation   for this    test case.
 \            ...               6
 ===========  ================  ==============  ==========  ==========
 </pre>
-<p>For &quot;Grid Table&quot; syntax, the first cell in a continued row may be blank,
-and the second cell should contain &quot;...&quot; as with HTML tables:</p>
+<p>For <cite>Grid Table</cite> syntax, the first cell in a continued row may be blank,
+and the second cell should contain <span class="code">...</span> as with HTML tables:</p>
 <pre class="literal-block">
-+-----------+--------------------+---------------+------------+-------------+
-|Test Case  |    Action          | Argument      | Argument   | Argument    |
-+===========+====================+===============+============+=============+
-|Example    |  [Documentation]   |Documentation  | for this   | test case.  |
-+-----------+--------------------+---------------+------------+-------------+
-|           | ...                |This can get   | quite      | long...     |
-+-----------+--------------------+---------------+------------+-------------+
-|           | [Tags]             |t-1            | t-2        | t-3         |
-+-----------+--------------------+---------------+------------+-------------+
-|           | ...                |t-4            | t-5        |             |
-+-----------+--------------------+---------------+------------+-------------+
-|           | Do X               |one            | two        | three       |
-+-----------+--------------------+---------------+------------+-------------+
-|           | ...                |four           | five       | six         |
-+-----------+--------------------+---------------+------------+-------------+
-|           | ${var} =           |Get X          | 1          | 2           |
-+-----------+--------------------+---------------+------------+-------------+
-|           | ...                |3              | 4          | 5           |
-+-----------+--------------------+---------------+------------+-------------+
-|           | ...                |6              |            |             |
-+-----------+--------------------+---------------+------------+-------------+
++-----------+-------------------+---------------+------------+------------+
+| Test Case |      Action       |   Argument    |  Argument  |  Argument  |
++===========+===================+===============+============+============+
+| Example   | [Documentation]   | Documentation | for this   | test case. |
++-----------+-------------------+---------------+------------+------------+
+|           | ...               | This can get  | quite      | long...    |
++-----------+-------------------+---------------+------------+------------+
+|           | [Tags]            | t-1           | t-2        | t-3        |
++-----------+-------------------+---------------+------------+------------+
+|           | ...               | t-4           | t-5        |            |
++-----------+-------------------+---------------+------------+------------+
+|           | Do X              | one           | two        | three      |
++-----------+-------------------+---------------+------------+------------+
+|           | ...               | four          | five       | six        |
++-----------+-------------------+---------------+------------+------------+
+|           | ${var} =          | Get X         | 1          | 2          |
++-----------+-------------------+---------------+------------+------------+
+|           | ...               | 3             | 4          | 5          |
++-----------+-------------------+---------------+------------+------------+
+|           | ...               | 6             |            |            |
++-----------+-------------------+---------------+------------+------------+
 </pre>
 </div>
 </div>
@@ -2667,18 +2669,17 @@ as needed.</p>
 <p>When a test directory is executed, the files and directories it
 contains are processed recursively as follows:</p>
 <ul class="simple">
-<li>Files and folders with names starting with a dot (.) or an
-underscore (_) are ignored.</li>
-<li>Files with names not having the <span class="path">.html</span>, <span class="path">.xhtml</span>,
-<span class="path">.htm</span>, <span class="path">.rst</span>, <span class="path">.rest</span>, or <span class="path">.tsv</span> extension (case-insensitive) are
-ignored.</li>
-<li>Directories with the name <span class="path">CVS</span> (case-sensitive) are ignored.</li>
+<li>Files and directories with names starting with a dot (<span class="path">.</span>) or an
+underscore (<span class="path">_</span>) are ignored.</li>
+<li>Directories with the name <span class="path">CVS</span> are ignored (case-sensitive).</li>
+<li>Files not having one of the recognized extensions (<span class="path">.html</span>,
+<span class="path">.xhtml</span>, <span class="path">.htm</span>, <span class="path">.rst</span>, <span class="path">.rest</span>, or <span class="path">.tsv</span>)
+are ignored (case-insensitive).</li>
 <li>Other files and directories are processed.</li>
 </ul>
-<p>The files and directories that are processed are expected to be test
-case files and test directories, respectively, but if they do not
-contain any test cases, they are silently ignored (a message is
-written to the <a class="reference internal" href="#system-log">syslog</a>) and the processing continues.</p>
+<p>If a file or directory that is processed does not contain any test
+cases, it is silently ignored (a message is written to the <a class="reference internal" href="#system-log">syslog</a>)
+and the processing continues.</p>
 <div class="section" id="initialization-files">
 <h4><a class="toc-backref" href="#id235">Initialization files</a></h4>
 <p>A test suite created from a directory can have the same settings
@@ -11060,7 +11061,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2009-03-03 17:30 UTC.
+<p>Generated on: 2009-03-03 19:57 UTC.
 </p>
 
 </div>
