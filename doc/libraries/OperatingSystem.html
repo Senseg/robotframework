@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>OperatingSystem - Documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
-
   body {
     background: white;
     color: black;
@@ -79,7 +79,7 @@
 </head>
 <body>
 <h1>OperatingSystem - Documentation</h1>
-<p><b>Version:</b> trunk 20081201</p>
+<p><b>Version:</b> trunk 20090303</p>
 
 <h2 id="introduction">Introduction</h2>
 <p class='libdoc'>This test library enables multiple operating-system-related tasks.<br />
@@ -146,6 +146,7 @@ Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments a
 
 <h2>Shortcuts</h2>
 <div class='links'>
+<a href="#Append To File" title="Appends the given contend to the specified file.">Append&nbsp;To&nbsp;File</a>&nbsp;
 <a href="#Copy Directory" title="Copies the source directory into the destination.">Copy&nbsp;Directory</a>&nbsp;
 <a href="#Copy File" title="Copies the source file into a new destination.">Copy&nbsp;File</a>&nbsp;
 <a href="#Count Directories In Directory" title="Returns the number of subdirectories in the given directory.">Count&nbsp;Directories&nbsp;In&nbsp;Directory</a>&nbsp;
@@ -153,6 +154,7 @@ Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments a
 <a href="#Count Items In Directory" title="Returns the number of all items in the given directory.">Count&nbsp;Items&nbsp;In&nbsp;Directory</a>&nbsp;
 <a href="#Create Directory" title="Creates the specified directory.">Create&nbsp;Directory</a>&nbsp;
 <a href="#Create File" title="Creates a file to the given path with the given content.">Create&nbsp;File</a>&nbsp;
+<a href="#Create File With Encoding" title="Writes the given contend to the specified file.">Create&nbsp;File&nbsp;With&nbsp;Encoding</a>&nbsp;
 <a href="#Directory Should Be Empty" title="Fails unless the specified directory is empty.">Directory&nbsp;Should&nbsp;Be&nbsp;Empty</a>&nbsp;
 <a href="#Directory Should Exist" title="Fails unless the given path points to an existing directory.">Directory&nbsp;Should&nbsp;Exist</a>&nbsp;
 <a href="#Directory Should Not Be Empty" title="Fails if the specified directory is empty.">Directory&nbsp;Should&nbsp;Not&nbsp;Be&nbsp;Empty</a>&nbsp;
@@ -168,7 +170,7 @@ Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments a
 <a href="#Get File" title="Returns the contents of a specified file.">Get&nbsp;File</a>&nbsp;
 <a href="#Get File Size" title="Returns and logs file size as an integer in bytes">Get&nbsp;File&nbsp;Size</a>&nbsp;
 <a href="#Get Modified Time" title="Returns the last modification time of a file or directory.">Get&nbsp;Modified&nbsp;Time</a>&nbsp;
-<a href="#Grep File" title="Returns the contents of a specified file grepped using `pattern`.">Grep&nbsp;File</a>&nbsp;
+<a href="#Grep File" title="*DEPRECATED* Use `Get File` with `BuiltIn.Grep` instead. Will be removed in RF 2.2.">Grep&nbsp;File</a>&nbsp;
 <a href="#Join Path" title="Joins the given path part(s) to the given base path.">Join&nbsp;Path</a>&nbsp;
 <a href="#Join Paths" title="Joins given paths with base and returns resulted paths.">Join&nbsp;Paths</a>&nbsp;
 <a href="#List Directories In Directory" title="A wrapper for `List Directory` that returns only directories.">List&nbsp;Directories&nbsp;In&nbsp;Directory</a>&nbsp;
@@ -207,6 +209,13 @@ Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments a
   <th class="kw">Keyword</th>
   <th class="arg">Arguments</th>
   <th class="doc">Documentation</th>
+</tr>
+<tr>
+  <td class="kw"><a name="Append To File"></a>Append To File</td>
+  <td class="arg">path, content, encoding=UTF-8</td>
+  <td class="doc">Appends the given contend to the specified file.<br />
+<br />
+If the file does not exists, this keyword works exactly the same way as <a href="#Create File With Encoding" class="name">Create File With Encoding</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Copy Directory"></a>Copy Directory</td>
@@ -258,12 +267,25 @@ Also possible intermediate directories are created. Passes if the directory alre
 </tr>
 <tr>
   <td class="kw"><a name="Create File"></a>Create File</td>
-  <td class="arg">path, content=, mode=overwrite</td>
+  <td class="arg">path, content=, mode=DEPRECATED</td>
   <td class="doc">Creates a file to the given path with the given content.<br />
 <br />
-If the <span class="name">mode</span> contains any of the strings 'False', 'No', 'Don't' (case-insensitive, so e.g. 'Do not' also works) the keyword fails, if the file already exists and the file is not overwritten. If it contains the word 'Append' (case-insensitive), the content is appended. Otherwise the file is overwritten.<br />
+Old <span class="name">mode</span> argument is deprecated in Robot Framework 2.1 and will be replaced with <span class="name">encoding</span> in 2.2. Use new <a href="#Append To File" class="name">Append To File</a> keyword if there is a need to append to a file, and use <a href="#File Should Not Exist" class="name">File Should Not Exist</a> if you want to avoid overwriting existing files.<br />
+<br />
+In Robot Framework 2.1 this keyword always uses UTF-8 encoding and <a href="#Create File With Encoding" class="name">Create File With Encoding</a> can be used if other encodings are needed. Earlier versions used more limiting ASCII encoding.<br />
 <br />
 If the directory where to create file does not exist it, and possible intermediate missing directories, are created.</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Create File With Encoding"></a>Create File With Encoding</td>
+  <td class="arg">path, content=, encoding=UTF-8</td>
+  <td class="doc">Writes the given contend to the specified file.<br />
+<br />
+Use <a href="#Append To File" class="name">Append To File</a> if you want to append to an existing file.<br />
+<br />
+If the directory where to create file does not exist it, and possible intermediate missing directories, are created.<br />
+<br />
+This is a temporary keyword added in Robot Framework 2.1 and will be deprecated in 2.2 when <a href="#Create File" class="name">Create File</a> gets <span class="name">encoding</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Directory Should Be Empty"></a>Directory Should Be Empty</td>
@@ -376,7 +398,7 @@ Note that you can also access environment variables directly using the variable 
   <td class="arg">path, encoding=UTF-8</td>
   <td class="doc">Returns the contents of a specified file.<br />
 <br />
-This keyword reads the specified file and returns the contents. <span class="name">encoding</span> defines the encoding of the file. By default, the value is 'UTF-8', which means that UTF-8 and ASCII-encoded files are read correctly.</td>
+This keyword reads the specified file and returns the contents. <span class="name">encoding</span> defines the encoding of the file. By default the value is 'UTF-8', which means that UTF-8 and ASCII-encoded files are read correctly.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get File Size"></a>Get File Size</td>
@@ -444,21 +466,7 @@ Examples (when the modified time of the ${CURDIR} is 2006-03-29 15:06:21):<br />
 <tr>
   <td class="kw"><a name="Grep File"></a>Grep File</td>
   <td class="arg">path, pattern, pattern_type=literal string, encoding=UTF-8</td>
-  <td class="doc">Returns the contents of a specified file grepped using <span class="name">pattern</span>.<br />
-<br />
-This keyword reads the specified file and returns only lines matching the <span class="name">pattern</span>. <span class="name">encoding</span> specifies the encoding of the file the same way as with <a href="#Get File" class="name">Get File</a> keyword.<br />
-<br />
-<span class="name">pattern_type</span> defines how the given pattern is interpreted as explained below. <span class="name">pattern_type</span> argument is case-insensitive and may contain other text. For example, 'regexp', 'REGEXP' and 'Pattern is a regexp' are all considered equal.<br />
-<br />
-1) If <span class="name">pattern_type</span> contains either the strings 'simple' or 'glob', the <span class="name">pattern</span> is considered a simple glob pattern having same semantics as patterns given to <a href="#File Should Exist" class="name">File Should Exist</a> keyword.<br />
-<br />
-2) If <span class="name">pattern_type</span> contains either 'simple' or 'glob', and additionally contains 'case-insensitive' or 'case insensitive', the glob pattern is considered case-insensitive. This functionality is available in 2.0.2 version and newer.<br />
-<br />
-3) If <span class="name">pattern_type</span> contains either the string 'regular expression' or 'regexp', the <span class="name">pattern</span> is considered a regular expression. See built-in keyword <span class="name">Should Match Regexp</span> for more information about how to use regular expressions in the test data.<br />
-<br />
-4) If <span class="name">pattern_type</span> contains either 'case-insensitive' or 'case insensitive' (but does not contain 'simple' or 'glob'), <span class="name">pattern</span> is considered a literal string and lines returned, if they contain the string, regardless of the case.<br />
-<br />
-5) Otherwise the pattern is considered a literal string and lines returned, if they contain the string.</td>
+  <td class="doc"><b>DEPRECATED</b> Use <a href="#Get File" class="name">Get File</a> with <span class="name">BuiltIn.Grep</span> instead. Will be removed in RF 2.2.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Join Path"></a>Join Path</td>
@@ -568,9 +576,9 @@ Examples:<br />
 <br />
 File and directory names are returned in case-sensitive alphabetical order, e.g. ['A Name', 'Second', 'a lower case name', 'one more']. Implicit directories '.' and '..' are not returned. The returned items are automatically logged.<br />
 <br />
-By default, the file and directory names are returned relative to the given path (e.g. 'file.txt'). If you want them be returned in the absolute format (e.g. '/home/robot/file.txt'), set the <span class="name">absolute</span> argument value to 'True', 'Yes' or 'absolute' (case-insensitive).<br />
+By default, the file and directory names are returned relative to the given path (e.g. 'file.txt'). If you want them be returned in the absolute format (e.g. '/home/robot/file.txt'), set the <span class="name">absolute</span> argument to any non-empty string.<br />
 <br />
-If <span class="name">pattern</span> is given, only items matching it are returned. <span class="name">pattern</span> and <span class="name">pattern_type</span> arguments have same semantics as with <a href="#Grep File" class="name">Grep File</a> keyword.<br />
+If <span class="name">pattern</span> is given, only items matching it are returned. By default <span class="name">pattern</span> is considered to be a simple glob pattern where '*' and '?' can be used as wildcards (e.g. '*.txt' or 'file.???'). Using other pattern types has been deprecated in Robot Framework 2.1.<br />
 <br />
 Examples (using also other <a href="#List Directory" class="name">List Directory</a> variants):<br />
 <table border="1" class="doc">
@@ -585,25 +593,17 @@ Examples (using also other <a href="#List Directory" class="name">List Directory
 <tr>
 <td>@{files} =</td>
 <td>List Files In Directory</td>
-<td>${CURDIR}</td>
+<td>/tmmp</td>
 <td>*.txt</td>
 <td></td>
-<td></td>
-</tr>
-<tr>
-<td>@{files} =</td>
-<td>List Files In Directory</td>
-<td>${CURDIR}</td>
-<td>*.txt</td>
-<td>case-insensitive</td>
 <td>absolute</td>
 </tr>
 <tr>
-<td>@{dirs} =</td>
-<td>List Directories In Directory</td>
+<td>${count} =</td>
+<td>Count Files In Directory</td>
 <td>${CURDIR}</td>
-<td>^.*backup$</td>
-<td>regexp</td>
+<td>???</td>
+<td></td>
 <td></td>
 </tr>
 </table>
@@ -1189,9 +1189,9 @@ If the timeout is negative, the keyword is never timed-out. The keyword returns 
 </tr>
 </table>
 <p class="footer">
-Altogether 53 keywords.<br />
+Altogether 55 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2008-12-15 15:15:39.
+on 2009-03-21 20:17:25.
 </p>
 </body>
 </html>
