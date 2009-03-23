@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>BuiltIn - Documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
-
   body {
     background: white;
     color: black;
@@ -79,7 +79,7 @@
 </head>
 <body>
 <h1>BuiltIn - Documentation</h1>
-<p><b>Version:</b> trunk 20081201</p>
+<p><b>Version:</b> trunk 20090322</p>
 
 <h2 id="introduction">Introduction</h2>
 <p class='libdoc'>BuiltIn library provides a set of often needed generic keywords.<br />
@@ -125,6 +125,7 @@ These keywords are available automatically without importing any library. They a
 <a href="#Run Keyword If Test Passed" title="Runs the given keyword with the given arguments, if the test passed.">Run&nbsp;Keyword&nbsp;If&nbsp;Test&nbsp;Passed</a>&nbsp;
 <a href="#Run Keyword Unless" title="Runs the given keyword with the given arguments, if `condition` is false.">Run&nbsp;Keyword&nbsp;Unless</a>&nbsp;
 <a href="#Set Global Variable" title="Makes a variable available globally in all tests and suites.">Set&nbsp;Global&nbsp;Variable</a>&nbsp;
+<a href="#Set Library Order" title="Sets order in which keywords are looked from libraries.">Set&nbsp;Library&nbsp;Order</a>&nbsp;
 <a href="#Set Log Level" title="Sets the log threshold to the specified level and returns the old level.">Set&nbsp;Log&nbsp;Level</a>&nbsp;
 <a href="#Set Suite Variable" title="Makes a variable available everywhere within the scope of the current suite.">Set&nbsp;Suite&nbsp;Variable</a>&nbsp;
 <a href="#Set Tags" title="Adds given `tags` for the current test or all tests in a suite.">Set&nbsp;Tags</a>&nbsp;
@@ -316,25 +317,45 @@ Examples:<br />
 </tr>
 <tr>
   <td class="kw"><a name="Evaluate"></a>Evaluate</td>
-  <td class="arg">expression</td>
+  <td class="arg">expression, modules=None</td>
   <td class="doc">Evaluates the given expression in Python and returns the results.<br />
 <br />
-Examples (expecting ${RC} is -1):<br />
+<span class="name">modules</span> argument can be used to specify a comma separated list of Python modules to be imported and added to the namespace of the evaluated <span class="name">expression</span>.<br />
+<br />
+Examples (expecting ${result} is 3.14):<br />
 <table border="1" class="doc">
 <tr>
 <td>${status} =</td>
 <td>Evaluate</td>
-<td>0 &lt; ${RC} &lt; 10</td>
+<td>0 &lt; ${result} &lt; 10</td>
+<td></td>
 </tr>
 <tr>
-<td>${dict} =</td>
+<td>${down} &nbsp; =</td>
 <td>Evaluate</td>
-<td>{ 'a':1, 'b':2, 'c':3 }</td>
+<td>int(${result})</td>
+<td></td>
+</tr>
+<tr>
+<td>${up} &nbsp; &nbsp; =</td>
+<td>Evaluate</td>
+<td>math.ceil(${result})</td>
+<td>math</td>
+</tr>
+<tr>
+<td>${random} =</td>
+<td>Evaluate</td>
+<td>random.randint(0, sys.maxint)</td>
+<td>random,sys</td>
 </tr>
 </table>
 =&gt;<br />
-- ${status} = False<br />
-- ${dict} = { 'a':1, 'b':2, 'c':3 }</td>
+- ${status} = True<br />
+- ${down} = 3<br />
+- ${up} = 4.0<br />
+- ${rondom} = &lt;random integer&gt;<br />
+<br />
+Notice that instead of creating complicated expressions, it is recommended to move the logic into a test library.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Fail"></a>Fail</td>
@@ -808,6 +829,73 @@ New in Robot Framework version 1.8.3.</td>
 Variables set with this keyword are globally available in all test cases and suites executed after setting them. Setting variables with this keyword thus has the same effect as creating from the command line using the options '--variable' or '--variablefile'. Because this keyword can change variables everywhere, it should be used with care.<br />
 <br />
 See <a href="#Set Suite Variable" class="name">Set Suite Variable</a> for more information and examples.</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Set Library Order"></a>Set Library Order</td>
+  <td class="arg">*libraries</td>
+  <td class="doc">Sets order in which keywords are looked from libraries.<br />
+<br />
+By setting order in which keywords are serached it is possible to use libraries providing keywords with same name without using long format LibraryName.Keyword Name notation. This keyword is usefull in case there is need to use multiple applications through the same library. By changing library which is used, it is possible to use same resources instead dublicating the keywords for all the applications.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>Import Library</td>
+<td>MyLibrary</td>
+<td>WITH NAME</td>
+<td>application1</td>
+</tr>
+<tr>
+<td>Import Library</td>
+<td>MyLibrary</td>
+<td>WITH NAME</td>
+<td>application2</td>
+</tr>
+<tr>
+<td>Set Default Library</td>
+<td>application1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>Next step opens application1 using User Keyword</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>Open Application which contains multiple keywords from MyLibrary</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Open Application</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Set Default Library</td>
+<td>application2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>Now the same keyword is used for opening application2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Open Application</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+<br />
+Note: Set Library Order keyword cannot be used inside parallel keywords.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Log Level"></a>Set Log Level</td>
@@ -1380,9 +1468,9 @@ New in Robot Framework version 1.8.1.</td>
 </tr>
 </table>
 <p class="footer">
-Altogether 69 keywords.<br />
+Altogether 70 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-01-05 18:05:55.
+on 2009-03-23 09:45:17.
 </p>
 </body>
 </html>
