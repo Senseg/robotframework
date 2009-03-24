@@ -130,7 +130,7 @@ These keywords are available automatically without importing any library. They a
 <a href="#Set Suite Variable" title="Makes a variable available everywhere within the scope of the current suite.">Set&nbsp;Suite&nbsp;Variable</a>&nbsp;
 <a href="#Set Tags" title="Adds given `tags` for the current test or all tests in a suite.">Set&nbsp;Tags</a>&nbsp;
 <a href="#Set Test Variable" title="Makes a variable available everywhere within the scope of the current test.">Set&nbsp;Test&nbsp;Variable</a>&nbsp;
-<a href="#Set Variable" title="Returns the given arguments -- can be used to set variables.">Set&nbsp;Variable</a>&nbsp;
+<a href="#Set Variable" title="Returns the given argument -- can be used to set variables.">Set&nbsp;Variable</a>&nbsp;
 <a href="#Set Variable If" title="Sets variable based on the given condition.">Set&nbsp;Variable&nbsp;If</a>&nbsp;
 <a href="#Should Be Empty" title="Verifies that the given item is empty.">Should&nbsp;Be&nbsp;Empty</a>&nbsp;
 <a href="#Should Be Equal" title="Fails if the given objects are unequal.">Should&nbsp;Be&nbsp;Equal</a>&nbsp;
@@ -147,7 +147,7 @@ These keywords are available automatically without importing any library. They a
 <a href="#Should Not Be Equal As Integers" title="Fails if objects are equal after converting them to integers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Integers</a>&nbsp;
 <a href="#Should Not Be Equal As Numbers" title="Fails if objects are equal after converting them to real numbers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>&nbsp;
 <a href="#Should Not Be Equal As Strings" title="Fails if objects are equal after converting them to strings.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
-<a href="#Should Not Be True" title="Fails if the the given condition is true.">Should&nbsp;Not&nbsp;Be&nbsp;True</a>&nbsp;
+<a href="#Should Not Be True" title="Fails if the given condition is true.">Should&nbsp;Not&nbsp;Be&nbsp;True</a>&nbsp;
 <a href="#Should Not Contain" title="Fails if `item1` contains `item2` one or more times.">Should&nbsp;Not&nbsp;Contain</a>&nbsp;
 <a href="#Should Not End With" title="Fails if the string `str1` ends with the string `str2`.">Should&nbsp;Not&nbsp;End&nbsp;With</a>&nbsp;
 <a href="#Should Not Match" title="Fails if the given `string` matches the given `pattern`.">Should&nbsp;Not&nbsp;Match</a>&nbsp;
@@ -256,7 +256,7 @@ Examples:<br />
   <td class="arg">*messages</td>
   <td class="doc">Displays the given messages in the log file as keyword arguments.<br />
 <br />
-This keyword does nothing with the arguments it receives, but as they are visible in the log, this keyword can be used to display simple messages. In more complicated cases, the <a href="#Log" class="name">Log</a> or <a href="#Log Many" class="name">Log Many</a> keywords should be used.</td>
+This keyword does nothing with the arguments it receives, but as they are visible in the log, this keyword can be used to display simple messages. Given arguments are ignored so thoroughly that they can even contain non-existing variables. If you are interested about variable values, you can use the <a href="#Log" class="name">Log</a> or <a href="#Log Many" class="name">Log Many</a> keywords.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Boolean"></a>Convert To Boolean</td>
@@ -353,7 +353,7 @@ Examples (expecting ${result} is 3.14):<br />
 - ${status} = True<br />
 - ${down} = 3<br />
 - ${up} = 4.0<br />
-- ${rondom} = &lt;random integer&gt;<br />
+- ${random} = &lt;random integer&gt;<br />
 <br />
 Notice that instead of creating complicated expressions, it is recommended to move the logic into a test library.</td>
 </tr>
@@ -367,9 +367,7 @@ Notice that instead of creating complicated expressions, it is recommended to mo
   <td class="arg">item</td>
   <td class="doc">Returns and logs the length of the given item.<br />
 <br />
-The keyword first tries to get the length with the Python function 'len', which calls the item's '__len__' method internally. If that fails, the keyword tries to call the item's 'length' and 'size' methods directly. The final attempt is trying to get the value of the item's 'length' attribute. If all these attempts are unsuccessful, the keyword fails.<br />
-<br />
-New in Robot Framework version 1.8.2. Logging the returned value added in 2.0.2.</td>
+The keyword first tries to get the length with the Python function 'len', which calls the item's '__len__' method internally. If that fails, the keyword tries to call the item's 'length' and 'size' methods directly. The final attempt is trying to get the value of the item's 'length' attribute. If all these attempts are unsuccessful, the keyword fails.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Time"></a>Get Time</td>
@@ -539,9 +537,7 @@ Examples:<br />
   <td class="arg">item, length, msg=None</td>
   <td class="doc">Verifies that the length of the given item is correct.<br />
 <br />
-The length of the item is got using the <a href="#Get Length" class="name">Get Length</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.<br />
-<br />
-New in Robot Framework version 1.8.2.</td>
+The length of the item is got using the <a href="#Get Length" class="name">Get Length</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Log"></a>Log</td>
@@ -589,8 +585,7 @@ Examples:<br />
 <td>@{strings}</td>
 </tr>
 </table>
-<br />
-New in Robot Framework version 1.8.3.</td>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Remove Tags"></a>Remove Tags</td>
@@ -684,7 +679,7 @@ Because the name of the keyword to execute is given as an argument, it can be a 
   <td class="arg">expected_error, name, *args</td>
   <td class="doc">Runs the keyword and checks that the expected error occurred.<br />
 <br />
-The expected error must be given in the same format as in Robot Framework reports. It can be a pattern containing characters '?', which matches to any single character and '*'. which matches to any number of any characters. <span class="name">name</span> and <span class="name">*args</span> have same semantics as with <a href="#Run Keyword" class="name">Run Keyword</a>.<br />
+The expected error must be given in the same format as in Robot Framework reports. It can be a pattern containing characters '?', which matches to any single character and '*', which matches to any number of any characters. <span class="name">name</span> and <span class="name">*args</span> have same semantics as with <a href="#Run Keyword" class="name">Run Keyword</a>.<br />
 <br />
 If the expected error occurs, the error message is returned and it can be further processed/tested, if needed. If there is no error, or the error does not match the expected error, this keyword fails.<br />
 <br />
@@ -721,9 +716,7 @@ Examples:<br />
 <br />
 This keyword returns two values, so that the first is either 'PASS' or 'FAIL', depending on the status of the executed keyword. The second value is either the return value of the keyword or the received error message.<br />
 <br />
-The keyword name and arguments work as in <a href="#Run Keyword" class="name">Run Keyword</a>. See <a href="#Run Keyword If" class="name">Run Keyword If</a> for a usage example.<br />
-<br />
-Note: In versions prior to Robot Framework version 1.8.3, this keyword only returns the return value or error message of the executed keyword.</td>
+The keyword name and arguments work as in <a href="#Run Keyword" class="name">Run Keyword</a>. See <a href="#Run Keyword If" class="name">Run Keyword If</a> for a usage example.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword If"></a>Run Keyword If</td>
@@ -754,9 +747,7 @@ Example, a simple if/else construct:<br />
 </tr>
 </table>
 <br />
-In this example, only either 'Some Action' or 'Another Action' is executed, based on the status of 'My Keyword'.<br />
-<br />
-New in Robot Framework version 1.8.3.</td>
+In this example, only either 'Some Action' or 'Another Action' is executed, based on the status of 'My Keyword'.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword If All Critical Tests Passed"></a>Run Keyword If All Critical Tests Passed</td>
@@ -817,9 +808,7 @@ Otherwise, this keyword works exactly like <a href="#Run Keyword" class="name">R
   <td class="arg">condition, name, *args</td>
   <td class="doc">Runs the given keyword with the given arguments, if <span class="name">condition</span> is false.<br />
 <br />
-See <a href="#Run Keyword If" class="name">Run Keyword If</a> for more information and an example.<br />
-<br />
-New in Robot Framework version 1.8.3.</td>
+See <a href="#Run Keyword If" class="name">Run Keyword If</a> for more information and an example.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Global Variable"></a>Set Global Variable</td>
@@ -962,51 +951,42 @@ See <a href="#Set Suite Variable" class="name">Set Suite Variable</a> for more i
 </tr>
 <tr>
   <td class="kw"><a name="Set Variable"></a>Set Variable</td>
-  <td class="arg">*args</td>
-  <td class="doc">Returns the given arguments -- can be used to set variables.<br />
+  <td class="arg">*values</td>
+  <td class="doc">Returns the given argument -- can be used to set variables.<br />
+<br />
+Can also be used to convert a scalar variable containing list to a list variable or to multiple scalar variables.<br />
 <br />
 Examples:<br />
 <table border="1" class="doc">
 <tr>
-<td>${var} =</td>
+<td>${hi} =</td>
 <td>Set Variable</td>
-<td>Hello</td>
-<td></td>
-<td></td>
+<td>Hello, world!</td>
 <td></td>
 </tr>
 <tr>
-<td>${var1}</td>
-<td>${var2} =</td>
+<td>${hi2} =</td>
 <td>Set Variable</td>
-<td>Hello</td>
-<td>world</td>
+<td>I said: ${hi}</td>
 <td></td>
 </tr>
 <tr>
 <td>@{list} =</td>
 <td>Set Variable</td>
-<td>Hi</td>
-<td>again</td>
+<td>${list with some items}</td>
 <td></td>
-<td># list variable</td>
 </tr>
 <tr>
-<td>${scal} =</td>
+<td>${item1}</td>
+<td>${item2} =</td>
 <td>Set Variable</td>
-<td>Hi</td>
-<td>again</td>
-<td></td>
-<td># scalar variable</td>
+<td>${list with 2 items}</td>
 </tr>
 </table>
-=&gt;<br />
-- ${var} = 'Hello'<br />
-- ${var1} = 'Hello' &amp; ${var2} = 'world'<br />
-- @{list} = ['Hi','again'] i.e. @{list}[0] = 'Hi' &amp; @{list}[1] = 'again'<br />
-- ${scal} = ['Hi','again']<br />
 <br />
-Variables created with this keyword are available only in the scope where they are created. See <a href="#Set Global Variable" class="name">Set Global Variable</a>, <a href="#Set Test Variable" class="name">Set Test Variable</a> and <a href="#Set Suite Variable" class="name">Set Suite Variable</a> for information how to set a variable so that it is available also in a larger scope.</td>
+Variables created with this keyword are available only in the scope where they are created. See <a href="#Set Global Variable" class="name">Set Global Variable</a>, <a href="#Set Test Variable" class="name">Set Test Variable</a> and <a href="#Set Suite Variable" class="name">Set Suite Variable</a> for information on how to set variables so that they are available also in a larger scope.<br />
+<br />
+Using this keyword with more (or less) than one value has been deprecated in Robot Framework 2.1 and that usage will be removed in 2.2.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Variable If"></a>Set Variable If</td>
@@ -1043,7 +1023,7 @@ The basic usage is giving a condition and two values. The given condition is fir
 - ${var2} = 'value2'<br />
 - ${var3} = None<br />
 <br />
-It is also possible to have 'Else If' support by replacing the second value with another condition, and having two new values after it. &nbsp;If the first condition is not true, the second is evaluated and one of the values after it is returned based on its truth value. This can be continued by adding more conditions without a limit.<br />
+Starting from Robot Framework 2.0.2 it is also possible to have 'Else If' support by replacing the second value with another condition, and having two new values after it. If the first condition is not true, the second is evaluated and one of the values after it is returned based on its truth value. This can be continued by adding more conditions without a limit.<br />
 <br />
 <table border="1" class="doc">
 <tr>
@@ -1101,17 +1081,14 @@ It is also possible to have 'Else If' support by replacing the second value with
 <td></td>
 </tr>
 </table>
-<br />
-This keyword was added in Robot Framework version 1.8.3, and support for 'Else If' was added in 2.0.2.</td>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Be Empty"></a>Should Be Empty</td>
   <td class="arg">item, msg=None</td>
   <td class="doc">Verifies that the given item is empty.<br />
 <br />
-The length of the item is got using the <a href="#Get Length" class="name">Get Length</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.<br />
-<br />
-New in Robot 1.8.2.</td>
+The length of the item is got using the <a href="#Get Length" class="name">Get Length</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Be Equal"></a>Should Be Equal</td>
@@ -1177,8 +1154,7 @@ Examples:<br />
 <td># Passes if ${list} is not empty</td>
 </tr>
 </table>
-<br />
-New in Robot Framework version 1.8.3. This is intended to replace the old keyword <span class="name">Fail Unless</span>, which still continues to work.</td>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Contain"></a>Should Contain</td>
@@ -1223,7 +1199,7 @@ See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanati
   <td class="arg">string, pattern, msg=None, values=True</td>
   <td class="doc">Fails if <span class="name">string</span> does not match <span class="name">pattern</span> as a regular expression.<br />
 <br />
-Regular expression check is done using the Python 're' module, which has a pattern syntax derived from Perl, and thus also very similar to the one in Java. See the following documents for more details about regexps in general and Python implementation in particular.<br />
+Regular expression check is done using the Python 're' module, which has a pattern syntax derived from Perl, and thus also very similar to the one in Java. See the following documents for more details about regular expressions in general and Python implementation in particular.<br />
 <br />
 * <a href="http://docs.python.org/lib/module-re.html">http://docs.python.org/lib/module-re.html</a><br />
 * <a href="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</a><br />
@@ -1286,9 +1262,7 @@ Examples:<br />
   <td class="arg">item, msg=None</td>
   <td class="doc">Verifies that the given item is not empty.<br />
 <br />
-The length of the item is got using the <a href="#Get Length" class="name">Get Length</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.<br />
-<br />
-New in Robot Framework version 1.8.2.</td>
+The length of the item is got using the <a href="#Get Length" class="name">Get Length</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Be Equal"></a>Should Not Be Equal</td>
@@ -1323,11 +1297,9 @@ See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanati
 <tr>
   <td class="kw"><a name="Should Not Be True"></a>Should Not Be True</td>
   <td class="arg">condition, msg=None</td>
-  <td class="doc">Fails if the the given condition is true.<br />
+  <td class="doc">Fails if the given condition is true.<br />
 <br />
-See <a href="#Should Be True" class="name">Should Be True</a> for details about how <span class="name">condition</span> is evaluated and how <span class="name">msg</span> can be used to override the default error message.<br />
-<br />
-New in Robot Framework version 1.8.3. This is intended to replace the old keyword <span class="name">Fail If</span>, which still continues to work.</td>
+See <a href="#Should Be True" class="name">Should Be True</a> for details about how <span class="name">condition</span> is evaluated and how <span class="name">msg</span> can be used to override the default error message.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Contain"></a>Should Not Contain</td>
@@ -1463,14 +1435,13 @@ Example:<br />
 <td>arg2</td>
 </tr>
 </table>
-<br />
-New in Robot Framework version 1.8.1.</td>
+</td>
 </tr>
 </table>
 <p class="footer">
 Altogether 70 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-03-23 09:45:17.
+on 2009-03-24 20:38:21.
 </p>
 </body>
 </html>
