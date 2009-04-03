@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>String - Documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
-
   body {
     background: white;
     color: black;
@@ -81,32 +81,38 @@
 <h1>String - Documentation</h1>
 
 <h2 id="introduction">Introduction</h2>
-<p class='libdoc'>This library contains keywords related to string operations.</p>
+<p class='libdoc'>This library contains keywords related to string manipulation.<br />
+<br />
+Following keywords from the BuiltIn library can be used with strings:<br />
+<br />
+- <span class="name">Catenate</span><br />
+- <span class="name">Get Length</span><br />
+- <span class="name">Grep</span><br />
+- <span class="name">Should (Not) Match (Regexp)</span><br />
+- <span class="name">Should (Not) Be Empty</span><br />
+- <span class="name">Should (Not) Be Equal As Strings</span><br />
+- <span class="name">Should (Not) Contain</span><br />
+- <span class="name">Should (Not) End With</span><br />
+- <span class="name">Should (Not) Start With</span><br />
+<br />
+From Collections library, <span class="name">Length Should Be</span> can be used with strings as well.</p>
 
 
 <h2>Shortcuts</h2>
 <div class='links'>
-<a href="#Add Crlf To All Lines" title="Adds \r\n to all lines">Add&nbsp;Crlf&nbsp;To&nbsp;All&nbsp;Lines</a>&nbsp;
-<a href="#Convert Csv To List" title="Converts a comma-separated element string to a list of elements">Convert&nbsp;Csv&nbsp;To&nbsp;List</a>&nbsp;
-<a href="#Convert List To Csv" title="Converts a list of elements to comma-separated element string">Convert&nbsp;List&nbsp;To&nbsp;Csv</a>&nbsp;
-<a href="#Generate Random String" title="Generates a random string of the required length (8 by default).">Generate&nbsp;Random&nbsp;String</a>&nbsp;
-<a href="#Get All But Last Line" title="Returns all but the last line of input as string (cuts out the last line)">Get&nbsp;All&nbsp;But&nbsp;Last&nbsp;Line</a>&nbsp;
-<a href="#Get All But Last Line As List" title="Returns list of all but the last line of input">Get&nbsp;All&nbsp;But&nbsp;Last&nbsp;Line&nbsp;As&nbsp;List</a>&nbsp;
+<a href="#Fetch From Left" title="Fetches the `string` part before the FIRST occurence of `to_find`.">Fetch&nbsp;From&nbsp;Left</a>&nbsp;
+<a href="#Fetch From Right" title="Fetches the `string` after the LAST occurence of `to_find`.">Fetch&nbsp;From&nbsp;Right</a>&nbsp;
+<a href="#Generate Random String" title="Generates a random string of the required `length` (8 by default).">Generate&nbsp;Random&nbsp;String</a>&nbsp;
 <a href="#Get Column" title="Takes input text, splits into columns using delimiter">Get&nbsp;Column</a>&nbsp;
-<a href="#Get First Line" title="Returns the first line of input: head -1">Get&nbsp;First&nbsp;Line</a>&nbsp;
-<a href="#Get Head Lines As List" title="Returns the first line_count lines of input: head -line_count">Get&nbsp;Head&nbsp;Lines&nbsp;As&nbsp;List</a>&nbsp;
-<a href="#Get Last Line" title="Returns the last line of input">Get&nbsp;Last&nbsp;Line</a>&nbsp;
+<a href="#Get Line" title="From given `lines`, extracts line with given `number`.">Get&nbsp;Line</a>&nbsp;
 <a href="#Get Line Count" title="Returns the number of lines.">Get&nbsp;Line&nbsp;Count</a>&nbsp;
 <a href="#Get Lines As List" title="Converts multiline input to list of lines. Ends of lines removed.">Get&nbsp;Lines&nbsp;As&nbsp;List</a>&nbsp;
-<a href="#Get Lines Not Matching Any Of Elements" title="This keyword returns to_match without lines">Get&nbsp;Lines&nbsp;Not&nbsp;Matching&nbsp;Any&nbsp;Of&nbsp;Elements</a>&nbsp;
-<a href="#Get Second Part Of Lines After String" title="Splits each line using split_with, returns second part">Get&nbsp;Second&nbsp;Part&nbsp;Of&nbsp;Lines&nbsp;After&nbsp;String</a>&nbsp;
-<a href="#Get Substring" title="Returns a substring from left_index to right_index,">Get&nbsp;Substring</a>&nbsp;
-<a href="#Is A String" title="Checks whether item is a string. Returns true or false">Is&nbsp;A&nbsp;String</a>&nbsp;
-<a href="#Replace String" title="Searches search_for in replace_in and replaces with replace_with)">Replace&nbsp;String</a>&nbsp;
-<a href="#Should Be A String" title="Fails if item is not a string (e.g. list, number)">Should&nbsp;Be&nbsp;A&nbsp;String</a>&nbsp;
-<a href="#Should Not Be A String" title="Fails if item is a string (e.g. list, number)">Should&nbsp;Not&nbsp;Be&nbsp;A&nbsp;String</a>&nbsp;
-<a href="#Split String" title="Split to_split, divided by split_with">Split&nbsp;String</a>&nbsp;
-<a href="#Split To Last Line And Rest" title="Splits multiline input to all_but_last and last line.">Split&nbsp;To&nbsp;Last&nbsp;Line&nbsp;And&nbsp;Rest</a>&nbsp;
+<a href="#Get Substring" title="Returns a substring of given `length` starting from position of `position` ,">Get&nbsp;Substring</a>&nbsp;
+<a href="#Replace Pattern" title="Searches for pattern matching `regexp` in `replace_in`">Replace&nbsp;Pattern</a>&nbsp;
+<a href="#Replace String" title="Searches `search_for` in `replace_in` and replaces with `replace_with`">Replace&nbsp;String</a>&nbsp;
+<a href="#Should Be String" title="Fails if item is not a string (e.g. list, number)">Should&nbsp;Be&nbsp;String</a>&nbsp;
+<a href="#Should Not Be String" title="Fails if item is a string">Should&nbsp;Not&nbsp;Be&nbsp;String</a>&nbsp;
+<a href="#Split String" title="Return a list of the words in the `to_split` string,">Split&nbsp;String</a>&nbsp;
 </div>
 
 <h2>Keywords</h2>
@@ -117,54 +123,40 @@
   <th class="doc">Documentation</th>
 </tr>
 <tr>
-  <td class="kw"><a name="Add Crlf To All Lines"></a>Add Crlf To All Lines</td>
-  <td class="arg">lines</td>
-  <td class="doc">Adds \r\n to all lines</td>
+  <td class="kw"><a name="Fetch From Left"></a>Fetch From Left</td>
+  <td class="arg">string, to_find</td>
+  <td class="doc">Fetches the <span class="name">string</span> part before the FIRST occurence of <span class="name">to_find</span>. If <span class="name">to_find</span> is not found, whole string is returned.</td>
 </tr>
 <tr>
-  <td class="kw"><a name="Convert Csv To List"></a>Convert Csv To List</td>
-  <td class="arg">csv_string</td>
-  <td class="doc">Converts a comma-separated element string to a list of elements 'a,b,c' =&gt; ['a','b','c']</td>
-</tr>
-<tr>
-  <td class="kw"><a name="Convert List To Csv"></a>Convert List To Csv</td>
-  <td class="arg">convert_list</td>
-  <td class="doc">Converts a list of elements to comma-separated element string ['a','b','c'] =&gt; 'a,b,c'</td>
+  <td class="kw"><a name="Fetch From Right"></a>Fetch From Right</td>
+  <td class="arg">string, to_find</td>
+  <td class="doc">Fetches the <span class="name">string</span> after the LAST occurence of <span class="name">to_find</span>. If <span class="name">to_find</span> not found within <span class="name">string</span>, whole string is returned.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Generate Random String"></a>Generate Random String</td>
   <td class="arg">length=8, chars=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</td>
-  <td class="doc">Generates a random string of the required length (8 by default). Second argument is a set of characters to draw from, letters + digits for default</td>
-</tr>
-<tr>
-  <td class="kw"><a name="Get All But Last Line"></a>Get All But Last Line</td>
-  <td class="arg">lines</td>
-  <td class="doc">Returns all but the last line of input as string (cuts out the last line)</td>
-</tr>
-<tr>
-  <td class="kw"><a name="Get All But Last Line As List"></a>Get All But Last Line As List</td>
-  <td class="arg">lines</td>
-  <td class="doc">Returns list of all but the last line of input</td>
+  <td class="doc">Generates a random string of the required <span class="name">length</span> (8 by default). Second argument is a set of characters to draw from, letters + digits for default</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Column"></a>Get Column</td>
   <td class="arg">input_text, column_number, delimiter= </td>
-  <td class="doc">Takes input text, splits into columns using delimiter and returns the column_number column. Column numbering starts from 1. Default delimiter is single space.</td>
+  <td class="doc">Takes input text, splits into columns using delimiter and returns the <span class="name">column_number</span> column. Column numbering starts from 0. Default delimiter is single space.</td>
 </tr>
 <tr>
-  <td class="kw"><a name="Get First Line"></a>Get First Line</td>
-  <td class="arg">lines</td>
-  <td class="doc">Returns the first line of input: head -1</td>
-</tr>
+  <td class="kw"><a name="Get Line"></a>Get Line</td>
+  <td class="arg">lines, number</td>
+  <td class="doc">From given <span class="name">lines</span>, extracts line with given <span class="name">number</span>. '0' is the first line. '-1' is the last line. Line is returned without the end-of-line character.<br />
+<br />
+Example:<br />
+<table border="1" class="doc">
 <tr>
-  <td class="kw"><a name="Get Head Lines As List"></a>Get Head Lines As List</td>
-  <td class="arg">lines, line_count</td>
-  <td class="doc">Returns the first line_count lines of input: head -line_count as a list</td>
+<td>${first line}=</td>
+<td>Get Line</td>
+<td>${lines}</td>
+<td>0</td>
 </tr>
-<tr>
-  <td class="kw"><a name="Get Last Line"></a>Get Last Line</td>
-  <td class="arg">lines</td>
-  <td class="doc">Returns the last line of input</td>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Line Count"></a>Get Line Count</td>
@@ -173,59 +165,79 @@
 </tr>
 <tr>
   <td class="kw"><a name="Get Lines As List"></a>Get Lines As List</td>
-  <td class="arg">lines, remove_empty_lines=0</td>
-  <td class="doc">Converts multiline input to list of lines. Ends of lines removed. If removeEmptyLines != 0, empty lines are removed</td>
+  <td class="arg">lines, start=0, end=-1</td>
+  <td class="doc">Converts multiline input to list of lines. Ends of lines removed. It is possible to get only selection of lines, from <span class="name">start</span> to <span class="name">end</span>. Line numbering starts from 0.<br />
+<br />
+Example:<br />
+<table border="1" class="doc">
+<tr>
+<td>@{lines}</td>
+<td>Get Lines as List</td>
+<td>${multilines}</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-  <td class="kw"><a name="Get Lines Not Matching Any Of Elements"></a>Get Lines Not Matching Any Of Elements</td>
-  <td class="arg">to_match, to_exclude</td>
-  <td class="doc">This keyword returns to_match without lines where any of to_exclude is a substring.</td>
+<td>@{first two lines}</td>
+<td>Get Lines as List</td>
+<td>${multilines}</td>
+<td>0</td>
+<td>1</td>
 </tr>
-<tr>
-  <td class="kw"><a name="Get Second Part Of Lines After String"></a>Get Second Part Of Lines After String</td>
-  <td class="arg">lines, split_string</td>
-  <td class="doc">Splits each line using split_with, returns second part Like awk -F 'split_with' '{print $2}' Only lines containing requested string are taken.</td>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Substring"></a>Get Substring</td>
-  <td class="arg">string, left_index, right_index</td>
-  <td class="doc">Returns a substring from left_index to right_index, which should be numbers (0, len-1)</td>
+  <td class="arg">string, position, length</td>
+  <td class="doc">Returns a substring of given <span class="name">length</span> starting from position of <span class="name">position</span> , which should be numbers. Position starts from '0'.<br />
+<br />
+Example:<br />
+<table border="1" class="doc">
+<tr>
+<td>${first two}=</td>
+<td>Get Substring</td>
+<td>Robot</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</table>
+</td>
 </tr>
 <tr>
-  <td class="kw"><a name="Is A String"></a>Is A String</td>
-  <td class="arg">item</td>
-  <td class="doc">Checks whether item is a string. Returns true or false</td>
+  <td class="kw"><a name="Replace Pattern"></a>Replace Pattern</td>
+  <td class="arg">replace_in, pattern, replace_with, count=0</td>
+  <td class="doc">Searches for pattern matching <span class="name">regexp</span> in <span class="name">replace_in</span> and replaces with <span class="name">replace_with</span>. You can specify that maximum <span class="name">count</span> pattern occurrences are replaced, otherwise all are replaced.<br />
+<br />
+Regular expression format is according to Python 're' module, which has a pattern syntax derived from Perl, and thus also very similar to the one in Java. See the following documents for more details about regular expressions in general and Python implementation in particular.<br />
+<br />
+* <a href="http://docs.python.org/lib/module-re.html">http://docs.python.org/lib/module-re.html</a></td>
 </tr>
 <tr>
   <td class="kw"><a name="Replace String"></a>Replace String</td>
   <td class="arg">replace_in, search_for, replace_with</td>
-  <td class="doc">Searches search_for in replace_in and replaces with replace_with)</td>
+  <td class="doc">Searches <span class="name">search_for</span> in <span class="name">replace_in</span> and replaces with <span class="name">replace_with</span></td>
 </tr>
 <tr>
-  <td class="kw"><a name="Should Be A String"></a>Should Be A String</td>
+  <td class="kw"><a name="Should Be String"></a>Should Be String</td>
   <td class="arg">item, msg=None</td>
   <td class="doc">Fails if item is not a string (e.g. list, number)</td>
 </tr>
 <tr>
-  <td class="kw"><a name="Should Not Be A String"></a>Should Not Be A String</td>
+  <td class="kw"><a name="Should Not Be String"></a>Should Not Be String</td>
   <td class="arg">item, msg=None</td>
-  <td class="doc">Fails if item is a string (e.g. list, number)</td>
+  <td class="doc">Fails if item is a string</td>
 </tr>
 <tr>
   <td class="kw"><a name="Split String"></a>Split String</td>
-  <td class="arg">to_split, split_with</td>
-  <td class="doc">Split to_split, divided by split_with</td>
-</tr>
-<tr>
-  <td class="kw"><a name="Split To Last Line And Rest"></a>Split To Last Line And Rest</td>
-  <td class="arg">lines</td>
-  <td class="doc">Splits multiline input to all_but_last and last line. Returns a list [last_line, all_but_last_line] Used for getting RC and output from the command executed via SSH, RC being the last line.</td>
+  <td class="arg">to_split, split_with, max_split=-1</td>
+  <td class="doc">Return a list of the words in the <span class="name">to_split</span> string, using <span class="name">split_with</span> as the delimiter string. If maxsplit is given, at most <span class="name">maxsplit</span> splits are done (thus, the list will have at most 'maxsplit+1' elements)</td>
 </tr>
 </table>
 <p class="footer">
-Altogether 21 keywords.<br />
+Altogether 13 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-01-20 15:48:16.
+on 2009-04-03 21:28:14.
 </p>
 </body>
 </html>
