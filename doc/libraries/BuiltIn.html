@@ -79,7 +79,7 @@
 </head>
 <body>
 <h1>BuiltIn - Documentation</h1>
-<p><b>Version:</b> trunk 20090322</p>
+<p><b>Version:</b> trunk 20090403</p>
 
 <h2 id="introduction">Introduction</h2>
 <p class='libdoc'>BuiltIn library provides a set of often needed generic keywords.<br />
@@ -99,6 +99,7 @@ These keywords are available automatically without importing any library. They a
 <a href="#Create List" title="Returns a list containing given items.">Create&nbsp;List</a>&nbsp;
 <a href="#Evaluate" title="Evaluates the given expression in Python and returns the results.">Evaluate</a>&nbsp;
 <a href="#Fail" title="Fails the test immediately with the given (optional) message.">Fail</a>&nbsp;
+<a href="#Get Count" title="Returns and logs how many times `item2` is found from `item1`.">Get&nbsp;Count</a>&nbsp;
 <a href="#Get Length" title="Returns and logs the length of the given item.">Get&nbsp;Length</a>&nbsp;
 <a href="#Get Time" title="Returns the current time in the requested format.">Get&nbsp;Time</a>&nbsp;
 <a href="#Grep" title="Returns the text grepped using `pattern`.">Grep</a>&nbsp;
@@ -139,6 +140,7 @@ These keywords are available automatically without importing any library. They a
 <a href="#Should Be Equal As Strings" title="Fails if objects are unequal after converting them to strings.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
 <a href="#Should Be True" title="Fails if the given condition is not true.">Should&nbsp;Be&nbsp;True</a>&nbsp;
 <a href="#Should Contain" title="Fails if `item1` does not contain `item2` one or more times.">Should&nbsp;Contain</a>&nbsp;
+<a href="#Should Contain X Times" title="Fails if `item1` does not contain `item2` `count` times.">Should&nbsp;Contain&nbsp;X&nbsp;Times</a>&nbsp;
 <a href="#Should End With" title="Fails if the string `str1` does not end with the string `str2`.">Should&nbsp;End&nbsp;With</a>&nbsp;
 <a href="#Should Match" title="Fails unless the given `string` matches the given `pattern`.">Should&nbsp;Match</a>&nbsp;
 <a href="#Should Match Regexp" title="Fails if `string` does not match `pattern` as a regular expression.">Should&nbsp;Match&nbsp;Regexp</a>&nbsp;
@@ -149,13 +151,14 @@ These keywords are available automatically without importing any library. They a
 <a href="#Should Not Be Equal As Strings" title="Fails if objects are equal after converting them to strings.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
 <a href="#Should Not Be True" title="Fails if the given condition is true.">Should&nbsp;Not&nbsp;Be&nbsp;True</a>&nbsp;
 <a href="#Should Not Contain" title="Fails if `item1` contains `item2` one or more times.">Should&nbsp;Not&nbsp;Contain</a>&nbsp;
+<a href="#Should Not Contain X Times" title="Fails if `item1` contains `item2` `count` times.">Should&nbsp;Not&nbsp;Contain&nbsp;X&nbsp;Times</a>&nbsp;
 <a href="#Should Not End With" title="Fails if the string `str1` ends with the string `str2`.">Should&nbsp;Not&nbsp;End&nbsp;With</a>&nbsp;
 <a href="#Should Not Match" title="Fails if the given `string` matches the given `pattern`.">Should&nbsp;Not&nbsp;Match</a>&nbsp;
 <a href="#Should Not Match Regexp" title="Fails if `string` matches `pattern` as a regular expression.">Should&nbsp;Not&nbsp;Match&nbsp;Regexp</a>&nbsp;
 <a href="#Should Not Start With" title="Fails if the string `str1` starts with the string `str2`.">Should&nbsp;Not&nbsp;Start&nbsp;With</a>&nbsp;
 <a href="#Should Start With" title="Fails if the string `str1` does not start with the string `str2`.">Should&nbsp;Start&nbsp;With</a>&nbsp;
 <a href="#Sleep" title="Pauses the test executed for the given time.">Sleep</a>&nbsp;
-<a href="#Syslog" title="Logs the given message with the given level into syslog.">Syslog</a>&nbsp;
+<a href="#Syslog" title="*DEPRECATED* Use `Log` keyword with WARN level instead. This keyword will be removed in Robot Framework 2.2.">Syslog</a>&nbsp;
 <a href="#Variable Should Exist" title="Fails unless the given variable exists within the current scope.">Variable&nbsp;Should&nbsp;Exist</a>&nbsp;
 <a href="#Variable Should Not Exist" title="Fails if the given variable exists within the current scope.">Variable&nbsp;Should&nbsp;Not&nbsp;Exist</a>&nbsp;
 <a href="#Wait Until Keyword Succeeds" title="Waits until the specified keyword succeeds or the given timeout expires.">Wait&nbsp;Until&nbsp;Keyword&nbsp;Succeeds</a>&nbsp;
@@ -361,6 +364,30 @@ Notice that instead of creating complicated expressions, it is recommended to mo
   <td class="kw"><a name="Fail"></a>Fail</td>
   <td class="arg">msg=None</td>
   <td class="doc">Fails the test immediately with the given (optional) message.</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Get Count"></a>Get Count</td>
+  <td class="arg">item1, item2</td>
+  <td class="doc">Returns and logs how many times <span class="name">item2</span> is found from <span class="name">item1</span>.<br />
+<br />
+This keyword works with Python strings and lists and all objects that either have 'count' method or can be converted to Python lists.<br />
+<br />
+Example:<br />
+<table border="1" class="doc">
+<tr>
+<td>${count} =</td>
+<td>Get Count</td>
+<td>${some item}</td>
+<td>interesting value</td>
+</tr>
+<tr>
+<td>Should Be True</td>
+<td>5 &lt; ${count} &lt; 10</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Length"></a>Get Length</td>
@@ -882,7 +909,7 @@ The available levels: TRACE, DEBUG, INFO (default), WARN and NONE (no logging).<
 <br />
 Variables set with this keyword are available everywhere within the scope of the currently executed test suite. Setting variables with this keyword thus has the same effect as creating them using the Variable table in the test data file or importing them from variable files. Other test suites, including possible child test suites, will not see variables set with this keyword.<br />
 <br />
-The variable name must be given either in the escaped format (e.g. \${SCALAR} or \@{LIST}) or without curly braces (e.g. $SCALAR or @LIST) to prevent it from being resolved.<br />
+The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}), but the former works only in Robot Framework 2.1 and newer.<br />
 <br />
 If a variable already exists within the new scope, its value will be overwritten. Otherwise a new variable is created. If a variable already exists within the current scope, the value can be left empty and the variable within the new scope gets the value within the current scope.<br />
 <br />
@@ -890,7 +917,7 @@ Examples:<br />
 <table border="1" class="doc">
 <tr>
 <td>Set Suite Variable</td>
-<td>$GREET</td>
+<td>${GREET}</td>
 <td>Hello, world!</td>
 </tr>
 <tr>
@@ -900,7 +927,7 @@ Examples:<br />
 </tr>
 <tr>
 <td>Set Suite Variable</td>
-<td>\${ID}</td>
+<td>${ID}</td>
 <td></td>
 </tr>
 </table>
@@ -1159,6 +1186,30 @@ Examples:<br />
 </td>
 </tr>
 <tr>
+  <td class="kw"><a name="Should Contain X Times"></a>Should Contain X Times</td>
+  <td class="arg">item1, item2, count, msg=None</td>
+  <td class="doc">Fails if <span class="name">item1</span> does not contain <span class="name">item2</span> <span class="name">count</span> times.<br />
+<br />
+Works with strings, lists and all objects that <a href="#Get Count" class="name">Get Count</a> works with. The default error message can be overridden with <span class="name">msg</span> and the actual count is always logged.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>Should Contain X Times</td>
+<td>${output}</td>
+<td>hello</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Should Contain X Times</td>
+<td>${some list}</td>
+<td>value</td>
+<td>3</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
   <td class="kw"><a name="Should End With"></a>Should End With</td>
   <td class="arg">str1, str2, msg=None, values=True</td>
   <td class="doc">Fails if the string <span class="name">str1</span> does not end with the string <span class="name">str2</span>.<br />
@@ -1304,6 +1355,30 @@ Examples:<br />
 </td>
 </tr>
 <tr>
+  <td class="kw"><a name="Should Not Contain X Times"></a>Should Not Contain X Times</td>
+  <td class="arg">item1, item2, count, msg=None</td>
+  <td class="doc">Fails if <span class="name">item1</span> contains <span class="name">item2</span> <span class="name">count</span> times.<br />
+<br />
+Works with strings, lists and all objects that <a href="#Get Count" class="name">Get Count</a> works with. The default error message can be overridden with <span class="name">msg</span> and the actual count is always logged.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>Should Not Contain X Times</td>
+<td>${output}</td>
+<td>hello</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Should Not Contain X Times</td>
+<td>${some list}</td>
+<td>value</td>
+<td>2</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
   <td class="kw"><a name="Should Not End With"></a>Should Not End With</td>
   <td class="arg">str1, str2, msg=None, values=True</td>
   <td class="doc">Fails if the string <span class="name">str1</span> ends with the string <span class="name">str2</span>.<br />
@@ -1375,7 +1450,7 @@ Examples:<br />
 <tr>
   <td class="kw"><a name="Syslog"></a>Syslog</td>
   <td class="arg">message, level=INFO</td>
-  <td class="doc">Logs the given message with the given level into syslog.</td>
+  <td class="doc"><b>DEPRECATED</b> Use <a href="#Log" class="name">Log</a> keyword with WARN level instead. This keyword will be removed in Robot Framework 2.2.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Variable Should Exist"></a>Variable Should Exist</td>
@@ -1419,9 +1494,9 @@ Example:<br />
 </tr>
 </table>
 <p class="footer">
-Altogether 70 keywords.<br />
+Altogether 73 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-03-25 22:52:34.
+on 2009-04-07 18:15:28.
 </p>
 </body>
 </html>
