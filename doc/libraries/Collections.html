@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>Collections - Documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
-
   body {
     background: white;
     color: black;
@@ -79,20 +79,60 @@
 </head>
 <body>
 <h1>Collections - Documentation</h1>
-<p><b>Version:</b> trunk 20081201</p>
+<p><b>Version:</b> trunk 20090403</p>
 
 <h2 id="introduction">Introduction</h2>
 <p class='libdoc'>A library providing keywords for handling Python lists and dictionaries.<br />
 <br />
-List keywords that do not alter given list can also be used with tuples, and to some extend also with other iterables.<br />
+List keywords that do not alter the given list can also be used with tuples, and to some extend also with other iterables.<br />
 <br />
 Following keywords from the BuiltIn library can also be used with lists and dictionaries:<br />
-<br />
-- <span class="name">Create List</span><br />
-- <span class="name">Get Length</span><br />
-- <span class="name">Length Should Be</span><br />
-- <span class="name">Should Be Empty</span><br />
-- <span class="name">Should Not Be Empty</span><br />
+<table border="1" class="doc">
+<tr>
+<td><b>Keyword Name</b></td>
+<td><b>Applicable With</b></td>
+</tr>
+<tr>
+<td><span class="name">Create List</span></td>
+<td>lists</td>
+</tr>
+<tr>
+<td><span class="name">Get Length</span></td>
+<td>both</td>
+</tr>
+<tr>
+<td><span class="name">Length Should Be</span></td>
+<td>both</td>
+</tr>
+<tr>
+<td><span class="name">Should Be Empty</span></td>
+<td>both</td>
+</tr>
+<tr>
+<td><span class="name">Should Not Be Empty</span></td>
+<td>both</td>
+</tr>
+<tr>
+<td><span class="name">Should Contain</span></td>
+<td>lists</td>
+</tr>
+<tr>
+<td><span class="name">Should Not Contain</span></td>
+<td>lists</td>
+</tr>
+<tr>
+<td><span class="name">Should Contain X Times</span></td>
+<td>lists</td>
+</tr>
+<tr>
+<td><span class="name">Should Not Contain X Times</span></td>
+<td>lists</td>
+</tr>
+<tr>
+<td><span class="name">Get Count</span></td>
+<td>lists</td>
+</tr>
+</table>
 <br />
 All list keywords expect a scalar variable (e.g. ${list}) as an argument. &nbsp;Starting with Robot Framework 2.0.3, it is possible to use list variables (e.g. @{list}) as scalars simply by replacing '@' with '$'. With earlier versions, list variables must be converted to scalar variables first.<br />
 <br />
@@ -100,7 +140,7 @@ All list keywords expect a scalar variable (e.g. ${list}) as an argument. &nbsp;
 <br />
 List related keywords use variables in format ${Lx} in their examples, which means a list with as many alphabetic characters as specified by 'x'. For example ${L1} means ['a'] and ${L3} means ['a', 'b', 'c'].<br />
 <br />
-Dictionary keywords use similar ${Dx} variable. For example ${D1} means {'a': 1} and ${D3} means {'a': 1, 'b': 2, 'c': 3}.<br />
+Dictionary keywords use similar ${Dx} variables. For example ${D1} means {'a': 1} and ${D3} means {'a': 1, 'b': 2, 'c': 3}.<br />
 <br />
 <hr />
 </p>
@@ -212,7 +252,7 @@ Example:<br />
   <td class="arg">item</td>
   <td class="doc">Converts the given <span class="name">item</span> to a list.<br />
 <br />
-Mainly useful for converting tuples to lists. Use <span class="name">Create List</span> from the BuiltIn library for constructing new lists.</td>
+Mainly useful for converting tuples and other iterable to lists. Use <span class="name">Create List</span> from the BuiltIn library for constructing new lists.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Copy Dictionary"></a>Copy Dictionary</td>
@@ -235,6 +275,7 @@ The given list is never altered by this keyword.</td>
 <br />
 The search can be narrowed to the selected sublist by the <span class="name">start</span> and <span class="name">end</span> indexes having the same semantics as in the <a href="#Get Slice From List" class="name">Get Slice From List</a> keyword. The given list is never altered by this keyword.<br />
 <br />
+Example:<br />
 <table border="1" class="doc">
 <tr>
 <td>${x} =</td>
@@ -245,7 +286,7 @@ The search can be narrowed to the selected sublist by the <span class="name">sta
 </table>
 =&gt;<br />
 - ${x} = 1<br />
-- ${L3} is not changed.</td>
+- ${L3} is not changed</td>
 </tr>
 <tr>
   <td class="kw"><a name="Create Dictionary"></a>Create Dictionary</td>
@@ -433,14 +474,14 @@ Examples (including Python equivalents in comments):<br />
 <td>${y} =</td>
 <td>Get From List</td>
 <td>${L5}</td>
-<td>2</td>
-<td># L5[2]</td>
+<td>-2</td>
+<td># L5[-2]</td>
 </tr>
 </table>
 =&gt;<br />
 - ${x} = 'a'<br />
-- ${y} = 'c'<br />
-- ${L1} and ${L2} are not changed.</td>
+- ${y} = 'd'<br />
+- ${L5} is not changed</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Index From List"></a>Get Index From List</td>
@@ -449,6 +490,7 @@ Examples (including Python equivalents in comments):<br />
 <br />
 The search can be narrowed to the selected sublist by the <span class="name">start</span> and <span class="name">end</span> indexes having the same semantics as in the <a href="#Get Slice From List" class="name">Get Slice From List</a> keyword. In case the value is not found, -1 is returned. The given list is never altered by this keyword.<br />
 <br />
+Example:<br />
 <table border="1" class="doc">
 <tr>
 <td>${x} =</td>
@@ -459,7 +501,7 @@ The search can be narrowed to the selected sublist by the <span class="name">sta
 </table>
 =&gt;<br />
 - ${x} = 3<br />
-- ${L5} is not changed.</td>
+- ${L5} is not changed</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Slice From List"></a>Get Slice From List</td>
@@ -503,14 +545,16 @@ Examples (incl. Python equivelants in comments):<br />
 - ${x} = ['c', 'd']<br />
 - ${y} = ['b', 'c', 'd', 'e']<br />
 - ${z} = ['a', 'b', 'c']<br />
-- ${L5} is not changed.</td>
+- ${L5} is not changed</td>
 </tr>
 <tr>
   <td class="kw"><a name="Insert Into List"></a>Insert Into List</td>
   <td class="arg">list, index, value</td>
   <td class="doc">Inserts <span class="name">value</span> into <span class="name">list</span> to the position specified with <span class="name">index</span>.<br />
 <br />
-Index '0' adds the value into the first position, '1' to the second, and so on. Similarly, '-1' is the last position, '-2' second last, and so on. If the absolute value of the index is greater than the length of the list, the value is added at the end (positive index) or the beginning (negative index). An index can be given either as an integer or a string that can be converted to an integer.<br />
+Index '0' adds the value into the first position, '1' to the second, and so on. Inserting from right works with negative indices so that '-1' is the second last position, '-2' third last, and so on. Use <a href="#Append To List" class="name">Append To List</a> to add items to the end of the list.<br />
+<br />
+If the absolute value of the index is greater than the length of the list, the value is added at the end (positive index) or the beginning (negative index). An index can be given either as an integer or a string that can be converted to an integer.<br />
 <br />
 Example:<br />
 <table border="1" class="doc">
@@ -648,6 +692,8 @@ Example:<br />
   <td class="arg">list, *values</td>
   <td class="doc">Removes all occurences of given <span class="name">values</span> from <span class="name">list</span>.<br />
 <br />
+It is not an error is a value does not exist in the list at all.<br />
+<br />
 Example:<br />
 <table border="1" class="doc">
 <tr>
@@ -693,9 +739,15 @@ Example:<br />
 <td>1</td>
 <td>xxx</td>
 </tr>
+<tr>
+<td>Set List Value</td>
+<td>${L3}</td>
+<td>-1</td>
+<td>yyy</td>
+</tr>
 </table>
 =&gt;<br />
-- ${L3} = ['a', 'xxx', 'c']</td>
+- ${L3} = ['a', 'xxx', 'yyy']</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set To Dictionary"></a>Set To Dictionary</td>
@@ -737,7 +789,7 @@ ${L} = [2,1,'a','c','b']<br />
 <p class="footer">
 Altogether 35 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2008-12-15 15:15:39.
+on 2009-04-07 23:31:55.
 </p>
 </body>
 </html>
