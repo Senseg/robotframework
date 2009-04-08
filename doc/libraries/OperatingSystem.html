@@ -79,13 +79,16 @@
 </head>
 <body>
 <h1>OperatingSystem - Documentation</h1>
-<p><b>Version:</b> trunk 20090303</p>
+<p><b>Version:</b> trunk 20090403</p>
 
 <h2 id="introduction">Introduction</h2>
-<p class='libdoc'>This test library enables multiple operating-system-related tasks.<br />
+<p class='libdoc'>A test library providing keywords for OS related tasks.<br />
+<br />
+<span class="name">OperatingSystem</span> is Robot Framework's standard library that enables various operating system related tasks to be performed in the system where Robot Framework is running. It can, among other things, execute commands (e.g. <a href="#Run" class="name">Run</a>), create and remove files and directories (e.g. <a href="#Create File" class="name">Create File</a>, <a href="#Remove Directory" class="name">Remove Directory</a>), check whether files or directories exists or contain something (e.g. <a href="#File Should Exist" class="name">File Should Exist</a>, <a href="#Directory Should Be Empty" class="name">Directory Should Be Empty</a>) and manipulate environment variables (e.g. <a href="#Set Environment Variable" class="name">Set Environment Variable</a>).<br />
+<br />
+Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments accept a forward slash as a path separator regardless the operating system. This only works if an argument is only a path, <b>not if a path is part of an argument</b>, like it often is with <a href="#Run" class="name">Run</a> and <a href="#Start Process" class="name">Start Process</a> keywords. In these cases, and with earlier versions, built-in variable ${/} can be used to keep the test data platform independent.<br />
 <br />
 Example usage:<br />
-<br />
 <table border="1" class="doc">
 <tr>
 <td><b>Setting</b></td>
@@ -140,8 +143,7 @@ Example usage:<br />
 <td>${CURDIR}${/}script.py arg</td>
 </tr>
 </table>
-<br />
-Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments accept a forward slash as a path separator regardless the operating system. This only works if an argument is only a path, <b>not if a path is part of an argument</b>, like it often is with <a href="#Run" class="name">Run</a> and <a href="#Start Process" class="name">Start Process</a> keywords. In these cases, and with earlier versions, built-in variable ${/} can be used to keep the test data platform independent.</p>
+</p>
 
 
 <h2>Shortcuts</h2>
@@ -170,7 +172,7 @@ Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments a
 <a href="#Get File" title="Returns the contents of a specified file.">Get&nbsp;File</a>&nbsp;
 <a href="#Get File Size" title="Returns and logs file size as an integer in bytes">Get&nbsp;File&nbsp;Size</a>&nbsp;
 <a href="#Get Modified Time" title="Returns the last modification time of a file or directory.">Get&nbsp;Modified&nbsp;Time</a>&nbsp;
-<a href="#Grep File" title="*DEPRECATED* Use `Get File` with `BuiltIn.Grep` instead. Will be removed in RF 2.2.">Grep&nbsp;File</a>&nbsp;
+<a href="#Grep File" title="*DEPRECATED* Use `Get File` with `BuiltIn.Grep` instead. `Grep File` will be removed in RF 2.2.">Grep&nbsp;File</a>&nbsp;
 <a href="#Join Path" title="Joins the given path part(s) to the given base path.">Join&nbsp;Path</a>&nbsp;
 <a href="#Join Paths" title="Joins given paths with base and returns resulted paths.">Join&nbsp;Paths</a>&nbsp;
 <a href="#List Directories In Directory" title="A wrapper for `List Directory` that returns only directories.">List&nbsp;Directories&nbsp;In&nbsp;Directory</a>&nbsp;
@@ -410,7 +412,7 @@ This keyword reads the specified file and returns the contents. <span class="nam
   <td class="arg">path, format=timestamp</td>
   <td class="doc">Returns the last modification time of a file or directory.<br />
 <br />
-How time is returned is determined based on the given <span class="name">format</span> string as follows. Note that all checks are case-insensitive.<br />
+How time is returned is determined based on the given <span class="name">format</span> string as follows. Note that all checks are case-insensitive. Returned time is also automatically logged.<br />
 <br />
 1) If <span class="name">format</span> contains the word 'epoch', the time is returned in seconds after the UNIX epoch. The return value is always an integer.<br />
 <br />
@@ -466,7 +468,7 @@ Examples (when the modified time of the ${CURDIR} is 2006-03-29 15:06:21):<br />
 <tr>
   <td class="kw"><a name="Grep File"></a>Grep File</td>
   <td class="arg">path, pattern, pattern_type=literal string, encoding=UTF-8</td>
-  <td class="doc"><b>DEPRECATED</b> Use <a href="#Get File" class="name">Get File</a> with <span class="name">BuiltIn.Grep</span> instead. Will be removed in RF 2.2.</td>
+  <td class="doc"><b>DEPRECATED</b> Use <a href="#Get File" class="name">Get File</a> with <span class="name">BuiltIn.Grep</span> instead. <a href="#Grep File" class="name">Grep File</a> will be removed in RF 2.2.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Join Path"></a>Join Path</td>
@@ -677,7 +679,7 @@ Examples:<br />
 </tr>
 <tr>
   <td class="kw"><a name="Read Process Output"></a>Read Process Output</td>
-  <td class="arg">mode=<deprecated></td>
+  <td class="arg">mode=DEPRECATED</td>
   <td class="doc">Waits for the process to finish and returns its output.<br />
 <br />
 In Robot Framework versions prior to 2.0.2 it was possible to read either the standard output, standard error or both. As mentioned in the documentation of <a href="#Start Process" class="name">Start Process</a>, the standard error is nowadays automatically redirected to the standard output. This keyword thus always returns all the output and <span class="name">mode</span> argument is ignored. &nbsp;As explained in <a href="#Run" class="name">Run</a> keyword, it is still possible to redirect the standard error, or output, using e.g. '2&gt;stderr.txt' after the command.<br />
@@ -688,10 +690,10 @@ See <a href="#Start Process" class="name">Start Process</a> and <a href="#Switch
 </tr>
 <tr>
   <td class="kw"><a name="Remove Directory"></a>Remove Directory</td>
-  <td class="arg">path, recursive=no</td>
+  <td class="arg">path, recursive=False</td>
   <td class="doc">Removes the directory pointed to by the given <span class="name">path</span>.<br />
 <br />
-If the second argument <span class="name">recursive</span> contains any of the words 'yes', 'true' or 'recursive' (case-insensitive), all of the directory contents are also removed. Otherwise removing fails, if the directory is not empty.<br />
+If the second argument <span class="name">recursive</span> is set to any non-empty string, the directory is removed recursively. Otherwise removing fails if the directory is not empty.<br />
 <br />
 If the directory pointed to by the <span class="name">path</span> does not exist, the keyword passes, but it fails, if the <span class="name">path</span> points to a file.</td>
 </tr>
@@ -1191,7 +1193,7 @@ If the timeout is negative, the keyword is never timed-out. The keyword returns 
 <p class="footer">
 Altogether 55 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-03-21 20:17:25.
+on 2009-04-08 09:03:33.
 </p>
 </body>
 </html>
