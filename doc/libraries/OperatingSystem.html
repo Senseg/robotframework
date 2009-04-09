@@ -187,9 +187,9 @@ Example usage:<br />
 <a href="#Remove Environment Variable" title="Deletes the specified environment variable.">Remove&nbsp;Environment&nbsp;Variable</a>&nbsp;
 <a href="#Remove File" title="Removes a file with the given path.">Remove&nbsp;File</a>&nbsp;
 <a href="#Remove Files" title="Uses `Remove File` to remove multiple files one-by-one.">Remove&nbsp;Files</a>&nbsp;
-<a href="#Run" title="Runs the given command in the system and returns the RC and/or output.">Run</a>&nbsp;
-<a href="#Run And Return Rc" title="Wrapper for `Run` keyword that returns only the return code.">Run&nbsp;And&nbsp;Return&nbsp;Rc</a>&nbsp;
-<a href="#Run And Return Rc And Output" title="Wrapper for the `Run` keyword that returns both the RC and stdout.">Run&nbsp;And&nbsp;Return&nbsp;Rc&nbsp;And&nbsp;Output</a>&nbsp;
+<a href="#Run" title="Runs the given command in the system and returns the output.">Run</a>&nbsp;
+<a href="#Run And Return Rc" title="Runs the given command in the system and returns the returnn code.">Run&nbsp;And&nbsp;Return&nbsp;Rc</a>&nbsp;
+<a href="#Run And Return Rc And Output" title="Runs the given command in the system and returns the RC and output.">Run&nbsp;And&nbsp;Return&nbsp;Rc&nbsp;And&nbsp;Output</a>&nbsp;
 <a href="#Set Environment Variable" title="Sets an environment variable to a specified value.">Set&nbsp;Environment&nbsp;Variable</a>&nbsp;
 <a href="#Set Modified Time" title="Sets the file modification time.">Set&nbsp;Modified&nbsp;Time</a>&nbsp;
 <a href="#Should Exist" title="Fails unless the given path (file or directory) exists.">Should&nbsp;Exist</a>&nbsp;
@@ -731,100 +731,50 @@ Example:<br />
 </tr>
 <tr>
   <td class="kw"><a name="Run"></a>Run</td>
-  <td class="arg">command, return_mode=output</td>
-  <td class="doc">Runs the given command in the system and returns the RC and/or output.<br />
+  <td class="arg">command, return_mode=DEPRECATED</td>
+  <td class="doc">Runs the given command in the system and returns the output.<br />
 <br />
-The execution status of the command <b>is not checked</b> by this keyword, and it must be done separately based on the return code (RC) or the returned output. Documentation below explains how to control returning RC and output, and examples at the end illustrate few different possibilities for checking the outcome.<br />
+The execution status of the command <b>is not checked</b> by this keyword, and it must be done separately based on the returned output. If the return code of execution is needed, either <a href="#Run And Return Rc" class="name">Run And Return RC</a> or <a href="#Run And Return Rc And Output" class="name">Run And Return RC And Output</a> can be used. <span class="name">return_mode</span> argument for this keyword is deprecated and will be removed in Robot Framework 2.2 version.<br />
 <br />
-Starting from Robot Framework 2.0.2, the standard error stream is automatically redirected to the standard output stream by adding '2&gt;&amp;1' after the executed command. This is done mainly as a workaround for a bug in Jython that makes it hang if a lot of text is written to the standard error (<a href="http://bugs.jython.org/issue1124">http://bugs.jython.org/issue1124</a>). Additionally, it also makes possible errors in executing the command available automatically.<br />
+Starting from Robot Framework 2.0.2, the standard error stream is automatically redirected to the standard output stream by adding '2&gt;&amp;1' after the executed command. The automatic redirection of the standard error is done only when the executed command does not contain additional output redirections. You can thus freely forward the standard error somewhere else, for example, like 'my_command 2&gt;stderr.txt'.<br />
 <br />
-The automatic redirection of the standard error is done only when the executed command does not contain additional output redirections. You can thus freely forward the standard error somewhere else, for example, like 'my_command 2&gt;stderr.txt'.<br />
-<br />
-<hr />
-<br />
-<span class="name">return_mode</span> defines whether the RC, output or both is returned. All checks explained below are case-insensitive.<br />
-<br />
-- If <span class="name">return_mode</span> contains the word 'RC' and the word 'output', both the RC and output are returned.<br />
-- Otherwise, if it contains the word 'RC', only the RC is returned.<br />
-- Otherwise, and by default, only the output is returned.<br />
-<br />
-The RC is returned as a positive integer in range from 0 to 255 as returned by the executed command. On some operating systems (notable Windows) original return codes can be something else, but this keyword always maps them to the 0-255 range. Since the RC is an integer, it must be checked e.g. with the keyword <span class="name">Should Be Equal As Integers</span> instead of <span class="name">Should Be Equal</span> (both are built-in keywords).<br />
-<br />
-The returned output contains everything written into the standard output or error by the command (unless either of them is redirected explicitly). Many commands add an extra newline (\n) after the output to make it easier to read in the console. To ease processing the returned output, Robot Framework strips this possible newline.<br />
-<br />
-<hr />
+The returned output contains everything written into the standard output or error by the command (unless either of them is redirected explicitly). Many commands add an extra newline (\n) after the output to make it easier to read in the console. To ease processing the returned output, this possible trailing newline is stripped.<br />
 <br />
 Examples:<br />
-<br />
 <table border="1" class="doc">
 <tr>
 <td>${output} =</td>
 <td>Run</td>
 <td>ls -lhF /tmp</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>Log</td>
 <td>${output}</td>
 <td></td>
-<td></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>${rc} =</td>
+<td>${result} =</td>
 <td>Run</td>
-<td>${CURDIR}${/}script.py arg</td>
-<td>Return RC</td>
-<td></td>
+<td>${CURDIR}${/}tester.py arg1 arg2</td>
 </tr>
 <tr>
-<td>Should Be Equal As Integers</td>
-<td>${rc}</td>
-<td>0</td>
-<td></td>
-<td></td>
+<td>Should Not Contain</td>
+<td>${result}</td>
+<td>FAIL</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>${rc}</td>
-<td>${out} =</td>
+<td>${stdout} =</td>
 <td>Run</td>
 <td>/opt/script.sh 2&gt;/tmp/stderr.txt</td>
-<td>RC,Output</td>
 </tr>
 <tr>
-<td>Should Be True</td>
-<td>${rc} &gt; 42</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Should Contain</td>
-<td>${out}</td>
+<td>Should Be Equal</td>
+<td>${stdout}</td>
 <td>TEST PASSED</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>File Should Be Empty</td>
 <td>/tmp/stderr.txt</td>
-<td></td>
-<td></td>
 <td></td>
 </tr>
 </table>
@@ -833,51 +783,89 @@ Examples:<br />
 <tr>
   <td class="kw"><a name="Run And Return Rc"></a>Run And Return Rc</td>
   <td class="arg">command</td>
-  <td class="doc">Wrapper for <a href="#Run" class="name">Run</a> keyword that returns only the return code.<br />
+  <td class="doc">Runs the given command in the system and returns the returnn code.<br />
 <br />
-Following two examples are equivalent but the latter is easier to understand and thus recommended. See <a href="#Run" class="name">Run</a> keyword for more information about the characteristics of the returned RC.<br />
+The return code (RC) is returned as a positive integer in range from 0 to 255 as returned by the executed command. On some operating systems (notable Windows) original return codes can be something else, but this keyword always maps them to the 0-255 range. Since the RC is an integer, it must be checked e.g. with the keyword <span class="name">Should Be Equal As Integers</span> instead of <span class="name">Should Be Equal</span> (both are built-in keywords).<br />
 <br />
+Examples:<br />
 <table border="1" class="doc">
 <tr>
 <td>${rc} =</td>
-<td>Run</td>
-<td>my_command</td>
-<td>RC</td>
+<td>Run and Return RC</td>
+<td>${CURDIR}${/}script.py arg</td>
+</tr>
+<tr>
+<td>Should Be Equal As Integers</td>
+<td>${rc}</td>
+<td>0</td>
 </tr>
 <tr>
 <td>${rc} =</td>
 <td>Run and Return RC</td>
-<td>my_command</td>
+<td>/path/to/example.rb arg1 arg2</td>
+</tr>
+<tr>
+<td>Should Be True</td>
+<td>0 &lt; ${rc} &lt; 42</td>
 <td></td>
 </tr>
 </table>
-</td>
+<br />
+See <a href="#Run" class="name">Run</a> and <a href="#Run And Return Rc And Output" class="name">Run And Return RC And Output</a> if you need to get the output of the executed comand.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run And Return Rc And Output"></a>Run And Return Rc And Output</td>
   <td class="arg">command</td>
-  <td class="doc">Wrapper for the <a href="#Run" class="name">Run</a> keyword that returns both the RC and stdout.<br />
+  <td class="doc">Runs the given command in the system and returns the RC and output.<br />
 <br />
-The following two examples are equivalent, but the latter is easier to understand and thus recommended.<br />
+The return code (RC) is returned similarly as with <a href="#Run And Return Rc" class="name">Run And Return RC</a> and the output similarly as with <a href="#Run" class="name">Run</a>.<br />
 <br />
+Examples:<br />
 <table border="1" class="doc">
 <tr>
 <td>${rc}</td>
 <td>${output} =</td>
-<td>Run</td>
-<td>my_command</td>
-<td>RC, Output</td>
+<td>Run and Return RC and Output</td>
+<td>${CURDIR}${/}mytool</td>
+</tr>
+<tr>
+<td>Should Be Equal As Integers</td>
+<td>${rc}</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>Should Not Contain</td>
+<td>${output}</td>
+<td>FAIL</td>
+<td></td>
 </tr>
 <tr>
 <td>${rc}</td>
-<td>${output} =</td>
+<td>${stdout} =</td>
 <td>Run and Return RC and Output</td>
-<td>my_command</td>
+<td>/opt/script.sh 2&gt;/tmp/stderr.txt</td>
+</tr>
+<tr>
+<td>Should Be True</td>
+<td>${rc} &gt; 42</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Should Be Equal</td>
+<td>${stdout}</td>
+<td>TEST PASSED</td>
+<td></td>
+</tr>
+<tr>
+<td>File Should Be Empty</td>
+<td>/tmp/stderr.txt</td>
+<td></td>
 <td></td>
 </tr>
 </table>
-<br />
-Note that similarly as the normal <a href="#Run" class="name">Run</a>, this keyword only returns the standard output and not the standard error. See <a href="#Run" class="name">Run</a> keyword for more information.</td>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Environment Variable"></a>Set Environment Variable</td>
@@ -1193,7 +1181,7 @@ If the timeout is negative, the keyword is never timed-out. The keyword returns 
 <p class="footer">
 Altogether 55 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-04-08 11:47:23.
+on 2009-04-09 13:01:16.
 </p>
 </body>
 </html>
