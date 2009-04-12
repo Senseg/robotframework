@@ -82,21 +82,20 @@
 <p><b>Version:</b> trunk 20090408</p>
 
 <h2 id="introduction">Introduction</h2>
-<p class='libdoc'>This library contains keywords related to string manipulation.<br />
+<p class='libdoc'>A test library for string manipulation and verification.<br />
 <br />
-Following keywords from the BuiltIn library can be used with strings:<br />
+<span class="name">String</span> is Robot Framework's standard library for manipulating strings (e.g. <a href="#Replace String With Regexp" class="name">Replace String With Regexp</a>, <a href="#Split To Lines" class="name">Split To Lines</a>) and verifying their contents (e.g. <a href="#Should Be String" class="name">Should Be String</a>).<br />
 <br />
+Following keywords from the BuiltIn library can also be used with strings:<br />
 - <span class="name">Catenate</span><br />
 - <span class="name">Get Length</span><br />
-- <span class="name">Grep</span><br />
+- <span class="name">Length Should Be</span><br />
 - <span class="name">Should (Not) Match (Regexp)</span><br />
 - <span class="name">Should (Not) Be Empty</span><br />
-- <span class="name">Should (Not) Be Equal As Strings</span><br />
+- <span class="name">Should (Not) Be Equal (As Strings)</span><br />
 - <span class="name">Should (Not) Contain</span><br />
-- <span class="name">Should (Not) End With</span><br />
 - <span class="name">Should (Not) Start With</span><br />
-<br />
-From Collections library, <span class="name">Length Should Be</span> can be used with strings as well.</p>
+- <span class="name">Should (Not) End With</span></p>
 
 
 <h2>Shortcuts</h2>
@@ -104,16 +103,16 @@ From Collections library, <span class="name">Length Should Be</span> can be used
 <a href="#Fetch From Left" title="Fetches the `string` part before the FIRST occurrence of `to_find`.">Fetch&nbsp;From&nbsp;Left</a>&nbsp;
 <a href="#Fetch From Right" title="Fetches the `string` after the LAST occurence of `to_find`.">Fetch&nbsp;From&nbsp;Right</a>&nbsp;
 <a href="#Generate Random String" title="Generates a random string of the required `length` (8 by default).">Generate&nbsp;Random&nbsp;String</a>&nbsp;
-<a href="#Get Columns" title="Takes `string`, splits into columns using delimiter">Get&nbsp;Columns</a>&nbsp;
+<a href="#Get Columns" title="Takes `string`, splits into columns using delimiter.">Get&nbsp;Columns</a>&nbsp;
 <a href="#Get Line" title="From given `string`, extracts line with given `number`.">Get&nbsp;Line</a>&nbsp;
 <a href="#Get Line Count" title="Returns the number of lines.">Get&nbsp;Line&nbsp;Count</a>&nbsp;
 <a href="#Get Substring" title="Returns a substring from `start` index to `end` index.">Get&nbsp;Substring</a>&nbsp;
 <a href="#Replace String" title="Replaces `search_for` in `string` with `replace_with`.">Replace&nbsp;String</a>&nbsp;
 <a href="#Replace String With Regexp" title="Replaces matches with `pattern` in `string` with `replace_with`.">Replace&nbsp;String&nbsp;With&nbsp;Regexp</a>&nbsp;
-<a href="#Should Be String" title="Fails if item is not a string (e.g. list, number)">Should&nbsp;Be&nbsp;String</a>&nbsp;
+<a href="#Should Be String" title="Fails if item is not a string (e.g. boolean, number)">Should&nbsp;Be&nbsp;String</a>&nbsp;
 <a href="#Should Not Be String" title="Fails if item is a string">Should&nbsp;Not&nbsp;Be&nbsp;String</a>&nbsp;
-<a href="#Split String" title="Return a list of the words in the `string`,">Split&nbsp;String</a>&nbsp;
-<a href="#Split String From Right" title="Return a list of the words in the `string`,">Split&nbsp;String&nbsp;From&nbsp;Right</a>&nbsp;
+<a href="#Split String" title="Return a list of the words in the `string`.">Split&nbsp;String</a>&nbsp;
+<a href="#Split String From Right" title="Return a list of the words in the `string`, starting from right.">Split&nbsp;String&nbsp;From&nbsp;Right</a>&nbsp;
 <a href="#Split To Lines" title="Converts `string` to list of lines.">Split&nbsp;To&nbsp;Lines</a>&nbsp;
 </div>
 
@@ -127,27 +126,37 @@ From Collections library, <span class="name">Length Should Be</span> can be used
 <tr>
   <td class="kw"><a name="Fetch From Left"></a>Fetch From Left</td>
   <td class="arg">string, to_find</td>
-  <td class="doc">Fetches the <span class="name">string</span> part before the FIRST occurrence of <span class="name">to_find</span>. If <span class="name">to_find</span> is not found, whole string is returned.</td>
+  <td class="doc">Fetches the <span class="name">string</span> part before the FIRST occurrence of <span class="name">to_find</span>.<br />
+<br />
+If <span class="name">to_find</span> is not found, whole string is returned.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Fetch From Right"></a>Fetch From Right</td>
   <td class="arg">string, to_find</td>
-  <td class="doc">Fetches the <span class="name">string</span> after the LAST occurence of <span class="name">to_find</span>. If <span class="name">to_find</span> not found within <span class="name">string</span>, whole string is returned.</td>
+  <td class="doc">Fetches the <span class="name">string</span> after the LAST occurence of <span class="name">to_find</span>.<br />
+<br />
+If <span class="name">to_find</span> not found within <span class="name">string</span>, whole string is returned.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Generate Random String"></a>Generate Random String</td>
   <td class="arg">length=8, chars=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</td>
-  <td class="doc">Generates a random string of the required <span class="name">length</span> (8 by default). Second argument is a set of characters to draw from, lower and upper case letters, and digits by default.</td>
+  <td class="doc">Generates a random string of the required <span class="name">length</span> (8 by default).<br />
+<br />
+Second argument is a set of characters to draw from, lower and upper case letters, and digits by default.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Columns"></a>Get Columns</td>
-  <td class="arg">string, column_number, delimiter= </td>
-  <td class="doc">Takes <span class="name">string</span>, splits into columns using delimiter and returns the <span class="name">column_number</span> column. Column numbering starts from 0. Default delimiter is single space.</td>
+  <td class="arg">string, column_number, delimiter=None</td>
+  <td class="doc">Takes <span class="name">string</span>, splits into columns using delimiter.<br />
+<br />
+Returns the columns as list. See <span class="name">split_string</span> for the description of default delimiter.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Line"></a>Get Line</td>
   <td class="arg">string, number</td>
-  <td class="doc">From given <span class="name">string</span>, extracts line with given <span class="name">number</span>. '0' is the first line. '-1' is the last line. Line is returned without the end-of-line character.<br />
+  <td class="doc">From given <span class="name">string</span>, extracts line with given <span class="name">number</span>.<br />
+<br />
+'0' is the first line. '-1' is the last line. Line is returned without the end-of-line character.<br />
 <br />
 Example:<br />
 <table border="1" class="doc">
@@ -168,7 +177,9 @@ Example:<br />
 <tr>
   <td class="kw"><a name="Get Substring"></a>Get Substring</td>
   <td class="arg">string, start, end=None</td>
-  <td class="doc">Returns a substring from <span class="name">start</span> index to <span class="name">end</span> index. First item's index is 0. it is possible to use also negative <span class="name">start</span> and end indexes which means Example:<br />
+  <td class="doc">Returns a substring from <span class="name">start</span> index to <span class="name">end</span> index.<br />
+<br />
+First item's index is 0. it is possible to use also negative <span class="name">start</span> and end indexes which means Example:<br />
 <table border="1" class="doc">
 <tr>
 <td>${first two} =</td>
@@ -222,7 +233,7 @@ Regular expression format is according to Python 're' module, which has a patter
 <tr>
   <td class="kw"><a name="Should Be String"></a>Should Be String</td>
   <td class="arg">item, msg=None</td>
-  <td class="doc">Fails if item is not a string (e.g. list, number)</td>
+  <td class="doc">Fails if item is not a string (e.g. boolean, number)</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Be String"></a>Should Not Be String</td>
@@ -232,12 +243,18 @@ Regular expression format is according to Python 're' module, which has a patter
 <tr>
   <td class="kw"><a name="Split String"></a>Split String</td>
   <td class="arg">string, separator=None, max_split=-1</td>
-  <td class="doc">Return a list of the words in the <span class="name">string</span>, using <span class="name">split_with</span> as the delimiter string. If max_split is given, at most <span class="name">max_split</span> splits are done (thus, the list will have at most 'max_split+1' elements)</td>
+  <td class="doc">Return a list of the words in the <span class="name">string</span>.<br />
+<br />
+Uses <span class="name">separator</span> as the delimiter string. If <span class="name">separator</span> is not specified: runs of consecutive whitespace are regarded as a single separator, and the result will contain no empty strings at the start or end if the string has leading or trailing whitespace.<br />
+<br />
+If max_split is given, at most <span class="name">max_split</span> splits are done (thus, the list will have at most 'max_split+1' elements)</td>
 </tr>
 <tr>
   <td class="kw"><a name="Split String From Right"></a>Split String From Right</td>
   <td class="arg">string, separator=None, max_split=-1</td>
-  <td class="doc">Return a list of the words in the <span class="name">string</span>, using <span class="name">split_with</span> as the delimiter string. If max_split is given, at most <span class="name">max_split</span> splits are done from right. (thus, the list will have at most 'max_split+1' elements)</td>
+  <td class="doc">Return a list of the words in the <span class="name">string</span>, starting from right.<br />
+<br />
+Uses <span class="name">split_with</span> as the delimiter string. If max_split is given, at most <span class="name">max_split</span> splits are done from right. (thus, the list will have at most 'max_split+1' elements)</td>
 </tr>
 <tr>
   <td class="kw"><a name="Split To Lines"></a>Split To Lines</td>
@@ -250,15 +267,15 @@ Example:<br />
 <table border="1" class="doc">
 <tr>
 <td>@{lines} =</td>
-<td>Get Lines as List</td>
-<td>${multilines}</td>
+<td>Split to lines</td>
+<td>${manylines}</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>@{first two lines} =</td>
-<td>Get Lines as List</td>
-<td>${multilines}</td>
+<td>Split to lines</td>
+<td>${manylines}</td>
 <td>0</td>
 <td>1</td>
 </tr>
@@ -269,7 +286,7 @@ Example:<br />
 <p class="footer">
 Altogether 14 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-04-08 11:47:23.
+on 2009-04-13 00:38:36.
 </p>
 </body>
 </html>
