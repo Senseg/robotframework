@@ -106,6 +106,9 @@ Following keywords from the BuiltIn library can also be used with strings:<br />
 <a href="#Get Columns" title="Takes `string`, splits into columns using delimiter.">Get&nbsp;Columns</a>&nbsp;
 <a href="#Get Line" title="From given `string`, extracts line with given `number`.">Get&nbsp;Line</a>&nbsp;
 <a href="#Get Line Count" title="Returns the number of lines.">Get&nbsp;Line&nbsp;Count</a>&nbsp;
+<a href="#Get Lines Containing String" title="Returns lines of the given `string` that contain the `pattern`.">Get&nbsp;Lines&nbsp;Containing&nbsp;String</a>&nbsp;
+<a href="#Get Lines Matching Pattern" title="Returns lines of the given `string` that match the `pattern`.">Get&nbsp;Lines&nbsp;Matching&nbsp;Pattern</a>&nbsp;
+<a href="#Get Lines Matching Regexp" title="Returns lines of the given `string` that match the regexp `pattern`.">Get&nbsp;Lines&nbsp;Matching&nbsp;Regexp</a>&nbsp;
 <a href="#Get Substring" title="Returns a substring from `start` index to `end` index.">Get&nbsp;Substring</a>&nbsp;
 <a href="#Replace String" title="Replaces `search_for` in `string` with `replace_with`.">Replace&nbsp;String</a>&nbsp;
 <a href="#Replace String With Regexp" title="Replaces matches with `pattern` in `string` with `replace_with`.">Replace&nbsp;String&nbsp;With&nbsp;Regexp</a>&nbsp;
@@ -173,6 +176,91 @@ Example:<br />
   <td class="kw"><a name="Get Line Count"></a>Get Line Count</td>
   <td class="arg">string</td>
   <td class="doc">Returns the number of lines.</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Get Lines Containing String"></a>Get Lines Containing String</td>
+  <td class="arg">string, pattern, case_insensitive=False</td>
+  <td class="doc">Returns lines of the given <span class="name">string</span> that contain the <span class="name">pattern</span>.<br />
+<br />
+The <span class="name">pattern</span> is always considered to be a normal string and a line matches if the <span class="name">pattern</span> is found anywhere in it. By default the match is case-sensitive, but setting <span class="name">case_insensitive</span> to any value makes it case-insensitive.<br />
+<br />
+Lines are returned as one string catenated back together with newlines. Possible trailing newline is never returned. The number of matching lines is automatically logged.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>${lines} =</td>
+<td>Get Lines Containing String</td>
+<td>${result}</td>
+<td>An example</td>
+<td></td>
+</tr>
+<tr>
+<td>${ret} =</td>
+<td>Get Lines Containing String</td>
+<td>${ret}</td>
+<td>FAIL</td>
+<td>case-insensitive</td>
+</tr>
+</table>
+<br />
+See <a href="#Get Lines Matching Pattern" class="name">Get Lines Matching Pattern</a> and <a href="#Get Lines Matching Regexp" class="name">Get Lines Matching Regexp</a> if you need more complex pattern matching.</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Get Lines Matching Pattern"></a>Get Lines Matching Pattern</td>
+  <td class="arg">string, pattern, case_insensitive=False</td>
+  <td class="doc">Returns lines of the given <span class="name">string</span> that match the <span class="name">pattern</span>.<br />
+<br />
+The <span class="name">pattern</span> is a <i>glob pattern</i> where <i>*</i> and <i>?</i> can be used as wildcards so that the former matches anything and the latter any single character. A line matches only if it matches the <span class="name">pattern</span> fully. &nbsp;By default the match is case-sensitive, but setting <span class="name">case_insensitive</span> to any value makes it case-insensitive.<br />
+<br />
+Lines are returned as one string catenated back together with newlines. Possible trailing newline is never returned.The number of matching lines is automatically logged.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>${lines} =</td>
+<td>Get Lines Matching Pattern</td>
+<td>${result}</td>
+<td>Wild???? example</td>
+<td></td>
+</tr>
+<tr>
+<td>${ret} =</td>
+<td>Get Lines Matching Pattern</td>
+<td>${ret}</td>
+<td>FAIL: *</td>
+<td>case-insensitive</td>
+</tr>
+</table>
+<br />
+See <a href="#Get Lines Matching Regexp" class="name">Get Lines Matching Regexp</a> if you need more complex patterns and <a href="#Get Lines Containing String" class="name">Get Lines Containing String</a> if searching literal strings is enough.</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Get Lines Matching Regexp"></a>Get Lines Matching Regexp</td>
+  <td class="arg">string, pattern</td>
+  <td class="doc">Returns lines of the given <span class="name">string</span> that match the regexp <span class="name">pattern</span>.<br />
+<br />
+See <span class="name">BuiltIn.Should Match Regexp</span> for more information about Python regular expression syntax in general and how to use it in Robot Framework test data in particular. A line matches only if it matches the <span class="name">pattern</span> fully. Notice that to make the match case-insensitive, you need to embed case-insensitive flag into the pattern.<br />
+<br />
+Lines are returned as one string catenated back together with newlines. Possible trailing newline is never returned. The number of matching lines is automatically logged.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>${lines} =</td>
+<td>Get Lines Matching Regexp</td>
+<td>${result}</td>
+<td>Reg\\w{3} example</td>
+</tr>
+<tr>
+<td>${ret} =</td>
+<td>Get Lines Matching Pattern</td>
+<td>${ret}</td>
+<td>(?i)FAIL: .*</td>
+</tr>
+</table>
+<br />
+See <a href="#Get Lines Matching Pattern" class="name">Get Lines Matching Pattern</a> and <a href="#Get Lines Containing String" class="name">Get Lines Containing String</a> if you do not need full regular expression powers.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Substring"></a>Get Substring</td>
@@ -284,9 +372,9 @@ Example:<br />
 </tr>
 </table>
 <p class="footer">
-Altogether 14 keywords.<br />
+Altogether 17 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-04-13 00:38:36.
+on 2009-04-13 21:20:58.
 </p>
 </body>
 </html>
