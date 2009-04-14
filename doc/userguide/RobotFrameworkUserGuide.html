@@ -10226,13 +10226,15 @@ also calls the appropriate methods when output files are ready, and finally at
 the end it calls the <span class="code">close</span> method. A listener is not required to
 implement any official interface, and it only needs to have the methods it
 actually needs.</p>
-<p>The signatures of methods related to test execution progress were changed in Robot Framework 2.1.
-The old signatures will continue to work, but they will be deprecated in some future version, so all new
-listeners should be implemented with signatures described in the table below. The most recent detailed
-description of the old listener interface can be found in User Guide of Robot Framework 2.0.4.</p>
-<p>Starting from Robot Framework 2.1, all listener methods related to test execution
-progress have the same signature <span class="code">method(name, attributes)</span>, where
-<span class="code">attributes</span> is a dictionary containing details of the event. The
+<p>The signatures of methods related to test execution progress were changed in
+Robot Framework 2.1.  The old signatures will continue to work, but they will
+be deprecated in some future version, so all new listeners should be
+implemented with signatures described in the table below. The most recent
+detailed description of the old listener interface can be found in User Guide
+of Robot Framework 2.0.4.</p>
+<p>Starting from Robot Framework 2.1, all listener methods related to test
+execution progress have the same signature <span class="code">method(name, attributes)</span>,
+where <span class="code">attributes</span> is a dictionary containing details of the event. The
 following table lists all the available methods in the listener interface, and
 the contents of the <span class="code">attributes</span> dictionary, where applicable. Keys of
 the dictionary are strings. All of these methods have also camelCase aliases.
@@ -10363,113 +10365,23 @@ them, have been executed.</td>
 </tr>
 </tbody>
 </table>
-<p>The following table lists all the available methods of the deprecated listener
-interface. With Robot Framework 2.1 and newer, methods listed above should be
-used.  All of these methods have also camelCase aliases. Thus, for example,
-<span class="code">startSuite</span> is a synonym to <span class="code">start_suite</span>. All the arguments are
-strings, unless stated otherwise.</p>
-<table border="1" class="tabular docutils">
-<caption>Available methods in the listener interface</caption>
-<colgroup>
-<col width="18%" />
-<col width="21%" />
-<col width="61%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Method</th>
-<th class="head">Arguments</th>
-<th class="head">Explanation</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>start_suite</td>
-<td>name, doc</td>
-<td>The documentation may be empty.</td>
-</tr>
-<tr><td>end_suite</td>
-<td>status, message</td>
-<td>The status is either PASS or FAIL. The message
-contains suite statistics and an error message,
-if the suite setup or teardown has failed.</td>
-</tr>
-<tr><td>start_test</td>
-<td>name, doc, tags</td>
-<td>The documentation may be empty. Tags are given
-as a list of strings in Python and as a string
-array in Java.</td>
-</tr>
-<tr><td>end_test</td>
-<td>status, message</td>
-<td>The status is either PASS or FAIL. The message
-contains an error message, if the test has failed
-and is empty otherwise.</td>
-</tr>
-<tr><td>start_keyword</td>
-<td>name, args</td>
-<td>Arguments are given as a list of strings in
-Python and as a string array in Java. Available
-from Robot Framework 2.0.2 onwards.</td>
-</tr>
-<tr><td>end_keyword</td>
-<td>status</td>
-<td>The status is either PASS or FAIL. Available
-from Robot Framework 2.0.2 onwards.</td>
-</tr>
-<tr><td>output_file</td>
-<td>path</td>
-<td>Called when writing to an output file is
-finished. The path is an absolute path to the
-file. When <a class="reference internal" href="#splitting-outputs">outputs are split</a>, called for each
-finished file.</td>
-</tr>
-<tr><td>log_file</td>
-<td>path</td>
-<td>Called when writing to a log file is
-finished. The path is an absolute path to the
-file. When <a class="reference internal" href="#splitting-outputs">outputs are split</a>, called for each
-finished file.</td>
-</tr>
-<tr><td>report_file</td>
-<td>path</td>
-<td>Called when writing to a report file is
-finished. The path is an absolute path to the
-file.</td>
-</tr>
-<tr><td>summary_file</td>
-<td>path</td>
-<td>Called when writing to a summary file is
-finished. The path is an absolute path to the
-file.</td>
-</tr>
-<tr><td>debug_file</td>
-<td>path</td>
-<td>Called when writing to a debug file is
-finished. The path is an absolute path to the
-file.</td>
-</tr>
-<tr><td>close</td>
-<td>&nbsp;</td>
-<td>Called after all test suites, and test cases in
-them, have been executed.</td>
-</tr>
-</tbody>
-</table>
-<p>The available methods and their arguments are also shown in a formal Java interface
-specification below. It should be remembered that a listener <em>does not</em>
-need to implement any explicit interface or have all these methods.</p>
+<p>The available methods and their arguments are also shown in a formal Java
+interface specification below. Contents of the <span class="code">java.util.Map attributes</span> are
+as in the table above.  It should be remembered that a listener <em>does not</em> need
+to implement any explicit interface or have all these methods.</p>
 <div class="highlight"><pre><span class="k">public</span> <span class="k">interface</span> <span class="nc">RobotListenerInterface</span> <span class="o">{</span>
 
-    <span class="kt">void</span> <span class="nf">startSuite</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">doc</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">startSuite</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span> <span class="n">attributes</span><span class="o">);</span>
 
-    <span class="kt">void</span> <span class="nf">endSuite</span><span class="o">(</span><span class="n">String</span> <span class="n">status</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">endSuite</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span> <span class="n">attributes</span><span class="o">);</span>
 
-    <span class="kt">void</span> <span class="nf">startTest</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">doc</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">tags</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">startTest</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span> <span class="n">attributes</span><span class="o">);</span>
 
-    <span class="kt">void</span> <span class="nf">endTest</span><span class="o">(</span><span class="n">String</span> <span class="n">status</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">endTest</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span> <span class="n">attributes</span><span class="o">);</span>
 
-    <span class="kt">void</span> <span class="nf">startKeyword</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">startKeyword</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span> <span class="n">attributes</span><span class="o">);</span>
 
-    <span class="kt">void</span> <span class="nf">endKeyword</span><span class="o">(</span><span class="n">String</span> <span class="n">status</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">endKeyword</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Map</span> <span class="n">attributes</span><span class="o">);</span>
 
     <span class="kt">void</span> <span class="nf">outputFile</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">);</span>
 
@@ -10489,11 +10401,11 @@ need to implement any explicit interface or have all these methods.</p>
 <h3><a class="toc-backref" href="#id426">4.2.3&nbsp;&nbsp;&nbsp;Listener examples</a></h3>
 <p>The first simple example is implemented in a Python module. It mainly
 illustrates that using the listener interface is not very complicated.</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">start_test</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">documentation</span><span class="p">,</span> <span class="n">tags</span><span class="p">):</span>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">start_test</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
     <span class="k">print</span> <span class="s">&#39;Executing test </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">name</span>
 
-<span class="k">def</span> <span class="nf">start_keyword</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-    <span class="k">print</span> <span class="s">&#39;Executing keyword </span><span class="si">%s</span><span class="s"> with arguments </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">start_keyword</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&#39;Executing keyword </span><span class="si">%s</span><span class="s"> with arguments </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">[</span><span class="s">&#39;args&#39;</span><span class="p">])</span>
 
 <span class="k">def</span> <span class="nf">log_file</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="k">print</span> <span class="s">&#39;Test log available at </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">path</span>
@@ -10517,26 +10429,29 @@ probably more useful than this example.</p>
         <span class="n">outpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span> <span class="n">filename</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outpath</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">start_suite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">doc</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> &#39;</span><span class="si">%s</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">doc</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">start_suite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> &#39;</span><span class="si">%s</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">[</span><span class="s">&#39;doc&#39;</span><span class="p">]))</span>
 
-    <span class="k">def</span> <span class="nf">start_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">tags</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;- </span><span class="si">%s</span><span class="s"> &#39;</span><span class="si">%s</span><span class="s">&#39; [ </span><span class="si">%s</span><span class="s"> ] :: &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tags</span><span class="p">)))</span>
+    <span class="k">def</span> <span class="nf">start_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">attrs</span><span class="p">[</span><span class="s">&#39;tags&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;- </span><span class="si">%s</span><span class="s"> &#39;</span><span class="si">%s</span><span class="s">&#39; [ </span><span class="si">%s</span><span class="s"> ] :: &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">[</span><span class="s">&#39;doc&#39;</span><span class="p">],</span> <span class="n">tags</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">end_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s">&#39;PASS&#39;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">end_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">attrs</span><span class="p">[</span><span class="s">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;PASS&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;PASS</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;FAIL: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;FAIL: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">attrs</span><span class="p">[</span><span class="s">&#39;message&#39;</span><span class="p">])</span>
 
-     <span class="k">def</span> <span class="nf">end_suite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">message</span><span class="p">))</span>
+     <span class="k">def</span> <span class="nf">end_suite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">attrs</span><span class="p">[</span><span class="s">&#39;status&#39;</span><span class="p">],</span> <span class="n">attrs</span><span class="p">[</span><span class="s">&#39;message&#39;</span><span class="p">]))</span>
 
      <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
          <span class="bp">self</span><span class="o">.</span><span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 <p>The third example implements the same functionality as the previous one, but uses Java instead of Python.</p>
 <div class="highlight"><pre><span class="k">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="k">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="k">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
 
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">JavaListener</span> <span class="o">{</span>
@@ -10555,29 +10470,31 @@ probably more useful than this example.</p>
         <span class="n">outfile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedWriter</span><span class="o">(</span><span class="k">new</span> <span class="n">FileWriter</span><span class="o">(</span><span class="n">outpath</span><span class="o">));</span>
     <span class="o">}</span>
 
-    <span class="k">public</span> <span class="kt">void</span> <span class="nf">startSuite</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">doc</span><span class="o">)</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-        <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">&quot; &#39;&quot;</span> <span class="o">+</span> <span class="n">doc</span> <span class="o">+</span> <span class="s">&quot;&#39;\n&quot;</span><span class="o">);</span>
+    <span class="k">public</span> <span class="kt">void</span> <span class="nf">startSuite</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Map</span> <span class="n">attrs</span><span class="o">)</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">&quot; &#39;&quot;</span> <span class="o">+</span> <span class="n">attrs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;doc&quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;&#39;\n&quot;</span><span class="o">);</span>
     <span class="o">}</span>
 
-    <span class="k">public</span> <span class="kt">void</span> <span class="nf">startTest</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">doc</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">tags</span><span class="o">)</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-        <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&quot;- &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot; &#39;&quot;</span> <span class="o">+</span> <span class="n">doc</span> <span class="o">+</span> <span class="s">&quot;&#39; [ &quot;</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tags</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-           <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">tags</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
+    <span class="k">public</span> <span class="kt">void</span> <span class="nf">startTest</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Map</span> <span class="n">attrs</span><span class="o">)</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&quot;- &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot; &#39;&quot;</span> <span class="o">+</span> <span class="n">attrs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;doc&quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;&#39; [ &quot;</span><span class="o">);</span>
+        <span class="n">List</span> <span class="n">tags</span> <span class="o">=</span> <span class="o">(</span><span class="n">List</span><span class="o">)</span><span class="n">attrs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;tags&quot;</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tags</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+           <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">tags</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
         <span class="o">}</span>
         <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&quot; ] :: &quot;</span><span class="o">);</span>
     <span class="o">}</span>
 
-    <span class="k">public</span> <span class="kt">void</span> <span class="nf">endTest</span><span class="o">(</span><span class="n">String</span> <span class="n">status</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+    <span class="k">public</span> <span class="kt">void</span> <span class="nf">endTest</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Map</span> <span class="n">attrs</span><span class="o">)</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">status</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;status&quot;</span><span class="o">).</span><span class="na">toString</span><span class="o">();</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">status</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;PASS&quot;</span><span class="o">))</span> <span class="o">{</span>
             <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&quot;PASS\n&quot;</span><span class="o">);</span>
         <span class="o">}</span>
         <span class="k">else</span> <span class="o">{</span>
-            <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&quot;FAIL: &quot;</span> <span class="o">+</span> <span class="n">message</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="o">);</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&quot;FAIL: &quot;</span> <span class="o">+</span> <span class="n">attrs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;message&quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span>
 
-    <span class="k">public</span> <span class="kt">void</span> <span class="nf">endSuite</span><span class="o">(</span><span class="n">String</span> <span class="n">status</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-        <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">status</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span> <span class="o">+</span> <span class="n">message</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="o">);</span>
+    <span class="k">public</span> <span class="kt">void</span> <span class="nf">endSuite</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Map</span> <span class="n">attrs</span><span class="o">)</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">attrs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;status&quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span> <span class="o">+</span> <span class="n">attrs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;message&quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="o">);</span>
     <span class="o">}</span>
 
     <span class="k">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="k">throws</span> <span class="n">IOException</span> <span class="o">{</span>
@@ -11551,7 +11468,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2009-04-14 11:04 UTC.
+<p>Generated on: 2009-04-14 14:20 UTC.
 </p>
 
 </div>
