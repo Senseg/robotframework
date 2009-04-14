@@ -172,7 +172,7 @@ Example usage:<br />
 <a href="#Get File" title="Returns the contents of a specified file.">Get&nbsp;File</a>&nbsp;
 <a href="#Get File Size" title="Returns and logs file size as an integer in bytes">Get&nbsp;File&nbsp;Size</a>&nbsp;
 <a href="#Get Modified Time" title="Returns the last modification time of a file or directory.">Get&nbsp;Modified&nbsp;Time</a>&nbsp;
-<a href="#Grep File" title="*DEPRECATED* Use `Get File` with `BuiltIn.Grep` instead. `Grep File` will be removed in RF 2.2.">Grep&nbsp;File</a>&nbsp;
+<a href="#Grep File" title="Returns the lines of the specified file that match the `pattern`.">Grep&nbsp;File</a>&nbsp;
 <a href="#Join Path" title="Joins the given path part(s) to the given base path.">Join&nbsp;Path</a>&nbsp;
 <a href="#Join Paths" title="Joins given paths with base and returns resulted paths.">Join&nbsp;Paths</a>&nbsp;
 <a href="#List Directories In Directory" title="A wrapper for `List Directory` that returns only directories.">List&nbsp;Directories&nbsp;In&nbsp;Directory</a>&nbsp;
@@ -241,21 +241,21 @@ If the destination exists, the source is copied under it. Otherwise the destinat
 </tr>
 <tr>
   <td class="kw"><a name="Count Directories In Directory"></a>Count Directories In Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=simple</td>
+  <td class="arg">path, pattern=None, pattern_type=DEPRECATED</td>
   <td class="doc">Returns the number of subdirectories in the given directory.<br />
 <br />
 The arguments <span class="name">pattern</span> and <span class="name">pattern_type</span> have the same semantics as in the <a href="#List Directory" class="name">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class="name">Should Be Equal As Integers</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Count Files In Directory"></a>Count Files In Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=simple</td>
+  <td class="arg">path, pattern=None, pattern_type=DEPRECATED</td>
   <td class="doc">Returns the number of files in the given directory.<br />
 <br />
 The arguments <span class="name">pattern</span> and <span class="name">pattern_type</span> have the same semantics as in the <a href="#List Directory" class="name">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class="name">Should Be Equal As Integers</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Count Items In Directory"></a>Count Items In Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=simple</td>
+  <td class="arg">path, pattern=None, pattern_type=DEPRECATED</td>
   <td class="doc">Returns the number of all items in the given directory.<br />
 <br />
 The arguments <span class="name">pattern</span> and <span class="name">pattern_type</span> have the same semantics as in the <a href="#List Directory" class="name">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class="name">Should Be Equal As Integers</span>.</td>
@@ -467,8 +467,31 @@ Examples (when the modified time of the ${CURDIR} is 2006-03-29 15:06:21):<br />
 </tr>
 <tr>
   <td class="kw"><a name="Grep File"></a>Grep File</td>
-  <td class="arg">path, pattern, pattern_type=literal string, encoding=UTF-8</td>
-  <td class="doc"><b>DEPRECATED</b> Use <a href="#Get File" class="name">Get File</a> with <span class="name">BuiltIn.Grep</span> instead. <a href="#Grep File" class="name">Grep File</a> will be removed in RF 2.2.</td>
+  <td class="arg">path, pattern, pattern_type=DEPRECATED, encoding=UTF-8</td>
+  <td class="doc">Returns the lines of the specified file that match the <span class="name">pattern</span>.<br />
+<br />
+This keyword reads a file from the file system using the defined <span class="name">path</span> and <span class="name">encoding</span> similarly as <a href="#Get File" class="name">Get File</a>. A difference is that only the lines that match the given <span class="name">pattern</span> are returned. Lines are returned as a single string catenated back together with newlines and the number of mached lines is automatically logged. Possible trailing newline is never returned.<br />
+<br />
+Starting from Robot Framework 2.1 the <span class="name">pattern</span> is, by default, considered to be a similar <i>glob pattern</i> as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. A line matches if it contains the <span class="name">pattern</span> anywhere in it i.e. it does not need to match the pattern fully. Using other pattern types has been deprecated and that functionality will be removed in 2.2 version.<br />
+<br />
+If more complex pattern matching is needed, it is possible to use <a href="#Get File" class="name">Get File</a> in combination with String library keywords like <span class="name">Get Lines Matching Regexp</span>.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>${errors} =</td>
+<td>Grep File</td>
+<td>/var/log/myapp.log</td>
+<td>ERROR</td>
+</tr>
+<tr>
+<td>${ret} =</td>
+<td>Grep File</td>
+<td>${CURDIR}/file.txt</td>
+<td>[Ww]ildc??d ex*ple</td>
+</tr>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Join Path"></a>Join Path</td>
@@ -568,12 +591,12 @@ Examples:<br />
 </tr>
 <tr>
   <td class="kw"><a name="List Directories In Directory"></a>List Directories In Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=simple, absolute=False</td>
+  <td class="arg">path, pattern=None, pattern_type=DEPRECATED, absolute=False</td>
   <td class="doc">A wrapper for <a href="#List Directory" class="name">List Directory</a> that returns only directories.</td>
 </tr>
 <tr>
   <td class="kw"><a name="List Directory"></a>List Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=simple, absolute=False</td>
+  <td class="arg">path, pattern=None, pattern_type=DEPRECATED, absolute=False</td>
   <td class="doc">Returns items from a directory, optionally filtered with <span class="name">pattern</span>.<br />
 <br />
 File and directory names are returned in case-sensitive alphabetical order, e.g. ['A Name', 'Second', 'a lower case name', 'one more']. Implicit directories '.' and '..' are not returned. The returned items are automatically logged.<br />
@@ -613,7 +636,7 @@ Examples (using also other <a href="#List Directory" class="name">List Directory
 </tr>
 <tr>
   <td class="kw"><a name="List Files In Directory"></a>List Files In Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=simple, absolute=False</td>
+  <td class="arg">path, pattern=None, pattern_type=DEPRECATED, absolute=False</td>
   <td class="doc">A wrapper for <a href="#List Directory" class="name">List Directory</a> that returns only files.</td>
 </tr>
 <tr>
@@ -1181,7 +1204,7 @@ If the timeout is negative, the keyword is never timed-out. The keyword returns 
 <p class="footer">
 Altogether 55 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-04-13 00:38:35.
+on 2009-04-14 14:34:52.
 </p>
 </body>
 </html>
