@@ -79,16 +79,43 @@
 </head>
 <body>
 <h1>OperatingSystem - Documentation</h1>
-<p><b>Version:</b> trunk 20091020</p>
+<p><b>Version:</b> trunk 20100323</p>
 
 <h2 id="introduction">Introduction</h2>
 <p class='libdoc'>A test library providing keywords for OS related tasks.<br />
 <br />
 <span class="name">OperatingSystem</span> is Robot Framework's standard library that enables various operating system related tasks to be performed in the system where Robot Framework is running. It can, among other things, execute commands (e.g. <a href="#Run" class="name">Run</a>), create and remove files and directories (e.g. <a href="#Create File" class="name">Create File</a>, <a href="#Remove Directory" class="name">Remove Directory</a>), check whether files or directories exists or contain something (e.g. <a href="#File Should Exist" class="name">File Should Exist</a>, <a href="#Directory Should Be Empty" class="name">Directory Should Be Empty</a>) and manipulate environment variables (e.g. <a href="#Set Environment Variable" class="name">Set Environment Variable</a>).<br />
 <br />
-Starting from Robot Framework 2.0.2, all keywords expecting paths as arguments accept a forward slash as a path separator regardless the operating system. This only works if an argument is only a path, <b>not if a path is part of an argument</b>, like it often is with <a href="#Run" class="name">Run</a> and <a href="#Start Process" class="name">Start Process</a> keywords. In these cases, and with earlier versions, built-in variable ${/} can be used to keep the test data platform independent.<br />
+<b>Pattern matching</b><br />
 <br />
-Example usage:<br />
+Some keywords allow their arguments to be specified as <i>glob patterns</i> where:<br />
+<table border="1" class="doc">
+<tr>
+<td>*</td>
+<td>matches anything, even an empty string</td>
+</tr>
+<tr>
+<td>?</td>
+<td>matches any single character</td>
+</tr>
+<tr>
+<td>[chars]</td>
+<td>matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c')</td>
+</tr>
+<tr>
+<td>[!chars]</td>
+<td>matches any character not inside square brackets</td>
+</tr>
+</table>
+<br />
+Unless otherwise noted, matching is case-insensitive on case-insensitive operating systems such as Windows. Pattern matching is implemented using Python's <span class="name">fnmatch</span> module: <a href="http://docs.python.org/library/fnmatch.html">http://docs.python.org/library/fnmatch.html</a><br />
+<br />
+<b>Path separators</b><br />
+<br />
+All keywords expecting paths as arguments accept a forward slash (<span class="name">/</span>) as a path separator regardless the operating system. Notice that this <b>does not work when the path is part of an argument</b>, like it often is with <a href="#Run" class="name">Run</a> and <a href="#Start Process" class="name">Start Process</a> keywords. In such cases the built-in variable <span class="name">${/}</span> can be used to keep the test data platform independent.<br />
+<br />
+<b>Example</b><br />
+<br />
 <table border="1" class="doc">
 <tr>
 <td><b>Setting</b></td>
@@ -165,7 +192,7 @@ Example usage:<br />
 <a href="#Environment Variable Should Be Set" title="Fails if the specified environment variable is not set.">Environment&nbsp;Variable&nbsp;Should&nbsp;Be&nbsp;Set</a>&nbsp;
 <a href="#Environment Variable Should Not Be Set" title="Fails if the specified environment variable is set.">Environment&nbsp;Variable&nbsp;Should&nbsp;Not&nbsp;Be&nbsp;Set</a>&nbsp;
 <a href="#File Should Be Empty" title="Fails unless the specified file is empty.">File&nbsp;Should&nbsp;Be&nbsp;Empty</a>&nbsp;
-<a href="#File Should Exist" title="Fails unless the given path points to an existing file.">File&nbsp;Should&nbsp;Exist</a>&nbsp;
+<a href="#File Should Exist" title="Fails unless the given `path` points to an existing file.">File&nbsp;Should&nbsp;Exist</a>&nbsp;
 <a href="#File Should Not Be Empty" title="Fails if the specified directory is empty.">File&nbsp;Should&nbsp;Not&nbsp;Be&nbsp;Empty</a>&nbsp;
 <a href="#File Should Not Exist" title="Fails if the given path points to an existing file.">File&nbsp;Should&nbsp;Not&nbsp;Exist</a>&nbsp;
 <a href="#Get Environment Variable" title="Returns the value of an environment variable with the given name.">Get&nbsp;Environment&nbsp;Variable</a>&nbsp;
@@ -188,7 +215,7 @@ Example usage:<br />
 <a href="#Remove File" title="Removes a file with the given path.">Remove&nbsp;File</a>&nbsp;
 <a href="#Remove Files" title="Uses `Remove File` to remove multiple files one-by-one.">Remove&nbsp;Files</a>&nbsp;
 <a href="#Run" title="Runs the given command in the system and returns the output.">Run</a>&nbsp;
-<a href="#Run And Return Rc" title="Runs the given command in the system and returns the returnn code.">Run&nbsp;And&nbsp;Return&nbsp;Rc</a>&nbsp;
+<a href="#Run And Return Rc" title="Runs the given command in the system and returns the return code.">Run&nbsp;And&nbsp;Return&nbsp;Rc</a>&nbsp;
 <a href="#Run And Return Rc And Output" title="Runs the given command in the system and returns the RC and output.">Run&nbsp;And&nbsp;Return&nbsp;Rc&nbsp;And&nbsp;Output</a>&nbsp;
 <a href="#Set Environment Variable" title="Sets an environment variable to a specified value.">Set&nbsp;Environment&nbsp;Variable</a>&nbsp;
 <a href="#Set Modified Time" title="Sets the file modification time.">Set&nbsp;Modified&nbsp;Time</a>&nbsp;
@@ -241,21 +268,21 @@ If the destination exists, the source is copied under it. Otherwise the destinat
 </tr>
 <tr>
   <td class="kw"><a name="Count Directories In Directory"></a>Count Directories In Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=DEPRECATED</td>
+  <td class="arg">path, pattern=None</td>
   <td class="doc">Returns the number of subdirectories in the given directory.<br />
 <br />
 The arguments <span class="name">pattern</span> and <span class="name">pattern_type</span> have the same semantics as in the <a href="#List Directory" class="name">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class="name">Should Be Equal As Integers</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Count Files In Directory"></a>Count Files In Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=DEPRECATED</td>
+  <td class="arg">path, pattern=None</td>
   <td class="doc">Returns the number of files in the given directory.<br />
 <br />
 The arguments <span class="name">pattern</span> and <span class="name">pattern_type</span> have the same semantics as in the <a href="#List Directory" class="name">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class="name">Should Be Equal As Integers</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Count Items In Directory"></a>Count Items In Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=DEPRECATED</td>
+  <td class="arg">path, pattern=None</td>
   <td class="doc">Returns the number of all items in the given directory.<br />
 <br />
 The arguments <span class="name">pattern</span> and <span class="name">pattern_type</span> have the same semantics as in the <a href="#List Directory" class="name">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class="name">Should Be Equal As Integers</span>.</td>
@@ -301,7 +328,7 @@ The default error message can be overridden with the <span class="name">msg</spa
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails unless the given path points to an existing directory.<br />
 <br />
-The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a glob pattern. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Directory Should Not Be Empty"></a>Directory Should Not Be Empty</td>
@@ -315,7 +342,7 @@ The default error message can be overridden with the <span class="name">msg</spa
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails if the given path points to an existing file.<br />
 <br />
-The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a glob pattern. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Empty Directory"></a>Empty Directory</td>
@@ -346,31 +373,9 @@ The default error message can be overridden with the <span class="name">msg</spa
 <tr>
   <td class="kw"><a name="File Should Exist"></a>File Should Exist</td>
   <td class="arg">path, msg=None</td>
-  <td class="doc">Fails unless the given path points to an existing file.<br />
+  <td class="doc">Fails unless the given <span class="name">path</span> points to an existing file.<br />
 <br />
-The path can be given as an exact path or as a pattern where:<br />
-<table border="1" class="doc">
-<tr>
-<td>*</td>
-<td>matches everything</td>
-</tr>
-<tr>
-<td>?</td>
-<td>matches any single character</td>
-</tr>
-<tr>
-<td>[chars]</td>
-<td>matches any character inside square brackets (e.g. '[abc]' matches either 'a', 'b' or 'c')</td>
-</tr>
-<tr>
-<td>[!chars]</td>
-<td>matches any character not inside square brackets</td>
-</tr>
-</table>
-<br />
-Pattern matching is implemented with the Python 'fnmatch' module. For more information, see <a href="http://docs.python.org/lib/module-fnmatch.html">http://docs.python.org/lib/module-fnmatch.html</a><br />
-<br />
-The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a glob pattern. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="File Should Not Be Empty"></a>File Should Not Be Empty</td>
@@ -384,7 +389,7 @@ The default error message can be overridden with the <span class="name">msg</spa
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails if the given path points to an existing file.<br />
 <br />
-The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a glob pattern. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Environment Variable"></a>Get Environment Variable</td>
@@ -393,7 +398,7 @@ The path can be given as an exact path or as a pattern similarly as with <a href
 <br />
 If no such environment variable is set, returns the default value, if given. Otherwise fails the test case.<br />
 <br />
-Note that you can also access environment variables directly using the variable syntax %{ENV_VAR_NAME}.</td>
+Note that you can also access environment variables directly using the variable syntax <span class="name">%{ENV_VAR_NAME}</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get File"></a>Get File</td>
@@ -467,14 +472,12 @@ Examples (when the modified time of the ${CURDIR} is 2006-03-29 15:06:21):<br />
 </tr>
 <tr>
   <td class="kw"><a name="Grep File"></a>Grep File</td>
-  <td class="arg">path, pattern, pattern_type=DEPRECATED, encoding=UTF-8</td>
+  <td class="arg">path, pattern, encoding=UTF-8</td>
   <td class="doc">Returns the lines of the specified file that match the <span class="name">pattern</span>.<br />
 <br />
-This keyword reads a file from the file system using the defined <span class="name">path</span> and <span class="name">encoding</span> similarly as <a href="#Get File" class="name">Get File</a>. A difference is that only the lines that match the given <span class="name">pattern</span> are returned. Lines are returned as a single string catenated back together with newlines and the number of mached lines is automatically logged. Possible trailing newline is never returned.<br />
+This keyword reads a file from the file system using the defined <span class="name">path</span> and <span class="name">encoding</span> similarly as <a href="#Get File" class="name">Get File</a>. A difference is that only the lines that match the given <span class="name">pattern</span> are returned. Lines are returned as a single string catenated back together with newlines and the number of matched lines is automatically logged. Possible trailing newline is never returned.<br />
 <br />
-Starting from Robot Framework 2.1 the <span class="name">pattern</span> is, by default, considered to be a similar <i>glob pattern</i> as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. A line matches if it contains the <span class="name">pattern</span> anywhere in it i.e. it does not need to match the pattern fully. Using other pattern types has been deprecated and that functionality will be removed in 2.2 version.<br />
-<br />
-If more complex pattern matching is needed, it is possible to use <a href="#Get File" class="name">Get File</a> in combination with String library keywords like <span class="name">Get Lines Matching Regexp</span>.<br />
+A line matches if it contains the <span class="name">pattern</span> anywhere in it and it <b>does not need to match the pattern fully</b>. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>, and in this case matching is case-sensitive. Support for different pattern types were removed in Robot Framework 2.5.<br />
 <br />
 Examples:<br />
 <table border="1" class="doc">
@@ -491,7 +494,8 @@ Examples:<br />
 <td>[Ww]ildc??d ex*ple</td>
 </tr>
 </table>
-</td>
+<br />
+If more complex pattern matching is needed, it is possible to use <a href="#Get File" class="name">Get File</a> in combination with String library keywords like <span class="name">Get Lines Matching Regexp</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Join Path"></a>Join Path</td>
@@ -591,19 +595,19 @@ Examples:<br />
 </tr>
 <tr>
   <td class="kw"><a name="List Directories In Directory"></a>List Directories In Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=DEPRECATED, absolute=False</td>
+  <td class="arg">path, pattern=None, absolute=False, deprecated_absolute=None</td>
   <td class="doc">A wrapper for <a href="#List Directory" class="name">List Directory</a> that returns only directories.</td>
 </tr>
 <tr>
   <td class="kw"><a name="List Directory"></a>List Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=DEPRECATED, absolute=False</td>
+  <td class="arg">path, pattern=None, absolute=False, deprecated_absolute=None</td>
   <td class="doc">Returns items from a directory, optionally filtered with <span class="name">pattern</span>.<br />
 <br />
 File and directory names are returned in case-sensitive alphabetical order, e.g. ['A Name', 'Second', 'a lower case name', 'one more']. Implicit directories '.' and '..' are not returned. The returned items are automatically logged.<br />
 <br />
 By default, the file and directory names are returned relative to the given path (e.g. 'file.txt'). If you want them be returned in the absolute format (e.g. '/home/robot/file.txt'), set the <span class="name">absolute</span> argument to any non-empty string.<br />
 <br />
-If <span class="name">pattern</span> is given, only items matching it are returned. By default <span class="name">pattern</span> is considered to be a simple glob pattern where '*' and '?' can be used as wildcards (e.g. '*.txt' or 'file.???'). Using other pattern types has been deprecated in Robot Framework 2.1.<br />
+If <span class="name">pattern</span> is given, only items matching it are returned. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>, and in this case matching is case-sensitive. Support for different pattern types was removed in Robot Framework 2.5.<br />
 <br />
 Examples (using also other <a href="#List Directory" class="name">List Directory</a> variants):<br />
 <table border="1" class="doc">
@@ -613,14 +617,12 @@ Examples (using also other <a href="#List Directory" class="name">List Directory
 <td>${TEMPDIR}</td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>@{files} =</td>
 <td>List Files In Directory</td>
-<td>/tmmp</td>
+<td>/tmp</td>
 <td>*.txt</td>
-<td></td>
 <td>absolute</td>
 </tr>
 <tr>
@@ -629,14 +631,14 @@ Examples (using also other <a href="#List Directory" class="name">List Directory
 <td>${CURDIR}</td>
 <td>???</td>
 <td></td>
-<td></td>
 </tr>
 </table>
-</td>
+<br />
+The signature of this keyword was changed in RF 2.5 when the deprecated <span class="name">pattern_type</span> argument was removed. The <span class="name">deprecated_absolute</span> argument was added to keep the signature backwards compatible, but it will be removed in RF 2.6.</td>
 </tr>
 <tr>
   <td class="kw"><a name="List Files In Directory"></a>List Files In Directory</td>
-  <td class="arg">path, pattern=None, pattern_type=DEPRECATED, absolute=False</td>
+  <td class="arg">path, pattern=None, absolute=False, deprecated_absolute=None</td>
   <td class="doc">A wrapper for <a href="#List Directory" class="name">List Directory</a> that returns only files.</td>
 </tr>
 <tr>
@@ -734,7 +736,7 @@ Does nothing if the environment variable is not set.</td>
 <br />
 Passes if the file does not exist, but fails if the path does not point to a regular file (e.g. it points to a directory).<br />
 <br />
-The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. If the path is a pattern, all files matching it are removed.</td>
+The path can be given as an exact path or as a glob pattern. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>. If the path is a pattern, all files matching it are removed.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Remove Files"></a>Remove Files</td>
@@ -806,7 +808,7 @@ Examples:<br />
 <tr>
   <td class="kw"><a name="Run And Return Rc"></a>Run And Return Rc</td>
   <td class="arg">command</td>
-  <td class="doc">Runs the given command in the system and returns the returnn code.<br />
+  <td class="doc">Runs the given command in the system and returns the return code.<br />
 <br />
 The return code (RC) is returned as a positive integer in range from 0 to 255 as returned by the executed command. On some operating systems (notable Windows) original return codes can be something else, but this keyword always maps them to the 0-255 range. Since the RC is an integer, it must be checked e.g. with the keyword <span class="name">Should Be Equal As Integers</span> instead of <span class="name">Should Be Equal</span> (both are built-in keywords).<br />
 <br />
@@ -834,7 +836,7 @@ Examples:<br />
 </tr>
 </table>
 <br />
-See <a href="#Run" class="name">Run</a> and <a href="#Run And Return Rc And Output" class="name">Run And Return RC And Output</a> if you need to get the output of the executed comand.</td>
+See <a href="#Run" class="name">Run</a> and <a href="#Run And Return Rc And Output" class="name">Run And Return RC And Output</a> if you need to get the output of the executed command.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run And Return Rc And Output"></a>Run And Return Rc And Output</td>
@@ -936,7 +938,7 @@ Examples:<br />
 <td>Set Modified Time</td>
 <td>/path/file</td>
 <td>NOW - 1d</td>
-<td># 1 day subtraced from NOW</td>
+<td># 1 day subtracted from NOW</td>
 </tr>
 <tr>
 <td>Set Modified Time</td>
@@ -952,14 +954,14 @@ Examples:<br />
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails unless the given path (file or directory) exists.<br />
 <br />
-The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a glob pattern. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Exist"></a>Should Not Exist</td>
   <td class="arg">path, msg=None</td>
   <td class="doc">Fails if the given path (file or directory) exists.<br />
 <br />
-The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
+The path can be given as an exact path or as a glob pattern. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Split Extension"></a>Split Extension</td>
@@ -1185,7 +1187,7 @@ Fails if used with the directories or the parent directory of the given file doe
   <td class="arg">path, timeout=1 minute</td>
   <td class="doc">Waits until the given file or directory is created.<br />
 <br />
-The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. If the path is a pattern, the keyword returns when an item matching to the pattern is created.<br />
+The path can be given as an exact path or as a glob pattern. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>. If the path is a pattern, the keyword returns when an item matching it is created.<br />
 <br />
 The optional <span class="name">timeout</span> can be used to control the maximum time of waiting. The timeout is given as a timeout string, e.g. in a format '15 seconds', '1min 10s' or just '10'. The time string format is described in an appendix of Robot Framework User Guide.<br />
 <br />
@@ -1196,7 +1198,7 @@ If the timeout is negative, the keyword is never timed-out. The keyword returns 
   <td class="arg">path, timeout=1 minute</td>
   <td class="doc">Waits until the given file or directory is removed.<br />
 <br />
-The path can be given as an exact path or as a pattern similarly as with <a href="#File Should Exist" class="name">File Should Exist</a> keyword. If the path is a pattern, the keyword waits until all matching items are removed.<br />
+The path can be given as an exact path or as a glob pattern. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>. If the path is a pattern, the keyword waits until all matching items are removed.<br />
 <br />
 The optional <span class="name">timeout</span> can be used to control the maximum time of waiting. The timeout is given as a timeout string, e.g. in a format '15 seconds', '1min 10s' or just '10'. The time string format is described in an appendix of Robot Framework User Guide.<br />
 <br />
@@ -1206,7 +1208,7 @@ If the timeout is negative, the keyword is never timed-out. The keyword returns 
 <p class="footer">
 Altogether 55 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-10-22 17:11:08.
+on 2010-03-23 19:20:40.
 </p>
 </body>
 </html>
