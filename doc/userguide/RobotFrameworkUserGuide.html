@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
 <title>Robot Framework User Guide</title>
 <style type="text/css">
 
@@ -738,7 +738,7 @@ package or directly from version control system. In the former
 case, first extract the package somewhere, and as a result, you
 have a directory named <tt class="docutils literal"><span class="pre">robotframework-&lt;version&gt;</span></tt>. Detailed
 instructions follow, but in short, what you need to do is to go to
-the created directory and run the <tt class="docutils literal">python setup.py install</tt>
+the created directory and run the <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt>
 command.</dd>
 <dt><a class="reference internal" href="#using-windows-installer">Using Windows installer</a></dt>
 <dd>There is a special graphical installer for Windows operating system.</dd>
@@ -915,7 +915,7 @@ section has more information about setting environment variables.</p>
 <div class="note">
 <p class="first admonition-title">Note</p>
 <p class="last">On Windows Vista installing Robot Framework requires
-administrator privileges. Select <tt class="docutils literal">Run as administrator</tt> from
+administrator privileges. Select <tt class="docutils literal"><span class="pre">Run</span> <span class="pre">as</span> <span class="pre">administrator</span></tt> from
 the context menu when starting the installer.</p>
 </div>
 </div>
@@ -1017,15 +1017,15 @@ available, the directory containing them must be set to the <span class="var">PA
 environment variable.</p>
 <p>Setting the <span class="var">PATH</span> environment variable on Windows:</p>
 <ol class="arabic simple">
-<li>Open <tt class="docutils literal">Start &gt; Settings &gt; Control Panel &gt; System &gt; Advanced &gt;
-Environment Variables</tt>.  There are <tt class="docutils literal">User variables</tt> and <tt class="docutils literal">System
-variables</tt>, and the difference between them is that User variables
+<li>Open <tt class="docutils literal"><span class="pre">Start</span> <span class="pre">&gt;</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Control</span> <span class="pre">Panel</span> <span class="pre">&gt;</span> <span class="pre">System</span> <span class="pre">&gt;</span> <span class="pre">Advanced</span> <span class="pre">&gt;</span>
+<span class="pre">Environment</span> <span class="pre">Variables</span></tt>.  There are <tt class="docutils literal"><span class="pre">User</span> <span class="pre">variables</span></tt> and <tt class="docutils literal"><span class="pre">System</span>
+<span class="pre">variables</span></tt>, and the difference between them is that User variables
 affect only the current users, whereas System variables affect all
 users.</li>
-<li>To edit the existing <span class="var">PATH</span>, select <tt class="docutils literal">Edit</tt> and add
+<li>To edit the existing <span class="var">PATH</span>, select <tt class="docutils literal"><span class="pre">Edit</span></tt> and add
 <span class="path">;[PythonInstallationDir]\Scripts\</span> at the end of the
 value. Note that the leading colon (<span class="path">;</span>) is important, as it
-separates different entries. To add a new value, select <tt class="docutils literal">New</tt> and
+separates different entries. To add a new value, select <tt class="docutils literal"><span class="pre">New</span></tt> and
 provide both the name and the value, this time without the colon.</li>
 <li>Start a new command prompt for the changes to take effect.</li>
 </ol>
@@ -1063,8 +1063,8 @@ python install.py uninstall
 </pre>
 <p>If Robot Framework is installed from a binary distribution, it can be
 uninstalled via the mechanism offered by the operating system. For
-example, in Windows you simply go to <tt class="docutils literal">Control Panel &gt;
-Add/Remove Programs</tt>, where Robot Framework is listed under Python.</p>
+example, in Windows you simply go to <tt class="docutils literal"><span class="pre">Control</span> <span class="pre">Panel</span> <span class="pre">&gt;</span>
+<span class="pre">Add/Remove</span> <span class="pre">Programs</span></tt>, where Robot Framework is listed under Python.</p>
 <p>If uninstallation fails somehow or you have <a class="reference internal" href="#using-easy-install">used Easy Install</a>, Robot Framework
 can be uninstalled by removing the <a class="reference internal" href="#where-files-are-installed">framework code and runner scripts</a>
 manually.</p>
@@ -7314,53 +7314,9 @@ the keyword can have an optional postfix <cite>times</cite> or <cite>x</cite> to
 </tr>
 </tbody>
 </table>
-<p>Robot Framework also has an older special syntax for repeating a single keyword. Starting from
-Robot Framework 2.0.4 this syntax has been deprecated in favor of <span class="name">Repeat Keyword</span>, though, and it will be
-removed altogether in 2.2 version. The example below shows how easy it is to convert test cases using
-the old syntax to use <span class="name">Repeat Keyword</span> instead.</p>
-<table border="1" class="example docutils">
-<caption>Replacing deprecated repeating syntax with Repeat Keyword</caption>
-<colgroup>
-<col width="27%" />
-<col width="21%" />
-<col width="18%" />
-<col width="18%" />
-<col width="15%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Test Case</th>
-<th class="head">Action</th>
-<th class="head">Argument</th>
-<th class="head">Argument</th>
-<th class="head">Argument</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>Deprecated Syntax</td>
-<td>10 x</td>
-<td>My Keyword</td>
-<td>argument</td>
-<td>&nbsp;</td>
-</tr>
-<tr><td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr><td>Same Functionality</td>
-<td>Repeat Keyword</td>
-<td>10 x</td>
-<td>My Keyword</td>
-<td>argument</td>
-</tr>
-</tbody>
-</table>
-<div class="tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Starting from Robot Framework 2.1 <a class="reference external" href="../../tools/robotidy/doc/robotidy.html">robotidy.py</a> automatically
-replaces the deprecated repeating syntax with <span class="name">Repeat Keyword</span>.</p>
-</div>
+<p>Robot Framework also had a special syntax for repeating a single keyword. This syntax was
+deprecated in the 2.0.4 version in favor of <span class="name">Repeat Keyword</span> and it was removed
+in the 2.5 version.</p>
 </div>
 </div>
 <div class="section" id="conditional-execution">
@@ -7394,124 +7350,16 @@ keyword only if a test case or test suite has failed or passed.</li>
 </div>
 <div class="section" id="parallel-execution-of-keywords">
 <h3><a class="toc-backref" href="#id359">2.8.5&nbsp;&nbsp;&nbsp;Parallel execution of keywords</a></h3>
-<p>By default, all keywords are executed sequentially, so that a new
-keyword is started only after the previous one has ended. Of course,
-it is possible to create a library so that some keyword starts an
-action in the background and returns immediately, and there is
-another keyword that can later be used to check the status of the
-background process or other action.</p>
-<p>Robot Framework also has native support for parallel execution of
-keywords. The syntax for it is using <span class="name">:PARALLEL</span> in the second
-column of the Test Case or Keyword table, similarly as <span class="name">:FOR</span> is
-used with <a class="reference internal" href="#for-loops">For loops</a>. In both cases, a colon (:) must be used to
-separate them from normal keywords. Keywords inside a parallel block
-are also indented, similarly as keywords in a For loop.  The difference
-is that there is no need to have anything after <span class="name">:PARALLEL</span>, and
-normally the first keyword of the parallel block is already there.</p>
-<p>When a parallel block is executed, all the keywords in it are started
-in the background, one after another, and the whole block returns only
-after all the keywords have been completed. A parallel block fails if
-any of its keywords fails, but even in this case, Robot Framework
-waits that all keywords are finished. It is even possible that several
-keywords in a block fail.</p>
-<table border="1" class="example docutils">
-<caption>Parallel execution examples</caption>
-<colgroup>
-<col width="22%" />
-<col width="16%" />
-<col width="23%" />
-<col width="23%" />
-<col width="16%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Test Case</th>
-<th class="head">Action</th>
-<th class="head">Argument</th>
-<th class="head">Argument</th>
-<th class="head">Argument</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>Parallel once</td>
-<td>Log</td>
-<td>Before parallel</td>
-<td></td>
-<td></td>
-</tr>
-<tr><td></td>
-<td>:PARALLEL</td>
-<td>Log</td>
-<td>Inside parallel</td>
-<td></td>
-</tr>
-<tr><td></td>
-<td></td>
-<td>Sleep</td>
-<td>2 seconds</td>
-<td></td>
-</tr>
-<tr><td></td>
-<td></td>
-<td>Log</td>
-<td>Inside parallel</td>
-<td></td>
-</tr>
-<tr><td></td>
-<td>Log</td>
-<td>After parallel</td>
-<td></td>
-<td></td>
-</tr>
-<tr><td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr><td>Parallel twice</td>
-<td>:PARALLEL</td>
-<td>Sleep</td>
-<td>2 seconds</td>
-<td></td>
-</tr>
-<tr><td></td>
-<td></td>
-<td>Log</td>
-<td>First parallel</td>
-<td></td>
-</tr>
-<tr><td></td>
-<td>:PARALLEL</td>
-<td>Log</td>
-<td>Second parallel</td>
-<td></td>
-</tr>
-<tr><td></td>
-<td></td>
-<td>Fail</td>
-<td>First failure</td>
-<td></td>
-</tr>
-<tr><td></td>
-<td></td>
-<td>Fail</td>
-<td>Second failure</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>It is not possible to have nested parallel blocks, or to have a For loop
-inside a parallel block, or the other way around. However, you can have
-a user keyword inside a parallel block, and use another parallel
-block or a For loop there.</p>
-<div class="warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Parallel execution cannot be used with <a class="reference internal" href="#timeouts">timeouts</a> and it
-does not work correctly with any <span class="name">Run Keyword XXX</span>
-keywords in the <a class="reference internal" href="#builtin-library">BuiltIn library</a>. In general, it is a quite
-experimental and not much used feature, and it may also have
-other peculiar problems.</p>
-</div>
+<p>Prior to the 2.5 version Robot Framework a had special syntax for executing
+keywords in parallel. This functionality was removed because it was rarely
+used and it never worked fully.</p>
+<p>When parallel execution is needed, it must be implemented in test library
+level so that the library executes the code on background. Typically this
+means that the library needs a keyword like <span class="name">Start Something</span> that
+starts the execution and returns immediately, and another keyword like
+<span class="name">Get Results From Something</span> that waits until the result is available
+and returns it. See <a class="reference internal" href="#operatingsystem-library">OperatingSystem library</a> keywords <span class="name">Start Process</span>
+and <span class="name">Read Process Output</span> for an example.</p>
 </div>
 </div>
 </div>
@@ -11072,6 +10920,8 @@ Thus, for example, <span class="code">startSuite</span> is a synonym to <span cl
 <li>doc: test suite documentation</li>
 <li>longname: suite name including parent suites</li>
 <li>starttime: execution start time</li>
+<li>metadata: a dictionary containing <a class="reference internal" href="#free-test-suite-metadata">free test
+suite metadata</a></li>
 </ul>
 </td>
 </tr>
@@ -12308,7 +12158,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2010-03-24 09:56 UTC.
+<p>Generated on: 2010-03-27 18:34 UTC.
 </p>
 
 </div>
