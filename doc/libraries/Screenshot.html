@@ -1,88 +1,94 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Screenshot - Documentation</title>
+<title>Screenshot</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style>
-  body {
-    background: white;
-    color: black;
-  }
+<style media="all" type="text/css">
+body {
+  background: white;
+  color: black;
+  font-size: small;
+  font-family: sans-serif;
+  padding: 0.1em 0.5em;
+}
+a.name, span.name {  
+  font-style: italic;
+  color: black;
+}
+a:link, a:visited {
+  color: black;
+}
+a:hover, a:active {
+  text-decoration: underline;
+  color: #666;
+}
+div.shortcuts {
+  margin: 1em 0em;
+}
+div.shortcuts a {
+  text-decoration: none;
+}
+div.shortcuts a:hover {
+  text-decoration: underline;
+}
+table.keywords {
+  border: 2px solid black;
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 0.3em 0em;
+  width: 100%;
+}
+table.keywords th, table.keywords td {
+  border: 2px solid black;
+  padding: 0.2em;
+  vertical-align: top;
+}
+table.keywords th {
+  background: #bbb;
+  color: black;
+}
+table.keywords td.kw {
+  width: 150px;
+  color: black;
+}
+table.keywords td.arg {
+  width: 300px;
+  font-style: italic;
+}
+table.doc {
+  border: 1px solid black;
+  background: transparent;
+  border-collapse: collapse;
+  empty-cells: show;
+  font-size: 0.85em;
+}
+table.doc td {
+  border: 1px solid black;
+  padding: 0.1em 0.3em;
+  height: 1.2em;
 
-  /* Generic Table Styles */
-  table {
-    background: white;
-    border: 1px solid black;
-    border-collapse: collapse;
-    empty-cells: show;
-    margin: 0.3em 0em;
-  }
-  th, td {
-    border: 1px solid black;
-    padding: 0.2em;
-  }
-  th {
-    background: #C6C6C6;
-  }
-  td {
-    vertical-align: top;
-  }    
-
-  /* Columns */
-  td.kw {
-    font-weight: bold;
-  }
-  td.arg {
-    width: 300px;
-    font-style: italic;
-  }
-  td.doc {
-  }
-
-  /* Tables in documentation */
-  table.doc {
-    border: 1px solid gray;
-    background: transparent;
-    border-collapse: collapse;
-    empty-cells: show;
-    font-size: 0.85em;
-    font-family: arial,helvetica,sans-serif;
-  }
-  table.doc td {
-    border: 1px solid gray;
-    padding: 0.1em 0.3em;
-    height: 1.2em;
-  }
-
-  /* Paragraphs */
-  .libdoc, .links {
-    width: 800px;
-  }
-
-  /* Misc */
-  a.name, span.name {  
-    font-style: italic;
-    background: #f4f4f4;
-    text-decoration: none;
-  }
-  a:link, a:visited {
-    color: blue;
-  }
-  a:hover, a:active {
-    text-decoration: underline;
-    color: purple;
-  }
-  .footer {
-    font-size: 0.9em;
-  }
+}
+#footer {
+  font-size: 0.9em;
+}
+</style>
+<style media="print" type="text/css">
+body {
+  margin: 0px 1px;
+  padding: 0px;
+  font-size: 10px;
+}
+a {
+  text-decoration: none;
+}
 </style>
 </head>
 <body>
-<h1>Screenshot - Documentation</h1>
-<p><b>Version:</b> trunk 20091020</p>
+<h1>Screenshot</h1>
+<p><b>Version:</b> trunk 20100323</p>
 
 <h2 id="introduction">Introduction</h2>
-<p class='libdoc'>A test library for taking full-screen screenshots of the desktop.<br />
+<p>A test library for taking full-screen screenshots of the desktop.<br />
 <br />
 <span class="name">Screenshot</span> is Robot Framework's standard library that provides keywords to capture and store screenshots of the whole desktop. This library is implemented with Java AWT APIs, so it can be used only when running Robot Framework on Jython.</p>
 
@@ -134,11 +140,14 @@ It is also possible to set these directories using <a href="#Set Screenshot Dire
 </table>
 
 <h2>Shortcuts</h2>
-<div class='links'>
-<a href="#Log Screenshot" title="Takes a screenshot and logs it to Robot Framework's log file.">Log&nbsp;Screenshot</a>&nbsp;
-<a href="#Save Screenshot" title="Saves a screenshot with a generated unique name.">Save&nbsp;Screenshot</a>&nbsp;
-<a href="#Save Screenshot To" title="Saves a screenshot to the specified file.">Save&nbsp;Screenshot&nbsp;To</a>&nbsp;
-<a href="#Set Screenshot Directories" title="Used to set `default_directory` and `log_file_directory`.">Set&nbsp;Screenshot&nbsp;Directories</a>&nbsp;
+<div class='shortcuts'>
+<a href="#Log Screenshot" title="Takes a screenshot and logs it to Robot Framework's log file.">Log&nbsp;Screenshot</a>
+&nbsp;&middot;&nbsp;
+<a href="#Save Screenshot" title="Saves a screenshot with a generated unique name.">Save&nbsp;Screenshot</a>
+&nbsp;&middot;&nbsp;
+<a href="#Save Screenshot To" title="Saves a screenshot to the specified file.">Save&nbsp;Screenshot&nbsp;To</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Screenshot Directories" title="Used to set `default_directory` and `log_file_directory`.">Set&nbsp;Screenshot&nbsp;Directories</a>
 </div>
 
 <h2>Keywords</h2>
@@ -207,10 +216,10 @@ The directory holding the file must exist or an exception is raised.</td>
 See the <a href="#importing" class="name">library importing</a> for details.</td>
 </tr>
 </table>
-<p class="footer">
+<p id="footer">
 Altogether 4 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-10-22 17:11:09.
+on 2010-03-29 17:39:46.
 </p>
 </body>
 </html>

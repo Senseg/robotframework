@@ -1,88 +1,94 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Collections - Documentation</title>
+<title>Collections</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style>
-  body {
-    background: white;
-    color: black;
-  }
+<style media="all" type="text/css">
+body {
+  background: white;
+  color: black;
+  font-size: small;
+  font-family: sans-serif;
+  padding: 0.1em 0.5em;
+}
+a.name, span.name {  
+  font-style: italic;
+  color: black;
+}
+a:link, a:visited {
+  color: black;
+}
+a:hover, a:active {
+  text-decoration: underline;
+  color: #666;
+}
+div.shortcuts {
+  margin: 1em 0em;
+}
+div.shortcuts a {
+  text-decoration: none;
+}
+div.shortcuts a:hover {
+  text-decoration: underline;
+}
+table.keywords {
+  border: 2px solid black;
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 0.3em 0em;
+  width: 100%;
+}
+table.keywords th, table.keywords td {
+  border: 2px solid black;
+  padding: 0.2em;
+  vertical-align: top;
+}
+table.keywords th {
+  background: #bbb;
+  color: black;
+}
+table.keywords td.kw {
+  width: 150px;
+  color: black;
+}
+table.keywords td.arg {
+  width: 300px;
+  font-style: italic;
+}
+table.doc {
+  border: 1px solid black;
+  background: transparent;
+  border-collapse: collapse;
+  empty-cells: show;
+  font-size: 0.85em;
+}
+table.doc td {
+  border: 1px solid black;
+  padding: 0.1em 0.3em;
+  height: 1.2em;
 
-  /* Generic Table Styles */
-  table {
-    background: white;
-    border: 1px solid black;
-    border-collapse: collapse;
-    empty-cells: show;
-    margin: 0.3em 0em;
-  }
-  th, td {
-    border: 1px solid black;
-    padding: 0.2em;
-  }
-  th {
-    background: #C6C6C6;
-  }
-  td {
-    vertical-align: top;
-  }    
-
-  /* Columns */
-  td.kw {
-    font-weight: bold;
-  }
-  td.arg {
-    width: 300px;
-    font-style: italic;
-  }
-  td.doc {
-  }
-
-  /* Tables in documentation */
-  table.doc {
-    border: 1px solid gray;
-    background: transparent;
-    border-collapse: collapse;
-    empty-cells: show;
-    font-size: 0.85em;
-    font-family: arial,helvetica,sans-serif;
-  }
-  table.doc td {
-    border: 1px solid gray;
-    padding: 0.1em 0.3em;
-    height: 1.2em;
-  }
-
-  /* Paragraphs */
-  .libdoc, .links {
-    width: 800px;
-  }
-
-  /* Misc */
-  a.name, span.name {  
-    font-style: italic;
-    background: #f4f4f4;
-    text-decoration: none;
-  }
-  a:link, a:visited {
-    color: blue;
-  }
-  a:hover, a:active {
-    text-decoration: underline;
-    color: purple;
-  }
-  .footer {
-    font-size: 0.9em;
-  }
+}
+#footer {
+  font-size: 0.9em;
+}
+</style>
+<style media="print" type="text/css">
+body {
+  margin: 0px 1px;
+  padding: 0px;
+  font-size: 10px;
+}
+a {
+  text-decoration: none;
+}
 </style>
 </head>
 <body>
-<h1>Collections - Documentation</h1>
-<p><b>Version:</b> trunk 20091020</p>
+<h1>Collections</h1>
+<p><b>Version:</b> trunk 20100323</p>
 
 <h2 id="introduction">Introduction</h2>
-<p class='libdoc'>A test library providing keywords for handling lists and dictionaries.<br />
+<p>A test library providing keywords for handling lists and dictionaries.<br />
 <br />
 <span class="name">Collections</span> is Robot Framework's standard library that provides a set of keywords for handling Python lists and dictionaries. This library has keywords, for example, for modifying and getting values from lists and dictionaries (e.g. <a href="#Append To List" class="name">Append To List</a>, <a href="#Get From Dictionary" class="name">Get From Dictionary</a>) and for verifying their contents (e.g. <a href="#Lists Should Be Equal" class="name">Lists Should Be Equal</a>, <a href="#Dictionary Should Contain Value" class="name">Dictionary Should Contain Value</a>).<br />
 <br />
@@ -134,7 +140,7 @@ Following keywords from the BuiltIn library can also be used with lists and dict
 </tr>
 </table>
 <br />
-All list keywords expect a scalar variable (e.g. ${list}) as an argument. &nbsp;Starting with Robot Framework 2.0.3, it is possible to use list variables (e.g. @{list}) as scalars simply by replacing '@' with '$'. With earlier versions, list variables must be converted to scalar variables first.<br />
+All list keywords expect a scalar variable (e.g. ${list}) as an argument. &nbsp;It is, however, possible to use list variables (e.g. @{list}) as scalars simply by replacing '@' with '$'.<br />
 <br />
 List keywords that do not alter the given list can also be used with tuples, and to some extend also with other iterables. <a href="#Convert To List" class="name">Convert To List</a> can be used to convert tuples and other iterables to lists.<br />
 <br />
@@ -149,43 +155,78 @@ Dictionary keywords use similar ${Dx} variables. For example ${D1} means {'a': 1
 
 
 <h2>Shortcuts</h2>
-<div class='links'>
-<a href="#Append To List" title="Adds `values` to the end of `list`.">Append&nbsp;To&nbsp;List</a>&nbsp;
-<a href="#Combine Lists" title="Combines the given `lists` together and returns the result.">Combine&nbsp;Lists</a>&nbsp;
-<a href="#Convert To List" title="Converts the given `item` to a list.">Convert&nbsp;To&nbsp;List</a>&nbsp;
-<a href="#Copy Dictionary" title="Returns a copy of the given dictionary.">Copy&nbsp;Dictionary</a>&nbsp;
-<a href="#Copy List" title="Returns a copy of the given list.">Copy&nbsp;List</a>&nbsp;
-<a href="#Count Values In List" title="Returns the number of occurrences of the given `value` in `list`.">Count&nbsp;Values&nbsp;In&nbsp;List</a>&nbsp;
-<a href="#Create Dictionary" title="Creates and returns a dictionary from the given `key_value_pairs`.">Create&nbsp;Dictionary</a>&nbsp;
-<a href="#Dictionaries Should Be Equal" title="Fails if the given dictionaries are not equal.">Dictionaries&nbsp;Should&nbsp;Be&nbsp;Equal</a>&nbsp;
-<a href="#Dictionary Should Contain Key" title="Fails if `key` is not found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Key</a>&nbsp;
-<a href="#Dictionary Should Contain Sub Dictionary" title="Fails unless all items in `dict2` are found from `dict1`.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Sub&nbsp;Dictionary</a>&nbsp;
-<a href="#Dictionary Should Contain Value" title="Fails if `value` is not found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Value</a>&nbsp;
-<a href="#Dictionary Should Not Contain Key" title="Fails if `key` is found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Key</a>&nbsp;
-<a href="#Dictionary Should Not Contain Value" title="Fails if `value` is found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Value</a>&nbsp;
-<a href="#Get Dictionary Items" title="Returns items of the given `dictionary`.">Get&nbsp;Dictionary&nbsp;Items</a>&nbsp;
-<a href="#Get Dictionary Keys" title="Returns `keys` of the given `dictionary`.">Get&nbsp;Dictionary&nbsp;Keys</a>&nbsp;
-<a href="#Get Dictionary Values" title="Returns values of the given dictionary.">Get&nbsp;Dictionary&nbsp;Values</a>&nbsp;
-<a href="#Get From Dictionary" title="Returns a value from the given `dictionary` based on the given `key`.">Get&nbsp;From&nbsp;Dictionary</a>&nbsp;
-<a href="#Get From List" title="Returns the value specified with an `index` from `list`.">Get&nbsp;From&nbsp;List</a>&nbsp;
-<a href="#Get Index From List" title="Returns the index of the first occurrence of the `value` on the list.">Get&nbsp;Index&nbsp;From&nbsp;List</a>&nbsp;
-<a href="#Get Slice From List" title="Returns a slice of the given list between `start` and `end` indexes.">Get&nbsp;Slice&nbsp;From&nbsp;List</a>&nbsp;
-<a href="#Insert Into List" title="Inserts `value` into `list` to the position specified with `index`.">Insert&nbsp;Into&nbsp;List</a>&nbsp;
-<a href="#Keep In Dictionary" title="Keeps the given `keys` in the `dictionary` and removes all other.">Keep&nbsp;In&nbsp;Dictionary</a>&nbsp;
-<a href="#List Should Contain Sub List" title="Fails if not all of the elements in `list2` are found in `list1`.">List&nbsp;Should&nbsp;Contain&nbsp;Sub&nbsp;List</a>&nbsp;
-<a href="#List Should Contain Value" title="Fails if the `value` is not found from `list`.">List&nbsp;Should&nbsp;Contain&nbsp;Value</a>&nbsp;
-<a href="#List Should Not Contain Duplicates" title="Fails if any element in the `list` is found from it more than once.">List&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Duplicates</a>&nbsp;
-<a href="#List Should Not Contain Value" title="Fails if the `value` is not found from `list`.">List&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Value</a>&nbsp;
-<a href="#Lists Should Be Equal" title="Fails if given lists are unequal.">Lists&nbsp;Should&nbsp;Be&nbsp;Equal</a>&nbsp;
-<a href="#Log Dictionary" title="Logs the size and contents of the `dictionary` using given `level`.">Log&nbsp;Dictionary</a>&nbsp;
-<a href="#Log List" title="Logs the length and contents of the `list` using given `level`.">Log&nbsp;List</a>&nbsp;
-<a href="#Remove From Dictionary" title="Removes the given `keys` from the `dictionary`.">Remove&nbsp;From&nbsp;Dictionary</a>&nbsp;
-<a href="#Remove From List" title="Removes and returns the value specified with an `index` from `list`.">Remove&nbsp;From&nbsp;List</a>&nbsp;
-<a href="#Remove Values From List" title="Removes all occurences of given `values` from `list`.">Remove&nbsp;Values&nbsp;From&nbsp;List</a>&nbsp;
-<a href="#Reverse List" title="Reverses the given list in place.">Reverse&nbsp;List</a>&nbsp;
-<a href="#Set List Value" title="Sets the value of `list` specified by `index` to the given `value`.">Set&nbsp;List&nbsp;Value</a>&nbsp;
-<a href="#Set To Dictionary" title="Adds the given `key_value_pairs` to the `dictionary`.">Set&nbsp;To&nbsp;Dictionary</a>&nbsp;
-<a href="#Sort List" title="Sorts the given list in place.">Sort&nbsp;List</a>&nbsp;
+<div class='shortcuts'>
+<a href="#Append To List" title="Adds `values` to the end of `list`.">Append&nbsp;To&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Combine Lists" title="Combines the given `lists` together and returns the result.">Combine&nbsp;Lists</a>
+&nbsp;&middot;&nbsp;
+<a href="#Convert To List" title="Converts the given `item` to a list.">Convert&nbsp;To&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Copy Dictionary" title="Returns a copy of the given dictionary.">Copy&nbsp;Dictionary</a>
+&nbsp;&middot;&nbsp;
+<a href="#Copy List" title="Returns a copy of the given list.">Copy&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Count Values In List" title="Returns the number of occurrences of the given `value` in `list`.">Count&nbsp;Values&nbsp;In&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Create Dictionary" title="Creates and returns a dictionary from the given `key_value_pairs`.">Create&nbsp;Dictionary</a>
+&nbsp;&middot;&nbsp;
+<a href="#Dictionaries Should Be Equal" title="Fails if the given dictionaries are not equal.">Dictionaries&nbsp;Should&nbsp;Be&nbsp;Equal</a>
+&nbsp;&middot;&nbsp;
+<a href="#Dictionary Should Contain Key" title="Fails if `key` is not found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Key</a>
+&nbsp;&middot;&nbsp;
+<a href="#Dictionary Should Contain Sub Dictionary" title="Fails unless all items in `dict2` are found from `dict1`.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Sub&nbsp;Dictionary</a>
+&nbsp;&middot;&nbsp;
+<a href="#Dictionary Should Contain Value" title="Fails if `value` is not found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Contain&nbsp;Value</a>
+&nbsp;&middot;&nbsp;
+<a href="#Dictionary Should Not Contain Key" title="Fails if `key` is found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Key</a>
+&nbsp;&middot;&nbsp;
+<a href="#Dictionary Should Not Contain Value" title="Fails if `value` is found from `dictionary`.">Dictionary&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Value</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Dictionary Items" title="Returns items of the given `dictionary`.">Get&nbsp;Dictionary&nbsp;Items</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Dictionary Keys" title="Returns `keys` of the given `dictionary`.">Get&nbsp;Dictionary&nbsp;Keys</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Dictionary Values" title="Returns values of the given dictionary.">Get&nbsp;Dictionary&nbsp;Values</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get From Dictionary" title="Returns a value from the given `dictionary` based on the given `key`.">Get&nbsp;From&nbsp;Dictionary</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get From List" title="Returns the value specified with an `index` from `list`.">Get&nbsp;From&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Index From List" title="Returns the index of the first occurrence of the `value` on the list.">Get&nbsp;Index&nbsp;From&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Slice From List" title="Returns a slice of the given list between `start` and `end` indexes.">Get&nbsp;Slice&nbsp;From&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Insert Into List" title="Inserts `value` into `list` to the position specified with `index`.">Insert&nbsp;Into&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Keep In Dictionary" title="Keeps the given `keys` in the `dictionary` and removes all other.">Keep&nbsp;In&nbsp;Dictionary</a>
+&nbsp;&middot;&nbsp;
+<a href="#List Should Contain Sub List" title="Fails if not all of the elements in `list2` are found in `list1`.">List&nbsp;Should&nbsp;Contain&nbsp;Sub&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#List Should Contain Value" title="Fails if the `value` is not found from `list`.">List&nbsp;Should&nbsp;Contain&nbsp;Value</a>
+&nbsp;&middot;&nbsp;
+<a href="#List Should Not Contain Duplicates" title="Fails if any element in the `list` is found from it more than once.">List&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Duplicates</a>
+&nbsp;&middot;&nbsp;
+<a href="#List Should Not Contain Value" title="Fails if the `value` is not found from `list`.">List&nbsp;Should&nbsp;Not&nbsp;Contain&nbsp;Value</a>
+&nbsp;&middot;&nbsp;
+<a href="#Lists Should Be Equal" title="Fails if given lists are unequal.">Lists&nbsp;Should&nbsp;Be&nbsp;Equal</a>
+&nbsp;&middot;&nbsp;
+<a href="#Log Dictionary" title="Logs the size and contents of the `dictionary` using given `level`.">Log&nbsp;Dictionary</a>
+&nbsp;&middot;&nbsp;
+<a href="#Log List" title="Logs the length and contents of the `list` using given `level`.">Log&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Remove From Dictionary" title="Removes the given `keys` from the `dictionary`.">Remove&nbsp;From&nbsp;Dictionary</a>
+&nbsp;&middot;&nbsp;
+<a href="#Remove From List" title="Removes and returns the value specified with an `index` from `list`.">Remove&nbsp;From&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Remove Values From List" title="Removes all occurences of given `values` from `list`.">Remove&nbsp;Values&nbsp;From&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Reverse List" title="Reverses the given list in place.">Reverse&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set List Value" title="Sets the value of `list` specified by `index` to the given `value`.">Set&nbsp;List&nbsp;Value</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set To Dictionary" title="Adds the given `key_value_pairs` to the `dictionary`.">Set&nbsp;To&nbsp;Dictionary</a>
+&nbsp;&middot;&nbsp;
+<a href="#Sort List" title="Sorts the given list in place.">Sort&nbsp;List</a>
 </div>
 
 <h2>Keywords</h2>
@@ -798,10 +839,10 @@ ${L} = [2,1,'a','c','b']<br />
 - ${L} = [1, 2, 'a', 'b', 'c']</td>
 </tr>
 </table>
-<p class="footer">
+<p id="footer">
 Altogether 36 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-10-22 17:11:08.
+on 2010-03-29 17:39:45.
 </p>
 </body>
 </html>

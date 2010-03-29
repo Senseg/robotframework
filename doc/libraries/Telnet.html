@@ -1,88 +1,94 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Telnet - Documentation</title>
+<title>Telnet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style>
-  body {
-    background: white;
-    color: black;
-  }
+<style media="all" type="text/css">
+body {
+  background: white;
+  color: black;
+  font-size: small;
+  font-family: sans-serif;
+  padding: 0.1em 0.5em;
+}
+a.name, span.name {  
+  font-style: italic;
+  color: black;
+}
+a:link, a:visited {
+  color: black;
+}
+a:hover, a:active {
+  text-decoration: underline;
+  color: #666;
+}
+div.shortcuts {
+  margin: 1em 0em;
+}
+div.shortcuts a {
+  text-decoration: none;
+}
+div.shortcuts a:hover {
+  text-decoration: underline;
+}
+table.keywords {
+  border: 2px solid black;
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 0.3em 0em;
+  width: 100%;
+}
+table.keywords th, table.keywords td {
+  border: 2px solid black;
+  padding: 0.2em;
+  vertical-align: top;
+}
+table.keywords th {
+  background: #bbb;
+  color: black;
+}
+table.keywords td.kw {
+  width: 150px;
+  color: black;
+}
+table.keywords td.arg {
+  width: 300px;
+  font-style: italic;
+}
+table.doc {
+  border: 1px solid black;
+  background: transparent;
+  border-collapse: collapse;
+  empty-cells: show;
+  font-size: 0.85em;
+}
+table.doc td {
+  border: 1px solid black;
+  padding: 0.1em 0.3em;
+  height: 1.2em;
 
-  /* Generic Table Styles */
-  table {
-    background: white;
-    border: 1px solid black;
-    border-collapse: collapse;
-    empty-cells: show;
-    margin: 0.3em 0em;
-  }
-  th, td {
-    border: 1px solid black;
-    padding: 0.2em;
-  }
-  th {
-    background: #C6C6C6;
-  }
-  td {
-    vertical-align: top;
-  }    
-
-  /* Columns */
-  td.kw {
-    font-weight: bold;
-  }
-  td.arg {
-    width: 300px;
-    font-style: italic;
-  }
-  td.doc {
-  }
-
-  /* Tables in documentation */
-  table.doc {
-    border: 1px solid gray;
-    background: transparent;
-    border-collapse: collapse;
-    empty-cells: show;
-    font-size: 0.85em;
-    font-family: arial,helvetica,sans-serif;
-  }
-  table.doc td {
-    border: 1px solid gray;
-    padding: 0.1em 0.3em;
-    height: 1.2em;
-  }
-
-  /* Paragraphs */
-  .libdoc, .links {
-    width: 800px;
-  }
-
-  /* Misc */
-  a.name, span.name {  
-    font-style: italic;
-    background: #f4f4f4;
-    text-decoration: none;
-  }
-  a:link, a:visited {
-    color: blue;
-  }
-  a:hover, a:active {
-    text-decoration: underline;
-    color: purple;
-  }
-  .footer {
-    font-size: 0.9em;
-  }
+}
+#footer {
+  font-size: 0.9em;
+}
+</style>
+<style media="print" type="text/css">
+body {
+  margin: 0px 1px;
+  padding: 0px;
+  font-size: 10px;
+}
+a {
+  text-decoration: none;
+}
 </style>
 </head>
 <body>
-<h1>Telnet - Documentation</h1>
-<p><b>Version:</b> trunk 20091020</p>
+<h1>Telnet</h1>
+<p><b>Version:</b> trunk 20100323</p>
 
 <h2 id="introduction">Introduction</h2>
-<p class='libdoc'>A test library providing communication over Telnet connections.<br />
+<p>A test library providing communication over Telnet connections.<br />
 <br />
 <span class="name">Telnet</span> is Robot Framework's standard library that makes it possible to connect to Telnet servers and execute commands on the opened connections.<br />
 <br />
@@ -172,24 +178,40 @@ Examples (use only one of these):<br />
 </table>
 
 <h2>Shortcuts</h2>
-<div class='links'>
-<a href="#Close All Connections" title="Closes all open connections and empties the connection cache.">Close&nbsp;All&nbsp;Connections</a>&nbsp;
-<a href="#Close Connection" title="Closes the current Telnet connection and returns any remaining output.">Close&nbsp;Connection</a>&nbsp;
-<a href="#Execute Command" title="Executes given command and reads and returns everything until prompt.">Execute&nbsp;Command</a>&nbsp;
-<a href="#Login" title="Logs in to the Telnet server with the given user information.">Login</a>&nbsp;
-<a href="#Open Connection" title="Opens a new Telnet connection to the given host and port.">Open&nbsp;Connection</a>&nbsp;
-<a href="#Read" title="Reads and returns/logs everything that is currently available in the output.">Read</a>&nbsp;
-<a href="#Read Until" title="Reads from the current output, until expected is encountered.">Read&nbsp;Until</a>&nbsp;
-<a href="#Read Until Prompt" title="Reads from the current output, until a prompt is found.">Read&nbsp;Until&nbsp;Prompt</a>&nbsp;
-<a href="#Read Until Regexp" title="Reads from the current output, until a match to a regexp in expected.">Read&nbsp;Until&nbsp;Regexp</a>&nbsp;
-<a href="#Set Default Log Level" title="Sets the default log level used by all read keywords.">Set&nbsp;Default&nbsp;Log&nbsp;Level</a>&nbsp;
-<a href="#Set Newline" title="Sets the newline used by the `Write` keyword.">Set&nbsp;Newline</a>&nbsp;
-<a href="#Set Prompt" title="Sets the prompt used in this connection to `prompt`.">Set&nbsp;Prompt</a>&nbsp;
-<a href="#Set Timeout" title="Sets the timeout used in read operations to the given value.">Set&nbsp;Timeout</a>&nbsp;
-<a href="#Switch Connection" title="Switches between active connections using an index or alias.">Switch&nbsp;Connection</a>&nbsp;
-<a href="#Write" title="Writes the given text over the connection and appends a newline.">Write</a>&nbsp;
-<a href="#Write Bare" title="Writes the given text over the connection without appending a newline.">Write&nbsp;Bare</a>&nbsp;
-<a href="#Write Until Expected Output" title="Writes the given text repeatedly, until `expected` appears in the output.">Write&nbsp;Until&nbsp;Expected&nbsp;Output</a>&nbsp;
+<div class='shortcuts'>
+<a href="#Close All Connections" title="Closes all open connections and empties the connection cache.">Close&nbsp;All&nbsp;Connections</a>
+&nbsp;&middot;&nbsp;
+<a href="#Close Connection" title="Closes the current Telnet connection and returns any remaining output.">Close&nbsp;Connection</a>
+&nbsp;&middot;&nbsp;
+<a href="#Execute Command" title="Executes given command and reads and returns everything until prompt.">Execute&nbsp;Command</a>
+&nbsp;&middot;&nbsp;
+<a href="#Login" title="Logs in to the Telnet server with the given user information.">Login</a>
+&nbsp;&middot;&nbsp;
+<a href="#Open Connection" title="Opens a new Telnet connection to the given host and port.">Open&nbsp;Connection</a>
+&nbsp;&middot;&nbsp;
+<a href="#Read" title="Reads and returns/logs everything that is currently available in the output.">Read</a>
+&nbsp;&middot;&nbsp;
+<a href="#Read Until" title="Reads from the current output, until expected is encountered.">Read&nbsp;Until</a>
+&nbsp;&middot;&nbsp;
+<a href="#Read Until Prompt" title="Reads from the current output, until a prompt is found.">Read&nbsp;Until&nbsp;Prompt</a>
+&nbsp;&middot;&nbsp;
+<a href="#Read Until Regexp" title="Reads from the current output, until a match to a regexp in expected.">Read&nbsp;Until&nbsp;Regexp</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Default Log Level" title="Sets the default log level used by all read keywords.">Set&nbsp;Default&nbsp;Log&nbsp;Level</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Newline" title="Sets the newline used by the `Write` keyword.">Set&nbsp;Newline</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Prompt" title="Sets the prompt used in this connection to `prompt`.">Set&nbsp;Prompt</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Timeout" title="Sets the timeout used in read operations to the given value.">Set&nbsp;Timeout</a>
+&nbsp;&middot;&nbsp;
+<a href="#Switch Connection" title="Switches between active connections using an index or alias.">Switch&nbsp;Connection</a>
+&nbsp;&middot;&nbsp;
+<a href="#Write" title="Writes the given text over the connection and appends a newline.">Write</a>
+&nbsp;&middot;&nbsp;
+<a href="#Write Bare" title="Writes the given text over the connection without appending a newline.">Write&nbsp;Bare</a>
+&nbsp;&middot;&nbsp;
+<a href="#Write Until Expected Output" title="Writes the given text repeatedly, until `expected` appears in the output.">Write&nbsp;Until&nbsp;Expected&nbsp;Output</a>
 </div>
 
 <h2>Keywords</h2>
@@ -566,10 +588,10 @@ Example:<br />
 This writes the 'ps -ef | grep myprocess\n', until 'myprocess' appears on the output. The command is written every 0.5 seconds and the keyword ,fails if 'myprocess' does not appear in the output in 5 seconds.</td>
 </tr>
 </table>
-<p class="footer">
+<p id="footer">
 Altogether 17 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2009-10-22 17:11:09.
+on 2010-03-29 17:39:46.
 </p>
 </body>
 </html>

@@ -1,165 +1,241 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>BuiltIn - Documentation</title>
+<title>BuiltIn</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style>
-  body {
-    background: white;
-    color: black;
-  }
+<style media="all" type="text/css">
+body {
+  background: white;
+  color: black;
+  font-size: small;
+  font-family: sans-serif;
+  padding: 0.1em 0.5em;
+}
+a.name, span.name {  
+  font-style: italic;
+  color: black;
+}
+a:link, a:visited {
+  color: black;
+}
+a:hover, a:active {
+  text-decoration: underline;
+  color: #666;
+}
+div.shortcuts {
+  margin: 1em 0em;
+}
+div.shortcuts a {
+  text-decoration: none;
+}
+div.shortcuts a:hover {
+  text-decoration: underline;
+}
+table.keywords {
+  border: 2px solid black;
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 0.3em 0em;
+  width: 100%;
+}
+table.keywords th, table.keywords td {
+  border: 2px solid black;
+  padding: 0.2em;
+  vertical-align: top;
+}
+table.keywords th {
+  background: #bbb;
+  color: black;
+}
+table.keywords td.kw {
+  width: 150px;
+  color: black;
+}
+table.keywords td.arg {
+  width: 300px;
+  font-style: italic;
+}
+table.doc {
+  border: 1px solid black;
+  background: transparent;
+  border-collapse: collapse;
+  empty-cells: show;
+  font-size: 0.85em;
+}
+table.doc td {
+  border: 1px solid black;
+  padding: 0.1em 0.3em;
+  height: 1.2em;
 
-  /* Generic Table Styles */
-  table {
-    background: white;
-    border: 1px solid black;
-    border-collapse: collapse;
-    empty-cells: show;
-    margin: 0.3em 0em;
-  }
-  th, td {
-    border: 1px solid black;
-    padding: 0.2em;
-  }
-  th {
-    background: #C6C6C6;
-  }
-  td {
-    vertical-align: top;
-  }    
-
-  /* Columns */
-  td.kw {
-    font-weight: bold;
-  }
-  td.arg {
-    width: 300px;
-    font-style: italic;
-  }
-  td.doc {
-  }
-
-  /* Tables in documentation */
-  table.doc {
-    border: 1px solid gray;
-    background: transparent;
-    border-collapse: collapse;
-    empty-cells: show;
-    font-size: 0.85em;
-    font-family: arial,helvetica,sans-serif;
-  }
-  table.doc td {
-    border: 1px solid gray;
-    padding: 0.1em 0.3em;
-    height: 1.2em;
-  }
-
-  /* Paragraphs */
-  .libdoc, .links {
-    width: 800px;
-  }
-
-  /* Misc */
-  a.name, span.name {  
-    font-style: italic;
-    background: #f4f4f4;
-    text-decoration: none;
-  }
-  a:link, a:visited {
-    color: blue;
-  }
-  a:hover, a:active {
-    text-decoration: underline;
-    color: purple;
-  }
-  .footer {
-    font-size: 0.9em;
-  }
+}
+#footer {
+  font-size: 0.9em;
+}
+</style>
+<style media="print" type="text/css">
+body {
+  margin: 0px 1px;
+  padding: 0px;
+  font-size: 10px;
+}
+a {
+  text-decoration: none;
+}
 </style>
 </head>
 <body>
-<h1>BuiltIn - Documentation</h1>
+<h1>BuiltIn</h1>
 <p><b>Version:</b> trunk 20100323</p>
 
 <h2 id="introduction">Introduction</h2>
-<p class='libdoc'>An always available standard library with often needed keywords.<br />
+<p>An always available standard library with often needed keywords.<br />
 <br />
 <span class="name">BuiltIn</span> is Robot Framework's standard library that provides a set of generic keywords needed often. It is imported automatically and thus always available. The provided keywords can be used, for example, for verifications (e.g. <a href="#Should Be Equal" class="name">Should Be Equal</a>, <a href="#Should Contain" class="name">Should Contain</a>), conversions (e.g. <a href="#Convert To Integer" class="name">Convert To Integer</a>) and for various other purposes (e.g. <a href="#Log" class="name">Log</a>, <a href="#Sleep" class="name">Sleep</a>, <a href="#Run Keyword If" class="name">Run Keyword If</a>, <a href="#Set Global Variable" class="name">Set Global Variable</a>).</p>
 
 
 <h2>Shortcuts</h2>
-<div class='links'>
-<a href="#Call Method" title="Calls the named method of the given object with the provided arguments.">Call&nbsp;Method</a>&nbsp;
-<a href="#Catenate" title="Catenates the given items together and returns the resulted string.">Catenate</a>&nbsp;
-<a href="#Comment" title="Displays the given messages in the log file as keyword arguments.">Comment</a>&nbsp;
-<a href="#Convert To Boolean" title="Converts the given item to Boolean true or false.">Convert&nbsp;To&nbsp;Boolean</a>&nbsp;
-<a href="#Convert To Integer" title="Converts the given item to an integer number.">Convert&nbsp;To&nbsp;Integer</a>&nbsp;
-<a href="#Convert To Number" title="Converts the given item to a floating point number.">Convert&nbsp;To&nbsp;Number</a>&nbsp;
-<a href="#Convert To String" title="Converts the given item to a Unicode string.">Convert&nbsp;To&nbsp;String</a>&nbsp;
-<a href="#Create List" title="Returns a list containing given items.">Create&nbsp;List</a>&nbsp;
-<a href="#Evaluate" title="Evaluates the given expression in Python and returns the results.">Evaluate</a>&nbsp;
-<a href="#Fail" title="Fails the test immediately with the given (optional) message.">Fail</a>&nbsp;
-<a href="#Get Count" title="Returns and logs how many times `item2` is found from `item1`.">Get&nbsp;Count</a>&nbsp;
-<a href="#Get Length" title="Returns and logs the length of the given item.">Get&nbsp;Length</a>&nbsp;
-<a href="#Get Time" title="Returns the given time in the requested format.">Get&nbsp;Time</a>&nbsp;
-<a href="#Get Variables" title="Returns a dictionary containing all variables in the current scope.">Get&nbsp;Variables</a>&nbsp;
-<a href="#Import Library" title="Imports a library with the given name and optional arguments.">Import&nbsp;Library</a>&nbsp;
-<a href="#Import Variables" title="Imports a variable file with the given path and optional arguments.">Import&nbsp;Variables</a>&nbsp;
-<a href="#Length Should Be" title="Verifies that the length of the given item is correct.">Length&nbsp;Should&nbsp;Be</a>&nbsp;
-<a href="#Log" title="Logs the given message with the given level.">Log</a>&nbsp;
-<a href="#Log Many" title="Logs the given messages as separate entries with the INFO level.">Log&nbsp;Many</a>&nbsp;
-<a href="#Log Variables" title="Logs all variables in the current scope with given log level.">Log&nbsp;Variables</a>&nbsp;
-<a href="#No Operation" title="Does absolutely nothing.">No&nbsp;Operation</a>&nbsp;
-<a href="#Regexp Escape" title="Returns each argument string escaped for use as a regular expression.">Regexp&nbsp;Escape</a>&nbsp;
-<a href="#Remove Tags" title="Removes given `tags` from the current test or all tests in a suite.">Remove&nbsp;Tags</a>&nbsp;
-<a href="#Repeat Keyword" title="Executes the specified keyword multiple times.">Repeat&nbsp;Keyword</a>&nbsp;
-<a href="#Replace Variables" title="Replaces variables in the given text with their current values.">Replace&nbsp;Variables</a>&nbsp;
-<a href="#Run Keyword" title="Executes the given keyword with the given arguments.">Run&nbsp;Keyword</a>&nbsp;
-<a href="#Run Keyword And Expect Error" title="Runs the keyword and checks that the expected error occurred.">Run&nbsp;Keyword&nbsp;And&nbsp;Expect&nbsp;Error</a>&nbsp;
-<a href="#Run Keyword And Ignore Error" title="Runs the given keyword with the given arguments and ignores possible error.">Run&nbsp;Keyword&nbsp;And&nbsp;Ignore&nbsp;Error</a>&nbsp;
-<a href="#Run Keyword If" title="Runs the given keyword with the given arguments, if `condition` is true.">Run&nbsp;Keyword&nbsp;If</a>&nbsp;
-<a href="#Run Keyword If All Critical Tests Passed" title="Runs the given keyword with the given arguments, if all critical tests passed.">Run&nbsp;Keyword&nbsp;If&nbsp;All&nbsp;Critical&nbsp;Tests&nbsp;Passed</a>&nbsp;
-<a href="#Run Keyword If All Tests Passed" title="Runs the given keyword with the given arguments, if all tests passed.">Run&nbsp;Keyword&nbsp;If&nbsp;All&nbsp;Tests&nbsp;Passed</a>&nbsp;
-<a href="#Run Keyword If Any Critical Tests Failed" title="Runs the given keyword with the given arguments, if any critical tests failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Any&nbsp;Critical&nbsp;Tests&nbsp;Failed</a>&nbsp;
-<a href="#Run Keyword If Any Tests Failed" title="Runs the given keyword with the given arguments, if one or more tests failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Any&nbsp;Tests&nbsp;Failed</a>&nbsp;
-<a href="#Run Keyword If Test Failed" title="Runs the given keyword with the given arguments, if the test failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Test&nbsp;Failed</a>&nbsp;
-<a href="#Run Keyword If Test Passed" title="Runs the given keyword with the given arguments, if the test passed.">Run&nbsp;Keyword&nbsp;If&nbsp;Test&nbsp;Passed</a>&nbsp;
-<a href="#Run Keyword Unless" title="Runs the given keyword with the given arguments, if `condition` is false.">Run&nbsp;Keyword&nbsp;Unless</a>&nbsp;
-<a href="#Set Global Variable" title="Makes a variable available globally in all tests and suites.">Set&nbsp;Global&nbsp;Variable</a>&nbsp;
-<a href="#Set Library Search Order" title="Sets the resolution order to use when a name matches multiple keywords.">Set&nbsp;Library&nbsp;Search&nbsp;Order</a>&nbsp;
-<a href="#Set Log Level" title="Sets the log threshold to the specified level and returns the old level.">Set&nbsp;Log&nbsp;Level</a>&nbsp;
-<a href="#Set Suite Variable" title="Makes a variable available everywhere within the scope of the current suite.">Set&nbsp;Suite&nbsp;Variable</a>&nbsp;
-<a href="#Set Tags" title="Adds given `tags` for the current test or all tests in a suite.">Set&nbsp;Tags</a>&nbsp;
-<a href="#Set Test Variable" title="Makes a variable available everywhere within the scope of the current test.">Set&nbsp;Test&nbsp;Variable</a>&nbsp;
-<a href="#Set Variable" title="Returns the given values which can then be assigned to a variables.">Set&nbsp;Variable</a>&nbsp;
-<a href="#Set Variable If" title="Sets variable based on the given condition.">Set&nbsp;Variable&nbsp;If</a>&nbsp;
-<a href="#Should Be Empty" title="Verifies that the given item is empty.">Should&nbsp;Be&nbsp;Empty</a>&nbsp;
-<a href="#Should Be Equal" title="Fails if the given objects are unequal.">Should&nbsp;Be&nbsp;Equal</a>&nbsp;
-<a href="#Should Be Equal As Integers" title="Fails if objects are unequal after converting them to integers.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Integers</a>&nbsp;
-<a href="#Should Be Equal As Numbers" title="Fails if objects are unequal after converting them to real numbers.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>&nbsp;
-<a href="#Should Be Equal As Strings" title="Fails if objects are unequal after converting them to strings.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
-<a href="#Should Be True" title="Fails if the given condition is not true.">Should&nbsp;Be&nbsp;True</a>&nbsp;
-<a href="#Should Contain" title="Fails if `item1` does not contain `item2` one or more times.">Should&nbsp;Contain</a>&nbsp;
-<a href="#Should Contain X Times" title="Fails if `item1` does not contain `item2` `count` times.">Should&nbsp;Contain&nbsp;X&nbsp;Times</a>&nbsp;
-<a href="#Should End With" title="Fails if the string `str1` does not end with the string `str2`.">Should&nbsp;End&nbsp;With</a>&nbsp;
-<a href="#Should Match" title="Fails unless the given `string` matches the given `pattern`.">Should&nbsp;Match</a>&nbsp;
-<a href="#Should Match Regexp" title="Fails if `string` does not match `pattern` as a regular expression.">Should&nbsp;Match&nbsp;Regexp</a>&nbsp;
-<a href="#Should Not Be Empty" title="Verifies that the given item is not empty.">Should&nbsp;Not&nbsp;Be&nbsp;Empty</a>&nbsp;
-<a href="#Should Not Be Equal" title="Fails if the given objects are equal.">Should&nbsp;Not&nbsp;Be&nbsp;Equal</a>&nbsp;
-<a href="#Should Not Be Equal As Integers" title="Fails if objects are equal after converting them to integers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Integers</a>&nbsp;
-<a href="#Should Not Be Equal As Numbers" title="Fails if objects are equal after converting them to real numbers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>&nbsp;
-<a href="#Should Not Be Equal As Strings" title="Fails if objects are equal after converting them to strings.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>&nbsp;
-<a href="#Should Not Be True" title="Fails if the given condition is true.">Should&nbsp;Not&nbsp;Be&nbsp;True</a>&nbsp;
-<a href="#Should Not Contain" title="Fails if `item1` contains `item2` one or more times.">Should&nbsp;Not&nbsp;Contain</a>&nbsp;
-<a href="#Should Not End With" title="Fails if the string `str1` ends with the string `str2`.">Should&nbsp;Not&nbsp;End&nbsp;With</a>&nbsp;
-<a href="#Should Not Match" title="Fails if the given `string` matches the given `pattern`.">Should&nbsp;Not&nbsp;Match</a>&nbsp;
-<a href="#Should Not Match Regexp" title="Fails if `string` matches `pattern` as a regular expression.">Should&nbsp;Not&nbsp;Match&nbsp;Regexp</a>&nbsp;
-<a href="#Should Not Start With" title="Fails if the string `str1` starts with the string `str2`.">Should&nbsp;Not&nbsp;Start&nbsp;With</a>&nbsp;
-<a href="#Should Start With" title="Fails if the string `str1` does not start with the string `str2`.">Should&nbsp;Start&nbsp;With</a>&nbsp;
-<a href="#Sleep" title="Pauses the test executed for the given time.">Sleep</a>&nbsp;
-<a href="#Variable Should Exist" title="Fails unless the given variable exists within the current scope.">Variable&nbsp;Should&nbsp;Exist</a>&nbsp;
-<a href="#Variable Should Not Exist" title="Fails if the given variable exists within the current scope.">Variable&nbsp;Should&nbsp;Not&nbsp;Exist</a>&nbsp;
-<a href="#Wait Until Keyword Succeeds" title="Waits until the specified keyword succeeds or the given timeout expires.">Wait&nbsp;Until&nbsp;Keyword&nbsp;Succeeds</a>&nbsp;
+<div class='shortcuts'>
+<a href="#Call Method" title="Calls the named method of the given object with the provided arguments.">Call&nbsp;Method</a>
+&nbsp;&middot;&nbsp;
+<a href="#Catenate" title="Catenates the given items together and returns the resulted string.">Catenate</a>
+&nbsp;&middot;&nbsp;
+<a href="#Comment" title="Displays the given messages in the log file as keyword arguments.">Comment</a>
+&nbsp;&middot;&nbsp;
+<a href="#Convert To Boolean" title="Converts the given item to Boolean true or false.">Convert&nbsp;To&nbsp;Boolean</a>
+&nbsp;&middot;&nbsp;
+<a href="#Convert To Integer" title="Converts the given item to an integer number.">Convert&nbsp;To&nbsp;Integer</a>
+&nbsp;&middot;&nbsp;
+<a href="#Convert To Number" title="Converts the given item to a floating point number.">Convert&nbsp;To&nbsp;Number</a>
+&nbsp;&middot;&nbsp;
+<a href="#Convert To String" title="Converts the given item to a Unicode string.">Convert&nbsp;To&nbsp;String</a>
+&nbsp;&middot;&nbsp;
+<a href="#Create List" title="Returns a list containing given items.">Create&nbsp;List</a>
+&nbsp;&middot;&nbsp;
+<a href="#Evaluate" title="Evaluates the given expression in Python and returns the results.">Evaluate</a>
+&nbsp;&middot;&nbsp;
+<a href="#Fail" title="Fails the test immediately with the given (optional) message.">Fail</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Count" title="Returns and logs how many times `item2` is found from `item1`.">Get&nbsp;Count</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Length" title="Returns and logs the length of the given item.">Get&nbsp;Length</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Time" title="Returns the given time in the requested format.">Get&nbsp;Time</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Variables" title="Returns a dictionary containing all variables in the current scope.">Get&nbsp;Variables</a>
+&nbsp;&middot;&nbsp;
+<a href="#Import Library" title="Imports a library with the given name and optional arguments.">Import&nbsp;Library</a>
+&nbsp;&middot;&nbsp;
+<a href="#Import Variables" title="Imports a variable file with the given path and optional arguments.">Import&nbsp;Variables</a>
+&nbsp;&middot;&nbsp;
+<a href="#Length Should Be" title="Verifies that the length of the given item is correct.">Length&nbsp;Should&nbsp;Be</a>
+&nbsp;&middot;&nbsp;
+<a href="#Log" title="Logs the given message with the given level.">Log</a>
+&nbsp;&middot;&nbsp;
+<a href="#Log Many" title="Logs the given messages as separate entries with the INFO level.">Log&nbsp;Many</a>
+&nbsp;&middot;&nbsp;
+<a href="#Log Variables" title="Logs all variables in the current scope with given log level.">Log&nbsp;Variables</a>
+&nbsp;&middot;&nbsp;
+<a href="#No Operation" title="Does absolutely nothing.">No&nbsp;Operation</a>
+&nbsp;&middot;&nbsp;
+<a href="#Regexp Escape" title="Returns each argument string escaped for use as a regular expression.">Regexp&nbsp;Escape</a>
+&nbsp;&middot;&nbsp;
+<a href="#Remove Tags" title="Removes given `tags` from the current test or all tests in a suite.">Remove&nbsp;Tags</a>
+&nbsp;&middot;&nbsp;
+<a href="#Repeat Keyword" title="Executes the specified keyword multiple times.">Repeat&nbsp;Keyword</a>
+&nbsp;&middot;&nbsp;
+<a href="#Replace Variables" title="Replaces variables in the given text with their current values.">Replace&nbsp;Variables</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword" title="Executes the given keyword with the given arguments.">Run&nbsp;Keyword</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword And Expect Error" title="Runs the keyword and checks that the expected error occurred.">Run&nbsp;Keyword&nbsp;And&nbsp;Expect&nbsp;Error</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword And Ignore Error" title="Runs the given keyword with the given arguments and ignores possible error.">Run&nbsp;Keyword&nbsp;And&nbsp;Ignore&nbsp;Error</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword If" title="Runs the given keyword with the given arguments, if `condition` is true.">Run&nbsp;Keyword&nbsp;If</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword If All Critical Tests Passed" title="Runs the given keyword with the given arguments, if all critical tests passed.">Run&nbsp;Keyword&nbsp;If&nbsp;All&nbsp;Critical&nbsp;Tests&nbsp;Passed</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword If All Tests Passed" title="Runs the given keyword with the given arguments, if all tests passed.">Run&nbsp;Keyword&nbsp;If&nbsp;All&nbsp;Tests&nbsp;Passed</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword If Any Critical Tests Failed" title="Runs the given keyword with the given arguments, if any critical tests failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Any&nbsp;Critical&nbsp;Tests&nbsp;Failed</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword If Any Tests Failed" title="Runs the given keyword with the given arguments, if one or more tests failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Any&nbsp;Tests&nbsp;Failed</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword If Test Failed" title="Runs the given keyword with the given arguments, if the test failed.">Run&nbsp;Keyword&nbsp;If&nbsp;Test&nbsp;Failed</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword If Test Passed" title="Runs the given keyword with the given arguments, if the test passed.">Run&nbsp;Keyword&nbsp;If&nbsp;Test&nbsp;Passed</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run Keyword Unless" title="Runs the given keyword with the given arguments, if `condition` is false.">Run&nbsp;Keyword&nbsp;Unless</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Global Variable" title="Makes a variable available globally in all tests and suites.">Set&nbsp;Global&nbsp;Variable</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Library Search Order" title="Sets the resolution order to use when a name matches multiple keywords.">Set&nbsp;Library&nbsp;Search&nbsp;Order</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Log Level" title="Sets the log threshold to the specified level and returns the old level.">Set&nbsp;Log&nbsp;Level</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Suite Variable" title="Makes a variable available everywhere within the scope of the current suite.">Set&nbsp;Suite&nbsp;Variable</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Tags" title="Adds given `tags` for the current test or all tests in a suite.">Set&nbsp;Tags</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Test Variable" title="Makes a variable available everywhere within the scope of the current test.">Set&nbsp;Test&nbsp;Variable</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Variable" title="Returns the given values which can then be assigned to a variables.">Set&nbsp;Variable</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Variable If" title="Sets variable based on the given condition.">Set&nbsp;Variable&nbsp;If</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Be Empty" title="Verifies that the given item is empty.">Should&nbsp;Be&nbsp;Empty</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Be Equal" title="Fails if the given objects are unequal.">Should&nbsp;Be&nbsp;Equal</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Be Equal As Integers" title="Fails if objects are unequal after converting them to integers.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Integers</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Be Equal As Numbers" title="Fails if objects are unequal after converting them to real numbers.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Be Equal As Strings" title="Fails if objects are unequal after converting them to strings.">Should&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Be True" title="Fails if the given condition is not true.">Should&nbsp;Be&nbsp;True</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Contain" title="Fails if `item1` does not contain `item2` one or more times.">Should&nbsp;Contain</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Contain X Times" title="Fails if `item1` does not contain `item2` `count` times.">Should&nbsp;Contain&nbsp;X&nbsp;Times</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should End With" title="Fails if the string `str1` does not end with the string `str2`.">Should&nbsp;End&nbsp;With</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Match" title="Fails unless the given `string` matches the given `pattern`.">Should&nbsp;Match</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Match Regexp" title="Fails if `string` does not match `pattern` as a regular expression.">Should&nbsp;Match&nbsp;Regexp</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Be Empty" title="Verifies that the given item is not empty.">Should&nbsp;Not&nbsp;Be&nbsp;Empty</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Be Equal" title="Fails if the given objects are equal.">Should&nbsp;Not&nbsp;Be&nbsp;Equal</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Be Equal As Integers" title="Fails if objects are equal after converting them to integers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Integers</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Be Equal As Numbers" title="Fails if objects are equal after converting them to real numbers.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Numbers</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Be Equal As Strings" title="Fails if objects are equal after converting them to strings.">Should&nbsp;Not&nbsp;Be&nbsp;Equal&nbsp;As&nbsp;Strings</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Be True" title="Fails if the given condition is true.">Should&nbsp;Not&nbsp;Be&nbsp;True</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Contain" title="Fails if `item1` contains `item2` one or more times.">Should&nbsp;Not&nbsp;Contain</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not End With" title="Fails if the string `str1` ends with the string `str2`.">Should&nbsp;Not&nbsp;End&nbsp;With</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Match" title="Fails if the given `string` matches the given `pattern`.">Should&nbsp;Not&nbsp;Match</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Match Regexp" title="Fails if `string` matches `pattern` as a regular expression.">Should&nbsp;Not&nbsp;Match&nbsp;Regexp</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Start With" title="Fails if the string `str1` starts with the string `str2`.">Should&nbsp;Not&nbsp;Start&nbsp;With</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Start With" title="Fails if the string `str1` does not start with the string `str2`.">Should&nbsp;Start&nbsp;With</a>
+&nbsp;&middot;&nbsp;
+<a href="#Sleep" title="Pauses the test executed for the given time.">Sleep</a>
+&nbsp;&middot;&nbsp;
+<a href="#Variable Should Exist" title="Fails unless the given variable exists within the current scope.">Variable&nbsp;Should&nbsp;Exist</a>
+&nbsp;&middot;&nbsp;
+<a href="#Variable Should Not Exist" title="Fails if the given variable exists within the current scope.">Variable&nbsp;Should&nbsp;Not&nbsp;Exist</a>
+&nbsp;&middot;&nbsp;
+<a href="#Wait Until Keyword Succeeds" title="Waits until the specified keyword succeeds or the given timeout expires.">Wait&nbsp;Until&nbsp;Keyword&nbsp;Succeeds</a>
 </div>
 
 <h2>Keywords</h2>
@@ -527,7 +603,7 @@ Examples (expecting the current time is 2006-03-29 15:06:21):<br />
 <br />
 This functionality allows dynamic importing of libraries while tests are running. That may be necessary, if the library itself is dynamic and not yet available when test data is processed. In a normal case, libraries should be imported using the Library setting in the Setting table.<br />
 <br />
-This keyword supports importing libraries both using library names and physical paths. When path are used, they must be given in absolute format. Starting from 2.0.2 version, forward slashes can be used as path separators in all operating systems. It is possible to use arguments as well as to give a custom name with 'WITH NAME' syntax. For more information about importing libraries, see Robot Framework User Guide.<br />
+This keyword supports importing libraries both using library names and physical paths. When path are used, they must be given in absolute format. Forward slashes can be used as path separators in all operating systems. It is possible to use arguments as well as to give a custom name with 'WITH NAME' syntax. For more information about importing libraries, see Robot Framework User Guide.<br />
 <br />
 Examples:<br />
 <table border="1" class="doc">
@@ -562,7 +638,7 @@ Examples:<br />
 <br />
 Variables imported with this keyword are set into the test suite scope similarly when importing them in the Setting table using the Variables setting. These variables override possible existing variables with the same names and this functionality can thus be used to import new variables, e.g. for each test in a test suite.<br />
 <br />
-The given path must be absolute. Starting from 2.0.2 version, forward slashes can be used as path separator regardless the operating system, but on earlier versions ${/} variable must be used instead.<br />
+The given path must be absolute. Forward slashes can be used as path separator regardless the operating system.<br />
 <br />
 Examples:<br />
 <table border="1" class="doc">
@@ -656,8 +732,7 @@ Example:<br />
 <td>?ython</td>
 </tr>
 </table>
-<br />
-New in Robot Framework version 2.0.3.</td>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Repeat Keyword"></a>Repeat Keyword</td>
@@ -716,7 +791,7 @@ The file 'template.txt' contains 'Hello ${NAME}!' and variable '${NAME}' has the
 </tr>
 </table>
 <br />
-If the given <span class="name">text</span> contains only a single variable, its value is returned as-is. Otherwise, and always with Robot Framework 2.0.3 and earlier, this keyword returns a string.</td>
+If the given <span class="name">text</span> contains only a single variable, its value is returned as-is and it can be any object. Otherwise this keyword always returns a string.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword"></a>Run Keyword</td>
@@ -990,9 +1065,7 @@ When this keyword is used inside a test case, that test gets the specified tags 
 <br />
 If this keyword is used in a suite setup, all test cases in that suite, recursively, gets the given tags. It is a failure to use this keyword in a suite teardown.<br />
 <br />
-See <a href="#Remove Tags" class="name">Remove Tags</a> for another keyword to modify tags at test execution time.<br />
-<br />
-New in Robot Framework version 2.0.3.</td>
+See <a href="#Remove Tags" class="name">Remove Tags</a> for another keyword to modify tags at test execution time.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Test Variable"></a>Set Test Variable</td>
@@ -1086,7 +1159,7 @@ The basic usage is giving a condition and two values. The given condition is fir
 - ${var2} = 'value2'<br />
 - ${var3} = None<br />
 <br />
-Starting from Robot Framework 2.0.2 it is also possible to have 'Else If' support by replacing the second value with another condition, and having two new values after it. If the first condition is not true, the second is evaluated and one of the values after it is returned based on its truth value. This can be continued by adding more conditions without a limit.<br />
+It is also possible to have 'Else If' support by replacing the second value with another condition, and having two new values after it. If the first condition is not true, the second is evaluated and one of the values after it is returned based on its truth value. This can be continued by adding more conditions without a limit.<br />
 <br />
 <table border="1" class="doc">
 <tr>
@@ -1174,7 +1247,7 @@ See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanati
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if objects are unequal after converting them to real numbers.<br />
 <br />
-Starting from Robot Framework 2.0.2, the check for equality is done using six decimal places.<br />
+The check for equality is done using six decimal places.<br />
 <br />
 See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
@@ -1370,7 +1443,7 @@ See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanati
   <td class="arg">first, second, msg=None, values=True</td>
   <td class="doc">Fails if objects are equal after converting them to real numbers.<br />
 <br />
-Starting from Robot Framework 2.0.2, the check for equality is done using six decimal places.<br />
+The check for equality is done using six decimal places.<br />
 <br />
 See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
@@ -1520,10 +1593,10 @@ Example:<br />
 </td>
 </tr>
 </table>
-<p class="footer">
+<p id="footer">
 Altogether 71 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2010-03-23 19:20:39.
+on 2010-03-29 17:39:44.
 </p>
 </body>
 </html>

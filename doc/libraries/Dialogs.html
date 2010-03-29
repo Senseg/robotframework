@@ -1,98 +1,107 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Dialogs - Documentation</title>
+<title>Dialogs</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style>
-  body {
-    background: white;
-    color: black;
-  }
+<style media="all" type="text/css">
+body {
+  background: white;
+  color: black;
+  font-size: small;
+  font-family: sans-serif;
+  padding: 0.1em 0.5em;
+}
+a.name, span.name {  
+  font-style: italic;
+  color: black;
+}
+a:link, a:visited {
+  color: black;
+}
+a:hover, a:active {
+  text-decoration: underline;
+  color: #666;
+}
+div.shortcuts {
+  margin: 1em 0em;
+}
+div.shortcuts a {
+  text-decoration: none;
+}
+div.shortcuts a:hover {
+  text-decoration: underline;
+}
+table.keywords {
+  border: 2px solid black;
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 0.3em 0em;
+  width: 100%;
+}
+table.keywords th, table.keywords td {
+  border: 2px solid black;
+  padding: 0.2em;
+  vertical-align: top;
+}
+table.keywords th {
+  background: #bbb;
+  color: black;
+}
+table.keywords td.kw {
+  width: 150px;
+  color: black;
+}
+table.keywords td.arg {
+  width: 300px;
+  font-style: italic;
+}
+table.doc {
+  border: 1px solid black;
+  background: transparent;
+  border-collapse: collapse;
+  empty-cells: show;
+  font-size: 0.85em;
+}
+table.doc td {
+  border: 1px solid black;
+  padding: 0.1em 0.3em;
+  height: 1.2em;
 
-  /* Generic Table Styles */
-  table {
-    background: white;
-    border: 1px solid black;
-    border-collapse: collapse;
-    empty-cells: show;
-    margin: 0.3em 0em;
-  }
-  th, td {
-    border: 1px solid black;
-    padding: 0.2em;
-  }
-  th {
-    background: #C6C6C6;
-  }
-  td {
-    vertical-align: top;
-  }    
-
-  /* Columns */
-  td.kw {
-    font-weight: bold;
-  }
-  td.arg {
-    width: 300px;
-    font-style: italic;
-  }
-  td.doc {
-  }
-
-  /* Tables in documentation */
-  table.doc {
-    border: 1px solid gray;
-    background: transparent;
-    border-collapse: collapse;
-    empty-cells: show;
-    font-size: 0.85em;
-    font-family: arial,helvetica,sans-serif;
-  }
-  table.doc td {
-    border: 1px solid gray;
-    padding: 0.1em 0.3em;
-    height: 1.2em;
-  }
-
-  /* Paragraphs */
-  .libdoc, .links {
-    width: 800px;
-  }
-
-  /* Misc */
-  a.name, span.name {  
-    font-style: italic;
-    background: #f4f4f4;
-    text-decoration: none;
-  }
-  a:link, a:visited {
-    color: blue;
-  }
-  a:hover, a:active {
-    text-decoration: underline;
-    color: purple;
-  }
-  .footer {
-    font-size: 0.9em;
-  }
+}
+#footer {
+  font-size: 0.9em;
+}
+</style>
+<style media="print" type="text/css">
+body {
+  margin: 0px 1px;
+  padding: 0px;
+  font-size: 10px;
+}
+a {
+  text-decoration: none;
+}
 </style>
 </head>
 <body>
-<h1>Dialogs - Documentation</h1>
+<h1>Dialogs</h1>
 <p><b>Version:</b> trunk 20100323</p>
 
 <h2 id="introduction">Introduction</h2>
-<p class='libdoc'>A test library providing dialogs for interacting with users.<br />
+<p>A test library providing dialogs for interacting with users.<br />
 <br />
 <span class="name">Dialogs</span> is Robot Framework's standard library that provides means for pausing the test execution and getting input from users. The dialogs are slightly different depending on are tests run on Python or Jython but they provide the same functionality.</p>
 
 
 <h2>Shortcuts</h2>
-<div class='links'>
-<a href="#Execute Manual Step" title="Pauses the test execution until user sets the keyword status.">Execute&nbsp;Manual&nbsp;Step</a>&nbsp;
-<a href="#Get Selection From User" title="Pauses the test execution and asks user to select value">Get&nbsp;Selection&nbsp;From&nbsp;User</a>&nbsp;
-<a href="#Get Value From User" title="Pauses the test execution and asks user to input a value.">Get&nbsp;Value&nbsp;From&nbsp;User</a>&nbsp;
-<a href="#Pause Execution" title="Pauses the test execution and shows dialog with the text `message`.">Pause&nbsp;Execution</a>&nbsp;
+<div class='shortcuts'>
+<a href="#Execute Manual Step" title="Pauses the test execution until user sets the keyword status.">Execute&nbsp;Manual&nbsp;Step</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Selection From User" title="Pauses the test execution and asks user to select value">Get&nbsp;Selection&nbsp;From&nbsp;User</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Value From User" title="Pauses the test execution and asks user to input a value.">Get&nbsp;Value&nbsp;From&nbsp;User</a>
+&nbsp;&middot;&nbsp;
+<a href="#Pause Execution" title="Pauses the test execution and shows dialog with the text `message`.">Pause&nbsp;Execution</a>
 </div>
 
 <h2>Keywords</h2>
@@ -131,10 +140,10 @@ This keyword was added into Robot Framework 2.1.2.</td>
   <td class="doc">Pauses the test execution and shows dialog with the text <span class="name">message</span>.</td>
 </tr>
 </table>
-<p class="footer">
+<p id="footer">
 Altogether 4 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2010-03-23 19:20:40.
+on 2010-03-29 17:39:45.
 </p>
 </body>
 </html>

@@ -1,88 +1,94 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>OperatingSystem - Documentation</title>
+<title>OperatingSystem</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style>
-  body {
-    background: white;
-    color: black;
-  }
+<style media="all" type="text/css">
+body {
+  background: white;
+  color: black;
+  font-size: small;
+  font-family: sans-serif;
+  padding: 0.1em 0.5em;
+}
+a.name, span.name {  
+  font-style: italic;
+  color: black;
+}
+a:link, a:visited {
+  color: black;
+}
+a:hover, a:active {
+  text-decoration: underline;
+  color: #666;
+}
+div.shortcuts {
+  margin: 1em 0em;
+}
+div.shortcuts a {
+  text-decoration: none;
+}
+div.shortcuts a:hover {
+  text-decoration: underline;
+}
+table.keywords {
+  border: 2px solid black;
+  border-collapse: collapse;
+  empty-cells: show;
+  margin: 0.3em 0em;
+  width: 100%;
+}
+table.keywords th, table.keywords td {
+  border: 2px solid black;
+  padding: 0.2em;
+  vertical-align: top;
+}
+table.keywords th {
+  background: #bbb;
+  color: black;
+}
+table.keywords td.kw {
+  width: 150px;
+  color: black;
+}
+table.keywords td.arg {
+  width: 300px;
+  font-style: italic;
+}
+table.doc {
+  border: 1px solid black;
+  background: transparent;
+  border-collapse: collapse;
+  empty-cells: show;
+  font-size: 0.85em;
+}
+table.doc td {
+  border: 1px solid black;
+  padding: 0.1em 0.3em;
+  height: 1.2em;
 
-  /* Generic Table Styles */
-  table {
-    background: white;
-    border: 1px solid black;
-    border-collapse: collapse;
-    empty-cells: show;
-    margin: 0.3em 0em;
-  }
-  th, td {
-    border: 1px solid black;
-    padding: 0.2em;
-  }
-  th {
-    background: #C6C6C6;
-  }
-  td {
-    vertical-align: top;
-  }    
-
-  /* Columns */
-  td.kw {
-    font-weight: bold;
-  }
-  td.arg {
-    width: 300px;
-    font-style: italic;
-  }
-  td.doc {
-  }
-
-  /* Tables in documentation */
-  table.doc {
-    border: 1px solid gray;
-    background: transparent;
-    border-collapse: collapse;
-    empty-cells: show;
-    font-size: 0.85em;
-    font-family: arial,helvetica,sans-serif;
-  }
-  table.doc td {
-    border: 1px solid gray;
-    padding: 0.1em 0.3em;
-    height: 1.2em;
-  }
-
-  /* Paragraphs */
-  .libdoc, .links {
-    width: 800px;
-  }
-
-  /* Misc */
-  a.name, span.name {  
-    font-style: italic;
-    background: #f4f4f4;
-    text-decoration: none;
-  }
-  a:link, a:visited {
-    color: blue;
-  }
-  a:hover, a:active {
-    text-decoration: underline;
-    color: purple;
-  }
-  .footer {
-    font-size: 0.9em;
-  }
+}
+#footer {
+  font-size: 0.9em;
+}
+</style>
+<style media="print" type="text/css">
+body {
+  margin: 0px 1px;
+  padding: 0px;
+  font-size: 10px;
+}
+a {
+  text-decoration: none;
+}
 </style>
 </head>
 <body>
-<h1>OperatingSystem - Documentation</h1>
+<h1>OperatingSystem</h1>
 <p><b>Version:</b> trunk 20100323</p>
 
 <h2 id="introduction">Introduction</h2>
-<p class='libdoc'>A test library providing keywords for OS related tasks.<br />
+<p>A test library providing keywords for OS related tasks.<br />
 <br />
 <span class="name">OperatingSystem</span> is Robot Framework's standard library that enables various operating system related tasks to be performed in the system where Robot Framework is running. It can, among other things, execute commands (e.g. <a href="#Run" class="name">Run</a>), create and remove files and directories (e.g. <a href="#Create File" class="name">Create File</a>, <a href="#Remove Directory" class="name">Remove Directory</a>), check whether files or directories exists or contain something (e.g. <a href="#File Should Exist" class="name">File Should Exist</a>, <a href="#Directory Should Be Empty" class="name">Directory Should Be Empty</a>) and manipulate environment variables (e.g. <a href="#Set Environment Variable" class="name">Set Environment Variable</a>).<br />
 <br />
@@ -174,62 +180,116 @@ All keywords expecting paths as arguments accept a forward slash (<span class="n
 
 
 <h2>Shortcuts</h2>
-<div class='links'>
-<a href="#Append To File" title="Appends the given contend to the specified file.">Append&nbsp;To&nbsp;File</a>&nbsp;
-<a href="#Copy Directory" title="Copies the source directory into the destination.">Copy&nbsp;Directory</a>&nbsp;
-<a href="#Copy File" title="Copies the source file into a new destination.">Copy&nbsp;File</a>&nbsp;
-<a href="#Count Directories In Directory" title="Returns the number of subdirectories in the given directory.">Count&nbsp;Directories&nbsp;In&nbsp;Directory</a>&nbsp;
-<a href="#Count Files In Directory" title="Returns the number of files in the given directory.">Count&nbsp;Files&nbsp;In&nbsp;Directory</a>&nbsp;
-<a href="#Count Items In Directory" title="Returns the number of all items in the given directory.">Count&nbsp;Items&nbsp;In&nbsp;Directory</a>&nbsp;
-<a href="#Create Directory" title="Creates the specified directory.">Create&nbsp;Directory</a>&nbsp;
-<a href="#Create File" title="Creates a file to the given path with the given content.">Create&nbsp;File</a>&nbsp;
-<a href="#Create File With Encoding" title="Writes the given contend to the specified file.">Create&nbsp;File&nbsp;With&nbsp;Encoding</a>&nbsp;
-<a href="#Directory Should Be Empty" title="Fails unless the specified directory is empty.">Directory&nbsp;Should&nbsp;Be&nbsp;Empty</a>&nbsp;
-<a href="#Directory Should Exist" title="Fails unless the given path points to an existing directory.">Directory&nbsp;Should&nbsp;Exist</a>&nbsp;
-<a href="#Directory Should Not Be Empty" title="Fails if the specified directory is empty.">Directory&nbsp;Should&nbsp;Not&nbsp;Be&nbsp;Empty</a>&nbsp;
-<a href="#Directory Should Not Exist" title="Fails if the given path points to an existing file.">Directory&nbsp;Should&nbsp;Not&nbsp;Exist</a>&nbsp;
-<a href="#Empty Directory" title="Deletes all the content (incl. subdirectories) from the given directory.">Empty&nbsp;Directory</a>&nbsp;
-<a href="#Environment Variable Should Be Set" title="Fails if the specified environment variable is not set.">Environment&nbsp;Variable&nbsp;Should&nbsp;Be&nbsp;Set</a>&nbsp;
-<a href="#Environment Variable Should Not Be Set" title="Fails if the specified environment variable is set.">Environment&nbsp;Variable&nbsp;Should&nbsp;Not&nbsp;Be&nbsp;Set</a>&nbsp;
-<a href="#File Should Be Empty" title="Fails unless the specified file is empty.">File&nbsp;Should&nbsp;Be&nbsp;Empty</a>&nbsp;
-<a href="#File Should Exist" title="Fails unless the given `path` points to an existing file.">File&nbsp;Should&nbsp;Exist</a>&nbsp;
-<a href="#File Should Not Be Empty" title="Fails if the specified directory is empty.">File&nbsp;Should&nbsp;Not&nbsp;Be&nbsp;Empty</a>&nbsp;
-<a href="#File Should Not Exist" title="Fails if the given path points to an existing file.">File&nbsp;Should&nbsp;Not&nbsp;Exist</a>&nbsp;
-<a href="#Get Environment Variable" title="Returns the value of an environment variable with the given name.">Get&nbsp;Environment&nbsp;Variable</a>&nbsp;
-<a href="#Get File" title="Returns the contents of a specified file.">Get&nbsp;File</a>&nbsp;
-<a href="#Get File Size" title="Returns and logs file size as an integer in bytes">Get&nbsp;File&nbsp;Size</a>&nbsp;
-<a href="#Get Modified Time" title="Returns the last modification time of a file or directory.">Get&nbsp;Modified&nbsp;Time</a>&nbsp;
-<a href="#Grep File" title="Returns the lines of the specified file that match the `pattern`.">Grep&nbsp;File</a>&nbsp;
-<a href="#Join Path" title="Joins the given path part(s) to the given base path.">Join&nbsp;Path</a>&nbsp;
-<a href="#Join Paths" title="Joins given paths with base and returns resulted paths.">Join&nbsp;Paths</a>&nbsp;
-<a href="#List Directories In Directory" title="A wrapper for `List Directory` that returns only directories.">List&nbsp;Directories&nbsp;In&nbsp;Directory</a>&nbsp;
-<a href="#List Directory" title="Returns items from a directory, optionally filtered with `pattern`.">List&nbsp;Directory</a>&nbsp;
-<a href="#List Files In Directory" title="A wrapper for `List Directory` that returns only files.">List&nbsp;Files&nbsp;In&nbsp;Directory</a>&nbsp;
-<a href="#Log File" title="Wrapper for `Get File` that also logs the returned file.">Log&nbsp;File</a>&nbsp;
-<a href="#Move Directory" title="Moves the source directory into a destination.">Move&nbsp;Directory</a>&nbsp;
-<a href="#Move File" title="Moves the source file into a new destination.">Move&nbsp;File</a>&nbsp;
-<a href="#Normalize Path" title="Normalizes the given path.">Normalize&nbsp;Path</a>&nbsp;
-<a href="#Read Process Output" title="Waits for the process to finish and returns its output.">Read&nbsp;Process&nbsp;Output</a>&nbsp;
-<a href="#Remove Directory" title="Removes the directory pointed to by the given `path`.">Remove&nbsp;Directory</a>&nbsp;
-<a href="#Remove Environment Variable" title="Deletes the specified environment variable.">Remove&nbsp;Environment&nbsp;Variable</a>&nbsp;
-<a href="#Remove File" title="Removes a file with the given path.">Remove&nbsp;File</a>&nbsp;
-<a href="#Remove Files" title="Uses `Remove File` to remove multiple files one-by-one.">Remove&nbsp;Files</a>&nbsp;
-<a href="#Run" title="Runs the given command in the system and returns the output.">Run</a>&nbsp;
-<a href="#Run And Return Rc" title="Runs the given command in the system and returns the return code.">Run&nbsp;And&nbsp;Return&nbsp;Rc</a>&nbsp;
-<a href="#Run And Return Rc And Output" title="Runs the given command in the system and returns the RC and output.">Run&nbsp;And&nbsp;Return&nbsp;Rc&nbsp;And&nbsp;Output</a>&nbsp;
-<a href="#Set Environment Variable" title="Sets an environment variable to a specified value.">Set&nbsp;Environment&nbsp;Variable</a>&nbsp;
-<a href="#Set Modified Time" title="Sets the file modification time.">Set&nbsp;Modified&nbsp;Time</a>&nbsp;
-<a href="#Should Exist" title="Fails unless the given path (file or directory) exists.">Should&nbsp;Exist</a>&nbsp;
-<a href="#Should Not Exist" title="Fails if the given path (file or directory) exists.">Should&nbsp;Not&nbsp;Exist</a>&nbsp;
-<a href="#Split Extension" title="Splits the extension from the given path.">Split&nbsp;Extension</a>&nbsp;
-<a href="#Split Path" title="Splits the given path from the last path separator ('/' or '\').">Split&nbsp;Path</a>&nbsp;
-<a href="#Start Process" title="Starts the given command as a background process.">Start&nbsp;Process</a>&nbsp;
-<a href="#Stop All Processes" title="Stops all the processes and removes them from the process list.">Stop&nbsp;All&nbsp;Processes</a>&nbsp;
-<a href="#Stop Process" title="Stops the current process without reading from it.">Stop&nbsp;Process</a>&nbsp;
-<a href="#Switch Process" title="Switches the active process to the specified process.">Switch&nbsp;Process</a>&nbsp;
-<a href="#Touch" title="Emulates the UNIX touch command.">Touch</a>&nbsp;
-<a href="#Wait Until Created" title="Waits until the given file or directory is created.">Wait&nbsp;Until&nbsp;Created</a>&nbsp;
-<a href="#Wait Until Removed" title="Waits until the given file or directory is removed.">Wait&nbsp;Until&nbsp;Removed</a>&nbsp;
+<div class='shortcuts'>
+<a href="#Append To File" title="Appends the given contend to the specified file.">Append&nbsp;To&nbsp;File</a>
+&nbsp;&middot;&nbsp;
+<a href="#Copy Directory" title="Copies the source directory into the destination.">Copy&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#Copy File" title="Copies the source file into a new destination.">Copy&nbsp;File</a>
+&nbsp;&middot;&nbsp;
+<a href="#Count Directories In Directory" title="Returns the number of subdirectories in the given directory.">Count&nbsp;Directories&nbsp;In&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#Count Files In Directory" title="Returns the number of files in the given directory.">Count&nbsp;Files&nbsp;In&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#Count Items In Directory" title="Returns the number of all items in the given directory.">Count&nbsp;Items&nbsp;In&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#Create Directory" title="Creates the specified directory.">Create&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#Create File" title="Creates a file with the given content and encoding.">Create&nbsp;File</a>
+&nbsp;&middot;&nbsp;
+<a href="#Create File With Encoding" title="*DEPRECATED* Use `Create File` instead. This keyword will be removed in RF 2.6.">Create&nbsp;File&nbsp;With&nbsp;Encoding</a>
+&nbsp;&middot;&nbsp;
+<a href="#Directory Should Be Empty" title="Fails unless the specified directory is empty.">Directory&nbsp;Should&nbsp;Be&nbsp;Empty</a>
+&nbsp;&middot;&nbsp;
+<a href="#Directory Should Exist" title="Fails unless the given path points to an existing directory.">Directory&nbsp;Should&nbsp;Exist</a>
+&nbsp;&middot;&nbsp;
+<a href="#Directory Should Not Be Empty" title="Fails if the specified directory is empty.">Directory&nbsp;Should&nbsp;Not&nbsp;Be&nbsp;Empty</a>
+&nbsp;&middot;&nbsp;
+<a href="#Directory Should Not Exist" title="Fails if the given path points to an existing file.">Directory&nbsp;Should&nbsp;Not&nbsp;Exist</a>
+&nbsp;&middot;&nbsp;
+<a href="#Empty Directory" title="Deletes all the content (incl. subdirectories) from the given directory.">Empty&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#Environment Variable Should Be Set" title="Fails if the specified environment variable is not set.">Environment&nbsp;Variable&nbsp;Should&nbsp;Be&nbsp;Set</a>
+&nbsp;&middot;&nbsp;
+<a href="#Environment Variable Should Not Be Set" title="Fails if the specified environment variable is set.">Environment&nbsp;Variable&nbsp;Should&nbsp;Not&nbsp;Be&nbsp;Set</a>
+&nbsp;&middot;&nbsp;
+<a href="#File Should Be Empty" title="Fails unless the specified file is empty.">File&nbsp;Should&nbsp;Be&nbsp;Empty</a>
+&nbsp;&middot;&nbsp;
+<a href="#File Should Exist" title="Fails unless the given `path` points to an existing file.">File&nbsp;Should&nbsp;Exist</a>
+&nbsp;&middot;&nbsp;
+<a href="#File Should Not Be Empty" title="Fails if the specified directory is empty.">File&nbsp;Should&nbsp;Not&nbsp;Be&nbsp;Empty</a>
+&nbsp;&middot;&nbsp;
+<a href="#File Should Not Exist" title="Fails if the given path points to an existing file.">File&nbsp;Should&nbsp;Not&nbsp;Exist</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Environment Variable" title="Returns the value of an environment variable with the given name.">Get&nbsp;Environment&nbsp;Variable</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get File" title="Returns the contents of a specified file.">Get&nbsp;File</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get File Size" title="Returns and logs file size as an integer in bytes">Get&nbsp;File&nbsp;Size</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Modified Time" title="Returns the last modification time of a file or directory.">Get&nbsp;Modified&nbsp;Time</a>
+&nbsp;&middot;&nbsp;
+<a href="#Grep File" title="Returns the lines of the specified file that match the `pattern`.">Grep&nbsp;File</a>
+&nbsp;&middot;&nbsp;
+<a href="#Join Path" title="Joins the given path part(s) to the given base path.">Join&nbsp;Path</a>
+&nbsp;&middot;&nbsp;
+<a href="#Join Paths" title="Joins given paths with base and returns resulted paths.">Join&nbsp;Paths</a>
+&nbsp;&middot;&nbsp;
+<a href="#List Directories In Directory" title="A wrapper for `List Directory` that returns only directories.">List&nbsp;Directories&nbsp;In&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#List Directory" title="Returns items from a directory, optionally filtered with `pattern`.">List&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#List Files In Directory" title="A wrapper for `List Directory` that returns only files.">List&nbsp;Files&nbsp;In&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#Log File" title="Wrapper for `Get File` that also logs the returned file.">Log&nbsp;File</a>
+&nbsp;&middot;&nbsp;
+<a href="#Move Directory" title="Moves the source directory into a destination.">Move&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#Move File" title="Moves the source file into a new destination.">Move&nbsp;File</a>
+&nbsp;&middot;&nbsp;
+<a href="#Normalize Path" title="Normalizes the given path.">Normalize&nbsp;Path</a>
+&nbsp;&middot;&nbsp;
+<a href="#Read Process Output" title="Waits for the process to finish and returns its output.">Read&nbsp;Process&nbsp;Output</a>
+&nbsp;&middot;&nbsp;
+<a href="#Remove Directory" title="Removes the directory pointed to by the given `path`.">Remove&nbsp;Directory</a>
+&nbsp;&middot;&nbsp;
+<a href="#Remove Environment Variable" title="Deletes the specified environment variable.">Remove&nbsp;Environment&nbsp;Variable</a>
+&nbsp;&middot;&nbsp;
+<a href="#Remove File" title="Removes a file with the given path.">Remove&nbsp;File</a>
+&nbsp;&middot;&nbsp;
+<a href="#Remove Files" title="Uses `Remove File` to remove multiple files one-by-one.">Remove&nbsp;Files</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run" title="Runs the given command in the system and returns the output.">Run</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run And Return Rc" title="Runs the given command in the system and returns the return code.">Run&nbsp;And&nbsp;Return&nbsp;Rc</a>
+&nbsp;&middot;&nbsp;
+<a href="#Run And Return Rc And Output" title="Runs the given command in the system and returns the RC and output.">Run&nbsp;And&nbsp;Return&nbsp;Rc&nbsp;And&nbsp;Output</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Environment Variable" title="Sets an environment variable to a specified value.">Set&nbsp;Environment&nbsp;Variable</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Modified Time" title="Sets the file modification time.">Set&nbsp;Modified&nbsp;Time</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Exist" title="Fails unless the given path (file or directory) exists.">Should&nbsp;Exist</a>
+&nbsp;&middot;&nbsp;
+<a href="#Should Not Exist" title="Fails if the given path (file or directory) exists.">Should&nbsp;Not&nbsp;Exist</a>
+&nbsp;&middot;&nbsp;
+<a href="#Split Extension" title="Splits the extension from the given path.">Split&nbsp;Extension</a>
+&nbsp;&middot;&nbsp;
+<a href="#Split Path" title="Splits the given path from the last path separator ('/' or '\').">Split&nbsp;Path</a>
+&nbsp;&middot;&nbsp;
+<a href="#Start Process" title="Starts the given command as a background process.">Start&nbsp;Process</a>
+&nbsp;&middot;&nbsp;
+<a href="#Stop All Processes" title="Stops all the processes and removes them from the process list.">Stop&nbsp;All&nbsp;Processes</a>
+&nbsp;&middot;&nbsp;
+<a href="#Stop Process" title="Stops the current process without reading from it.">Stop&nbsp;Process</a>
+&nbsp;&middot;&nbsp;
+<a href="#Switch Process" title="Switches the active process to the specified process.">Switch&nbsp;Process</a>
+&nbsp;&middot;&nbsp;
+<a href="#Touch" title="Emulates the UNIX touch command.">Touch</a>
+&nbsp;&middot;&nbsp;
+<a href="#Wait Until Created" title="Waits until the given file or directory is created.">Wait&nbsp;Until&nbsp;Created</a>
+&nbsp;&middot;&nbsp;
+<a href="#Wait Until Removed" title="Waits until the given file or directory is removed.">Wait&nbsp;Until&nbsp;Removed</a>
 </div>
 
 <h2>Keywords</h2>
@@ -296,25 +356,19 @@ Also possible intermediate directories are created. Passes if the directory alre
 </tr>
 <tr>
   <td class="kw"><a name="Create File"></a>Create File</td>
-  <td class="arg">path, content=, mode=DEPRECATED</td>
-  <td class="doc">Creates a file to the given path with the given content.<br />
+  <td class="arg">path, content=, encoding=UTF-8</td>
+  <td class="doc">Creates a file with the given content and encoding.<br />
 <br />
-Old <span class="name">mode</span> argument is deprecated in Robot Framework 2.1 and will be replaced with <span class="name">encoding</span> in 2.2. Use new <a href="#Append To File" class="name">Append To File</a> keyword if there is a need to append to a file, and use <a href="#File Should Not Exist" class="name">File Should Not Exist</a> if you want to avoid overwriting existing files.<br />
+If the directory where to create file does not exist it, and possible intermediate missing directories, are created.<br />
 <br />
-In Robot Framework 2.1 this keyword always uses UTF-8 encoding and <a href="#Create File With Encoding" class="name">Create File With Encoding</a> can be used if other encodings are needed. Earlier versions used more limiting ASCII encoding.<br />
+Use <a href="#Append To File" class="name">Append To File</a> if you want to append to an existing file, and use <a href="#File Should Not Exist" class="name">File Should Not Exist</a> if you want to avoid overwriting existing files.<br />
 <br />
-If the directory where to create file does not exist it, and possible intermediate missing directories, are created.</td>
+Note that the deprecated <span class="name">mode</span> argument was replaced with <span class="name">encoding</span> in Robot Framework 2.5.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Create File With Encoding"></a>Create File With Encoding</td>
   <td class="arg">path, content=, encoding=UTF-8</td>
-  <td class="doc">Writes the given contend to the specified file.<br />
-<br />
-Use <a href="#Append To File" class="name">Append To File</a> if you want to append to an existing file.<br />
-<br />
-If the directory where to create file does not exist it, and possible intermediate missing directories, are created.<br />
-<br />
-This is a temporary keyword added in Robot Framework 2.1 and will be deprecated in 2.2 when <a href="#Create File" class="name">Create File</a> gets <span class="name">encoding</span> argument.</td>
+  <td class="doc"><b>DEPRECATED</b> Use <a href="#Create File" class="name">Create File</a> instead. This keyword will be removed in RF 2.6.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Directory Should Be Empty"></a>Directory Should Be Empty</td>
@@ -704,10 +758,10 @@ Examples:<br />
 </tr>
 <tr>
   <td class="kw"><a name="Read Process Output"></a>Read Process Output</td>
-  <td class="arg">mode=DEPRECATED</td>
+  <td class="arg"></td>
   <td class="doc">Waits for the process to finish and returns its output.<br />
 <br />
-In Robot Framework versions prior to 2.0.2 it was possible to read either the standard output, standard error or both. As mentioned in the documentation of <a href="#Start Process" class="name">Start Process</a>, the standard error is nowadays automatically redirected to the standard output. This keyword thus always returns all the output and <span class="name">mode</span> argument is ignored. &nbsp;As explained in <a href="#Run" class="name">Run</a> keyword, it is still possible to redirect the standard error, or output, using e.g. '2&gt;stderr.txt' after the command.<br />
+As mentioned in the documentation of <a href="#Start Process" class="name">Start Process</a> keyword, and documented thoroughly in <a href="#Run" class="name">Run</a> keyword, the standard error stream is automatically redirected to the standard output. This keyword thus always returns all the output procuded by the command.<br />
 <br />
 Note that although the process is finished, it is not removed from the process list. Trying to read from a stopped process nevertheless fails. To reset the process list (and indexes and aliases), <a href="#Stop All Processes" class="name">Stop All Processes</a> must be used.<br />
 <br />
@@ -756,14 +810,14 @@ Example:<br />
 </tr>
 <tr>
   <td class="kw"><a name="Run"></a>Run</td>
-  <td class="arg">command, return_mode=DEPRECATED</td>
+  <td class="arg">command</td>
   <td class="doc">Runs the given command in the system and returns the output.<br />
 <br />
-The execution status of the command <b>is not checked</b> by this keyword, and it must be done separately based on the returned output. If the return code of execution is needed, either <a href="#Run And Return Rc" class="name">Run And Return RC</a> or <a href="#Run And Return Rc And Output" class="name">Run And Return RC And Output</a> can be used. <span class="name">return_mode</span> argument for this keyword is deprecated and will be removed in Robot Framework 2.2 version.<br />
+The execution status of the command <b>is not checked</b> by this keyword, and it must be done separately based on the returned output. If the execution return code is needed, either <a href="#Run And Return Rc" class="name">Run And Return RC</a> or <a href="#Run And Return Rc And Output" class="name">Run And Return RC And Output</a> can be used.<br />
 <br />
-Starting from Robot Framework 2.0.2, the standard error stream is automatically redirected to the standard output stream by adding '2&gt;&amp;1' after the executed command. The automatic redirection of the standard error is done only when the executed command does not contain additional output redirections. You can thus freely forward the standard error somewhere else, for example, like 'my_command 2&gt;stderr.txt'.<br />
+The standard error stream is automatically redirected to the standard output stream by adding <span class="name">2&gt;&amp;1</span> after the executed command. This automatic redirection is done only when the executed command does not contain additional output redirections. You can thus freely forward the standard error somewhere else, for example, like <span class="name">my_command 2&gt;stderr.txt</span>.<br />
 <br />
-The returned output contains everything written into the standard output or error by the command (unless either of them is redirected explicitly). Many commands add an extra newline (\n) after the output to make it easier to read in the console. To ease processing the returned output, this possible trailing newline is stripped.<br />
+The returned output contains everything written into the standard output or error streams by the command (unless either of them is redirected explicitly). Many commands add an extra newline (<span class="name">\n</span>) after the output to make it easier to read in the console. To ease processing the returned output, this possible trailing newline is stripped by this keyword.<br />
 <br />
 Examples:<br />
 <table border="1" class="doc">
@@ -968,7 +1022,7 @@ The path can be given as an exact path or as a glob pattern. The pattern matchin
   <td class="arg">path</td>
   <td class="doc">Splits the extension from the given path.<br />
 <br />
-The given path is first normalized (e.g. possible trailing path separators removed, special directories '..' and '.' removed). The base path and extension are returned as separate components so that the dot used as an extension separator is removed. If the path contains no extension, an empty string is returned for it. Starting from Robot Framework 2.0.2, possible leading and trailing dots in the file name are never considered to be extension separators.<br />
+The given path is first normalized (e.g. possible trailing path separators removed, special directories '..' and '.' removed). The base path and extension are returned as separate components so that the dot used as an extension separator is removed. If the path contains no extension, an empty string is returned for it. Possible leading and trailing dots in the file name are never considered to be extension separators.<br />
 <br />
 Examples:<br />
 <table border="1" class="doc">
@@ -1063,7 +1117,7 @@ Returns the index of this process. The indexing starts from 1, and it can be use
 <br />
 The optional <span class="name">alias</span> is a name for this process that may be used with <a href="#Switch Process" class="name">Switch Process</a> instead of the returned index.<br />
 <br />
-Starting from Robot Framework 2.0.2, the standard error stream is redirected to the standard input stream automatically by adding '2&gt;&amp;1' after the executed command. This is done the same way, and for the same reasons, as with <a href="#Run" class="name">Run</a> keyword.<br />
+The standard error stream is redirected to the standard input stream automatically by adding '2&gt;&amp;1' after the executed command. This is done the same way, and for the same reasons, as with <a href="#Run" class="name">Run</a> keyword.<br />
 <br />
 Example:<br />
 <table border="1" class="doc">
@@ -1205,10 +1259,10 @@ The optional <span class="name">timeout</span> can be used to control the maximu
 If the timeout is negative, the keyword is never timed-out. The keyword returns immediately, if the path does not exist in the first place.</td>
 </tr>
 </table>
-<p class="footer">
+<p id="footer">
 Altogether 55 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2010-03-23 19:20:40.
+on 2010-03-29 17:39:45.
 </p>
 </body>
 </html>
