@@ -27,6 +27,7 @@ div.shortcuts {
 }
 div.shortcuts a {
   text-decoration: none;
+  color: black;
 }
 div.shortcuts a:hover {
   text-decoration: underline;
@@ -85,8 +86,10 @@ a {
 </head>
 <body>
 <h1>BuiltIn</h1>
-<b>Version:</b> 2.1.3<br>
-<b>Scope:</b> global</p>
+<b>Version:</b> trunk 20100323<br>
+<b>Scope:</b> global<br>
+<b>Named arguments: </b>
+supported
 
 <h2 id="introduction">Introduction</h2>
 <p>An always available standard library with often needed keywords.<br />
@@ -148,6 +151,8 @@ a {
 &nbsp;&middot;&nbsp;
 <a href="#Run Keyword" title="Executes the given keyword with the given arguments.">Run&nbsp;Keyword</a>
 &nbsp;&middot;&nbsp;
+<a href="#Run Keyword And Continue On Failure" title="Runs the keyword and continues execution even if a failure occurs.">Run&nbsp;Keyword&nbsp;And&nbsp;Continue&nbsp;On&nbsp;Failure</a>
+&nbsp;&middot;&nbsp;
 <a href="#Run Keyword And Expect Error" title="Runs the keyword and checks that the expected error occurred.">Run&nbsp;Keyword&nbsp;And&nbsp;Expect&nbsp;Error</a>
 &nbsp;&middot;&nbsp;
 <a href="#Run Keyword And Ignore Error" title="Runs the given keyword with the given arguments and ignores possible error.">Run&nbsp;Keyword&nbsp;And&nbsp;Ignore&nbsp;Error</a>
@@ -179,6 +184,8 @@ a {
 <a href="#Set Suite Variable" title="Makes a variable available everywhere within the scope of the current suite.">Set&nbsp;Suite&nbsp;Variable</a>
 &nbsp;&middot;&nbsp;
 <a href="#Set Tags" title="Adds given `tags` for the current test or all tests in a suite.">Set&nbsp;Tags</a>
+&nbsp;&middot;&nbsp;
+<a href="#Set Test Message" title="Sets message for for the current test.">Set&nbsp;Test&nbsp;Message</a>
 &nbsp;&middot;&nbsp;
 <a href="#Set Test Variable" title="Makes a variable available everywhere within the scope of the current test.">Set&nbsp;Test&nbsp;Variable</a>
 &nbsp;&middot;&nbsp;
@@ -242,7 +249,7 @@ a {
 </div>
 
 <h2>Keywords</h2>
-<table class="keywords">
+<table border="1" class="keywords">
 <tr>
   <th class="kw">Keyword</th>
   <th class="arg">Arguments</th>
@@ -804,6 +811,29 @@ If the given <span class="name">text</span> contains only a single variable, its
 Because the name of the keyword to execute is given as an argument, it can be a variable and thus set dynamically, e.g. from a return value of another keyword or from the command line.</td>
 </tr>
 <tr>
+  <td class="kw"><a name="Run Keyword And Continue On Failure"></a>Run Keyword And Continue On Failure</td>
+  <td class="arg">name, *args</td>
+  <td class="doc">Runs the keyword and continues execution even if a failure occurs.<br />
+<br />
+The keyword name and arguments work as with <a href="#Run Keyword" class="name">Run Keyword</a>.<br />
+<br />
+Example:<br />
+<table border="1" class="doc">
+<tr>
+<td>Run Keyword And Continue On Failure</td>
+<td>Fail</td>
+<td>This is a stupid example</td>
+</tr>
+<tr>
+<td>Log</td>
+<td>This keyword is executed</td>
+<td></td>
+</tr>
+</table>
+<br />
+This keyword was added in Robot Framework 2.5. Errors caused by invalid syntax, timeouts, or fatal exceptions are not caught.</td>
+</tr>
+<tr>
   <td class="kw"><a name="Run Keyword And Expect Error"></a>Run Keyword And Expect Error</td>
   <td class="arg">expected_error, name, *args</td>
   <td class="doc">Runs the keyword and checks that the expected error occurred.<br />
@@ -836,7 +866,8 @@ Examples:<br />
 <td></td>
 </tr>
 </table>
-</td>
+<br />
+Starting from Robot Framework 2.5 errors caused by invalid syntax, timeouts, or fatal exceptions are not caught by this keyword.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword And Ignore Error"></a>Run Keyword And Ignore Error</td>
@@ -845,7 +876,9 @@ Examples:<br />
 <br />
 This keyword returns two values, so that the first is either 'PASS' or 'FAIL', depending on the status of the executed keyword. The second value is either the return value of the keyword or the received error message.<br />
 <br />
-The keyword name and arguments work as in <a href="#Run Keyword" class="name">Run Keyword</a>. See <a href="#Run Keyword If" class="name">Run Keyword If</a> for a usage example.</td>
+The keyword name and arguments work as in <a href="#Run Keyword" class="name">Run Keyword</a>. See <a href="#Run Keyword If" class="name">Run Keyword If</a> for a usage example.<br />
+<br />
+Starting from Robot Framework 2.5 errors caused by invalid syntax, timeouts, or fatal exceptions are not caught by this keyword.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Run Keyword If"></a>Run Keyword If</td>
@@ -1080,6 +1113,15 @@ When this keyword is used inside a test case, that test gets the specified tags 
 If this keyword is used in a suite setup, all test cases in that suite, recursively, gets the given tags. It is a failure to use this keyword in a suite teardown.<br />
 <br />
 See <a href="#Remove Tags" class="name">Remove Tags</a> for another keyword to modify tags at test execution time.</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Set Test Message"></a>Set Test Message</td>
+  <td class="arg">message</td>
+  <td class="doc">Sets message for for the current test.<br />
+<br />
+This is overridden by possible failure message, except when this keyword is used in test case teardown. In test case teardown this overrides messages even for failed tests.<br />
+<br />
+This keyword can not be used in suite setup or suite teardown.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Test Variable"></a>Set Test Variable</td>
@@ -1604,13 +1646,14 @@ Example:<br />
 <td>arg2</td>
 </tr>
 </table>
-</td>
+<br />
+Starting from Robot Framework 2.5 errors caused by invalid syntax, timeouts, or fatal exceptions are not caught by this keyword.</td>
 </tr>
 </table>
 <p id="footer">
-Altogether 72 keywords.<br />
+Altogether 74 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2010-04-16 11:14:06.
+on 2010-05-05 13:36:41.
 </p>
 </body>
 </html>
