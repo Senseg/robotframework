@@ -762,19 +762,17 @@ at least one of them to be able to use it. However, the provided installers
 only work with Python, so installing it is always recommended.</p>
 <div class="section" id="python-installation">
 <h4><a class="toc-backref" href="#id255">Python installation</a></h4>
-<p>Python 2.6 or 2.5 are recommended, although Python 2.4 and 2.3 are also
-supported. On most UNIX-like systems, you have Python installed by
-default. If you are on Windows or otherwise need to install Python
-yourself, your best place to start is probably the <a class="reference external" href="http://www.python.org/">Python
-homepage</a>. There you can download a suitable installer and get more
-information about the installation and Python in general.</p>
+<p>Starting from Robot Framework 2.5, Python 2.5 is the minimum supported Python
+version.  Earlier versions support Python 2.3 or newer. On most UNIX-like
+systems, you have Python installed by default. If you are on Windows or
+otherwise need to install Python yourself, your best place to start is probably
+the <a class="reference external" href="http://www.python.org/">Python homepage</a>. There you can download a suitable installer and get
+more information about the installation and Python in general.</p>
 <div class="note">
 <p class="first admonition-title">Note</p>
-<p class="last">Robot Framework is not compatible with Python 3.x
-versions. Python 3.0 was intentionally backwards
-incompatible with earlier Python releases, and supporting it
-as long as we need to support very old Python versions (most
-notably Jython 2.2) is not feasible.</p>
+<p class="last">Robot Framework is currently not compatible with Python 3.x
+versions because Python 3.0 was intentionally backwards incompatible with
+earlier Python releases.</p>
 </div>
 <div class="note">
 <p class="first admonition-title">Note</p>
@@ -782,53 +780,34 @@ notably Jython 2.2) is not feasible.</p>
 recommended to install Python to all users, and to run the
 installation as an administrator.</p>
 </div>
-<div class="note">
-<p class="first admonition-title">Note</p>
-<p class="last">The Python installation framework included with Python 2.3
-does not have functionality to copy other than Python
-files. Robot Framework itself can be installed with it
-without problems, but, for example, installing certain
-libraries may require copying those non-Python files
-manually.</p>
-</div>
 </div>
 <div class="section" id="jython-installation">
 <h4><a class="toc-backref" href="#id256">Jython installation</a></h4>
-<p>Using test libraries implemented with Java or using Java tools
-directly requires running Robot Framework on Jython, which then requires
-Java Runtime Environment (JRE). The minimum required Java version is
-1.4, but newer versions are recommended, as they tend to be faster
-with dynamic languages, such as Jython. Both Sun and IBM Java versions
-are supported.</p>
-<p>Robot Framework requires Jython version 2.2. The earlier Jython
-version 2.1 is not compatible with Robot Framework, and Jython 2.2
-betas and alphas are not supported either. Unfortunately, also Jython
-2.2.1 has certain Unicode problems (for more information, see
-<a class="reference external" href="http://bugs.jython.org/issue1802339">http://bugs.jython.org/issue1802339</a> and
-<a class="reference external" href="http://bugs.jython.org/issue1032">http://bugs.jython.org/issue1032</a>).</p>
-<div class="note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although Robot Framework does not yet officially support the
-newly released Jython 2.5, this version ought to work pretty
-well and problems are most likely limited to Unicode
-support.  For more information and current status see
-<a class="reference external" href="http://code.google.com/p/robotframework/issues/detail?id=198">http://code.google.com/p/robotframework/issues/detail?id=198</a></p>
-</div>
+<p>Using test libraries implemented with Java or using Java tools directly
+requires running Robot Framework on Jython, which in turn requires Java Runtime
+Environment (JRE). Minimum required JRE version depends on the Jython version
+used.  Jython 2.5 requires Java 1.5 or newer, whereas Jython 2.2 works also with
+Java 1.4. Both Sun and IBM Java implementations are supported.</p>
+<p>Starting from Robot Framework 2.5, using Robot Framework requires Jython
+version 2.5.  Earlier version support Jython 2.2, but due to some unicode
+problems Jython 2.2.1 is not recommended (for more information, see
+<a class="reference external" href="http://bugs.jython.org/issue1802339">http://bugs.jython.org/issue1802339</a> and <a class="reference external" href="http://bugs.jython.org/issue1032">http://bugs.jython.org/issue1032</a>).</p>
 <p>Installing Jython is a fairly easy procedure. First you need to get an
 installer from the <a class="reference external" href="http://www.jython.org/">Jython homepage</a> or directly from
-<a class="reference external" href="http://downloads.sourceforge.net/jython/jython_installer-2.2.jar">http://downloads.sourceforge.net/jython/jython_installer-2.2.jar</a>.
-Note that the installer is an executable JAR package, which you need
-to run as <span class="cli">java -jar jython_installer-2.2.jar</span>. Depending on your
-system, the installer runs either in the graphical or the textual
-mode, but in both cases, the actual installation procedure is very
-easy.</p>
-<p>Jython 2.2 does not have Python's <span class="code">distutils</span> module, which
-is required for automatically installing Robot Framework.
-The normal procedure is installing Robot Framework using
-Python but <a class="reference internal" href="#manual-installation">manual installation</a> is also possible.
-When installing Robot Framework with Python, its installer tries to find the
-Jython executable on the system to create the <span class="prog">jybot</span> runner script
-correctly. Jython is found if:</p>
+<a class="reference external" href="http://sourceforge.net/projects/jython/files/">http://sourceforge.net/projects/jython/files/</a>. The latest stable release is
+recommended.  Note that the installer is an executable JAR package, which you
+need to run as <span class="cli">java -jar jython_installer-&lt;version&gt;.jar</span>. Depending on
+your system, the installer runs either in the graphical or the textual mode,
+but in both cases, the actual installation procedure is very easy.</p>
+<p>With Jython 2.5, it is possible to install Robot Framework without having
+Python available by  <a class="reference internal" href="#installing-from-source">installing from source</a>.  Jython 2.2 does not have
+Python's <span class="code">distutils</span> module, which is required for automatically
+installing Robot Framework and thus the only way to install without Python is
+<a class="reference internal" href="#manual-installation">manual installation</a>.</p>
+<p>With all supported Jython versions, it is possible to install Robot Framework
+using Python and still start execution using Jython.  When installing Robot
+Framework with Python, its installer tries to find the Jython executable on the
+system to create the <span class="prog">jybot</span> runner script correctly. Jython is found if:</p>
 <ol class="arabic">
 <li><p class="first">Jython can be executed in the system directly (i.e. it is in the <span class="var">PATH</span>).</p>
 </li>
@@ -850,9 +829,6 @@ D:\Jython22
 </pre>
 </li>
 </ol>
-<p>If you plan to use Robot Framework only with Jython, you do not
-necessarily need Python at all. In that case, you need to perform a <a class="reference internal" href="#manual-installation">manual
-installation</a> or have some custom installer.</p>
 </div>
 </div>
 <div class="section" id="installation">
@@ -895,6 +871,11 @@ Rebot script: /usr/bin/rebot
 uses the standard Python installation system and should
 operate in accordance with the host operating system
 conventions.</p>
+</div>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is possible to run the above scripts also with Jython 2.5.
+In this case, Python installation is not required to use Robot Framework</p>
 </div>
 </div>
 <div class="section" id="using-windows-installer">
@@ -4745,12 +4726,10 @@ something, and the variable is set to whatever value returned by the
 keyword. Having the equals sign <span class="code">=</span> after the variable name is
 not obligatory, but recommended, because it makes the assignment
 more explicit.</p>
-<p>If a keyword returns a list, it is also possible to set it into
+<p>If a keyword returns an iterable, it is also possible to set it into
 several scalar variables or into a list variable. This is possible
-with keywords returning Python lists or tuples or, from Robot
-Framework version 1.8.6 onwards, with Java keywords returning an
-array. In the future, it is possible to add support also for other
-iterables, if needed.</p>
+with keywords that return any Python or Java iterable (most common
+examples are lists/tuples in Python and arrays/ArrayLists in Java).</p>
 <table border="1" class="example docutils">
 <caption>Assigning multiple values at once</caption>
 <colgroup>
@@ -12778,7 +12757,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2010-05-05 11:34 UTC.
+<p>Generated on: 2010-05-05 12:30 UTC.
 </p>
 
 </div>
