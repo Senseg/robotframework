@@ -3493,43 +3493,45 @@ explained in section <a class="reference internal" href="#setting-metadata">Sett
 </div>
 <div class="section" id="free-test-suite-metadata">
 <h3><a class="toc-backref" href="#id315">2.3.4&nbsp;&nbsp;&nbsp;Free test suite metadata</a></h3>
-<p>Test suites can also have other metadata than the documentation. This
-metadata is defined in the Setting table using the <span class="opt">Meta: &lt;name&gt;</span>
-setting, where &lt;name&gt; is a freely selected metadata name. For example,
-<span class="opt">Meta: Version</span> adds the version metadata for a test
-suite. Metadata set in this manner is shown in test reports and logs.</p>
-<p>The value for the metadata is located in the column after the name. It
-is handled similarly as documentations, which means that it can be
-<a class="reference internal" href="#dividing-test-data-to-several-rows">split into several cells</a> (joined together with
-spaces), simple <a class="reference internal" href="#documentation-formatting">HTML formatting</a> works and even <a class="reference internal" href="#variables">variables</a> can be
-used.</p>
+<p>Test suites can also have other metadata than the documentation. This metadata
+is defined in the Setting table using the <span class="opt">Metadata</span> setting. Metadata
+set in this manner is shown in test reports and logs.</p>
+<p>The name and value for the metadata are located in the columns following
+<span class="opt">Metadata</span>. The value is handled similarly as documentations, which means
+that it can be <a class="reference internal" href="#dividing-test-data-to-several-rows">split into several cells</a> (joined together with spaces),
+simple <a class="reference internal" href="#documentation-formatting">HTML formatting</a> works and even <a class="reference internal" href="#variables">variables</a> can be used.</p>
 <table border="1" class="example docutils">
 <caption>Metadata examples</caption>
 <colgroup>
-<col width="18%" />
-<col width="22%" />
-<col width="27%" />
-<col width="33%" />
+<col width="9%" />
+<col width="12%" />
+<col width="21%" />
+<col width="26%" />
+<col width="32%" />
 </colgroup>
 <thead valign="bottom">
 <tr><th class="head">Setting</th>
 <th class="head">Value</th>
 <th class="head">Value</th>
 <th class="head">Value</th>
+<th class="head">Value</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>Meta: Version</td>
+<tr><td>Metadata</td>
+<td>Version</td>
 <td>2.0</td>
 <td></td>
 <td></td>
 </tr>
-<tr><td>Meta: More Info</td>
+<tr><td>Metadata</td>
+<td>More Info</td>
 <td>For more information</td>
 <td>about *Robot Framework*</td>
 <td>see http://robotframework.org</td>
 </tr>
-<tr><td>Meta: Executed At</td>
+<tr><td>Metadata</td>
+<td>Executed At</td>
 <td>${HOST}</td>
 <td></td>
 <td></td>
@@ -3539,6 +3541,9 @@ used.</p>
 <p>For top-level test suites, it is possible to set metadata also with the
 <span class="opt">--metadata</span> command line option. This is discussed in more
 detail in section <a class="reference internal" href="#setting-metadata">Setting metadata</a>.</p>
+<p>Prior to Robot Framework 2.5 free metadata was specified with syntax like
+<span class="opt">Meta: &lt;name&gt;</span>, where &lt;name&gt; was the metadata name and value was in
+subsequent column(s). RF 2.5 supports also this older syntax.</p>
 </div>
 <div class="section" id="suite-setup-and-teardown">
 <h3><a class="toc-backref" href="#id316">2.3.5&nbsp;&nbsp;&nbsp;Suite setup and teardown</a></h3>
@@ -4375,13 +4380,15 @@ manner can be used similarly as scalar variables:</p>
 </tr>
 </tbody>
 </table>
-<p>Starting from Robot Framework 2.0.3, it is possible to use list
-variables as scalar variables containing lists simply by replacing
-<span class="var">&#64;</span> with <span class="var">$</span>. This makes it possible to use list variables
-with list related keywords, for example, from from <a class="reference internal" href="#builtin-library">BuiltIn</a> and
-<a class="reference internal" href="#collections-library">Collections</a> libraries. This feature works only if there is no scalar
-variable with same basename as the list variable has. In these cases
-the scalar variable has precedence and its value is used instead.</p>
+<div class="section" id="using-list-variables-as-scalar-variables">
+<h5>Using list variables as scalar variables</h5>
+<p>It is possible to use list variables as scalar variables containing
+lists simply by replacing <span class="var">&#64;</span> with <span class="var">$</span>. This makes it
+possible to use list variables with list related keywords, for
+example, from from <a class="reference internal" href="#builtin-library">BuiltIn</a> and <a class="reference internal" href="#collections-library">Collections</a> libraries. This feature
+works only if there is no scalar variable with same basename as the
+list variable has. In these cases the scalar variable has precedence
+and its value is used instead.</p>
 <table border="1" class="example docutils">
 <caption>Using list variables as scalars</caption>
 <colgroup>
@@ -4444,6 +4451,11 @@ the scalar variable has precedence and its value is used instead.</p>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="where-list-variables-can-be-used">
+<h5>Where list variables can be used</h5>
+<p>TODO</p>
+</div>
 </div>
 <div class="section" id="environment-variables">
 <h4><a class="toc-backref" href="#id337">Environment variables</a></h4>
@@ -4983,15 +4995,14 @@ interpreter, Jython automatically converts <span class="code">None</span> and
 </div>
 <div class="section" id="space-and-empty-variables">
 <h4><a class="toc-backref" href="#id348">Space and empty variables</a></h4>
-<p>Starting from Robot Framework version 2.0.2, it is possible to create
-spaces and empty strings using variables <span class="var">${SPACE}</span> and
-<span class="var">${EMPTY}</span>, respectively. These variables are useful, for example,
-when there would otherwise be a need to <a class="reference internal" href="#escaping">escape spaces or empty
-cells</a> with a backslash. If more than one space is needed, it is
-possible to use the <a class="reference internal" href="#extended-variable-syntax">extended variable syntax</a> like <span class="var">${SPACE * 5}</span>.
-In the following exmaple, <span class="name">Should Be Equal</span> keyword gets
-identical arguments but those using variables are easier to understand
-than those using backslashes.</p>
+<p>It is possible to create spaces and empty strings using variables
+<span class="var">${SPACE}</span> and <span class="var">${EMPTY}</span>, respectively. These variables are
+useful, for example, when there would otherwise be a need to <a class="reference internal" href="#escaping">escape
+spaces or empty cells</a> with a backslash. If more than one space is
+needed, it is possible to use the <a class="reference internal" href="#extended-variable-syntax">extended variable syntax</a> like
+<span class="var">${SPACE * 5}</span>.  In the following exmaple, <span class="name">Should Be
+Equal</span> keyword gets identical arguments but those using variables are
+easier to understand than those using backslashes.</p>
 <table border="1" class="example docutils">
 <caption>Using <span class="var">${SPACE}</span> and <span class="var">${EMPTY}</span></caption>
 <colgroup>
@@ -8717,13 +8728,12 @@ are converted to spaces, and it may contain simple <a class="reference internal"
 </div>
 <div class="section" id="setting-free-metadata">
 <h4><a class="toc-backref" href="#id429">Setting free metadata</a></h4>
-<p><a class="reference internal" href="#free-test-suite-metadata">Free test suite metadata</a> may also be given from the command line
-with the option <span class="opt">--metadata (-M)</span>. The argument must be in
-the format <span class="opt">name:value</span>, where <span class="opt">name</span> the name of
-the metadata to set and <span class="opt">value</span> is its value. Underscores in
-the former are converted to spaces and words capitalized, and the
-latter may contain simple <a class="reference internal" href="#documentation-formatting">HTML formatting</a>. This option may be used
-several times to set multiple metadata.</p>
+<p><a class="reference internal" href="#free-test-suite-metadata">Free test suite metadata</a> may also be given from the command line with the
+option <span class="opt">--metadata (-M)</span>. The argument must be in the format
+<span class="opt">name:value</span>, where <span class="opt">name</span> the name of the metadata to set and
+<span class="opt">value</span> is its value. Underscores in the name and value are converted to
+spaces, and the latter may contain simple <a class="reference internal" href="#documentation-formatting">HTML formatting</a>. This option may
+be used several times to set multiple metadata.</p>
 </div>
 <div class="section" id="setting-tags">
 <h4><a class="toc-backref" href="#id430">Setting tags</a></h4>
@@ -8818,10 +8828,11 @@ occurred and ExitOnFailure option is in use</span>.</p>
 <h4><a class="toc-backref" href="#id439">Dry run</a></h4>
 <p>Robot Framework supports so called <em>dry run</em> mode where the tests are
 run normally otherwise, but the keywords coming from test libraries
-are not executed at all. This mode can be used to validate the test
-data; if the dry run passes, the data should be syntactically correct.
-This mode is triggered using option <span class="opt">--runmode DryRun</span>
-(case-insensitive) and it is supported starting from Robot Framework 2.5.</p>
+are not executed at all. The dry rum mode can be used to validate the
+test data; if the dry run passes, the data should be syntactically
+correct.  This mode is triggered using option <span class="opt">--runmode DryRun</span>
+(case-insensitive) and it is supported starting from Robot Framework
+2.5.</p>
 <p>The dry run execution may fail for following reasons:</p>
 <blockquote>
 <ul class="simple">
@@ -12784,7 +12795,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2010-05-12 07:29 UTC.
+<p>Generated on: 2010-05-27 11:57 UTC.
 </p>
 
 </div>
