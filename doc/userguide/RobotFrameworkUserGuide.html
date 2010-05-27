@@ -3304,8 +3304,9 @@ test suite:</p>
 <dl class="docutils">
 <dt><span class="opt">Documentation</span></dt>
 <dd>Used for specifying a <a class="reference internal" href="#test-suite-name-and-documentation">test suite documentation</a></dd>
-<dt><span class="opt">Meta: &lt;name&gt;</span></dt>
-<dd>Used for setting <a class="reference internal" href="#free-test-suite-metadata">free test suite metadata</a>.</dd>
+<dt><span class="opt">Metadata</span></dt>
+<dd>Used for setting <a class="reference internal" href="#free-test-suite-metadata">free test suite metadata</a> as name-value
+pairs.</dd>
 <dt><span class="opt">Suite Setup</span>, <span class="opt">Suite Teardown</span></dt>
 <dd>Specify <a class="reference internal" href="#suite-setup-and-teardown">suite setup and teardown</a>. Have also synonyms
 <span class="opt">Suite Precondition</span> and <span class="opt">Suite Postcondition</span>, respectively.</dd>
@@ -3336,8 +3337,8 @@ cases, it is silently ignored (a message is written to the <a class="reference i
 and the processing continues.</p>
 <div class="section" id="initialization-files">
 <h4><a class="toc-backref" href="#id314">Initialization files</a></h4>
-<p>A test suite created from a directory can have the same settings
-(<span class="opt">Documentation</span>, <span class="opt">Meta: &lt;name&gt;</span>, <span class="opt">Suite Setup</span>, <span class="opt">Suite
+<p>A test suite created from a directory can have same settings
+(<span class="opt">Documentation</span>, <span class="opt">Metadata</span>, <span class="opt">Suite Setup</span>, <span class="opt">Suite
 Teardown</span>, <span class="opt">Test Setup</span>, <span class="opt">Test Teardown</span>) as a test case created
 from a file. Because a directory alone cannot have that kind of information,
 they must be placed into a special initialization file.</p>
@@ -3439,12 +3440,16 @@ example, with lower-level test suites, <a class="reference internal" href="#reso
 </div>
 <div class="section" id="test-suite-name-and-documentation">
 <h3><a class="toc-backref" href="#id315">2.3.3&nbsp;&nbsp;&nbsp;Test suite name and documentation</a></h3>
-<p>The test suite name is got directly from the file or directory name, but
-a possible file extension is ignored. The name is created so that
-underscores are replaced with spaces, words in camelCaseFormat
-separated, and first letters of all words capitalized. For example,
-<span class="path">some_tests.html</span> becomes <span class="name">Some Tests</span> and
-<span class="path">MyTestDir</span> becomes <span class="name">My Test Dir</span>.</p>
+<p>The test suite name is got from the file or directory name. The name
+is created so that the extension is ignored, possible underscores are
+replaced with spaces, and names fully in lower case are title cased. For
+example, <span class="path">some_tests.html</span> becomes <span class="name">Some Tests</span> and
+<span class="path">My_test_directory</span> becomes <span class="name">My test directory</span>.</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">The rules for creating test suite names changed slightly in
+Robot Framework 2.5.</p>
+</div>
 <p>The file or directory name can contain a prefix to control the <a class="reference internal" href="#test-execution-order">test
 execution order</a>. The prefix is separated from the base name by two
 underscores and, when constructing the actual test suite name, both
@@ -3541,9 +3546,10 @@ simple <a class="reference internal" href="#documentation-formatting">HTML forma
 <p>For top-level test suites, it is possible to set metadata also with the
 <span class="opt">--metadata</span> command line option. This is discussed in more
 detail in section <a class="reference internal" href="#setting-metadata">Setting metadata</a>.</p>
-<p>Prior to Robot Framework 2.5 free metadata was specified with syntax like
-<span class="opt">Meta: &lt;name&gt;</span>, where &lt;name&gt; was the metadata name and value was in
-subsequent column(s). RF 2.5 supports also this older syntax.</p>
+<p>Prior to Robot Framework 2.5 the free metadata was specified with syntax like
+<span class="opt">Meta: &lt;name&gt;</span>, where <span class="opt">&lt;name&gt;</span> was the metadata name and the value
+was defined in subsequent column. Robot Framework 2.5 still supports this old
+format but it will be deprecated in the future.</p>
 </div>
 <div class="section" id="suite-setup-and-teardown">
 <h3><a class="toc-backref" href="#id317">2.3.5&nbsp;&nbsp;&nbsp;Suite setup and teardown</a></h3>
@@ -12073,7 +12079,7 @@ importing libraries, resources, and variables.</p>
 <td>Used for specifying a <a class="reference internal" href="#test-suite-name-and-documentation">test suite</a> or
 <a class="reference internal" href="#documenting-resource-files">resource file</a> documentation.</td>
 </tr>
-<tr><td>Meta: &lt;name&gt;</td>
+<tr><td>Metadata</td>
 <td>Used for setting <a class="reference internal" href="#free-test-suite-metadata">free test suite metadata</a>.</td>
 </tr>
 <tr><td>Suite Setup</td>
@@ -12850,7 +12856,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2010-05-27 19:56 UTC.
+<p>Generated on: 2010-05-27 20:40 UTC.
 </p>
 
 </div>
