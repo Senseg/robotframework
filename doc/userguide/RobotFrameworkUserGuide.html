@@ -2955,19 +2955,24 @@ Keywords</td>
 </div>
 <div class="section" id="test-setup-and-teardown">
 <h3><a class="toc-backref" href="#id307">2.2.5&nbsp;&nbsp;&nbsp;Test setup and teardown</a></h3>
-<p>Robot Framework has similar test setup and teardown functions as many
+<p>Robot Framework has similar test setup and teardown functionality as many
 other test automation frameworks. In short, a test setup is something
-that is executed before a test case and a test teardown is executed
-after a test case. What makes a test teardown special is that it is
-executed also when a test case fails, so it can be used for clean-up
-activities that must be done regardless of the test case status. Both
-a setup and a teardown can also easily be specified for all test cases
-in a test suite, so using them avoids repetition.</p>
-<p>In Robot Framework, a test setup or teardown is just a normal keyword
-with possible arguments. It can either be a keyword from a library or
-a higher-level user keyword.</p>
+that is executed before a test case, and a test teardown is executed
+after a test case. In Robot Framework setups and teardowns are just
+normal keywords with possible arguments.</p>
+<p>Setup and teardown are always a single keyword. If they need to take care
+of multiple separate tasks, it is possible to create higher-level <a class="reference internal" href="#creating-user-keywords">user
+keywords</a> for that purpose. An alternative solution is executing multiple
+keywords using the <a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="name">Run Keywords</span> that was added
+in Robot Framework 2.5.</p>
+<p>The test teardown is special in two ways. First of all, it is executed also
+when a test case fails, so it can be used for clean-up activities that must be
+done regardless of the test case status. Starting from Robot Framework 2.5, all
+the keywords in the teardown are also executed even if one of them fails. This
+<a class="reference internal" href="#continue-on-failure">continue on failure</a> functionality can be used also with normal keywords, but
+inside teardowns it is on by default.</p>
 <p>The easiest way to specify a setup or a teardown for test cases in a
-test suite is using the <span class="opt">Test Setup</span> and <span class="opt">Test
+test case file is using the <span class="opt">Test Setup</span> and <span class="opt">Test
 Teardown</span> settings in the Setting table. Individual test cases can
 also have their own setup or teardown. They are defined with the
 <span class="opt">[Setup]</span> or <span class="opt">[Teardown]</span> settings in the test case
@@ -3576,7 +3581,7 @@ and even they are default values for the <a class="reference internal" href="#se
 <tbody valign="top">
 <tr><td>Documentation</td>
 <td>Example suite</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td>Suite Setup</td>
 <td>Do Something</td>
@@ -3584,11 +3589,11 @@ and even they are default values for the <a class="reference internal" href="#se
 </tr>
 <tr><td>Force Tags</td>
 <td>example</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td>Library</td>
 <td>SomeLibrary</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -3607,7 +3612,7 @@ and even they are default values for the <a class="reference internal" href="#se
 <tbody valign="top">
 <tr><td>${MESSAGE}</td>
 <td>Hello, world!</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -3629,12 +3634,12 @@ and even they are default values for the <a class="reference internal" href="#se
 <tr><td>Do Something</td>
 <td>[Arguments]</td>
 <td>${arg}</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>Log</td>
 <td>${arg}</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -3731,8 +3736,8 @@ simple <a class="reference internal" href="#documentation-formatting">HTML forma
 <tr><td>Metadata</td>
 <td>Version</td>
 <td>2.0</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td>Metadata</td>
 <td>More Info</td>
@@ -3743,8 +3748,8 @@ simple <a class="reference internal" href="#documentation-formatting">HTML forma
 <tr><td>Metadata</td>
 <td>Executed At</td>
 <td>${HOST}</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -3778,7 +3783,9 @@ that must be met before running test cases is possible.</p>
 <p>A suite teardown is normally used for cleaning up after all the test
 cases have been executed. It is executed even if the setup of the same
 suite fails. If the suite teardown fails, all test cases in the
-suite are marked failed, regardless of their original execution status.</p>
+suite are marked failed, regardless of their original execution status.
+Starting from Robot Framework 2.5, all the keywords in suite teardowns
+are executed even if one of them fails.</p>
 <p>The name of the keyword to be executed as a setup or a teardown can be
 a variable. This facilitates having different setups or teardowns
 in different environments by giving the keyword name as a variable
@@ -13068,7 +13075,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2010-06-07 11:37 UTC.
+<p>Generated on: 2010-06-07 12:12 UTC.
 </p>
 
 </div>
