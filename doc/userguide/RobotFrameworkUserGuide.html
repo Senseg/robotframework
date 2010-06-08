@@ -3547,24 +3547,35 @@ cases, it is silently ignored (a message is written to the <a class="reference i
 and the processing continues.</p>
 <div class="section" id="initialization-files">
 <h4><a class="toc-backref" href="#id315">Initialization files</a></h4>
-<p>A test suite created from a directory can have same settings
-(<span class="opt">Documentation</span>, <span class="opt">Metadata</span>, <span class="opt">Suite Setup</span>, <span class="opt">Suite
-Teardown</span>, <span class="opt">Test Setup</span>, <span class="opt">Test Teardown</span>) as a test case created
-from a file. Because a directory alone cannot have that kind of information,
-they must be placed into a special initialization file.</p>
-<p>Initialization files have the same structure as test case files, except that
-they cannot have test case tables, and the overall syntax used in them
-is the same as in other test data files. An initialization file name must
-always be of the format <span class="path">__init__.extension</span>, where the extension is
-the same as normally for test data files (for example,
-<span class="path">__init__.html</span> or <span class="path">__init__.tsv</span>). The name format is
-borrowed from Python, where files named in this manner denote that a
-directory is a module.</p>
-<p>The main usage of initialization files is setting test-suite-related
-settings, but setting <a class="reference internal" href="#test-case-related-settings-in-the-setting-table">test case related settings</a> is also possible.
-However, only <span class="opt">Force Tags</span> is generally useful, because
-others are only default values for the same settings in lower-level files,
-and even they are default values for the <a class="reference internal" href="#settings-in-the-test-case-table">settings in the Test Case table</a>.</p>
+<p>A test suite created from a directory can have similar settings as a suite
+created from a test case file. Because a directory alone cannot have that
+kind of information, it must be placed into a special test suite initialization
+file. Initialization files have the same structure and syntax as
+test case files, except that they cannot have test case tables and not all
+settings are supported.</p>
+<p>An initialization file name must always be of the format <span class="path">__init__.ext</span>,
+where the extension must match one of the <a class="reference internal" href="#supported-file-formats">supported file formats</a> (for example,
+<span class="path">__init__.html</span> or <span class="path">__init__.txt</span>). The name format is borrowed
+from Python, where files named in this manner denote that a directory is a module.</p>
+<p>The main usage for initialization files is specifying test suite related
+settings similarly as in <a class="reference internal" href="#test-case-files">test case files</a>, but setting some <a class="reference internal" href="#test-case-related-settings-in-the-setting-table">test case
+related settings</a> is also possible. Variables and keywords created or
+imported in initialization files <em>are not</em> available in the lower level
+test suites, but <a class="reference internal" href="#resource-files">resource files</a> can be used if there is a need to
+share them.</p>
+<p>How to use different settings in the initialization files:</p>
+<dl class="docutils">
+<dt><span class="opt">Documentation</span>, <span class="opt">Metadata</span>, <span class="opt">Suite Setup</span>, <span class="opt">Suite Teardown</span></dt>
+<dd>These test suite specific settings work the same way as in test case files.</dd>
+<dt><span class="opt">Force Tags</span></dt>
+<dd>Specified tags are unconditionally set to all test cases in all test case files
+this directory contains directly or recursively.</dd>
+<dt><span class="opt">Test Setup</span>, <span class="opt">Test Teardown</span></dt>
+<dd>Set the default value for test setup/teardown to all test cases this
+directory contains. Can be overridden on lower level.</dd>
+<dt><span class="opt">Default Tags</span>, <span class="opt">Test Template</span>, <span class="opt">Test Timeout</span></dt>
+<dd>Not supported in initialization files starting from Robot Framework 2.5.</dd>
+</dl>
 <table border="1" class="example docutils">
 <caption>An example test suite initialization file</caption>
 <colgroup>
@@ -3619,9 +3630,9 @@ and even they are default values for the <a class="reference internal" href="#se
 <table border="1" class="example docutils">
 <colgroup>
 <col width="22%" />
-<col width="22%" />
-<col width="28%" />
-<col width="28%" />
+<col width="25%" />
+<col width="27%" />
+<col width="27%" />
 </colgroup>
 <thead valign="bottom">
 <tr><th class="head">Keyword</th>
@@ -3637,15 +3648,17 @@ and even they are default values for the <a class="reference internal" href="#se
 <td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td>Log</td>
+<td>Some Keyword</td>
 <td>${arg}</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td></td>
+<td>Another Keyword</td>
+<td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
-<p>Note that variables and keywords created in initialization files <em>are
-not</em> available elsewhere. If there is a need to share them, for
-example, with lower-level test suites, <a class="reference internal" href="#resource-files">resource files</a> must be used.</p>
 </div>
 </div>
 <div class="section" id="test-suite-name-and-documentation">
@@ -13075,7 +13088,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2010-06-07 12:12 UTC.
+<p>Generated on: 2010-06-08 10:53 UTC.
 </p>
 
 </div>
