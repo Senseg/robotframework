@@ -3236,6 +3236,60 @@ the templated tests the mode is on automatically.</p>
 </tr>
 </tbody>
 </table>
+<p>If templates are used with <a class="reference internal" href="#for-loops">for loops</a>, the template is applied for
+all the steps inside the loop. The continue on failure mode is in use
+also in this case, which means that all the steps are executed with
+all the looped elements even if there are failures.</p>
+<table border="1" class="example docutils">
+<caption>Using test template with for loops</caption>
+<colgroup>
+<col width="26%" />
+<col width="22%" />
+<col width="22%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Test Case</th>
+<th class="head">Action</th>
+<th class="head">Argument</th>
+<th class="head">Argument</th>
+<th class="head">Argument</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Template and for</td>
+<td>[Template]</td>
+<td>Example keyword</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td></td>
+<td>:FOR</td>
+<td>${item}</td>
+<td>IN</td>
+<td>&#64;{ITEMS}</td>
+</tr>
+<tr><td></td>
+<td>&nbsp;</td>
+<td>${item}</td>
+<td>2nd arg</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td></td>
+<td>:FOR</td>
+<td>${index}</td>
+<td>IN RANGE</td>
+<td>42</td>
+</tr>
+<tr><td></td>
+<td>&nbsp;</td>
+<td>1st arg</td>
+<td>${index}</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
 <p>The main use case for test templates is reducing duplication with
 data-driven tests. Instead of repeating the same keyword with all the
 tests in a file, it is possible to use it only once in the Setting
@@ -8686,9 +8740,9 @@ some effect on the test execution flow.</p>
 <div class="section" id="suite-setup">
 <h5>Suite setup</h5>
 <p>If a test suite has a setup, it is executed before its tests and child
-suites. If the suite setup succeeds, test execution continues
+suites. If the suite setup passes, test execution continues
 normally. If it fails, all the test cases the suite and its child
-suites have marked failed with a message <span class="msg">Setup of the parent
+suites are marked failed with a message <span class="msg">Setup of the parent
 suite failed.</span>. The tests and possible suite setups and teardowns in
 the child test suites are not executed.</p>
 <p>Suite setups are often used for setting up the test environment.
@@ -8699,7 +8753,7 @@ tests can be executed.</p>
 <div class="section" id="suite-teardown">
 <h5>Suite teardown</h5>
 <p>If a test suite has a teardown, it is executed after all its test
-cases and child suites. Suite teardowns are executed regardless the
+cases and child suites. Suite teardowns are executed regardless of the
 test status and even if the matching suite setup fails. If the suite
 teardown fails, all tests in the suite are marked failed afterwards in
 reports and logs.</p>
@@ -8718,7 +8772,7 @@ case.</p>
 <div class="section" id="test-teardown">
 <h5>Test teardown</h5>
 <p>Possible test teardown is executed after the test case has been
-executed otherwise. It is executed regardless the test status and also
+executed otherwise. It is executed regardless of the test status and also
 if the setup of the test has failed.</p>
 <p>Similarly as suite teardown, test teardowns are used mainly for
 cleanup activities. Also they are executed fully even if some of their
@@ -8727,12 +8781,11 @@ keywords fail.</p>
 </div>
 <div class="section" id="execution-order">
 <h4><a class="toc-backref" href="#id429">Execution order</a></h4>
-<p>Test cases in a test suite are executed in the same order as they are
-in a test case file. Test suites inside a higher level test suite are
-executed in case-insensitive alphabetical order based on the file or
-directory name. If multiple files and/or directories are given from
-the command line, they are executed in the order they are
-given.</p>
+<p>Test cases in a test suite are executed in the same order as they are defined
+in the test case file. Test suites inside a higher level test suite are
+executed in case-insensitive alphabetical order based on the file or directory
+name. If multiple files and/or directories are given from the command line,
+they are executed in the order they are given.</p>
 <p>If there is a need to use certain test suite execution order inside a
 directory, it is possible to add prefixes like <span class="path">01</span> and
 <span class="path">02</span> into file and directory names. Such prefixes are not
@@ -8785,7 +8838,7 @@ Several failures occurred:
 <p>Test execution ends also if a normal failure occurs after continuable
 failures. Also in that case all the failures will be listed in the
 final error message.</p>
-<p>The return value from failed keywords, and possibly assigned to a
+<p>The return value from failed keywords, possibly assigned to a
 variable, is always the Python <span class="code">None</span>.</p>
 </div>
 <div class="section" id="run-keyword-and-continue-on-failure-keyword">
@@ -8833,7 +8886,7 @@ reports and logs are not created.</p>
 <h4><a class="toc-backref" href="#id437">Using signals</a></h4>
 <p>On Unix-like machine it is possible to terminate test execution also
 using signals <span class="code">INT</span> and <span class="code">TERM</span>. These signals can be send
-from the command line using <span class="prog">kill</span> tool, and sending signals can
+from the command line using <span class="prog">kill</span> command, and sending signals can
 also be easily automated.</p>
 <p>Signals have the same limitation on Jython as pressing <span class="code">Ctrl-C</span>.
 Similarly also the second signal stops the execution forcefully.</p>
@@ -13176,7 +13229,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2010-06-08 23:38 UTC.
+<p>Generated on: 2010-06-09 09:41 UTC.
 </p>
 
 </div>
