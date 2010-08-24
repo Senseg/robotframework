@@ -8743,11 +8743,11 @@ and how to stop the whole test execution gracefully.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#stopping-test-execution-gracefully" id="id438">3.2.3&nbsp;&nbsp;&nbsp;Stopping test execution gracefully</a><ul>
-<li><a class="reference internal" href="#exit-on-failure" id="id439">Exit on failure</a></li>
-<li><a class="reference internal" href="#pressing-ctrl-c" id="id440">Pressing <span class="code">Ctrl-C</span></a></li>
-<li><a class="reference internal" href="#using-signals" id="id441">Using signals</a></li>
-<li><a class="reference internal" href="#using-keywords" id="id442">Using keywords</a></li>
-<li><a class="reference internal" href="#handling-teardowns" id="id443">Handling Teardowns</a></li>
+<li><a class="reference internal" href="#pressing-ctrl-c" id="id439">Pressing <span class="code">Ctrl-C</span></a></li>
+<li><a class="reference internal" href="#using-signals" id="id440">Using signals</a></li>
+<li><a class="reference internal" href="#using-keywords" id="id441">Using keywords</a></li>
+<li><a class="reference internal" href="#exitonfailure-mode" id="id442"><span class="opt">ExitOnFailure</span> mode</a></li>
+<li><a class="reference internal" href="#handling-teardowns" id="id443">Handling teardowns</a></li>
 </ul>
 </li>
 </ul>
@@ -8904,37 +8904,27 @@ the execution ends normally if there are non-continuable failures.</p>
 </div>
 <div class="section" id="stopping-test-execution-gracefully">
 <h3><a class="toc-backref" href="#id438">3.2.3&nbsp;&nbsp;&nbsp;Stopping test execution gracefully</a></h3>
-<p>Before Robot Framework 2.5 the only way to stop the test execution
-gracefully so that reports and logs are generated was using the
-<span class="opt">--runmode ExitOnFailure</span> command line option. This is a
-pretty limited mechanism, and Robot Framework 2.5 added a number of
-new capabilities explained below.</p>
-<p>Regardless the way how tests are stopped, the tests that have not yet
-been executed will be marked failed with a message <span class="msg">Test
-execution was stopped due to a fatal error</span>.</p>
-<div class="section" id="exit-on-failure">
-<h4><a class="toc-backref" href="#id439">Exit on failure</a></h4>
-<p>It is possible to exit the execution prematurely without running all
-the tests. This can be achieved by using the option <span class="opt">--runmode</span> with value
-<span class="opt">ExitOnFailure</span> (case-insensitive), in which case test execution is
-stopped immediately if a <a class="reference internal" href="#setting-criticality">critical test</a> fails. In this case the
-remaining tests are marked failed with the message <span class="msg">Critical failure
-occurred and ExitOnFailure option is in use</span>.</p>
-<p>This option has been available on Robot Framework since version 1.8.7. The
-following next three methods are new in Robot Framework version 2.5.</p>
+<p>Sometimes there is a need to stop the test execution before all the tests
+have finished, but so that logs and reports are created. Different ways how
+to accomplish this are explained below. In all these cases the remaining
+test cases are marked failed.</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Most of these features are new in Robot Framework 2.5. Only
+the <a class="reference internal" href="#exitonfailure-mode">ExitOnFailure mode</a> is supported in earlier versions.</p>
 </div>
 <div class="section" id="pressing-ctrl-c">
-<h4><a class="toc-backref" href="#id440">Pressing <span class="code">Ctrl-C</span></a></h4>
+<h4><a class="toc-backref" href="#id439">Pressing <span class="code">Ctrl-C</span></a></h4>
 <p>The execution is stopped when <span class="code">Ctrl-C</span> is pressed in the console
 where the tests are running. When running the tests on Python, the
 execution is stopped immediately, but with Jython it ends only after
-the currently executing keyword returns.</p>
+the currently executing keyword ends.</p>
 <p>If <span class="code">Ctrl-C</span> is pressed again, the execution ends immediately and
 reports and logs are not created.</p>
 </div>
 <div class="section" id="using-signals">
-<h4><a class="toc-backref" href="#id441">Using signals</a></h4>
-<p>On Unix-like machine it is possible to terminate test execution also
+<h4><a class="toc-backref" href="#id440">Using signals</a></h4>
+<p>On Unix-like machines it is possible to terminate test execution
 using signals <span class="code">INT</span> and <span class="code">TERM</span>. These signals can be send
 from the command line using <span class="prog">kill</span> command, and sending signals can
 also be easily automated.</p>
@@ -8942,15 +8932,25 @@ also be easily automated.</p>
 Similarly also the second signal stops the execution forcefully.</p>
 </div>
 <div class="section" id="using-keywords">
-<h4><a class="toc-backref" href="#id442">Using keywords</a></h4>
+<h4><a class="toc-backref" href="#id441">Using keywords</a></h4>
 <p>The execution can be stopped also by the executed keywords. There is a
 separate <span class="name">Fatal Error</span> <a class="reference internal" href="#builtin-library">BuiltIn keyword</a> for this purpose, and
 custom keywords can use <a class="reference internal" href="#stopping-test-execution">fatal exceptions</a> when they fail.</p>
 </div>
+<div class="section" id="exitonfailure-mode">
+<h4><a class="toc-backref" href="#id442"><span class="opt">ExitOnFailure</span> mode</a></h4>
+<p>If option <span class="opt">--runmode</span> is used with value <span class="opt">ExitOnFailure</span>
+(case-insensitive), the test execution stops immediately if a <a class="reference internal" href="#setting-criticality">critical
+test</a> fails.</p>
+</div>
 <div class="section" id="handling-teardowns">
-<h4><a class="toc-backref" href="#id443">Handling Teardowns</a></h4>
-<p>Teardowns for tests and suites that have been started are run always, even if tests are stopped using one of the methods above. This allows test and suite cleanup to be run even if tests failed.</p>
-<p>Starting from Robot Framework version 2.5.2 teardowns can be skipped on graceful exit with <span class="opt">--runmode SkipTeardownOnExit</span> command line option.</p>
+<h4><a class="toc-backref" href="#id443">Handling teardowns</a></h4>
+<p>By default teardowns for tests and suites that have been started are executed
+even if test execution is stopped using one of the methods above. This allows
+clean-up activities to be run regardless how execution ends.</p>
+<p>Starting from Robot Framework 2.5.2, teardowns are skipped when the execution is
+stopped if the <span class="opt">--runmode SkipTeardownOnExit</span> command line option is used.
+This can be useful if clean-up takes a lot of time.</p>
 </div>
 </div>
 </div>
@@ -12709,7 +12709,7 @@ when <a class="reference internal" href="#starting-test-execution">executing tes
 </tr>
 <tr><td>&nbsp;</td><td>Sets the execution mode for this test run.
 Valid modes are <a class="reference internal" href="#continue-on-failure">ContinueOnFailure</a>,
-<a class="reference internal" href="#exit-on-failure">ExitOnFailure</a>, <a class="reference internal" href="#handling-teardowns">SkipTeardownOnExit</a>,
+<a class="reference internal" href="#exitonfailure-mode">ExitOnFailure</a>, <a class="reference internal" href="#handling-teardowns">SkipTeardownOnExit</a>,
 <a class="reference internal" href="#dry-run">DryRun</a>, and <a class="reference internal" href="#randomizing-execution-order">Random</a>:&lt;what&gt;.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-v</span>, <span class="option">--variable <var>&lt;name:value&gt;</var></span></kbd></td>
@@ -13318,7 +13318,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2010-08-24 11:56 UTC.
+<p>Generated on: 2010-08-24 13:52 UTC.
 </p>
 
 </div>
