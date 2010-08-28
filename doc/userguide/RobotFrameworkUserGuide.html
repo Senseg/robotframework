@@ -10882,8 +10882,8 @@ string containing a number, and with the boolean type the data must
 contain either string <span class="code">true</span> or <span class="code">false</span>. Coercion is only
 done if the original value was a string from the test data, but it is
 of course still possible to use variables containing correct types with
-these keywords. With keywords having conflicting signatures using
-variables is the only option.</p>
+these keywords. Using variables is the only option if keywords have
+conflicting signatures.</p>
 <table border="1" class="example docutils">
 <caption>Using automatic type coercion</caption>
 <colgroup>
@@ -11163,8 +11163,7 @@ also illustrates that it is possible to return any objects and to use
 several <a class="reference internal" href="#scalar-variables">scalar variables</a> at once, into <a class="reference internal" href="#list-variables">a list variable</a>, or
 into scalar variables and a list variable. All these usages require
 that returned values are Python lists or tuples or
-Java arrays. If there is a need, support for other iterables can be
-added in the future.</p>
+in Java arrays, Lists, or Iterators.</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">return_two_values</span><span class="p">():</span>
     <span class="k">return</span> <span class="s">&#39;first value&#39;</span><span class="p">,</span> <span class="s">&#39;second value&#39;</span>
 
@@ -11320,8 +11319,9 @@ the approaches.</p>
 <p>After a library is implemented, documented, and tested, it still needs
 to be distributed to the users. With simple libraries consisting of a
 single file, it is often enough to ask the users to copy that file
-somewhere and set the <a class="reference internal" href="#adjusting-library-search-path">library search path</a> accordingly. With more
-complicated libraries, package them to make the installation easier.</p>
+somewhere and set the <a class="reference internal" href="#adjusting-library-search-path">library search path</a> accordingly. More
+complicated libraries should be packaged to make the installation
+easier.</p>
 <p>Since libraries are normal programming code, they can be packaged
 using normal packaging tools. With Python, good options include
 <a class="reference external" href="http://docs.python.org/dist/dist.html">distutils</a>, contained by Python's standard library, and the newer
@@ -11377,7 +11377,7 @@ internal links using the same syntax.</p>
 <div class="section" id="dynamic-library-api">
 <h3><a class="toc-backref" href="#id535">4.1.6&nbsp;&nbsp;&nbsp;Dynamic library API</a></h3>
 <p>The dynamic API is in most ways similar to the static API. For
-example, reporting the keyword status, logging and returning values
+example, reporting the keyword status, logging, and returning values
 works exactly the same way. Most importantly, there are no differences
 in importing dynamic libraries and using their keywords compared to
 other libraries, so you do not even need to know what APIs the
@@ -11600,8 +11600,8 @@ camelCase aliases work exactly the same way.</p>
 </table>
 <p>It is possible to write a formal interface specification in Java, as
 below. However, remember that libraries <em>do not need</em> to implement
-any explicit interface, because Robot Framework directly checks if the
-library has the required <span class="code">get_keyword_names</span> and
+any explicit interface, because Robot Framework directly checks with
+reflection if the library has the required <span class="code">get_keyword_names</span> and
 <span class="code">run_keyword</span> methods. Additionally,
 <span class="code">get_keyword_arguments</span> and <span class="code">get_keyword_documentation</span>
 are completely optional.</p>
@@ -11733,11 +11733,11 @@ using <span class="code">set_test_variable</span>, <span class="code">set_suite_
     <span class="k">print</span> <span class="s">&#39;*HTML* Output written to &lt;a href=&quot;results.txt&quot;&gt;results.txt&lt;/a&gt;&#39;</span>
 </pre></div>
 <p>The only catch with using methods from <span class="code">BuiltIn</span> is that all
-<span class="code">run_keyword</span> method variants must be handled specially. What
-needs to be done is registering methods that use these methods to be <em>run
-keywords</em> themselves using <span class="code">register_run_keyword</span> method
-in <span class="code">BuiltIn</span> module. This method's documentation explains why
-this needs to be done and obviously also how to do it.</p>
+<span class="code">run_keyword</span> method variants must be handled specially.
+Methods that use <span class="code">run_keyword</span> methods have to be registered
+as <em>run keywords</em> themselves using <span class="code">register_run_keyword</span>
+method in <span class="code">BuiltIn</span> module. This method's documentation explains
+why this needs to be done and obviously also how to do it.</p>
 <p>The plan is to document all the internal modules better so that it is
 easier to decide which can be used and how they should be used. If you
 are unsure is using some API safe, please send a question to either
@@ -11809,7 +11809,7 @@ an access to the same library instance that the framework uses.</p>
 </div>
 <div class="section" id="getting-active-library-instance-from-robot-framework">
 <h4><a class="toc-backref" href="#id551">Getting active library instance from Robot Framework</a></h4>
-<p>Robot Framework 2.5.2 added by <a class="reference internal" href="#builtin-library">BuiltIn</a> keyword <span class="name">Get Library
+<p>Robot Framework 2.5.2 added new <a class="reference internal" href="#builtin-library">BuiltIn</a> keyword <span class="name">Get Library
 Instance</span> that can be used to get the currently active library
 instance from the framework itself. The library instance returned by
 this keyword is the same as the framework itself uses, and thus
@@ -12689,16 +12689,17 @@ This problem will be fixed in future releases.</p>
 </div>
 <div class="section" id="parsed-test-data">
 <h3><a class="toc-backref" href="#id572">4.4.3&nbsp;&nbsp;&nbsp;Parsed test data</a></h3>
-<p>This API consists of a factory method for getting a <span class="code">TestSuite</span>
-object that contains parsed test data. The method is used like
-<span class="code">TestSuite(*datasources)</span>, where <span class="code">datasources</span> are paths to
-files and directories containing the test data:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">robot.parsing</span> <span class="kn">import</span> <span class="n">TestSuite</span>
+<p>Package <span class="code">robot.parsing</span> contains tools for parsing and handling test data.
+<span class="code">TestCaseFile</span> and <span class="code">TestDataDirectory</span> classes can be instantiated
+with parameter <span class="code">source</span> to start parsing existing test data. Example below
+shows how to parse names of tests from a test file. For more details please
+see the source code of Robot Framework directly.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">robot.parsing</span> <span class="kn">import</span> <span class="n">TestCaseFile</span>
 
-<span class="n">suite</span> <span class="o">=</span> <span class="n">TestSuite</span><span class="p">(</span><span class="s">&#39;path/to/tests.html&#39;</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">suite</span><span class="o">.</span><span class="n">name</span>
-<span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">suite</span><span class="o">.</span><span class="n">tests</span><span class="p">:</span>
-    <span class="k">print</span> <span class="n">test</span><span class="o">.</span><span class="n">name</span>
+<span class="n">suite</span> <span class="o">=</span> <span class="n">TestCaseFile</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s">&#39;path/to/tests.html&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&#39;Suite: &#39;</span><span class="p">,</span> <span class="n">suite</span><span class="o">.</span><span class="n">name</span>
+<span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">suite</span><span class="o">.</span><span class="n">testcase_table</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">test</span><span class="o">.</span><span class="n">name</span>
 </pre></div>
 </div>
 <div class="section" id="runnable-test-data">
@@ -13605,7 +13606,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2010-08-27 11:52 UTC.
+<p>Generated on: 2010-08-28 15:09 UTC.
 </p>
 
 </div>
