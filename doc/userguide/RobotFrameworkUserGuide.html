@@ -488,7 +488,7 @@ div.contents li {
 <body>
 <div class="document" id="robot-framework-user-guide">
 <h1 class="title">Robot Framework User Guide</h1>
-<h2 class="subtitle" id="version-version">Version trunk 20100916</h2>
+<h2 class="subtitle" id="version-version">Version trunk 20101005</h2>
 
 <!-- This data file has been placed in the public domain. -->
 <!-- Derived from the Unicode character mappings available from
@@ -10189,50 +10189,51 @@ and straightforward.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#creating-static-keywords" id="id518">4.1.3&nbsp;&nbsp;&nbsp;Creating static keywords</a><ul>
-<li><a class="reference internal" href="#keyword-names" id="id519">Keyword names</a></li>
-<li><a class="reference internal" href="#keyword-arguments" id="id520">Keyword arguments</a></li>
-<li><a class="reference internal" href="#default-values-to-keywords" id="id521">Default values to keywords</a></li>
-<li><a class="reference internal" href="#id169" id="id522">Variable number of arguments</a></li>
-<li><a class="reference internal" href="#argument-types" id="id523">Argument types</a></li>
+<li><a class="reference internal" href="#what-methods-are-considered-keywords" id="id519">What methods are considered keywords</a></li>
+<li><a class="reference internal" href="#keyword-names" id="id520">Keyword names</a></li>
+<li><a class="reference internal" href="#keyword-arguments" id="id521">Keyword arguments</a></li>
+<li><a class="reference internal" href="#default-values-to-keywords" id="id522">Default values to keywords</a></li>
+<li><a class="reference internal" href="#id169" id="id523">Variable number of arguments</a></li>
+<li><a class="reference internal" href="#argument-types" id="id524">Argument types</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#communicating-with-robot-framework" id="id524">4.1.4&nbsp;&nbsp;&nbsp;Communicating with Robot Framework</a><ul>
-<li><a class="reference internal" href="#reporting-keyword-status" id="id525">Reporting keyword status</a></li>
-<li><a class="reference internal" href="#stopping-test-execution" id="id526">Stopping test execution</a></li>
-<li><a class="reference internal" href="#continuing-test-execution-despite-of-failures" id="id527">Continuing test execution despite of failures</a></li>
-<li><a class="reference internal" href="#logging-information" id="id528">Logging information</a></li>
-<li><a class="reference internal" href="#returning-values" id="id529">Returning values</a></li>
+<li><a class="reference internal" href="#communicating-with-robot-framework" id="id525">4.1.4&nbsp;&nbsp;&nbsp;Communicating with Robot Framework</a><ul>
+<li><a class="reference internal" href="#reporting-keyword-status" id="id526">Reporting keyword status</a></li>
+<li><a class="reference internal" href="#stopping-test-execution" id="id527">Stopping test execution</a></li>
+<li><a class="reference internal" href="#continuing-test-execution-despite-of-failures" id="id528">Continuing test execution despite of failures</a></li>
+<li><a class="reference internal" href="#logging-information" id="id529">Logging information</a></li>
+<li><a class="reference internal" href="#returning-values" id="id530">Returning values</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#distributing-test-libraries" id="id530">4.1.5&nbsp;&nbsp;&nbsp;Distributing test libraries</a><ul>
-<li><a class="reference internal" href="#documenting-libraries" id="id531">Documenting libraries</a></li>
-<li><a class="reference internal" href="#testing-libraries" id="id532">Testing libraries</a></li>
-<li><a class="reference internal" href="#packaging-libraries" id="id533">Packaging libraries</a></li>
-<li><a class="reference internal" href="#deprecating-keywords" id="id534">Deprecating keywords</a></li>
+<li><a class="reference internal" href="#distributing-test-libraries" id="id531">4.1.5&nbsp;&nbsp;&nbsp;Distributing test libraries</a><ul>
+<li><a class="reference internal" href="#documenting-libraries" id="id532">Documenting libraries</a></li>
+<li><a class="reference internal" href="#testing-libraries" id="id533">Testing libraries</a></li>
+<li><a class="reference internal" href="#packaging-libraries" id="id534">Packaging libraries</a></li>
+<li><a class="reference internal" href="#deprecating-keywords" id="id535">Deprecating keywords</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#dynamic-library-api" id="id535">4.1.6&nbsp;&nbsp;&nbsp;Dynamic library API</a><ul>
-<li><a class="reference internal" href="#getting-keyword-names" id="id536">Getting keyword names</a></li>
-<li><a class="reference internal" href="#running-keywords" id="id537">Running keywords</a></li>
-<li><a class="reference internal" href="#getting-keyword-arguments" id="id538">Getting keyword arguments</a></li>
-<li><a class="reference internal" href="#getting-keyword-documentation" id="id539">Getting keyword documentation</a></li>
-<li><a class="reference internal" href="#summary" id="id540">Summary</a></li>
+<li><a class="reference internal" href="#dynamic-library-api" id="id536">4.1.6&nbsp;&nbsp;&nbsp;Dynamic library API</a><ul>
+<li><a class="reference internal" href="#getting-keyword-names" id="id537">Getting keyword names</a></li>
+<li><a class="reference internal" href="#running-keywords" id="id538">Running keywords</a></li>
+<li><a class="reference internal" href="#getting-keyword-arguments" id="id539">Getting keyword arguments</a></li>
+<li><a class="reference internal" href="#getting-keyword-documentation" id="id540">Getting keyword documentation</a></li>
+<li><a class="reference internal" href="#summary" id="id541">Summary</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#hybrid-library-api" id="id541">4.1.7&nbsp;&nbsp;&nbsp;Hybrid library API</a><ul>
-<li><a class="reference internal" href="#id182" id="id542">Getting keyword names</a></li>
-<li><a class="reference internal" href="#id183" id="id543">Running keywords</a></li>
-<li><a class="reference internal" href="#getting-keyword-arguments-and-documentation" id="id544">Getting keyword arguments and documentation</a></li>
-<li><a class="reference internal" href="#id185" id="id545">Summary</a></li>
+<li><a class="reference internal" href="#hybrid-library-api" id="id542">4.1.7&nbsp;&nbsp;&nbsp;Hybrid library API</a><ul>
+<li><a class="reference internal" href="#id182" id="id543">Getting keyword names</a></li>
+<li><a class="reference internal" href="#id183" id="id544">Running keywords</a></li>
+<li><a class="reference internal" href="#getting-keyword-arguments-and-documentation" id="id545">Getting keyword arguments and documentation</a></li>
+<li><a class="reference internal" href="#id185" id="id546">Summary</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-robot-framework-s-internal-modules" id="id546">4.1.8&nbsp;&nbsp;&nbsp;Using Robot Framework's internal modules</a></li>
-<li><a class="reference internal" href="#extending-existing-test-libraries" id="id547">4.1.9&nbsp;&nbsp;&nbsp;Extending existing test libraries</a><ul>
-<li><a class="reference internal" href="#modifying-original-source-code" id="id548">Modifying original source code</a></li>
-<li><a class="reference internal" href="#using-inheritance" id="id549">Using inheritance</a></li>
-<li><a class="reference internal" href="#using-other-libraries-directly" id="id550">Using other libraries directly</a></li>
-<li><a class="reference internal" href="#getting-active-library-instance-from-robot-framework" id="id551">Getting active library instance from Robot Framework</a></li>
-<li><a class="reference internal" href="#libraries-using-dynamic-or-hybrid-api" id="id552">Libraries using dynamic or hybrid API</a></li>
+<li><a class="reference internal" href="#using-robot-framework-s-internal-modules" id="id547">4.1.8&nbsp;&nbsp;&nbsp;Using Robot Framework's internal modules</a></li>
+<li><a class="reference internal" href="#extending-existing-test-libraries" id="id548">4.1.9&nbsp;&nbsp;&nbsp;Extending existing test libraries</a><ul>
+<li><a class="reference internal" href="#modifying-original-source-code" id="id549">Modifying original source code</a></li>
+<li><a class="reference internal" href="#using-inheritance" id="id550">Using inheritance</a></li>
+<li><a class="reference internal" href="#using-other-libraries-directly" id="id551">Using other libraries directly</a></li>
+<li><a class="reference internal" href="#getting-active-library-instance-from-robot-framework" id="id552">Getting active library instance from Robot Framework</a></li>
+<li><a class="reference internal" href="#libraries-using-dynamic-or-hybrid-api" id="id553">Libraries using dynamic or hybrid API</a></li>
 </ul>
 </li>
 </ul>
@@ -10510,15 +10511,66 @@ attribute must be declared as <span class="code">static final</span>.</p>
 </div>
 <div class="section" id="creating-static-keywords">
 <h3><a class="toc-backref" href="#id518">4.1.3&nbsp;&nbsp;&nbsp;Creating static keywords</a></h3>
-<div class="section" id="keyword-names">
-<h4><a class="toc-backref" href="#id519">Keyword names</a></h4>
+<div class="section" id="what-methods-are-considered-keywords">
+<h4><a class="toc-backref" href="#id519">What methods are considered keywords</a></h4>
 <p>When the static library API is used, Robot Framework uses reflection
-to find out what methods the library implements. With <a class="reference internal" href="#dynamic-library-api">dynamic library
-API</a> and <a class="reference internal" href="#hybrid-library-api">hybrid library API</a>, keyword names are got from the
-library directly. Naturally, Robot Framework can see only the public
-methods and it also excludes all methods starting with an
-underscore. With Java libraries, also methods that are implemented in
-<span class="code">java.lang.Object</span> and not overridden are ignored.</p>
+to find out what public methods the library class or module
+implements. It will exclude all methods starting with an underscore,
+and with Java libraries also methods that are implemented only in
+<span class="code">java.lang.Object</span> are ignored. All the methods that are not
+ignored are considered keywords. For example, the Python and Java
+libraries below implement single keyword <span class="name">My Keyword</span>.</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">MyLibrary</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">my_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_helper_method</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">_helper_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">arg</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</pre></div>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyLibrary</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">myKeyword</span><span class="o">(</span><span class="n">String</span> <span class="n">arg</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">helperMethod</span><span class="o">(</span><span class="n">arg</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">helperMethod</span><span class="o">(</span><span class="n">String</span> <span class="n">arg</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">arg</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>When the library is implemented as a Python module, it is also
+possible to limit what methods are keywords by using Python's
+<span class="code">__all__</span> attribute. If <span class="code">__all__</span> is used, only methods
+listed in it can be keywords. For example, the library below
+implements keywords <span class="name">Example Keyword</span> and <span class="name">Second
+Example</span>. Without <span class="code">__all__</span>, it would implement also keywords
+<span class="name">Not Exposed As Keyword</span> and <span class="name">Current Thread</span>. The most
+important usage for <span class="code">__all__</span> is making sure imported helper
+methods, such as <span class="code">current_thread</span> in the example below, are not
+accidentally exposed as keywords.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">current_thread</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;example_keyword&#39;</span><span class="p">,</span> <span class="s">&#39;second_example&#39;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">example_keyword</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">current_thread</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&#39;MainThread&#39;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;Running in main thread&#39;</span>
+
+<span class="k">def</span> <span class="nf">second_example</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">not_exposed_as_keyword</span><span class="p">():</span>
+    <span class="k">pass</span>
+</pre></div>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Support for the <span class="code">__all__</span> attribute is available from
+Robot Framework 2.5.5 onwards.</p>
+</div>
+</div>
+<div class="section" id="keyword-names">
+<h4><a class="toc-backref" href="#id520">Keyword names</a></h4>
 <p>Keyword names used in the test data are compared with method names to
 find the method implementing these keywords. Name comparison is
 case-insensitive, and also spaces and underscores are ignored. For
@@ -10600,7 +10652,7 @@ in the <a class="reference internal" href="#adjusting-library-search-path">libra
 </table>
 </div>
 <div class="section" id="keyword-arguments">
-<h4><a class="toc-backref" href="#id520">Keyword arguments</a></h4>
+<h4><a class="toc-backref" href="#id521">Keyword arguments</a></h4>
 <p>With a static and hybrid API, the information on how many arguments a
 keyword needs is got directly from the method that implements it.
 Libraries using the <a class="reference internal" href="#dynamic-library-api">dynamic library API</a> have other means for sharing
@@ -10623,7 +10675,7 @@ so on.</p>
 </pre></div>
 </div>
 <div class="section" id="default-values-to-keywords">
-<h4><a class="toc-backref" href="#id521">Default values to keywords</a></h4>
+<h4><a class="toc-backref" href="#id522">Default values to keywords</a></h4>
 <p>It is often useful that some of the arguments that a keyword uses have
 default values. Python and Java have different syntax for handling default
 values to methods, and the natural syntax of these languages can be
@@ -10728,7 +10780,7 @@ the earlier Python example:</p>
 </div>
 </div>
 <div class="section" id="id169">
-<h4><a class="toc-backref" href="#id522">Variable number of arguments</a></h4>
+<h4><a class="toc-backref" href="#id523">Variable number of arguments</a></h4>
 <p>Robot Framework supports also keywords that take any number of
 arguments. Similarly as with the default values, the actual syntax to use
 in test libraries is different in Python and Java.</p>
@@ -10868,7 +10920,7 @@ examples below illustrate:</p>
 </div>
 </div>
 <div class="section" id="argument-types">
-<h4><a class="toc-backref" href="#id523">Argument types</a></h4>
+<h4><a class="toc-backref" href="#id524">Argument types</a></h4>
 <p>Normally keyword arguments come to Robot Framework as strings. If
 keywords require some other types, it is possible to either use
 <a class="reference internal" href="#variables">variables</a> or convert strings to required types inside keywords. With
@@ -10990,14 +11042,14 @@ conflicting signatures.</p>
 </div>
 </div>
 <div class="section" id="communicating-with-robot-framework">
-<h3><a class="toc-backref" href="#id524">4.1.4&nbsp;&nbsp;&nbsp;Communicating with Robot Framework</a></h3>
+<h3><a class="toc-backref" href="#id525">4.1.4&nbsp;&nbsp;&nbsp;Communicating with Robot Framework</a></h3>
 <p>After a method implementing a keyword is called, it can use any
 mechanism to communicate with the system under test. It can then also
 send messages to Robot Framework's log file, return information that
 can be saved to variables and, most importantly, report if the
 keyword passed or not.</p>
 <div class="section" id="reporting-keyword-status">
-<h4><a class="toc-backref" href="#id525">Reporting keyword status</a></h4>
+<h4><a class="toc-backref" href="#id526">Reporting keyword status</a></h4>
 <p>Reporting keyword status is done simply using exceptions. If an executed
 method raises an exception, the keyword status is <span class="msg">FAIL</span>, and if it
 returns normally, the status is <span class="msg">PASS</span>.</p>
@@ -11018,7 +11070,7 @@ rarely interesting for normal users. When developing libraries, it is often a
 good idea to run tests using <span class="cli">--loglevel DEBUG</span>.</p>
 </div>
 <div class="section" id="stopping-test-execution">
-<h4><a class="toc-backref" href="#id526">Stopping test execution</a></h4>
+<h4><a class="toc-backref" href="#id527">Stopping test execution</a></h4>
 <p>Starting from Robot Framework 2.5 it is possible to fail a test case so that
 <a class="reference internal" href="#stopping-test-execution-gracefully">the whole test execution is stopped</a>. This is done simply by having a special
 <span class="code">ROBOT_EXIT_ON_FAILURE</span> attribute with <span class="code">True</span> value set on the
@@ -11034,7 +11086,7 @@ exception raised from the keyword. This is illustrated in the examples below.</p
 </pre></div>
 </div>
 <div class="section" id="continuing-test-execution-despite-of-failures">
-<h4><a class="toc-backref" href="#id527">Continuing test execution despite of failures</a></h4>
+<h4><a class="toc-backref" href="#id528">Continuing test execution despite of failures</a></h4>
 <p>Starting from Robot Framework 2.5 it is possible to <a class="reference internal" href="#continue-on-failure">continue test
 execution even when there are failures</a>. The way to signal this from
 test libraries is adding a special <span class="code">ROBOT_CONTINUE_ON_FAILURE</span>
@@ -11051,7 +11103,7 @@ the failure. This is demonstrated by the examples below.</p>
 </pre></div>
 </div>
 <div class="section" id="logging-information">
-<h4><a class="toc-backref" href="#id528">Logging information</a></h4>
+<h4><a class="toc-backref" href="#id529">Logging information</a></h4>
 <p>Exception messages are not the only way to give information to the
 users. In addition to that, methods can also send messages to <a class="reference internal" href="#log-file">log
 files</a> simply by writing to standard output (stdout) or standard
@@ -11148,7 +11200,7 @@ as pseudocode meaning <span class="code">System.out.println(&quot;message&quot;)
 </table></div>
 </div>
 <div class="section" id="returning-values">
-<h4><a class="toc-backref" href="#id529">Returning values</a></h4>
+<h4><a class="toc-backref" href="#id530">Returning values</a></h4>
 <p>The final way for keywords to communicate back to the core framework
 is returning information retrieved from the system under test or
 generated by some other means. The returned values can be <a class="reference internal" href="#return-values-from-keywords">assigned to
@@ -11263,9 +11315,9 @@ in Java arrays, Lists, or Iterators.</p>
 </div>
 </div>
 <div class="section" id="distributing-test-libraries">
-<h3><a class="toc-backref" href="#id530">4.1.5&nbsp;&nbsp;&nbsp;Distributing test libraries</a></h3>
+<h3><a class="toc-backref" href="#id531">4.1.5&nbsp;&nbsp;&nbsp;Distributing test libraries</a></h3>
 <div class="section" id="documenting-libraries">
-<h4><a class="toc-backref" href="#id531">Documenting libraries</a></h4>
+<h4><a class="toc-backref" href="#id532">Documenting libraries</a></h4>
 <p>A test library without documentation about what keywords it
 contains and what those keywords do is rather useless. To ease
 maintenance, it is highly recommended that library documentation is
@@ -11325,7 +11377,7 @@ because their documentations are lost in compilation and not available
 at runtime.</p>
 </div>
 <div class="section" id="testing-libraries">
-<h4><a class="toc-backref" href="#id532">Testing libraries</a></h4>
+<h4><a class="toc-backref" href="#id533">Testing libraries</a></h4>
 <p>Any non-trivial test library needs to be thoroughly tested to prevent
 bugs in them. Of course, this testing should be automated to make it
 easy to rerun tests when libraries are changed.</p>
@@ -11349,7 +11401,7 @@ Framework. If you cannot decide, of course it is possible to use both
 the approaches.</p>
 </div>
 <div class="section" id="packaging-libraries">
-<h4><a class="toc-backref" href="#id533">Packaging libraries</a></h4>
+<h4><a class="toc-backref" href="#id534">Packaging libraries</a></h4>
 <p>After a library is implemented, documented, and tested, it still needs
 to be distributed to the users. With simple libraries consisting of a
 single file, it is often enough to ask the users to copy that file
@@ -11368,7 +11420,7 @@ before running tests, but it is easy to <a class="reference internal" href="#cre
 does that automatically.</p>
 </div>
 <div class="section" id="deprecating-keywords">
-<h4><a class="toc-backref" href="#id534">Deprecating keywords</a></h4>
+<h4><a class="toc-backref" href="#id535">Deprecating keywords</a></h4>
 <p>Sometimes there is a need to replace existing keywords with new ones
 or remove them altogether. Just informing the users about the change
 may not always be enough, and it is more efficient to get warnings at
@@ -11409,7 +11461,7 @@ internal links using the same syntax.</p>
 </div>
 </div>
 <div class="section" id="dynamic-library-api">
-<h3><a class="toc-backref" href="#id535">4.1.6&nbsp;&nbsp;&nbsp;Dynamic library API</a></h3>
+<h3><a class="toc-backref" href="#id536">4.1.6&nbsp;&nbsp;&nbsp;Dynamic library API</a></h3>
 <p>The dynamic API is in most ways similar to the static API. For
 example, reporting the keyword status, logging, and returning values
 works exactly the same way. Most importantly, there are no differences
@@ -11446,7 +11498,7 @@ possible. However, if you use Java, you may want to examine
 reusable tools supports several ways of creating keywords, and it is
 likely that it already has a mechanism that suites your needs.</p>
 <div class="section" id="getting-keyword-names">
-<h4><a class="toc-backref" href="#id536">Getting keyword names</a></h4>
+<h4><a class="toc-backref" href="#id537">Getting keyword names</a></h4>
 <p>Dynamic libraries tell what keywords they implement with the
 <span class="code">get_keyword_names</span> method. The method also has the alias
 <span class="code">getKeywordNames</span> that is recommended when writing Java. This
@@ -11464,7 +11516,7 @@ if calling it fails for some reason, the library is considered a
 static library, instead.</p>
 </div>
 <div class="section" id="running-keywords">
-<h4><a class="toc-backref" href="#id537">Running keywords</a></h4>
+<h4><a class="toc-backref" href="#id538">Running keywords</a></h4>
 <p>Dynamic libraries have a special <span class="code">run_keyword</span> (alias
 <span class="code">runKeyword</span>) method for executing their keywords. When a
 keyword from a dynamic library is used in the test data, Robot
@@ -11494,7 +11546,7 @@ trivial) dynamic library.</p>
 </pre></div>
 </div>
 <div class="section" id="getting-keyword-arguments">
-<h4><a class="toc-backref" href="#id538">Getting keyword arguments</a></h4>
+<h4><a class="toc-backref" href="#id539">Getting keyword arguments</a></h4>
 <p>If a dynamic library only implements the <span class="code">get_keyword_names</span> and
 <span class="code">run_keyword</span> methods, Robot Framework does not have any information
 about the arguments that the implemented keywords need. For example,
@@ -11582,7 +11634,7 @@ library, arguments are shown in the documentation, in which case they
 need to have meaningful names.</p>
 </div>
 <div class="section" id="getting-keyword-documentation">
-<h4><a class="toc-backref" href="#id539">Getting keyword documentation</a></h4>
+<h4><a class="toc-backref" href="#id540">Getting keyword documentation</a></h4>
 <p>The final special method that dynamic libraries can implement is
 <span class="code">get_keyword_documentation</span> (alias
 <span class="code">getKeywordDocumentation</span>). It takes a keyword name as an
@@ -11596,7 +11648,7 @@ the first line of the documentation (until the first <span class="code">\n</span
 shown in test logs.</p>
 </div>
 <div class="section" id="summary">
-<h4><a class="toc-backref" href="#id540">Summary</a></h4>
+<h4><a class="toc-backref" href="#id541">Summary</a></h4>
 <p>All special methods in the dynamic API are listed in the table
 below. Method names are listed in the underscore format, but their
 camelCase aliases work exactly the same way.</p>
@@ -11656,19 +11708,19 @@ are completely optional.</p>
 </div>
 </div>
 <div class="section" id="hybrid-library-api">
-<h3><a class="toc-backref" href="#id541">4.1.7&nbsp;&nbsp;&nbsp;Hybrid library API</a></h3>
+<h3><a class="toc-backref" href="#id542">4.1.7&nbsp;&nbsp;&nbsp;Hybrid library API</a></h3>
 <p>The hybrid library API is, as its name implies, a hybrid between the
 static API and the dynamic API. Just as with the dynamic API, it is
 possible to implement a library using the hybrid API only as a class.</p>
 <div class="section" id="id182">
-<h4><a class="toc-backref" href="#id542">Getting keyword names</a></h4>
+<h4><a class="toc-backref" href="#id543">Getting keyword names</a></h4>
 <p>Keyword names are got in the exactly same way as with the dynamic
 API. In practice, the library needs to have the
 <span class="code">get_keyword_names</span> or <span class="code">getKeywordNames</span> method returning
 a list of keyword names that the library implements.</p>
 </div>
 <div class="section" id="id183">
-<h4><a class="toc-backref" href="#id543">Running keywords</a></h4>
+<h4><a class="toc-backref" href="#id544">Running keywords</a></h4>
 <p>In the hybrid API, there is no <span class="code">run_keyword</span> method for executing
 keywords. Instead, Robot Framework uses reflection to find methods
 implementing keywords, similarly as with the static API. A library
@@ -11710,7 +11762,7 @@ to implement all the methods in the library class, but that brings few
 benefits compared to the static API.</p>
 </div>
 <div class="section" id="getting-keyword-arguments-and-documentation">
-<h4><a class="toc-backref" href="#id544">Getting keyword arguments and documentation</a></h4>
+<h4><a class="toc-backref" href="#id545">Getting keyword arguments and documentation</a></h4>
 <p>When this API is used, Robot Framework uses reflection to find the
 methods implementing keywords, similarly as with the static API. After
 getting a reference to the method, it searches for arguments and
@@ -11719,7 +11771,7 @@ API. Thus there is no need for special methods for getting arguments
 and documentation like there is with the dynamic API.</p>
 </div>
 <div class="section" id="id185">
-<h4><a class="toc-backref" href="#id545">Summary</a></h4>
+<h4><a class="toc-backref" href="#id546">Summary</a></h4>
 <p>When implementing a test library in Python, the hybrid API has the same
 dynamic capabilities as the actual dynamic API. A great benefit with it is
 that there is no need to have special methods for getting keyword
@@ -11737,7 +11789,7 @@ the keyword name and arguments.</p>
 </div>
 </div>
 <div class="section" id="using-robot-framework-s-internal-modules">
-<h3><a class="toc-backref" href="#id546">4.1.8&nbsp;&nbsp;&nbsp;Using Robot Framework's internal modules</a></h3>
+<h3><a class="toc-backref" href="#id547">4.1.8&nbsp;&nbsp;&nbsp;Using Robot Framework's internal modules</a></h3>
 <p>Test libraries implemented with Python can use Robot Framework's
 internal modules, for example, to get information about the executed
 tests and the settings that are used. This powerful mechanism to
@@ -11778,12 +11830,12 @@ are unsure is using some API safe, please send a question to either
 user or developer <a class="reference internal" href="#mailing-lists">mailing list</a>.</p>
 </div>
 <div class="section" id="extending-existing-test-libraries">
-<h3><a class="toc-backref" href="#id547">4.1.9&nbsp;&nbsp;&nbsp;Extending existing test libraries</a></h3>
+<h3><a class="toc-backref" href="#id548">4.1.9&nbsp;&nbsp;&nbsp;Extending existing test libraries</a></h3>
 <p>This section explains different approaches how to add new
 functionality to existing test libraries and how to use them in your
 own libraries otherwise.</p>
 <div class="section" id="modifying-original-source-code">
-<h4><a class="toc-backref" href="#id548">Modifying original source code</a></h4>
+<h4><a class="toc-backref" href="#id549">Modifying original source code</a></h4>
 <p>If you have access to the source code of the library you want to
 extend, you can naturally modify the source code directly. The biggest
 problem of this approach is that it can be hard for you to update the
@@ -11800,7 +11852,7 @@ them back, the approaches explained in the subsequent sections
 probably work better.</p>
 </div>
 <div class="section" id="using-inheritance">
-<h4><a class="toc-backref" href="#id549">Using inheritance</a></h4>
+<h4><a class="toc-backref" href="#id550">Using inheritance</a></h4>
 <p>Another straightforward way to extend an existing library is using
 inheritance. This is illustrated by the example below that adds new
 <span class="name">Title Should Start With</span> keyword to the <a class="reference external" href="http://code.google.com/p/robotframework-seleniumlibrary">SeleniumLibrary</a>. This
@@ -11829,7 +11881,7 @@ to add custom enhancements to it from the beginning. Otherwise other
 mechanisms explained in this section are probably better.</p>
 </div>
 <div class="section" id="using-other-libraries-directly">
-<h4><a class="toc-backref" href="#id550">Using other libraries directly</a></h4>
+<h4><a class="toc-backref" href="#id551">Using other libraries directly</a></h4>
 <p>Because test libraries are technically just classes or modules, a
 simple way to use another library is importing it and using its
 methods. This approach works great when the methods are static and do
@@ -11842,7 +11894,7 @@ are not visible to your library. The next section explains how to get
 an access to the same library instance that the framework uses.</p>
 </div>
 <div class="section" id="getting-active-library-instance-from-robot-framework">
-<h4><a class="toc-backref" href="#id551">Getting active library instance from Robot Framework</a></h4>
+<h4><a class="toc-backref" href="#id552">Getting active library instance from Robot Framework</a></h4>
 <p>Robot Framework 2.5.2 added new <a class="reference internal" href="#builtin-library">BuiltIn</a> keyword <span class="name">Get Library
 Instance</span> that can be used to get the currently active library
 instance from the framework itself. The library instance returned by
@@ -11925,7 +11977,7 @@ expected to be available in a new library <span class="name">SeLibExtensions</sp
 </table>
 </div>
 <div class="section" id="libraries-using-dynamic-or-hybrid-api">
-<h4><a class="toc-backref" href="#id552">Libraries using dynamic or hybrid API</a></h4>
+<h4><a class="toc-backref" href="#id553">Libraries using dynamic or hybrid API</a></h4>
 <p>Test libraries that use the <a class="reference internal" href="#dynamic-library-api">dynamic</a> or <a class="reference internal" href="#hybrid-library-api">hybrid library API</a> often
 have their own systems how to extend them. With these libraries you
 need to ask guidance from the library developers or consult the
@@ -11944,28 +11996,28 @@ developing test libraries using the remote library interface is also
 very close to creating <a class="reference internal" href="#creating-test-libraries">normal test libraries</a>.</p>
 <div class="contents local topic" id="id191">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#id192" id="id553">4.2.1&nbsp;&nbsp;&nbsp;Introduction</a></li>
-<li><a class="reference internal" href="#taking-remote-library-into-use" id="id554">4.2.2&nbsp;&nbsp;&nbsp;Taking Remote library into use</a><ul>
-<li><a class="reference internal" href="#importing-remote-library" id="id555">Importing Remote library</a></li>
-<li><a class="reference internal" href="#starting-and-stopping-remote-servers" id="id556">Starting and stopping remote servers</a></li>
+<li><a class="reference internal" href="#id192" id="id554">4.2.1&nbsp;&nbsp;&nbsp;Introduction</a></li>
+<li><a class="reference internal" href="#taking-remote-library-into-use" id="id555">4.2.2&nbsp;&nbsp;&nbsp;Taking Remote library into use</a><ul>
+<li><a class="reference internal" href="#importing-remote-library" id="id556">Importing Remote library</a></li>
+<li><a class="reference internal" href="#starting-and-stopping-remote-servers" id="id557">Starting and stopping remote servers</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#supported-argument-and-return-value-types" id="id557">4.2.3&nbsp;&nbsp;&nbsp;Supported argument and return value types</a></li>
-<li><a class="reference internal" href="#using-remote-servers" id="id558">4.2.4&nbsp;&nbsp;&nbsp;Using remote servers</a><ul>
-<li><a class="reference internal" href="#python-remote-library-example" id="id559">Python remote library example</a></li>
-<li><a class="reference internal" href="#ruby-remote-library-example" id="id560">Ruby remote library example</a></li>
+<li><a class="reference internal" href="#supported-argument-and-return-value-types" id="id558">4.2.3&nbsp;&nbsp;&nbsp;Supported argument and return value types</a></li>
+<li><a class="reference internal" href="#using-remote-servers" id="id559">4.2.4&nbsp;&nbsp;&nbsp;Using remote servers</a><ul>
+<li><a class="reference internal" href="#python-remote-library-example" id="id560">Python remote library example</a></li>
+<li><a class="reference internal" href="#ruby-remote-library-example" id="id561">Ruby remote library example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#remote-protocol" id="id561">4.2.5&nbsp;&nbsp;&nbsp;Remote protocol</a><ul>
-<li><a class="reference internal" href="#required-methods" id="id562">Required methods</a></li>
-<li><a class="reference internal" href="#getting-remote-keyword-names-and-other-information" id="id563">Getting remote keyword names and other information</a></li>
-<li><a class="reference internal" href="#executing-remote-keywords" id="id564">Executing remote keywords</a></li>
+<li><a class="reference internal" href="#remote-protocol" id="id562">4.2.5&nbsp;&nbsp;&nbsp;Remote protocol</a><ul>
+<li><a class="reference internal" href="#required-methods" id="id563">Required methods</a></li>
+<li><a class="reference internal" href="#getting-remote-keyword-names-and-other-information" id="id564">Getting remote keyword names and other information</a></li>
+<li><a class="reference internal" href="#executing-remote-keywords" id="id565">Executing remote keywords</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="id192">
-<h3><a class="toc-backref" href="#id553">4.2.1&nbsp;&nbsp;&nbsp;Introduction</a></h3>
+<h3><a class="toc-backref" href="#id554">4.2.1&nbsp;&nbsp;&nbsp;Introduction</a></h3>
 <p>There are two main reasons for using the remote library API:</p>
 <ul class="simple">
 <li>It is possible to have actual libraries on different machines than
@@ -11991,9 +12043,9 @@ illustrated in the picture below:</p>
 </div>
 </div>
 <div class="section" id="taking-remote-library-into-use">
-<h3><a class="toc-backref" href="#id554">4.2.2&nbsp;&nbsp;&nbsp;Taking Remote library into use</a></h3>
+<h3><a class="toc-backref" href="#id555">4.2.2&nbsp;&nbsp;&nbsp;Taking Remote library into use</a></h3>
 <div class="section" id="importing-remote-library">
-<h4><a class="toc-backref" href="#id555">Importing Remote library</a></h4>
+<h4><a class="toc-backref" href="#id556">Importing Remote library</a></h4>
 <p>The Remote library needs to know the address of the remote server but
 otherwise importing it and using keywords that it provides is no
 different to how other libraries are used. If you need to use the Remote
@@ -12037,7 +12089,7 @@ that the Remote library uses if no address is given. Similarly port
 and 70 are the ASCII codes of letters <cite>R</cite> and <cite>F</cite>, respectively.)</p>
 </div>
 <div class="section" id="starting-and-stopping-remote-servers">
-<h4><a class="toc-backref" href="#id556">Starting and stopping remote servers</a></h4>
+<h4><a class="toc-backref" href="#id557">Starting and stopping remote servers</a></h4>
 <p>Before the Remote library can be imported, the remote server providing
 the actual keywords must be started.  If the server is started before
 launching the test execution, it is possible to use the normal
@@ -12062,7 +12114,7 @@ operating system (e.g. <span class="prog">kill</span>).</li>
 </div>
 </div>
 <div class="section" id="supported-argument-and-return-value-types">
-<h3><a class="toc-backref" href="#id557">4.2.3&nbsp;&nbsp;&nbsp;Supported argument and return value types</a></h3>
+<h3><a class="toc-backref" href="#id558">4.2.3&nbsp;&nbsp;&nbsp;Supported argument and return value types</a></h3>
 <p>Because the XML-RPC protocol does not support all possible object
 types, the values transferred between the Remote library and remote
 servers must be converted to compatible types. This applies to the
@@ -12080,7 +12132,7 @@ to supported types recursively and keys are converted to strings.</li>
 </ul>
 </div>
 <div class="section" id="using-remote-servers">
-<h3><a class="toc-backref" href="#id558">4.2.4&nbsp;&nbsp;&nbsp;Using remote servers</a></h3>
+<h3><a class="toc-backref" href="#id559">4.2.4&nbsp;&nbsp;&nbsp;Using remote servers</a></h3>
 <p>Robot Framework 2.1 includes remote server implementations written
 both in Python and Ruby. These servers, as well as the example
 libraries shown below and an example test case file, are
@@ -12104,7 +12156,7 @@ examples below. Executing these modules as scripts from the command
 line will start the remote server so that it serves the keywords
 implemented in the library.</p>
 <div class="section" id="python-remote-library-example">
-<h4><a class="toc-backref" href="#id559">Python remote library example</a></h4>
+<h4><a class="toc-backref" href="#id560">Python remote library example</a></h4>
 <p>This example demonstrates how to use the Python version of the
 remote server. The example library implements keywords <span class="name">Count
 Items In Directory</span> and <span class="name">Strings Should Be Equal</span>.</p>
@@ -12131,7 +12183,7 @@ Items In Directory</span> and <span class="name">Strings Should Be Equal</span>.
 </pre></div>
 </div>
 <div class="section" id="ruby-remote-library-example">
-<h4><a class="toc-backref" href="#id560">Ruby remote library example</a></h4>
+<h4><a class="toc-backref" href="#id561">Ruby remote library example</a></h4>
 <p>This example uses the Ruby remote server and provides exactly same
 keywords as the previous Python example:</p>
 <div class="highlight"><pre><span class="c1">#!/usr/bin/env ruby</span>
@@ -12160,7 +12212,7 @@ keywords as the previous Python example:</p>
 </div>
 </div>
 <div class="section" id="remote-protocol">
-<h3><a class="toc-backref" href="#id561">4.2.5&nbsp;&nbsp;&nbsp;Remote protocol</a></h3>
+<h3><a class="toc-backref" href="#id562">4.2.5&nbsp;&nbsp;&nbsp;Remote protocol</a></h3>
 <p>This section explains the protocol that is used between the Remote
 library and remote servers. This information is mainly targeted for
 people who want to create new remote servers. The provided Python and
@@ -12170,7 +12222,7 @@ simple remote procedure call protocol using XML over HTTP. Most
 mainstream languages (Python, Java, C, Ruby, Perl, Javascript, PHP,
 ...) have a support for XML-RPC either built-in or as extensions.</p>
 <div class="section" id="required-methods">
-<h4><a class="toc-backref" href="#id562">Required methods</a></h4>
+<h4><a class="toc-backref" href="#id563">Required methods</a></h4>
 <p>A remote server is an XML-RPC server that must have the same methods
 in its public interface as the <a class="reference internal" href="#dynamic-library-api">dynamic library API</a> has. Only
 <span class="code">get_keyword_names</span> and <span class="code">run_keyword</span> are actually
@@ -12188,7 +12240,7 @@ automatically so that it can be used in the test data regardless of
 the test library.</p>
 </div>
 <div class="section" id="getting-remote-keyword-names-and-other-information">
-<h4><a class="toc-backref" href="#id563">Getting remote keyword names and other information</a></h4>
+<h4><a class="toc-backref" href="#id564">Getting remote keyword names and other information</a></h4>
 <p>The Remote library gets a list of keywords that the remote server
 provides using <span class="code">get_keyword_names</span> method. This method must
 return the keyword names as a list of strings.</p>
@@ -12200,7 +12252,7 @@ returned as a list of strings in the <a class="reference internal" href="#gettin
 libraries</a>, and documentation must be returned <a class="reference internal" href="#getting-keyword-documentation">as a string</a>.</p>
 </div>
 <div class="section" id="executing-remote-keywords">
-<h4><a class="toc-backref" href="#id564">Executing remote keywords</a></h4>
+<h4><a class="toc-backref" href="#id565">Executing remote keywords</a></h4>
 <p>When the Remote library wants the server to execute some keyword, it
 calls remote server's <span class="code">run_keyword</span> method and passes it the
 keyword name and a list of arguments. Base types can be used as
@@ -12257,17 +12309,17 @@ Example uses of the listener interface include external test monitors, sending
 a mail message when a test fails, and communicating with other systems.</p>
 <div class="contents local topic" id="id200">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#taking-listeners-into-use" id="id565">4.3.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></li>
-<li><a class="reference internal" href="#available-listener-interface-methods" id="id566">4.3.2&nbsp;&nbsp;&nbsp;Available listener interface methods</a><ul>
-<li><a class="reference internal" href="#listener-interface-versions" id="id567">Listener interface versions</a></li>
-<li><a class="reference internal" href="#listener-interface-method-signatures" id="id568">Listener interface method signatures</a></li>
+<li><a class="reference internal" href="#taking-listeners-into-use" id="id566">4.3.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></li>
+<li><a class="reference internal" href="#available-listener-interface-methods" id="id567">4.3.2&nbsp;&nbsp;&nbsp;Available listener interface methods</a><ul>
+<li><a class="reference internal" href="#listener-interface-versions" id="id568">Listener interface versions</a></li>
+<li><a class="reference internal" href="#listener-interface-method-signatures" id="id569">Listener interface method signatures</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#listener-examples" id="id569">4.3.3&nbsp;&nbsp;&nbsp;Listener examples</a></li>
+<li><a class="reference internal" href="#listener-examples" id="id570">4.3.3&nbsp;&nbsp;&nbsp;Listener examples</a></li>
 </ul>
 </div>
 <div class="section" id="taking-listeners-into-use">
-<h3><a class="toc-backref" href="#id565">4.3.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></h3>
+<h3><a class="toc-backref" href="#id566">4.3.1&nbsp;&nbsp;&nbsp;Taking listeners into use</a></h3>
 <p>Listeners are taken into use from the command line with the <span class="opt">--listener</span>
 option, so that the name of the listener is given to it as an argument. The
 listener name is got from the name of the class or module implementing the
@@ -12293,7 +12345,7 @@ pybot --listener path/to/MyListener.java:argument tests.html
 </pre>
 </div>
 <div class="section" id="available-listener-interface-methods">
-<h3><a class="toc-backref" href="#id566">4.3.2&nbsp;&nbsp;&nbsp;Available listener interface methods</a></h3>
+<h3><a class="toc-backref" href="#id567">4.3.2&nbsp;&nbsp;&nbsp;Available listener interface methods</a></h3>
 <p>Robot Framework creates an instance of the listener class with given arguments
 when test execution starts. During the test execution, Robot Framework calls
 listeners' methods when test suites, test cases and keywords start and end. It
@@ -12302,7 +12354,7 @@ the end it calls the <span class="code">close</span> method. A listener is not r
 implement any official interface, and it only needs to have the methods it
 actually needs.</p>
 <div class="section" id="listener-interface-versions">
-<h4><a class="toc-backref" href="#id567">Listener interface versions</a></h4>
+<h4><a class="toc-backref" href="#id568">Listener interface versions</a></h4>
 <p>The signatures of methods related to test execution progress were changed in
 Robot Framework 2.1. This change was made so that new information can be added
 to listener interface without breaking existing listeners. The old signatures
@@ -12319,7 +12371,7 @@ as an integer. The examples below are implemented as new style listeners.</p>
 </div>
 </div>
 <div class="section" id="listener-interface-method-signatures">
-<h4><a class="toc-backref" href="#id568">Listener interface method signatures</a></h4>
+<h4><a class="toc-backref" href="#id569">Listener interface method signatures</a></h4>
 <p>Starting from Robot Framework 2.1, all listener methods related to test
 execution progress have the same signature <span class="code">method(name, attributes)</span>,
 where <span class="code">attributes</span> is a dictionary containing details of the event. The
@@ -12519,7 +12571,7 @@ to implement any explicit interface or have all these methods.</p>
 </div>
 </div>
 <div class="section" id="listener-examples">
-<h3><a class="toc-backref" href="#id569">4.3.3&nbsp;&nbsp;&nbsp;Listener examples</a></h3>
+<h3><a class="toc-backref" href="#id570">4.3.3&nbsp;&nbsp;&nbsp;Listener examples</a></h3>
 <p>The first simple example is implemented in a Python module. It mainly
 illustrates that using the listener interface is not very complicated.</p>
 <div class="highlight"><pre><span class="n">ROBOT_LISTENER_API_VERSION</span> <span class="o">=</span> <span class="mi">2</span>
@@ -12645,15 +12697,15 @@ investigating existing <a class="reference internal" href="#supporting-tools">su
 just taking a look at the source code of Robot Framework.</p>
 <div class="contents local topic" id="id202">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#executed-test-data" id="id570">4.4.1&nbsp;&nbsp;&nbsp;Executed test data</a></li>
-<li><a class="reference internal" href="#id203" id="id571">4.4.2&nbsp;&nbsp;&nbsp;Test execution</a></li>
-<li><a class="reference internal" href="#parsed-test-data" id="id572">4.4.3&nbsp;&nbsp;&nbsp;Parsed test data</a></li>
-<li><a class="reference internal" href="#runnable-test-data" id="id573">4.4.4&nbsp;&nbsp;&nbsp;Runnable test data</a></li>
-<li><a class="reference internal" href="#configuring-logging" id="id574">4.4.5&nbsp;&nbsp;&nbsp;Configuring logging</a></li>
+<li><a class="reference internal" href="#executed-test-data" id="id571">4.4.1&nbsp;&nbsp;&nbsp;Executed test data</a></li>
+<li><a class="reference internal" href="#id203" id="id572">4.4.2&nbsp;&nbsp;&nbsp;Test execution</a></li>
+<li><a class="reference internal" href="#parsed-test-data" id="id573">4.4.3&nbsp;&nbsp;&nbsp;Parsed test data</a></li>
+<li><a class="reference internal" href="#runnable-test-data" id="id574">4.4.4&nbsp;&nbsp;&nbsp;Runnable test data</a></li>
+<li><a class="reference internal" href="#configuring-logging" id="id575">4.4.5&nbsp;&nbsp;&nbsp;Configuring logging</a></li>
 </ul>
 </div>
 <div class="section" id="executed-test-data">
-<h3><a class="toc-backref" href="#id570">4.4.1&nbsp;&nbsp;&nbsp;Executed test data</a></h3>
+<h3><a class="toc-backref" href="#id571">4.4.1&nbsp;&nbsp;&nbsp;Executed test data</a></h3>
 <p>This API consists of a factory method for reading a Robot Framework
 output file into a <span class="code">TestSuite</span> object that contains all the
 relevant information about the results of the test execution.
@@ -12702,7 +12754,7 @@ is then serialized and normal log and report files could be generated with
 </pre></div>
 </div>
 <div class="section" id="id203">
-<h3><a class="toc-backref" href="#id571">4.4.2&nbsp;&nbsp;&nbsp;Test execution</a></h3>
+<h3><a class="toc-backref" href="#id572">4.4.2&nbsp;&nbsp;&nbsp;Test execution</a></h3>
 <p>This API consists of <span class="code">run</span> method, which can be used for starting the
 test execution. Signature of the method is <span class="code">run(*datasources, **options)</span>,
 where <span class="code">datasources</span> are paths to files and directories to be executed and
@@ -12722,7 +12774,7 @@ This problem will be fixed in future releases.</p>
 </div>
 </div>
 <div class="section" id="parsed-test-data">
-<h3><a class="toc-backref" href="#id572">4.4.3&nbsp;&nbsp;&nbsp;Parsed test data</a></h3>
+<h3><a class="toc-backref" href="#id573">4.4.3&nbsp;&nbsp;&nbsp;Parsed test data</a></h3>
 <p>Package <span class="code">robot.parsing</span> contains tools for parsing and handling test data.
 <span class="code">TestCaseFile</span> and <span class="code">TestDataDirectory</span> classes can be instantiated
 with named argument <span class="code">source</span> to start parsing existing test data. Example
@@ -12737,7 +12789,7 @@ see the source code of Robot Framework directly.</p>
 </pre></div>
 </div>
 <div class="section" id="runnable-test-data">
-<h3><a class="toc-backref" href="#id573">4.4.4&nbsp;&nbsp;&nbsp;Runnable test data</a></h3>
+<h3><a class="toc-backref" href="#id574">4.4.4&nbsp;&nbsp;&nbsp;Runnable test data</a></h3>
 <p>This API consists of a factory method for parsing given input files
 into a runnable <span class="code">TestSuite</span> object. The signature of this
 <span class="code">robot.running.TestSuite</span> method is
@@ -12746,7 +12798,7 @@ to files and directories similarly as when executing tests from the
 command line.</p>
 </div>
 <div class="section" id="configuring-logging">
-<h3><a class="toc-backref" href="#id574">4.4.5&nbsp;&nbsp;&nbsp;Configuring logging</a></h3>
+<h3><a class="toc-backref" href="#id575">4.4.5&nbsp;&nbsp;&nbsp;Configuring logging</a></h3>
 <p>Robot Framework has a global logger that is responsible for error
 reporting and logging in general. This <span class="code">LOGGER</span> instance is a
 proxy and it is possible to register new loggers to it. Registered
@@ -12794,25 +12846,25 @@ Robot Framework execution.</p>
 <h1><a class="toc-backref" href="#id264">5&nbsp;&nbsp;&nbsp;Appendices</a></h1>
 <div class="contents local topic" id="id206">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#all-available-settings-in-test-data" id="id575">5.1&nbsp;&nbsp;&nbsp;All available settings in test data</a></li>
-<li><a class="reference internal" href="#all-command-line-options" id="id576">5.2&nbsp;&nbsp;&nbsp;All command line options</a></li>
-<li><a class="reference internal" href="#test-data-templates" id="id577">5.3&nbsp;&nbsp;&nbsp;Test data templates</a></li>
-<li><a class="reference internal" href="#supporting-tools" id="id578">5.4&nbsp;&nbsp;&nbsp;Supporting tools</a></li>
-<li><a class="reference internal" href="#documentation-formatting" id="id579">5.5&nbsp;&nbsp;&nbsp;Documentation formatting</a></li>
-<li><a class="reference internal" href="#time-format" id="id580">5.6&nbsp;&nbsp;&nbsp;Time format</a></li>
+<li><a class="reference internal" href="#all-available-settings-in-test-data" id="id576">5.1&nbsp;&nbsp;&nbsp;All available settings in test data</a></li>
+<li><a class="reference internal" href="#all-command-line-options" id="id577">5.2&nbsp;&nbsp;&nbsp;All command line options</a></li>
+<li><a class="reference internal" href="#test-data-templates" id="id578">5.3&nbsp;&nbsp;&nbsp;Test data templates</a></li>
+<li><a class="reference internal" href="#supporting-tools" id="id579">5.4&nbsp;&nbsp;&nbsp;Supporting tools</a></li>
+<li><a class="reference internal" href="#documentation-formatting" id="id580">5.5&nbsp;&nbsp;&nbsp;Documentation formatting</a></li>
+<li><a class="reference internal" href="#time-format" id="id581">5.6&nbsp;&nbsp;&nbsp;Time format</a></li>
 </ul>
 </div>
 <div class="section" id="all-available-settings-in-test-data">
-<h2><a class="toc-backref" href="#id575">5.1&nbsp;&nbsp;&nbsp;All available settings in test data</a></h2>
+<h2><a class="toc-backref" href="#id576">5.1&nbsp;&nbsp;&nbsp;All available settings in test data</a></h2>
 <div class="contents local topic" id="id207">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#id208" id="id581">5.1.1&nbsp;&nbsp;&nbsp;Setting table</a></li>
-<li><a class="reference internal" href="#test-case-table" id="id582">5.1.2&nbsp;&nbsp;&nbsp;Test Case table</a></li>
-<li><a class="reference internal" href="#id211" id="id583">5.1.3&nbsp;&nbsp;&nbsp;Keyword table</a></li>
+<li><a class="reference internal" href="#id208" id="id582">5.1.1&nbsp;&nbsp;&nbsp;Setting table</a></li>
+<li><a class="reference internal" href="#test-case-table" id="id583">5.1.2&nbsp;&nbsp;&nbsp;Test Case table</a></li>
+<li><a class="reference internal" href="#id211" id="id584">5.1.3&nbsp;&nbsp;&nbsp;Keyword table</a></li>
 </ul>
 </div>
 <div class="section" id="id208">
-<h3><a class="toc-backref" href="#id581">5.1.1&nbsp;&nbsp;&nbsp;Setting table</a></h3>
+<h3><a class="toc-backref" href="#id582">5.1.1&nbsp;&nbsp;&nbsp;Setting table</a></h3>
 <p>The Setting table is used to import test libraries, resource files and
 variable files and to define metadata for test suites and test
 cases. It can be included in test case files and resource files. Note
@@ -12893,7 +12945,7 @@ for test cases.</td>
 </table>
 </div>
 <div class="section" id="test-case-table">
-<h3><a class="toc-backref" href="#id582">5.1.2&nbsp;&nbsp;&nbsp;Test Case table</a></h3>
+<h3><a class="toc-backref" href="#id583">5.1.2&nbsp;&nbsp;&nbsp;Test Case table</a></h3>
 <p>The settings in the Test Case table are always specific to the test
 case for which they are defined. Some of these settings override the
 default values defined in the Settings table.</p>
@@ -12937,7 +12989,7 @@ default values defined in the Settings table.</p>
 </table>
 </div>
 <div class="section" id="id211">
-<h3><a class="toc-backref" href="#id583">5.1.3&nbsp;&nbsp;&nbsp;Keyword table</a></h3>
+<h3><a class="toc-backref" href="#id584">5.1.3&nbsp;&nbsp;&nbsp;Keyword table</a></h3>
 <p>Settings in the Keyword table are specific to the user keyword for
 which they are defined.</p>
 <table border="1" class="tabular docutils">
@@ -12969,18 +13021,18 @@ which they are defined.</p>
 </div>
 </div>
 <div class="section" id="all-command-line-options">
-<h2><a class="toc-backref" href="#id576">5.2&nbsp;&nbsp;&nbsp;All command line options</a></h2>
+<h2><a class="toc-backref" href="#id577">5.2&nbsp;&nbsp;&nbsp;All command line options</a></h2>
 <p>This appendix lists all the command line options that are available
 when <a class="reference internal" href="#starting-test-execution">executing test cases</a> with <span class="prog">pybot</span> or <span class="prog">jybot</span>, and when
 <a class="reference internal" href="#post-processing-outputs">post-processing outputs</a> with <span class="prog">rebot</span>.</p>
 <div class="contents local topic" id="id213">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#command-line-options-for-test-execution" id="id584">5.2.1&nbsp;&nbsp;&nbsp;Command line options for test execution</a></li>
-<li><a class="reference internal" href="#command-line-options-for-post-processing-outputs" id="id585">5.2.2&nbsp;&nbsp;&nbsp;Command line options for post-processing outputs</a></li>
+<li><a class="reference internal" href="#command-line-options-for-test-execution" id="id585">5.2.1&nbsp;&nbsp;&nbsp;Command line options for test execution</a></li>
+<li><a class="reference internal" href="#command-line-options-for-post-processing-outputs" id="id586">5.2.2&nbsp;&nbsp;&nbsp;Command line options for post-processing outputs</a></li>
 </ul>
 </div>
 <div class="section" id="command-line-options-for-test-execution">
-<h3><a class="toc-backref" href="#id584">5.2.1&nbsp;&nbsp;&nbsp;Command line options for test execution</a></h3>
+<h3><a class="toc-backref" href="#id585">5.2.1&nbsp;&nbsp;&nbsp;Command line options for test execution</a></h3>
 <blockquote>
 <table class="docutils option-list" frame="void" rules="none">
 <col class="option" />
@@ -13156,7 +13208,7 @@ Tag</span> table in outputs.</td></tr>
 </blockquote>
 </div>
 <div class="section" id="command-line-options-for-post-processing-outputs">
-<h3><a class="toc-backref" href="#id585">5.2.2&nbsp;&nbsp;&nbsp;Command line options for post-processing outputs</a></h3>
+<h3><a class="toc-backref" href="#id586">5.2.2&nbsp;&nbsp;&nbsp;Command line options for post-processing outputs</a></h3>
 <blockquote>
 <table class="docutils option-list" frame="void" rules="none">
 <col class="option" />
@@ -13311,7 +13363,7 @@ combined reports.</td></tr>
 </div>
 </div>
 <div class="section" id="test-data-templates">
-<h2><a class="toc-backref" href="#id577">5.3&nbsp;&nbsp;&nbsp;Test data templates</a></h2>
+<h2><a class="toc-backref" href="#id578">5.3&nbsp;&nbsp;&nbsp;Test data templates</a></h2>
 <p>These templates can be used when <a class="reference internal" href="#creating-test-data">creating test data</a> for Robot
 Framework. There are templates both for <a class="reference internal" href="#creating-test-cases">test case</a> and <a class="reference internal" href="#resource-files">resource
 files</a>, and resource templates can also be used to create <a class="reference internal" href="#initialization-files">test suite
@@ -13337,94 +13389,94 @@ the source distribution, and they can also be downloaded from
 <a class="reference external" href="http://code.google.com/p/robotframework/wiki/Templates">http://code.google.com/p/robotframework/wiki/Templates</a>.</p>
 </div>
 <div class="section" id="supporting-tools">
-<h2><a class="toc-backref" href="#id578">5.4&nbsp;&nbsp;&nbsp;Supporting tools</a></h2>
+<h2><a class="toc-backref" href="#id579">5.4&nbsp;&nbsp;&nbsp;Supporting tools</a></h2>
 <p>The available supporting tools for Robot Framework are described in
 this appendix.</p>
 <div class="contents local topic" id="id220">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#internal-tools" id="id586">5.4.1&nbsp;&nbsp;&nbsp;Internal tools</a><ul>
-<li><a class="reference internal" href="#library-documentation-tool" id="id587">Library documentation tool</a></li>
-<li><a class="reference internal" href="#test-data-documentation-tool" id="id588">Test data documentation tool</a></li>
-<li><a class="reference internal" href="#historical-reporting-tool" id="id589">Historical reporting tool</a></li>
-<li><a class="reference internal" href="#test-result-diffing-tool" id="id590">Test result diffing tool</a></li>
-<li><a class="reference internal" href="#execution-time-reporting-tool" id="id591">Execution time reporting tool</a></li>
-<li><a class="reference internal" href="#file-viewing-tool" id="id592">File viewing tool</a></li>
-<li><a class="reference internal" href="#one-click-installer" id="id593">One click installer</a></li>
-<li><a class="reference internal" href="#test-status-checker-tool" id="id594">Test status checker tool</a></li>
+<li><a class="reference internal" href="#internal-tools" id="id587">5.4.1&nbsp;&nbsp;&nbsp;Internal tools</a><ul>
+<li><a class="reference internal" href="#library-documentation-tool" id="id588">Library documentation tool</a></li>
+<li><a class="reference internal" href="#test-data-documentation-tool" id="id589">Test data documentation tool</a></li>
+<li><a class="reference internal" href="#historical-reporting-tool" id="id590">Historical reporting tool</a></li>
+<li><a class="reference internal" href="#test-result-diffing-tool" id="id591">Test result diffing tool</a></li>
+<li><a class="reference internal" href="#execution-time-reporting-tool" id="id592">Execution time reporting tool</a></li>
+<li><a class="reference internal" href="#file-viewing-tool" id="id593">File viewing tool</a></li>
+<li><a class="reference internal" href="#one-click-installer" id="id594">One click installer</a></li>
+<li><a class="reference internal" href="#test-status-checker-tool" id="id595">Test status checker tool</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#external-tools" id="id595">5.4.2&nbsp;&nbsp;&nbsp;External tools</a><ul>
-<li><a class="reference internal" href="#test-data-editing-tool-ride" id="id596">Test data editing tool (RIDE)</a></li>
-<li><a class="reference internal" href="#manual-test-execution-tool-mabot" id="id597">Manual test execution tool (mabot)</a></li>
-<li><a class="reference internal" href="#tools-for-creating-java-test-libraries" id="id598">Tools for creating Java test libraries</a></li>
+<li><a class="reference internal" href="#external-tools" id="id596">5.4.2&nbsp;&nbsp;&nbsp;External tools</a><ul>
+<li><a class="reference internal" href="#test-data-editing-tool-ride" id="id597">Test data editing tool (RIDE)</a></li>
+<li><a class="reference internal" href="#manual-test-execution-tool-mabot" id="id598">Manual test execution tool (mabot)</a></li>
+<li><a class="reference internal" href="#tools-for-creating-java-test-libraries" id="id599">Tools for creating Java test libraries</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="internal-tools">
-<h3><a class="toc-backref" href="#id586">5.4.1&nbsp;&nbsp;&nbsp;Internal tools</a></h3>
+<h3><a class="toc-backref" href="#id587">5.4.1&nbsp;&nbsp;&nbsp;Internal tools</a></h3>
 <p>These tools are distributed with Robot Framework. They are included in
 the source distribution and also available through
 <a class="reference external" href="http://code.google.com/p/robotframework/wiki/SupportingTools">http://code.google.com/p/robotframework/wiki/SupportingTools</a>.</p>
 <div class="section" id="library-documentation-tool">
-<h4><a class="toc-backref" href="#id587">Library documentation tool</a></h4>
+<h4><a class="toc-backref" href="#id588">Library documentation tool</a></h4>
 <p><a class="reference external" href="../../tools/libdoc/doc/libdoc.html">libdoc.py</a> is tool for generating HTML or XML documentation from keywords of
 a test library or a resource file.</p>
 </div>
 <div class="section" id="test-data-documentation-tool">
-<h4><a class="toc-backref" href="#id588">Test data documentation tool</a></h4>
+<h4><a class="toc-backref" href="#id589">Test data documentation tool</a></h4>
 <p><a class="reference external" href="../../tools/testdoc/doc/testdoc.html">testdoc.py</a> is tool for generating high level documentation of a given test
 suite, including the names of suites and tests as well as top-level keywords.</p>
 </div>
 <div class="section" id="historical-reporting-tool">
-<h4><a class="toc-backref" href="#id589">Historical reporting tool</a></h4>
+<h4><a class="toc-backref" href="#id590">Historical reporting tool</a></h4>
 <p><a class="reference external" href="../../tools/ristopy/doc/ristopy.html">risto.py</a> is a tool for generating graphs about historical statistics
 of test executions.</p>
 </div>
 <div class="section" id="test-result-diffing-tool">
-<h4><a class="toc-backref" href="#id590">Test result diffing tool</a></h4>
+<h4><a class="toc-backref" href="#id591">Test result diffing tool</a></h4>
 <p><a class="reference external" href="../../tools/robotdiff/doc/robotdiff.html">robotdiff.py</a> is a tool for generating diff reports from Robot
 Framework output files.</p>
 </div>
 <div class="section" id="execution-time-reporting-tool">
-<h4><a class="toc-backref" href="#id591">Execution time reporting tool</a></h4>
+<h4><a class="toc-backref" href="#id592">Execution time reporting tool</a></h4>
 <p><a class="reference external" href="../../tools/times2csv/doc/times2csv.html">times2csv.py</a> is a tool for generating start, end and elapsed
 time information about suites, tests and keywords in CSV format.</p>
 </div>
 <div class="section" id="file-viewing-tool">
-<h4><a class="toc-backref" href="#id592">File viewing tool</a></h4>
+<h4><a class="toc-backref" href="#id593">File viewing tool</a></h4>
 <p><a class="reference external" href="../../tools/fileviewer/doc/fileviewer.html">fileviewer.py</a> is a graphical tool implementing UNIX <span class="prog">tail</span> -like
 functionality. It is especially designed to view <a class="reference internal" href="#debug-file">debug files</a>.</p>
 </div>
 <div class="section" id="one-click-installer">
-<h4><a class="toc-backref" href="#id593">One click installer</a></h4>
+<h4><a class="toc-backref" href="#id594">One click installer</a></h4>
 <p><a class="reference external" href="../../tools/oneclickinstaller/doc/oneclickinstaller.html">One click installer</a> is an <a class="reference external" href="http://www.autoitscript.com/autoit3">AutoIT</a> script that installs Robot
 Framework and its dependencies.</p>
 </div>
 <div class="section" id="test-status-checker-tool">
-<h4><a class="toc-backref" href="#id594">Test status checker tool</a></h4>
+<h4><a class="toc-backref" href="#id595">Test status checker tool</a></h4>
 <p><a class="reference external" href="../../tools/statuschecker/doc/statuschecker.html">statuschecker.py</a> is a tool for verifying that test case statuses
 and messages and also keyword log messages are as expected.</p>
 </div>
 </div>
 <div class="section" id="external-tools">
-<h3><a class="toc-backref" href="#id595">5.4.2&nbsp;&nbsp;&nbsp;External tools</a></h3>
+<h3><a class="toc-backref" href="#id596">5.4.2&nbsp;&nbsp;&nbsp;External tools</a></h3>
 <p>These tools are developed as separate projects.</p>
 <div class="section" id="test-data-editing-tool-ride">
-<h4><a class="toc-backref" href="#id596">Test data editing tool (RIDE)</a></h4>
+<h4><a class="toc-backref" href="#id597">Test data editing tool (RIDE)</a></h4>
 <p>RIDE is a standalone tool for editing test data. It helps in
 creating, editing and maintaining of Robot Framework test data.
 The project pages are at <a class="reference external" href="http://code.google.com/p/robotframework-ride/">http://code.google.com/p/robotframework-ride/</a>.</p>
 </div>
 <div class="section" id="manual-test-execution-tool-mabot">
-<h4><a class="toc-backref" href="#id597">Manual test execution tool (mabot)</a></h4>
+<h4><a class="toc-backref" href="#id598">Manual test execution tool (mabot)</a></h4>
 <p><span class="prog">mabot</span> is a standalone tool for reporting manual test execution
 results.  It enables storing and reporting manual test cases along
 with automated Robot Framework test cases. The project pages are at
 <a class="reference external" href="http://code.google.com/p/robotframework-mabot/">http://code.google.com/p/robotframework-mabot/</a>.</p>
 </div>
 <div class="section" id="tools-for-creating-java-test-libraries">
-<h4><a class="toc-backref" href="#id598">Tools for creating Java test libraries</a></h4>
+<h4><a class="toc-backref" href="#id599">Tools for creating Java test libraries</a></h4>
 <p><span class="prog">JavaTools</span> is an external collection of tools that simplify
 creation of larger Java test libraries by offering several dynamic
 ways of resolving available keywords at runtime. For more information,
@@ -13433,7 +13485,7 @@ see <a class="reference external" href="http://code.google.com/p/robotframework-
 </div>
 </div>
 <div class="section" id="documentation-formatting">
-<h2><a class="toc-backref" href="#id579">5.5&nbsp;&nbsp;&nbsp;Documentation formatting</a></h2>
+<h2><a class="toc-backref" href="#id580">5.5&nbsp;&nbsp;&nbsp;Documentation formatting</a></h2>
 <p>It is possible to use simple HTML formatting with <a class="reference internal" href="#test-suite-name-and-documentation">test suite</a>,
 <a class="reference internal" href="#test-case-name-and-documentation">test case</a> and <a class="reference internal" href="#user-keyword-name-and-documentation">user keyword</a> documentation in the test data, as well
 as when <a class="reference internal" href="#documenting-libraries">documenting test libraries</a>.  The formatting is similar to
@@ -13441,15 +13493,15 @@ the style used in most wikis, and it is designed to be understandable
 both as plain text and after the HTML transformation.</p>
 <div class="contents local topic" id="id226">
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#representing-newlines" id="id599">5.5.1&nbsp;&nbsp;&nbsp;Representing newlines</a></li>
-<li><a class="reference internal" href="#bold-and-italic" id="id600">5.5.2&nbsp;&nbsp;&nbsp;Bold and italic</a></li>
-<li><a class="reference internal" href="#urls" id="id601">5.5.3&nbsp;&nbsp;&nbsp;URLs</a></li>
-<li><a class="reference internal" href="#tables" id="id602">5.5.4&nbsp;&nbsp;&nbsp;Tables</a></li>
-<li><a class="reference internal" href="#horizontal-ruler" id="id603">5.5.5&nbsp;&nbsp;&nbsp;Horizontal ruler</a></li>
+<li><a class="reference internal" href="#representing-newlines" id="id600">5.5.1&nbsp;&nbsp;&nbsp;Representing newlines</a></li>
+<li><a class="reference internal" href="#bold-and-italic" id="id601">5.5.2&nbsp;&nbsp;&nbsp;Bold and italic</a></li>
+<li><a class="reference internal" href="#urls" id="id602">5.5.3&nbsp;&nbsp;&nbsp;URLs</a></li>
+<li><a class="reference internal" href="#tables" id="id603">5.5.4&nbsp;&nbsp;&nbsp;Tables</a></li>
+<li><a class="reference internal" href="#horizontal-ruler" id="id604">5.5.5&nbsp;&nbsp;&nbsp;Horizontal ruler</a></li>
 </ul>
 </div>
 <div class="section" id="representing-newlines">
-<h3><a class="toc-backref" href="#id599">5.5.1&nbsp;&nbsp;&nbsp;Representing newlines</a></h3>
+<h3><a class="toc-backref" href="#id600">5.5.1&nbsp;&nbsp;&nbsp;Representing newlines</a></h3>
 <p>The documentation used for test suites, test cases and keywords is
 subject to <a class="reference internal" href="#test-data-syntax">general parsing rules</a> of the test data. This means that
 normal newlines are not preserved, and dividing documentation into lines
@@ -13480,7 +13532,7 @@ as the above test suite documentation.</p>
 </pre></div>
 </div>
 <div class="section" id="bold-and-italic">
-<h3><a class="toc-backref" href="#id600">5.5.2&nbsp;&nbsp;&nbsp;Bold and italic</a></h3>
+<h3><a class="toc-backref" href="#id601">5.5.2&nbsp;&nbsp;&nbsp;Bold and italic</a></h3>
 <p>Bold text can be created by having an asterisk before and after the
 selected word or words, for example <span class="code">*this is bold*</span>. Italic
 style works similarly, but the special character to use is an
@@ -13519,7 +13571,7 @@ started and stopped on every line.</p>
   </tr>
 </table></div>
 <div class="section" id="urls">
-<h3><a class="toc-backref" href="#id601">5.5.3&nbsp;&nbsp;&nbsp;URLs</a></h3>
+<h3><a class="toc-backref" href="#id602">5.5.3&nbsp;&nbsp;&nbsp;URLs</a></h3>
 <p>All strings that look like URLs are automatically converted into
 clickable links. Additionally, URLs that end with extension
 <span class="path">.jpg</span>, <span class="path">.jpeg</span>, <span class="path">.png</span>, <span class="path">.gif</span> or
@@ -13533,7 +13585,7 @@ test case and keyword documentation. Creating images works starting
 from Robot Framework 2.0.2.</p>
 </div>
 <div class="section" id="tables">
-<h3><a class="toc-backref" href="#id602">5.5.4&nbsp;&nbsp;&nbsp;Tables</a></h3>
+<h3><a class="toc-backref" href="#id603">5.5.4&nbsp;&nbsp;&nbsp;Tables</a></h3>
 <p>Tables are created using the pipe character with whitespace around it
 as a cell boundary and the newline as a row separator. In library
 documentations normal newlines are enough, but in test suite, test
@@ -13571,7 +13623,7 @@ documentation would be formatted like this:</p>
 </table>
 </div>
 <div class="section" id="horizontal-ruler">
-<h3><a class="toc-backref" href="#id603">5.5.5&nbsp;&nbsp;&nbsp;Horizontal ruler</a></h3>
+<h3><a class="toc-backref" href="#id604">5.5.5&nbsp;&nbsp;&nbsp;Horizontal ruler</a></h3>
 <p>Horizontal rulers (the &lt;hr&gt; tag) make it possible to separate larger
 sections from each others, and they can be created by having three
 hyphens alone in a line. With documentations in the test data literal
@@ -13586,7 +13638,7 @@ More text...
 </div>
 </div>
 <div class="section" id="time-format">
-<h2><a class="toc-backref" href="#id580">5.6&nbsp;&nbsp;&nbsp;Time format</a></h2>
+<h2><a class="toc-backref" href="#id581">5.6&nbsp;&nbsp;&nbsp;Time format</a></h2>
 <p>Robot Framework has its own time format that is used by several
 keywords (for example <span class="name">Sleep</span> and <span class="name">Wait Until Keyword
 Succeeds</span>) as well as <a class="reference internal" href="#test-case-timeout">test case</a> and <a class="reference internal" href="#user-keyword-timeout">user keyword timeouts</a>. This
@@ -13640,7 +13692,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2010-09-23 13:48 UTC.
+<p>Generated on: 2010-10-27 12:56 UTC.
 </p>
 
 </div>
