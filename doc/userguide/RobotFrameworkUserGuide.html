@@ -2831,7 +2831,10 @@ get these tags. Starting from Robot Framework version 2.5 default
 tags are no longer supported in test suite initialization files.</dd>
 <dt><span class="opt">[Tags]</span> in the Test Case table</dt>
 <dd>A test case always gets these tags. Additionally, it does not get the
-possible tags specified with <span class="opt">Default Tags</span>.</dd>
+possible tags specified with <span class="opt">Default Tags</span>, so it is possible
+to override the <span class="opt">Default Tags</span> by using empty value. Starting
+from Robot Framework 2.5.6, is also possible to use value <span class="misc">NONE</span>
+to override default tags.</dd>
 <dt><span class="opt">--settag</span> command line option</dt>
 <dd>All executed test cases get tags set with this option in addition
 to tags they got elsewhere.</dd>
@@ -3032,7 +3035,8 @@ also have their own setup or teardown. They are defined with the
 table and they override possible <span class="opt">Test Setup</span> and
 <span class="opt">Test Teardown</span> settings. Having no keyword after a
 <span class="opt">[Setup]</span> or <span class="opt">[Teardown]</span> setting means having no
-setup or teardown.</p>
+setup or teardown. Starting from Robot Framework 2.5.6, it is also possible
+to use value <span class="misc">NONE</span> to indicate that a test has no setup/teardown.</p>
 <table border="1" class="example docutils">
 <caption>Test setup and teardown examples</caption>
 <colgroup>
@@ -3124,6 +3128,26 @@ setup or teardown.</p>
 <tr><td></td>
 <td>[Teardown]</td>
 <td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>No teardown 2</td>
+<td>[Documentation]</td>
+<td>Using special NONE,</td>
+<td>works with 2.5.6</td>
+</tr>
+<tr><td></td>
+<td>Do Something</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td></td>
+<td>[Teardown]</td>
+<td>NONE</td>
 <td>&nbsp;</td>
 </tr>
 <tr><td></td>
@@ -3243,7 +3267,9 @@ setting in the Setting table, in which case the template is applied
 for all test cases in that test case file. The <span class="opt">[Template]</span>
 setting overrides the possible template set in the Setting table, and
 an empty value for <span class="opt">[Template]</span> means that the test has no
-template even when <span class="opt">Test Template</span> is used.</p>
+template even when <span class="opt">Test Template</span> is used. Starting from Robot Framework
+2.5.6, it is also possible to use value <span class="misc">NONE</span> to indicate that a test
+has no template.</p>
 <p>If a templated test case has multiple data rows in its body, like in
 the example below, the template is applied for all the rows. This
 means that the same keyword is executed multiple times, once with data
@@ -7430,6 +7456,9 @@ table defines a default test timeout value for all the test cases in
 the test suite, whereas <span class="opt">[Timeout]</span> in the Test Case table
 applies a timeout to an individual test case and overrides the
 possible default value.</p>
+<p>Using an empty <span class="opt">[Timeout]</span> means that the test has no
+timeout even when <span class="opt">Test Timeout</span> is used. Starting from Robot Framework
+2.5.6, it is also possible to use value <span class="misc">NONE</span> for this purpose.</p>
 <p>Regardless of where the test timeout is defined, the first cell after
 the setting name contains the duration of the timeout. The duration
 must be given in Robot Framework's <a class="reference internal" href="#time-format">time format</a>, that is,
@@ -7492,50 +7521,50 @@ keywords with <a class="reference internal" href="#user-keyword-timeout">user ke
 <tr><td>Default Timeout</td>
 <td>[Documentation]</td>
 <td>Timeout from the Setting table is used</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>Some Keyword</td>
 <td>argument</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td>Override</td>
 <td>[Documentation]</td>
 <td>Override default, use 10 seconds timeout</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>[Timeout]</td>
 <td>10</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>Some Keyword</td>
 <td>argument</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td>Custom Message</td>
 <td>[Documentation]</td>
 <td>Override default and use custom message</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>[Timeout]</td>
@@ -7546,56 +7575,80 @@ keywords with <a class="reference internal" href="#user-keyword-timeout">user ke
 <tr><td></td>
 <td>Some Keyword</td>
 <td>argument</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td>Variables</td>
 <td>[Documentation]</td>
 <td>It is possible to use variables too</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>[Timeout]</td>
 <td>${TIMEOUT}</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>Some Keyword</td>
 <td>argument</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td>No Timeout</td>
 <td>[Documentation]</td>
 <td>Empty timeout means no timeout even when</td>
 <td>Test Timeout has been used</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>[Timeout]</td>
-<td></td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>Some Keyword</td>
 <td>argument</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>No Timeout 2</td>
+<td>[Documentation]</td>
+<td>Empty timeout using NONE, works with</td>
+<td>2.5.6</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td></td>
+<td>[Timeout]</td>
+<td>NONE</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td></td>
+<td>Some Keyword</td>
+<td>argument</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -9337,7 +9390,7 @@ with <span class="opt">smoke</span> and executed with <span class="cli">--includ
 <span class="opt">&lt;num&gt;</span> specifies the number of the current iteration, and
 after executing all test cases, a separate report containing only
 the tests for a certain iteration can be generated (for example, <span class="cli">rebot
---include iter-42 ouput.xml</span>).</li>
+--include iter-42 output.xml</span>).</li>
 </ul>
 </div>
 </div>
@@ -9542,7 +9595,7 @@ the option <span class="opt">--monitorwidth (-W)</span>. The default width is 78
 <div class="tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">On many UNIX-like machines you can use handy <span class="var">$COLUMNS</span>
-variable like <span class="cli">--monitorwidht $COLUMNS</span>.</p>
+variable like <span class="cli">--monitorwidth $COLUMNS</span>.</p>
 </div>
 </div>
 <div class="section" id="console-colors">
@@ -13815,7 +13868,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2011-02-05 11:44 UTC.
+<p>Generated on: 2011-02-07 08:54 UTC.
 </p>
 
 </div>
