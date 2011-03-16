@@ -86,7 +86,7 @@ a {
 </head>
 <body>
 <h1>BuiltIn</h1>
-<b>Version:</b> trunk 20100712<br>
+<b>Version:</b> trunk 20110316<br>
 <b>Scope:</b> global<br>
 <b>Named arguments: </b>
 supported
@@ -127,11 +127,15 @@ supported
 &nbsp;&middot;&nbsp;
 <a href="#Get Length" title="Returns and logs the length of the given item.">Get&nbsp;Length</a>
 &nbsp;&middot;&nbsp;
+<a href="#Get Library Instance" title="Returns the currently active instance of the specified test library.">Get&nbsp;Library&nbsp;Instance</a>
+&nbsp;&middot;&nbsp;
 <a href="#Get Time" title="Returns the given time in the requested format.">Get&nbsp;Time</a>
 &nbsp;&middot;&nbsp;
 <a href="#Get Variables" title="Returns a dictionary containing all variables in the current scope.">Get&nbsp;Variables</a>
 &nbsp;&middot;&nbsp;
 <a href="#Import Library" title="Imports a library with the given name and optional arguments.">Import&nbsp;Library</a>
+&nbsp;&middot;&nbsp;
+<a href="#Import Resource" title="Imports a resource file with the given path.">Import&nbsp;Resource</a>
 &nbsp;&middot;&nbsp;
 <a href="#Import Variables" title="Imports a variable file with the given path and optional arguments.">Import&nbsp;Variables</a>
 &nbsp;&middot;&nbsp;
@@ -529,13 +533,34 @@ Example:<br />
 The keyword first tries to get the length with the Python function 'len', which calls the item's '__len__' method internally. If that fails, the keyword tries to call the item's 'length' and 'size' methods directly. The final attempt is trying to get the value of the item's 'length' attribute. If all these attempts are unsuccessful, the keyword fails.</td>
 </tr>
 <tr>
+  <td class="kw"><a name="Get Library Instance"></a>Get Library Instance</td>
+  <td class="arg">name</td>
+  <td class="doc">Returns the currently active instance of the specified test library.<br />
+<br />
+This keyword makes it easy for test libraries to interact with other test libraries that have state. This is illustrated by the Python example below:<br />
+<br />
+<table border="1" class="doc">
+<tr>
+<td>from robot.libraries.BuiltIn import BuiltIn</td>
+</tr>
+</table>
+| def title_should_start_with(expected):<br />
+| &nbsp; &nbsp; seleniumlib = BuiltIn().get_library_instance('SeleniumLibrary')<br />
+| &nbsp; &nbsp; title = seleniumlib.get_title()<br />
+| &nbsp; &nbsp; if not title.startswith(expected):<br />
+| &nbsp; &nbsp; &nbsp; &nbsp; raise AssertionError("Title '%s' did not start with '%s'"<br />
+| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;% (title, expected))<br />
+<br />
+It is also possible to use this keyword in the test data and pass the returned library instance to another keyword. If a library is imported with a custom name, the <span class="name">name</span> used to get the instance must be that name and not the original library name.</td>
+</tr>
+<tr>
   <td class="kw"><a name="Get Time"></a>Get Time</td>
   <td class="arg">format=timestamp, time=NOW</td>
   <td class="doc">Returns the given time in the requested format.<br />
 <br />
 How time is returned is determined based on the given <span class="name">format</span> string as follows. Note that all checks are case-insensitive.<br />
 <br />
-1) If <span class="name">format</span> contains the word 'epoch', the time is returned in seconds after the UNIX epoch. The return value is always an integer.<br />
+1) If <span class="name">format</span> contains the word 'epoch', the time is returned in seconds after the UNIX epoch (Jan 1, 1970 0:00:00). The return value is always an integer.<br />
 <br />
 2) If <span class="name">format</span> contains any of the words 'year', 'month', 'day', 'hour', 'min', or 'sec', only the selected parts are returned. The order of the returned parts is always the one in the previous sentence and the order of words in <span class="name">format</span> is not significant. The parts are returned as zero-padded strings (e.g. May -&gt; '05').<br />
 <br />
@@ -543,7 +568,7 @@ How time is returned is determined based on the given <span class="name">format<
 <br />
 By default this keyword returns the current time, but that can be altered using <span class="name">time</span> argument as explained below. Notice that this argument is only available in Robot Framework 2.1.1 and newer.<br />
 <br />
-1) If <span class="name">time</span> is a floating point number, it is interpreted as seconds since epoch (Jan 1, 1970 0:00:00). This documentation is written about 1177654467 seconds since epoch.<br />
+1) If <span class="name">time</span> is a floating point number, it is interpreted as seconds since the epoch. This documentation is written about 1177654467 seconds after the epoch.<br />
 <br />
 2) If <span class="name">time</span> is a valid timestamp, that time will be used. Valid timestamp formats are 'YYYY-MM-DD hh:mm:ss' and 'YYYYMMDD hhmmss'.<br />
 <br />
@@ -690,6 +715,28 @@ Examples:<br />
 </td>
 </tr>
 <tr>
+  <td class="kw"><a name="Import Resource"></a>Import Resource</td>
+  <td class="arg">path</td>
+  <td class="doc">Imports a resource file with the given path.<br />
+<br />
+Resources imported with this keyword are set into the test suite scope similarly when importing them in the Setting table using the Resource setting.<br />
+<br />
+The given path must be absolute. Forward slashes can be used as path separator regardless the operating system.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>Import Resource</td>
+<td>${CURDIR}/resource.txt</td>
+</tr>
+<tr>
+<td>Import Resource</td>
+<td>${CURDIR}/../resources/resource.html</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
   <td class="kw"><a name="Import Variables"></a>Import Variables</td>
   <td class="arg">path, *args</td>
   <td class="doc">Imports a variable file with the given path and optional arguments.<br />
@@ -713,7 +760,8 @@ Examples:<br />
 <td>arg2</td>
 </tr>
 </table>
-</td>
+<br />
+New in Robot Framework 2.5.4</td>
 </tr>
 <tr>
   <td class="kw"><a name="Length Should Be"></a>Length Should Be</td>
@@ -1723,9 +1771,9 @@ Starting from Robot Framework 2.5 errors caused by invalid syntax, timeouts, or 
 </tr>
 </table>
 <p id="footer">
-Altogether 77 keywords.<br />
+Altogether 79 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2010-08-25 15:33:51.
+on 2011-03-16 13:38:26.
 </p>
 </body>
 </html>

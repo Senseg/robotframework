@@ -86,7 +86,7 @@ a {
 </head>
 <body>
 <h1>OperatingSystem</h1>
-<b>Version:</b> trunk 20100607<br>
+<b>Version:</b> trunk 20110316<br>
 <b>Scope:</b> global<br>
 <b>Named arguments: </b>
 supported
@@ -191,11 +191,11 @@ All keywords expecting paths as arguments accept a forward slash (<span class="n
 &nbsp;&middot;&nbsp;
 <a href="#Copy File" title="Copies the source file into a new destination.">Copy&nbsp;File</a>
 &nbsp;&middot;&nbsp;
-<a href="#Count Directories In Directory" title="Returns the number of subdirectories in the given directory.">Count&nbsp;Directories&nbsp;In&nbsp;Directory</a>
+<a href="#Count Directories In Directory" title="A wrapper for `Count Items In Directory` returning only file count.">Count&nbsp;Directories&nbsp;In&nbsp;Directory</a>
 &nbsp;&middot;&nbsp;
-<a href="#Count Files In Directory" title="Returns the number of files in the given directory.">Count&nbsp;Files&nbsp;In&nbsp;Directory</a>
+<a href="#Count Files In Directory" title="A wrapper for `Count Items In Directory` returning onlyt directory count.">Count&nbsp;Files&nbsp;In&nbsp;Directory</a>
 &nbsp;&middot;&nbsp;
-<a href="#Count Items In Directory" title="Returns the number of all items in the given directory.">Count&nbsp;Items&nbsp;In&nbsp;Directory</a>
+<a href="#Count Items In Directory" title="Returns and logs the number of all items in the given directory.">Count&nbsp;Items&nbsp;In&nbsp;Directory</a>
 &nbsp;&middot;&nbsp;
 <a href="#Create Directory" title="Creates the specified directory.">Create&nbsp;Directory</a>
 &nbsp;&middot;&nbsp;
@@ -225,6 +225,8 @@ All keywords expecting paths as arguments accept a forward slash (<span class="n
 &nbsp;&middot;&nbsp;
 <a href="#File Should Not Exist" title="Fails if the given path points to an existing file.">File&nbsp;Should&nbsp;Not&nbsp;Exist</a>
 &nbsp;&middot;&nbsp;
+<a href="#Get Binary File" title="Returns the contents of a specified file.">Get&nbsp;Binary&nbsp;File</a>
+&nbsp;&middot;&nbsp;
 <a href="#Get Environment Variable" title="Returns the value of an environment variable with the given name.">Get&nbsp;Environment&nbsp;Variable</a>
 &nbsp;&middot;&nbsp;
 <a href="#Get File" title="Returns the contents of a specified file.">Get&nbsp;File</a>
@@ -241,7 +243,7 @@ All keywords expecting paths as arguments accept a forward slash (<span class="n
 &nbsp;&middot;&nbsp;
 <a href="#List Directories In Directory" title="A wrapper for `List Directory` that returns only directories.">List&nbsp;Directories&nbsp;In&nbsp;Directory</a>
 &nbsp;&middot;&nbsp;
-<a href="#List Directory" title="Returns items from a directory, optionally filtered with `pattern`.">List&nbsp;Directory</a>
+<a href="#List Directory" title="Returns and logs items in a directory, optionally filtered with `pattern`.">List&nbsp;Directory</a>
 &nbsp;&middot;&nbsp;
 <a href="#List Files In Directory" title="A wrapper for `List Directory` that returns only files.">List&nbsp;Files&nbsp;In&nbsp;Directory</a>
 &nbsp;&middot;&nbsp;
@@ -333,23 +335,19 @@ If the destination exists, the source is copied under it. Otherwise the destinat
 <tr>
   <td class="kw"><a name="Count Directories In Directory"></a>Count Directories In Directory</td>
   <td class="arg">path, pattern=None</td>
-  <td class="doc">Returns the number of subdirectories in the given directory.<br />
-<br />
-The arguments <span class="name">pattern</span> and <span class="name">pattern_type</span> have the same semantics as in the <a href="#List Directory" class="name">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class="name">Should Be Equal As Integers</span>.</td>
+  <td class="doc">A wrapper for <a href="#Count Items In Directory" class="name">Count Items In Directory</a> returning only file count.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Count Files In Directory"></a>Count Files In Directory</td>
   <td class="arg">path, pattern=None</td>
-  <td class="doc">Returns the number of files in the given directory.<br />
-<br />
-The arguments <span class="name">pattern</span> and <span class="name">pattern_type</span> have the same semantics as in the <a href="#List Directory" class="name">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class="name">Should Be Equal As Integers</span>.</td>
+  <td class="doc">A wrapper for <a href="#Count Items In Directory" class="name">Count Items In Directory</a> returning onlyt directory count.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Count Items In Directory"></a>Count Items In Directory</td>
   <td class="arg">path, pattern=None</td>
-  <td class="doc">Returns the number of all items in the given directory.<br />
+  <td class="doc">Returns and logs the number of all items in the given directory.<br />
 <br />
-The arguments <span class="name">pattern</span> and <span class="name">pattern_type</span> have the same semantics as in the <a href="#List Directory" class="name">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class="name">Should Be Equal As Integers</span>.</td>
+The argument <span class="name">pattern</span> has the same semantics as in the <a href="#List Directory" class="name">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class="name">Should Be Equal As Integers</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Create Directory"></a>Create Directory</td>
@@ -450,6 +448,15 @@ The default error message can be overridden with the <span class="name">msg</spa
 The path can be given as an exact path or as a glob pattern. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>. The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
 <tr>
+  <td class="kw"><a name="Get Binary File"></a>Get Binary File</td>
+  <td class="arg">path</td>
+  <td class="doc">Returns the contents of a specified file.<br />
+<br />
+This keyword reads the specified file and returns the contents as is. See also <a href="#Get File" class="name">Get File</a>.<br />
+<br />
+New in Robot Framework 2.5.5.</td>
+</tr>
+<tr>
   <td class="kw"><a name="Get Environment Variable"></a>Get Environment Variable</td>
   <td class="arg">name, default=None</td>
   <td class="doc">Returns the value of an environment variable with the given name.<br />
@@ -463,7 +470,9 @@ Note that you can also access environment variables directly using the variable 
   <td class="arg">path, encoding=UTF-8</td>
   <td class="doc">Returns the contents of a specified file.<br />
 <br />
-This keyword reads the specified file and returns the contents. <span class="name">encoding</span> defines the encoding of the file. By default the value is 'UTF-8', which means that UTF-8 and ASCII-encoded files are read correctly.</td>
+This keyword reads the specified file and returns the contents. Line breaks in content are converted to platform independent form. See also <a href="#Get Binary File" class="name">Get Binary File</a>.<br />
+<br />
+<span class="name">encoding</span> defines the encoding of the file. By default the value is 'UTF-8', which means that UTF-8 and ASCII-encoded files are read correctly.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get File Size"></a>Get File Size</td>
@@ -659,7 +668,7 @@ Examples:<br />
 <tr>
   <td class="kw"><a name="List Directory"></a>List Directory</td>
   <td class="arg">path, pattern=None, absolute=False, deprecated_absolute=None</td>
-  <td class="doc">Returns items from a directory, optionally filtered with <span class="name">pattern</span>.<br />
+  <td class="doc">Returns and logs items in a directory, optionally filtered with <span class="name">pattern</span>.<br />
 <br />
 File and directory names are returned in case-sensitive alphabetical order, e.g. ['A Name', 'Second', 'a lower case name', 'one more']. Implicit directories '.' and '..' are not returned. The returned items are automatically logged.<br />
 <br />
@@ -1264,9 +1273,9 @@ If the timeout is negative, the keyword is never timed-out. The keyword returns 
 </tr>
 </table>
 <p id="footer">
-Altogether 55 keywords.<br />
+Altogether 56 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2010-06-07 18:50:53.
+on 2011-03-16 13:38:27.
 </p>
 </body>
 </html>
