@@ -86,7 +86,7 @@ a {
 </head>
 <body>
 <h1>Screenshot</h1>
-<b>Version:</b> 2.5.7<br>
+<b>Version:</b> trunk 20110504<br>
 <b>Scope:</b> test suite<br>
 <b>Named arguments: </b>
 supported
@@ -116,7 +116,7 @@ It is possible to specify a custom location for screenshots using <span class="n
 <br />
 Note that prior to Robot Framework 2.5.5 the default screenshot location was system's temporary directory.<br />
 <br />
-<b>Changes in Robot Framework 2.5.5</b><br />
+<b>Changes in Robot Framework 2.5.5 and Robot Framework 2.6</b><br />
 <br />
 This library was heavily enhanced in Robot Framework 2.5.5 release. The changes are listed below and explained more thoroughly in affected places.<br />
 <br />
@@ -124,6 +124,12 @@ This library was heavily enhanced in Robot Framework 2.5.5 release. The changes 
 - The default location where screenshots are saved was changed (see above).<br />
 - New <a href="#Take Screenshot" class="name">Take Screenshot</a> and <a href="#Take Screenshot Without Embedding" class="name">Take Screenshot Without Embedding</a> keywords were added. These keywords should be used for taking screenshots in the future. Other screenshot taking keywords will be deprecated and removed later.<br />
 - <span class="name">log_file_directory</span> argument was deprecated everywhere it was used.<br />
+<br />
+In Robot Framework 2.6, following additional changes were made:<br />
+<br />
+- <span class="name">log_file_directory</span> argument was removed altogether.<br />
+- <span class="name">Set Screenshot Directories</span> keyword was removed.<br />
+- <a href="#Save Screenshot" class="name">Save Screenshot</a>, <a href="#Save Screenshot To" class="name">Save Screenshot To</a> and <a href="#Log Screenshot" class="name">Log Screenshot</a> keywords were deprecated. They will be removed in 2.7 version.<br />
 </p>
 
 <h2 id="importing">Importing</h2>
@@ -133,7 +139,7 @@ This library was heavily enhanced in Robot Framework 2.5.5 release. The changes 
   <th class="doc">Documentation</th>
 </tr>
 <tr>
-  <td class="arg">screenshot_directory=None, log_file_directory=DEPRECATED</td>
+  <td class="arg">screenshot_directory=None</td>
   <td class="doc">Configure where screenshots are saved.<br />
 <br />
 If <span class="name">screenshot_directory</span> is not given, screenshots are saved into same directory as the log file. The directory can also be set using <a href="#Set Screenshot Directory" class="name">Set Screenshot Directory</a> keyword.<br />
@@ -160,20 +166,17 @@ Examples (use only one of these):<br />
 <td># System temp (this was default prior to 2.5.5)</td>
 </tr>
 </table>
-<br />
-<span class="name">log_file_directory</span> has been deprecated in 2.5.5 release and has no effect. The information provided with it earlier is nowadays got automatically. This argument will be removed in the 2.6 release.</td>
+</td>
 </tr>
 </table>
 
 <h2>Shortcuts</h2>
 <div class='shortcuts'>
-<a href="#Log Screenshot" title="Takes a screenshot and logs it to Robot Framework's log file.">Log&nbsp;Screenshot</a>
+<a href="#Log Screenshot" title="*DEPRECATED* Use `Take Screenshot` or `Take Screenshot Without Embedding` instead.">Log&nbsp;Screenshot</a>
 &nbsp;&middot;&nbsp;
-<a href="#Save Screenshot" title="Saves a screenshot with a generated unique name.">Save&nbsp;Screenshot</a>
+<a href="#Save Screenshot" title="*DEPRECATED* Use `Take Screenshot` or `Take Screenshot Without Embedding` instead.">Save&nbsp;Screenshot</a>
 &nbsp;&middot;&nbsp;
-<a href="#Save Screenshot To" title="Saves a screenshot to the specified file.">Save&nbsp;Screenshot&nbsp;To</a>
-&nbsp;&middot;&nbsp;
-<a href="#Set Screenshot Directories" title="*DEPRECATED* Use `Set Screenshot Directory` keyword instead.">Set&nbsp;Screenshot&nbsp;Directories</a>
+<a href="#Save Screenshot To" title="*DEPRECATED* Use `Take Screenshot` or `Take Screenshot Without Embedding` instead.">Save&nbsp;Screenshot&nbsp;To</a>
 &nbsp;&middot;&nbsp;
 <a href="#Set Screenshot Directory" title="Sets the directory where screenshots are saved.">Set&nbsp;Screenshot&nbsp;Directory</a>
 &nbsp;&middot;&nbsp;
@@ -191,31 +194,18 @@ Examples (use only one of these):<br />
 </tr>
 <tr>
   <td class="kw"><a name="Log Screenshot"></a>Log Screenshot</td>
-  <td class="arg">basename=screenshot, directory=None, log_file_directory=DEPRECATED, width=100%</td>
-  <td class="doc">Takes a screenshot and logs it to Robot Framework's log file.<br />
-<br />
-<b>This keyword is obsolete.</b> Use <a href="#Take Screenshot" class="name">Take Screenshot</a> or <a href="#Take Screenshot Without Embedding" class="name">Take Screenshot Without Embedding</a> instead. This keyword will be deprecated in Robot Framework 2.6 and removed later.<br />
-<br />
-<span class="name">log_file_directory</span> has been deprecated in 2.5.5 release and has no effect. The information provided with it earlier is nowadays got automatically.</td>
+  <td class="arg">basename=screenshot, directory=None, width=100%</td>
+  <td class="doc"><b>DEPRECATED</b> Use <a href="#Take Screenshot" class="name">Take Screenshot</a> or <a href="#Take Screenshot Without Embedding" class="name">Take Screenshot Without Embedding</a> instead.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Save Screenshot"></a>Save Screenshot</td>
   <td class="arg">basename=screenshot, directory=None</td>
-  <td class="doc">Saves a screenshot with a generated unique name.<br />
-<br />
-<b>This keyword is obsolete.</b> Use <a href="#Take Screenshot" class="name">Take Screenshot</a> or <a href="#Take Screenshot Without Embedding" class="name">Take Screenshot Without Embedding</a> instead. This keyword will be deprecated in Robot Framework 2.6 and removed later.</td>
+  <td class="doc"><b>DEPRECATED</b> Use <a href="#Take Screenshot" class="name">Take Screenshot</a> or <a href="#Take Screenshot Without Embedding" class="name">Take Screenshot Without Embedding</a> instead.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Save Screenshot To"></a>Save Screenshot To</td>
   <td class="arg">path</td>
-  <td class="doc">Saves a screenshot to the specified file.<br />
-<br />
-<b>This keyword is obsolete.</b> Use <a href="#Take Screenshot" class="name">Take Screenshot</a> or <a href="#Take Screenshot Without Embedding" class="name">Take Screenshot Without Embedding</a> instead. This keyword will be deprecated in Robot Framework 2.6 and removed later.</td>
-</tr>
-<tr>
-  <td class="kw"><a name="Set Screenshot Directories"></a>Set Screenshot Directories</td>
-  <td class="arg">default_directory=None, log_file_directory=DEPRECATED</td>
-  <td class="doc"><b>DEPRECATED</b> Use <a href="#Set Screenshot Directory" class="name">Set Screenshot Directory</a> keyword instead.</td>
+  <td class="doc"><b>DEPRECATED</b> Use <a href="#Take Screenshot" class="name">Take Screenshot</a> or <a href="#Take Screenshot Without Embedding" class="name">Take Screenshot Without Embedding</a> instead.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Screenshot Directory"></a>Set Screenshot Directory</td>
@@ -290,9 +280,9 @@ This keyword is otherwise identical to <a href="#Take Screenshot" class="name">T
 </tr>
 </table>
 <p id="footer">
-Altogether 7 keywords.<br />
+Altogether 6 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2011-04-21 10:28:10.
+on 2011-05-06 02:05:34.
 </p>
 </body>
 </html>
