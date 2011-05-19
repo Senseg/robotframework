@@ -86,7 +86,7 @@ a {
 </head>
 <body>
 <h1>BuiltIn</h1>
-<b>Version:</b> trunk 20110316<br>
+<b>Version:</b> trunk 20110504<br>
 <b>Scope:</b> global<br>
 <b>Named arguments: </b>
 supported
@@ -130,6 +130,8 @@ supported
 <a href="#Get Library Instance" title="Returns the currently active instance of the specified test library.">Get&nbsp;Library&nbsp;Instance</a>
 &nbsp;&middot;&nbsp;
 <a href="#Get Time" title="Returns the given time in the requested format.">Get&nbsp;Time</a>
+&nbsp;&middot;&nbsp;
+<a href="#Get Variable Value" title="Returns variable value or `default` if the variable does not exist.">Get&nbsp;Variable&nbsp;Value</a>
 &nbsp;&middot;&nbsp;
 <a href="#Get Variables" title="Returns a dictionary containing all variables in the current scope.">Get&nbsp;Variables</a>
 &nbsp;&middot;&nbsp;
@@ -364,13 +366,107 @@ Handles strings 'True' and 'False' (case-insensitive) as expected, otherwise ret
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Integer"></a>Convert To Integer</td>
-  <td class="arg">item</td>
-  <td class="doc">Converts the given item to an integer number.</td>
+  <td class="arg">item, base=None</td>
+  <td class="doc">Converts the given item to an integer number.<br />
+<br />
+If the given item is a string, it is by default expected to be an integer in base 10. Starting from Robot Framework 2.6 there are two ways to convert from other bases:<br />
+<br />
+1) Give base explicitly to the keyword as <span class="name">base</span> argument.<br />
+<br />
+2) Prefix the given string with the base so that <span class="name">0b</span> means base 2 (binary), <span class="name">0o</span> means base 8 (octal), and <span class="name">0x</span> means base 16 (hex). The prefix is considered only when <span class="name">base</span> argument is not given.<br />
+<br />
+The syntax is case-insensitive and possible spaces are ignored.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>${result} =</td>
+<td>Convert To Integer</td>
+<td>100</td>
+<td></td>
+<td># Result is 100</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Integer</td>
+<td>FF AA</td>
+<td>16</td>
+<td># Result is 65450</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Integer</td>
+<td>100</td>
+<td>8</td>
+<td># Result is 64</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Integer</td>
+<td>100</td>
+<td>2</td>
+<td># Result is 4</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Integer</td>
+<td>0b100</td>
+<td></td>
+<td># Result is 4</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Integer</td>
+<td>0x100</td>
+<td></td>
+<td># Result is 256</td>
+</tr>
+</table>
+<br />
+If you need a floating point number, use <a href="#Convert To Number" class="name">Convert To Number</a> instead.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Number"></a>Convert To Number</td>
-  <td class="arg">item</td>
-  <td class="doc">Converts the given item to a floating point number.</td>
+  <td class="arg">item, precision=None</td>
+  <td class="doc">Converts the given item to a floating point number.<br />
+<br />
+If the optional <span class="name">precision</span> is positive or zero, the returned number is rounded to that number of decimal digits. Negative precision means that the number is rounded to the closest multiple of 10 to the power of the absolute precision. The support for precision was added in Robot Framework 2.6.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>${result} =</td>
+<td>Convert To Number</td>
+<td>42.512</td>
+<td></td>
+<td># Result is 42.512</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Number</td>
+<td>42.512</td>
+<td>1</td>
+<td># Result is 42.5</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Number</td>
+<td>42.512</td>
+<td>0</td>
+<td># Result is 43.0</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Number</td>
+<td>42.512</td>
+<td>-1</td>
+<td># Result is 40.0</td>
+</tr>
+</table>
+<br />
+Notice that machines generally cannot store floating point numbers accurately. This may cause surprises with these numbers in general and also when they are rounded. For more information see, for example, this floating point arithmetic tutorial: <a href="http://docs.python.org/tutorial/floatingpoint.html">http://docs.python.org/tutorial/floatingpoint.html</a><br />
+<br />
+If you need an integer number, use <a href="#Convert To Integer" class="name">Convert To Integer</a> instead.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To String"></a>Convert To String</td>
@@ -673,6 +769,41 @@ Examples (expecting the current time is 2006-03-29 15:06:21):<br />
 - ${year} = '2006'<br />
 - ${day} = '28'<br />
 - @{time} = ['16', '08', '24']</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Get Variable Value"></a>Get Variable Value</td>
+  <td class="arg">name, default=None</td>
+  <td class="doc">Returns variable value or <span class="name">default</span> if the variable does not exist.<br />
+<br />
+The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}). Notice that the former has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>${x} =</td>
+<td>Get Variable Value</td>
+<td>${a}</td>
+<td>default</td>
+</tr>
+<tr>
+<td>${y} =</td>
+<td>Get Variable Value</td>
+<td>${a}</td>
+<td>${b}</td>
+</tr>
+<tr>
+<td>${z} =</td>
+<td>Get Variable Value</td>
+<td>${z}</td>
+<td></td>
+</tr>
+</table>
+=&gt;<br />
+- ${x} gets value of ${a} if ${a} exists and string "default" otherwise<br />
+- ${y} gets value of ${a} if ${a} exists and value of ${b} otherwise<br />
+- ${z} is set to Python <span class="name">None</span> if it does not exist previously<br />
+<br />
+This keyword was added in Robot Framework 2.6. See <a href="#Set Variable If" class="name">Set Variable If</a> for another keyword to set variables dynamically.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Variables"></a>Get Variables</td>
@@ -1393,7 +1524,8 @@ It is also possible to have 'Else If' support by replacing the second value with
 <td></td>
 </tr>
 </table>
-</td>
+<br />
+Use <a href="#Get Variable Value" class="name">Get Variable Value</a> if you need to set variables dynamically based on whether a variable exist or not.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Be Empty"></a>Should Be Empty</td>
@@ -1413,19 +1545,78 @@ The length of the item is got using the <a href="#Get Length" class="name">Get L
 </tr>
 <tr>
   <td class="kw"><a name="Should Be Equal As Integers"></a>Should Be Equal As Integers</td>
-  <td class="arg">first, second, msg=None, values=True</td>
+  <td class="arg">first, second, msg=None, values=True, base=None</td>
   <td class="doc">Fails if objects are unequal after converting them to integers.<br />
 <br />
-See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
+See <a href="#Convert To Integer" class="name">Convert To Integer</a> for information how to convert integers from other bases than 10 using <span class="name">base</span> argument or <span class="name">0b/0o/0x</span> prefixes.<br />
+<br />
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>Should Be Equal As Integers</td>
+<td>42</td>
+<td>${42}</td>
+<td>Error message</td>
+</tr>
+<tr>
+<td>Should Be Equal As Integers</td>
+<td>ABCD</td>
+<td>abcd</td>
+<td>base=16</td>
+</tr>
+<tr>
+<td>Should Be Equal As Integers</td>
+<td>0b1011</td>
+<td>11</td>
+<td></td>
+</tr>
+</table>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Be Equal As Numbers"></a>Should Be Equal As Numbers</td>
-  <td class="arg">first, second, msg=None, values=True</td>
+  <td class="arg">first, second, msg=None, values=True, precision=6</td>
   <td class="doc">Fails if objects are unequal after converting them to real numbers.<br />
 <br />
-The check for equality is done using six decimal places.<br />
+The conversion is done with <a href="#Convert To Number" class="name">Convert To Number</a> keyword using the given <span class="name">precision</span>. The support for giving precision was added in Robot Framework 2.6, in earlier versions it was hard-coded to 6.<br />
 <br />
-See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>Should Be Equal As Numbers</td>
+<td>${x}</td>
+<td>1.1</td>
+<td></td>
+<td># Passes if ${x} is 1.1</td>
+</tr>
+<tr>
+<td>Should Be Equal As Numbers</td>
+<td>1.123</td>
+<td>1.1</td>
+<td>precision=1</td>
+<td># Passes</td>
+</tr>
+<tr>
+<td>Should Be Equal As Numbers</td>
+<td>1.123</td>
+<td>1.4</td>
+<td>precision=0</td>
+<td># Passes</td>
+</tr>
+<tr>
+<td>Should Be Equal As Numbers</td>
+<td>112.3</td>
+<td>75</td>
+<td>precision=-2</td>
+<td># Passes</td>
+</tr>
+</table>
+<br />
+As discussed in the documentation of <a href="#Convert To Number" class="name">Convert To Number</a>, machines generally cannot store floating point numbers accurately. Because of this limitation, comparing floats for equality is problematic and a correct approach to use depends on the context. This keyword uses a very naive approach of rounding the numbers before comparing them, which is both prone to rounding errors and does not work very well if numbers are really big or small. For more information about comparing floats, and ideas on how to implement your own context specific comparison algorithm, see this great article: <a href="http://www.cygnus-software.com/papers/comparingfloats/comparingfloats.htm">http://www.cygnus-software.com/papers/comparingfloats/comparingfloats.htm</a><br />
+<br />
+See <a href="#Should Not Be Equal As Numbers" class="name">Should Not Be Equal As Numbers</a> for a negative version of this keyword and <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Be Equal As Strings"></a>Should Be Equal As Strings</td>
@@ -1609,19 +1800,23 @@ See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanati
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Be Equal As Integers"></a>Should Not Be Equal As Integers</td>
-  <td class="arg">first, second, msg=None, values=True</td>
+  <td class="arg">first, second, msg=None, values=True, base=None</td>
   <td class="doc">Fails if objects are equal after converting them to integers.<br />
 <br />
-See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
+See <a href="#Convert To Integer" class="name">Convert To Integer</a> for information how to convert integers from other bases than 10 using <span class="name">base</span> argument or <span class="name">0b/0o/0x</span> prefixes.<br />
+<br />
+See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.<br />
+<br />
+See <a href="#Should Be Equal As Integers" class="name">Should Be Equal As Integers</a> for some usage examples.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Be Equal As Numbers"></a>Should Not Be Equal As Numbers</td>
-  <td class="arg">first, second, msg=None, values=True</td>
+  <td class="arg">first, second, msg=None, values=True, precision=6</td>
   <td class="doc">Fails if objects are equal after converting them to real numbers.<br />
 <br />
-The check for equality is done using six decimal places.<br />
+The conversion is done with <a href="#Convert To Number" class="name">Convert To Number</a> keyword using the given <span class="name">precision</span>. The support for giving precision was added in Robot Framework 2.6, in earlier versions it was hard-coded to 6.<br />
 <br />
-See <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
+See <a href="#Should Be Equal As Numbers" class="name">Should Be Equal As Numbers</a> for examples on how to use <span class="name">precision</span> and why it does not always work as expected. See also <a href="#Should Be Equal" class="name">Should Be Equal</a> for an explanation on how to override the default error message with <span class="name">msg</span> and <span class="name">values</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Should Not Be Equal As Strings"></a>Should Not Be Equal As Strings</td>
@@ -1771,9 +1966,9 @@ Starting from Robot Framework 2.5 errors caused by invalid syntax, timeouts, or 
 </tr>
 </table>
 <p id="footer">
-Altogether 79 keywords.<br />
+Altogether 80 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2011-03-16 13:38:26.
+on 2011-05-18 14:05:51.
 </p>
 </body>
 </html>

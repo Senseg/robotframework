@@ -86,7 +86,7 @@ a {
 </head>
 <body>
 <h1>OperatingSystem</h1>
-<b>Version:</b> trunk 20110316<br>
+<b>Version:</b> trunk 20110504<br>
 <b>Scope:</b> global<br>
 <b>Named arguments: </b>
 supported
@@ -201,8 +201,6 @@ All keywords expecting paths as arguments accept a forward slash (<span class="n
 &nbsp;&middot;&nbsp;
 <a href="#Create File" title="Creates a file with the given content and encoding.">Create&nbsp;File</a>
 &nbsp;&middot;&nbsp;
-<a href="#Create File With Encoding" title="*DEPRECATED* Use `Create File` instead. This keyword will be removed in RF 2.6.">Create&nbsp;File&nbsp;With&nbsp;Encoding</a>
-&nbsp;&middot;&nbsp;
 <a href="#Directory Should Be Empty" title="Fails unless the specified directory is empty.">Directory&nbsp;Should&nbsp;Be&nbsp;Empty</a>
 &nbsp;&middot;&nbsp;
 <a href="#Directory Should Exist" title="Fails unless the given path points to an existing directory.">Directory&nbsp;Should&nbsp;Exist</a>
@@ -310,7 +308,7 @@ All keywords expecting paths as arguments accept a forward slash (<span class="n
   <td class="arg">path, content, encoding=UTF-8</td>
   <td class="doc">Appends the given contend to the specified file.<br />
 <br />
-If the file does not exists, this keyword works exactly the same way as <a href="#Create File With Encoding" class="name">Create File With Encoding</a>.</td>
+If the file does not exists, this keyword works exactly the same way as <span class="name">Create File With Encoding</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Copy Directory"></a>Copy Directory</td>
@@ -363,14 +361,7 @@ Also possible intermediate directories are created. Passes if the directory alre
 <br />
 If the directory where to create file does not exist it, and possible intermediate missing directories, are created.<br />
 <br />
-Use <a href="#Append To File" class="name">Append To File</a> if you want to append to an existing file, and use <a href="#File Should Not Exist" class="name">File Should Not Exist</a> if you want to avoid overwriting existing files.<br />
-<br />
-Note that the deprecated <span class="name">mode</span> argument was replaced with <span class="name">encoding</span> in Robot Framework 2.5.</td>
-</tr>
-<tr>
-  <td class="kw"><a name="Create File With Encoding"></a>Create File With Encoding</td>
-  <td class="arg">path, content=, encoding=UTF-8</td>
-  <td class="doc"><b>DEPRECATED</b> Use <a href="#Create File" class="name">Create File</a> instead. This keyword will be removed in RF 2.6.</td>
+Use <a href="#Append To File" class="name">Append To File</a> if you want to append to an existing file, and use <a href="#File Should Not Exist" class="name">File Should Not Exist</a> if you want to avoid overwriting existing files.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Directory Should Be Empty"></a>Directory Should Be Empty</td>
@@ -662,19 +653,19 @@ Examples:<br />
 </tr>
 <tr>
   <td class="kw"><a name="List Directories In Directory"></a>List Directories In Directory</td>
-  <td class="arg">path, pattern=None, absolute=False, deprecated_absolute=None</td>
+  <td class="arg">path, pattern=None, absolute=False</td>
   <td class="doc">A wrapper for <a href="#List Directory" class="name">List Directory</a> that returns only directories.</td>
 </tr>
 <tr>
   <td class="kw"><a name="List Directory"></a>List Directory</td>
-  <td class="arg">path, pattern=None, absolute=False, deprecated_absolute=None</td>
+  <td class="arg">path, pattern=None, absolute=False</td>
   <td class="doc">Returns and logs items in a directory, optionally filtered with <span class="name">pattern</span>.<br />
 <br />
 File and directory names are returned in case-sensitive alphabetical order, e.g. ['A Name', 'Second', 'a lower case name', 'one more']. Implicit directories '.' and '..' are not returned. The returned items are automatically logged.<br />
 <br />
 By default, the file and directory names are returned relative to the given path (e.g. 'file.txt'). If you want them be returned in the absolute format (e.g. '/home/robot/file.txt'), set the <span class="name">absolute</span> argument to any non-empty string.<br />
 <br />
-If <span class="name">pattern</span> is given, only items matching it are returned. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>, and in this case matching is case-sensitive. Support for different pattern types was removed in Robot Framework 2.5.<br />
+If <span class="name">pattern</span> is given, only items matching it are returned. The pattern matching syntax is explained in <a href="#introduction" class="name">introduction</a>, and in this case matching is case-sensitive.<br />
 <br />
 Examples (using also other <a href="#List Directory" class="name">List Directory</a> variants):<br />
 <table border="1" class="doc">
@@ -700,12 +691,11 @@ Examples (using also other <a href="#List Directory" class="name">List Directory
 <td></td>
 </tr>
 </table>
-<br />
-The signature of this keyword was changed in RF 2.5 when the deprecated <span class="name">pattern_type</span> argument was removed. The <span class="name">deprecated_absolute</span> argument was added to keep the signature backwards compatible, but it will be removed in RF 2.6.</td>
+</td>
 </tr>
 <tr>
   <td class="kw"><a name="List Files In Directory"></a>List Files In Directory</td>
-  <td class="arg">path, pattern=None, absolute=False, deprecated_absolute=None</td>
+  <td class="arg">path, pattern=None, absolute=False</td>
   <td class="doc">A wrapper for <a href="#List Directory" class="name">List Directory</a> that returns only files.</td>
 </tr>
 <tr>
@@ -1273,9 +1263,9 @@ If the timeout is negative, the keyword is never timed-out. The keyword returns 
 </tr>
 </table>
 <p id="footer">
-Altogether 56 keywords.<br />
+Altogether 55 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2011-03-16 13:38:27.
+on 2011-05-06 02:05:32.
 </p>
 </body>
 </html>
