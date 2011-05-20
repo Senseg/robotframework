@@ -105,11 +105,17 @@ supported
 &nbsp;&middot;&nbsp;
 <a href="#Comment" title="Displays the given messages in the log file as keyword arguments.">Comment</a>
 &nbsp;&middot;&nbsp;
+<a href="#Convert To Binary" title="Converts the given item to a binary string.">Convert&nbsp;To&nbsp;Binary</a>
+&nbsp;&middot;&nbsp;
 <a href="#Convert To Boolean" title="Converts the given item to Boolean true or false.">Convert&nbsp;To&nbsp;Boolean</a>
+&nbsp;&middot;&nbsp;
+<a href="#Convert To Hex" title="Converts the given item to a hexadecimal string.">Convert&nbsp;To&nbsp;Hex</a>
 &nbsp;&middot;&nbsp;
 <a href="#Convert To Integer" title="Converts the given item to an integer number.">Convert&nbsp;To&nbsp;Integer</a>
 &nbsp;&middot;&nbsp;
 <a href="#Convert To Number" title="Converts the given item to a floating point number.">Convert&nbsp;To&nbsp;Number</a>
+&nbsp;&middot;&nbsp;
+<a href="#Convert To Octal" title="Converts the given item to an octal string.">Convert&nbsp;To&nbsp;Octal</a>
 &nbsp;&middot;&nbsp;
 <a href="#Convert To String" title="Converts the given item to a Unicode string.">Convert&nbsp;To&nbsp;String</a>
 &nbsp;&middot;&nbsp;
@@ -358,11 +364,89 @@ Examples:<br />
 This keyword does nothing with the arguments it receives, but as they are visible in the log, this keyword can be used to display simple messages. Given arguments are ignored so thoroughly that they can even contain non-existing variables. If you are interested about variable values, you can use the <a href="#Log" class="name">Log</a> or <a href="#Log Many" class="name">Log Many</a> keywords.</td>
 </tr>
 <tr>
+  <td class="kw"><a name="Convert To Binary"></a>Convert To Binary</td>
+  <td class="arg">item, base=None, prefix=None, length=None</td>
+  <td class="doc">Converts the given item to a binary string.<br />
+<br />
+The <span class="name">item</span>, with an optional <span class="name">base</span>, is first converted to an integer using <a href="#Convert To Integer" class="name">Convert To Integer</a> internally. After that it is converted to a binary (base 2) number represented as a string such as <span class="name">'1011'</span>.<br />
+<br />
+The returned value can contain an optional <span class="name">prefix</span> and can be required to be of minimum <span class="name">length</span> (excluding the prefix). If the value is initially shorter than the required length, it is padded with zeros.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>${result} =</td>
+<td>Convert To Binary</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td># Result is 1010</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Binary</td>
+<td>0xF</td>
+<td>prefix=0b</td>
+<td></td>
+<td># Result is 0b1111</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Binary</td>
+<td>2</td>
+<td>prefix=B</td>
+<td>length=4</td>
+<td># Result is B0010</td>
+</tr>
+</table>
+<br />
+This keyword is new in Robot Framework 2.6. See also <a href="#Convert To Integer" class="name">Convert To Integer</a>, <a href="#Convert To Octal" class="name">Convert To Octal</a> and <a href="#Convert To Hex" class="name">Convert To Hex</a>.</td>
+</tr>
+<tr>
   <td class="kw"><a name="Convert To Boolean"></a>Convert To Boolean</td>
   <td class="arg">item</td>
   <td class="doc">Converts the given item to Boolean true or false.<br />
 <br />
 Handles strings 'True' and 'False' (case-insensitive) as expected, otherwise returns item's truth value using Python's 'bool' method. For more information about truth values, see <a href="http://docs.python.org/lib/truth.html">http://docs.python.org/lib/truth.html</a>.</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Convert To Hex"></a>Convert To Hex</td>
+  <td class="arg">item, base=None, prefix=None, length=None, lowercase=False</td>
+  <td class="doc">Converts the given item to a hexadecimal string.<br />
+<br />
+The <span class="name">item</span>, with an optional <span class="name">base</span>, is first converted to an integer using <a href="#Convert To Integer" class="name">Convert To Integer</a> internally. After that it is converted to a hexadecimal (base 16) number represented as a string such as <span class="name">'FF0A'</span>.<br />
+<br />
+The returned value can contain an optional <span class="name">prefix</span> and can be required to be of minimum <span class="name">length</span> (excluding the prefix). If the value is initially shorter than the required length, it is padded with zeros. &nbsp;By default the value is returned as an upper case string, but giving any non-empty value to the <span class="name">lowercase</span> argument turns it (but not the prefix) to lower case.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>${result} =</td>
+<td>Convert To Hex</td>
+<td>255</td>
+<td></td>
+<td></td>
+<td># Result is FF</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Hex</td>
+<td>255</td>
+<td>prefix=0X</td>
+<td>lowercase=yes</td>
+<td># Result is 0Xff</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Hex</td>
+<td>10</td>
+<td>length=2</td>
+<td>lowercase=yes</td>
+<td># Result is 0A</td>
+</tr>
+</table>
+<br />
+This keyword is new in Robot Framework 2.6. See also <a href="#Convert To Integer" class="name">Convert To Integer</a>, <a href="#Convert To Binary" class="name">Convert To Binary</a> and <a href="#Convert To Octal" class="name">Convert To Octal</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Integer"></a>Convert To Integer</td>
@@ -423,7 +507,7 @@ Examples:<br />
 </tr>
 </table>
 <br />
-If you need a floating point number, use <a href="#Convert To Number" class="name">Convert To Number</a> instead.</td>
+See also <a href="#Convert To Number" class="name">Convert To Number</a>, <a href="#Convert To Binary" class="name">Convert To Binary</a>, <a href="#Convert To Octal" class="name">Convert To Octal</a> and <a href="#Convert To Hex" class="name">Convert To Hex</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Number"></a>Convert To Number</td>
@@ -467,6 +551,45 @@ Examples:<br />
 Notice that machines generally cannot store floating point numbers accurately. This may cause surprises with these numbers in general and also when they are rounded. For more information see, for example, this floating point arithmetic tutorial: <a href="http://docs.python.org/tutorial/floatingpoint.html">http://docs.python.org/tutorial/floatingpoint.html</a><br />
 <br />
 If you need an integer number, use <a href="#Convert To Integer" class="name">Convert To Integer</a> instead.</td>
+</tr>
+<tr>
+  <td class="kw"><a name="Convert To Octal"></a>Convert To Octal</td>
+  <td class="arg">item, base=None, prefix=None, length=None</td>
+  <td class="doc">Converts the given item to an octal string.<br />
+<br />
+The <span class="name">item</span>, with an optional <span class="name">base</span>, is first converted to an integer using <a href="#Convert To Integer" class="name">Convert To Integer</a> internally. After that it is converted to an octal (base 8) number represented as a string such as <span class="name">'775'</span>.<br />
+<br />
+The returned value can contain an optional <span class="name">prefix</span> and can be required to be of minimum <span class="name">length</span> (excluding the prefix). If the value is initially shorter than the required length, it is padded with zeros.<br />
+<br />
+Examples:<br />
+<table border="1" class="doc">
+<tr>
+<td>${result} =</td>
+<td>Convert To Octal</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td># Result is 12</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Octal</td>
+<td>0xFF</td>
+<td>prefix=0o</td>
+<td></td>
+<td># Result is 0o377</td>
+</tr>
+<tr>
+<td>${result} =</td>
+<td>Convert To Octal</td>
+<td>16</td>
+<td>prefix=oct</td>
+<td>length=4</td>
+<td># Result is oct0002</td>
+</tr>
+</table>
+<br />
+This keyword is new in Robot Framework 2.6. See also <a href="#Convert To Integer" class="name">Convert To Integer</a>, <a href="#Convert To Binary" class="name">Convert To Binary</a> and <a href="#Convert To Hex" class="name">Convert To Hex</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To String"></a>Convert To String</td>
@@ -579,7 +702,7 @@ Example:<br />
 </tr>
 </table>
 <br />
-New in Robot Framework 2.5.2</td>
+New in Robot Framework 2.5.2.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Fail"></a>Fail</td>
@@ -626,7 +749,7 @@ Example:<br />
   <td class="arg">item</td>
   <td class="doc">Returns and logs the length of the given item.<br />
 <br />
-The keyword first tries to get the length with the Python function 'len', which calls the item's '__len__' method internally. If that fails, the keyword tries to call the item's 'length' and 'size' methods directly. The final attempt is trying to get the value of the item's 'length' attribute. If all these attempts are unsuccessful, the keyword fails.</td>
+The keyword first tries to get the length with the Python function <span class="name">len</span>, which calls the item's <span class="name">__len__</span> method internally. If that fails, the keyword tries to call the item's <span class="name">length</span> and <span class="name">size</span> methods directly. The final attempt is trying to get the value of the item's <span class="name">length</span> attribute. If all these attempts are unsuccessful, the keyword fails.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Get Library Instance"></a>Get Library Instance</td>
@@ -662,7 +785,7 @@ How time is returned is determined based on the given <span class="name">format<
 <br />
 3) Otherwise (and by default) the time is returned as a timestamp string in the format '2006-02-24 15:08:31'.<br />
 <br />
-By default this keyword returns the current time, but that can be altered using <span class="name">time</span> argument as explained below. Notice that this argument is only available in Robot Framework 2.1.1 and newer.<br />
+By default this keyword returns the current time, but that can be altered using <span class="name">time</span> argument as explained below.<br />
 <br />
 1) If <span class="name">time</span> is a floating point number, it is interpreted as seconds since the epoch. This documentation is written about 1177654467 seconds after the epoch.<br />
 <br />
@@ -892,7 +1015,7 @@ Examples:<br />
 </tr>
 </table>
 <br />
-New in Robot Framework 2.5.4</td>
+New in Robot Framework 2.5.4.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Length Should Be"></a>Length Should Be</td>
@@ -1306,7 +1429,7 @@ The available levels: TRACE, DEBUG, INFO (default), WARN and NONE (no logging).<
 <br />
 Variables set with this keyword are available everywhere within the scope of the currently executed test suite. Setting variables with this keyword thus has the same effect as creating them using the Variable table in the test data file or importing them from variable files. Other test suites, including possible child test suites, will not see variables set with this keyword.<br />
 <br />
-The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}). Notice that the former works only in Robot Framework 2.1 and newer.<br />
+The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}).<br />
 <br />
 If a variable already exists within the new scope, its value will be overwritten. Otherwise a new variable is created. If a variable already exists within the current scope, the value can be left empty and the variable within the new scope gets the value within the current scope.<br />
 <br />
@@ -1928,7 +2051,7 @@ Examples:<br />
   <td class="arg">name, msg=None</td>
   <td class="doc">Fails unless the given variable exists within the current scope.<br />
 <br />
-The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}). Notice that the former works only in Robot Framework 2.1 and newer, and it has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
+The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}). Notice that the former has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
 <br />
 The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
@@ -1937,7 +2060,7 @@ The default error message can be overridden with the <span class="name">msg</spa
   <td class="arg">name, msg=None</td>
   <td class="doc">Fails if the given variable exists within the current scope.<br />
 <br />
-The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}). Notice that the former works only in Robot Framework 2.1 and newer, and it has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
+The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}). Notice that the former has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
 <br />
 The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
@@ -1966,9 +2089,9 @@ Starting from Robot Framework 2.5 errors caused by invalid syntax, timeouts, or 
 </tr>
 </table>
 <p id="footer">
-Altogether 80 keywords.<br />
+Altogether 83 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2011-05-18 14:05:51.
+on 2011-05-20 12:36:48.
 </p>
 </body>
 </html>
