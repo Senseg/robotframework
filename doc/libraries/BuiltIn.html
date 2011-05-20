@@ -368,7 +368,7 @@ This keyword does nothing with the arguments it receives, but as they are visibl
   <td class="arg">item, base=None, prefix=None, length=None</td>
   <td class="doc">Converts the given item to a binary string.<br />
 <br />
-The <span class="name">item</span>, with an optional <span class="name">base</span>, is first converted to an integer using <a href="#Convert To Integer" class="name">Convert To Integer</a> internally. After that it is converted to a binary (base 2) number represented as a string such as <span class="name">'1011'</span>.<br />
+The <span class="name">item</span>, with an optional <span class="name">base</span>, is first converted to an integer using <a href="#Convert To Integer" class="name">Convert To Integer</a> internally. After that it is converted to a binary number (base 2) represented as a string such as <span class="name">'1011'</span>.<br />
 <br />
 The returned value can contain an optional <span class="name">prefix</span> and can be required to be of minimum <span class="name">length</span> (excluding the prefix). If the value is initially shorter than the required length, it is padded with zeros.<br />
 <br />
@@ -385,9 +385,9 @@ Examples:<br />
 <tr>
 <td>${result} =</td>
 <td>Convert To Binary</td>
-<td>0xF</td>
+<td>F</td>
+<td>base=16</td>
 <td>prefix=0b</td>
-<td></td>
 <td># Result is 0b1111</td>
 </tr>
 <tr>
@@ -400,7 +400,7 @@ Examples:<br />
 </tr>
 </table>
 <br />
-This keyword is new in Robot Framework 2.6. See also <a href="#Convert To Integer" class="name">Convert To Integer</a>, <a href="#Convert To Octal" class="name">Convert To Octal</a> and <a href="#Convert To Hex" class="name">Convert To Hex</a>.</td>
+This keyword was added in Robot Framework 2.6. See also <a href="#Convert To Integer" class="name">Convert To Integer</a>, <a href="#Convert To Octal" class="name">Convert To Octal</a> and <a href="#Convert To Hex" class="name">Convert To Hex</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Boolean"></a>Convert To Boolean</td>
@@ -414,9 +414,9 @@ Handles strings 'True' and 'False' (case-insensitive) as expected, otherwise ret
   <td class="arg">item, base=None, prefix=None, length=None, lowercase=False</td>
   <td class="doc">Converts the given item to a hexadecimal string.<br />
 <br />
-The <span class="name">item</span>, with an optional <span class="name">base</span>, is first converted to an integer using <a href="#Convert To Integer" class="name">Convert To Integer</a> internally. After that it is converted to a hexadecimal (base 16) number represented as a string such as <span class="name">'FF0A'</span>.<br />
+The <span class="name">item</span>, with an optional <span class="name">base</span>, is first converted to an integer using <a href="#Convert To Integer" class="name">Convert To Integer</a> internally. After that it is converted to a hexadecimal number (base 16) represented as a string such as <span class="name">'FF0A'</span>.<br />
 <br />
-The returned value can contain an optional <span class="name">prefix</span> and can be required to be of minimum <span class="name">length</span> (excluding the prefix). If the value is initially shorter than the required length, it is padded with zeros. &nbsp;By default the value is returned as an upper case string, but giving any non-empty value to the <span class="name">lowercase</span> argument turns it (but not the prefix) to lower case.<br />
+The returned value can contain an optional <span class="name">prefix</span> and can be required to be of minimum <span class="name">length</span> (excluding the prefix). If the value is initially shorter than the required length, it is padded with zeros. &nbsp;By default the value is returned as an upper case string, but giving any non-empty value to the <span class="name">lowercase</span> argument turns the value (but not the prefix) to lower case.<br />
 <br />
 Examples:<br />
 <table border="1" class="doc">
@@ -431,22 +431,22 @@ Examples:<br />
 <tr>
 <td>${result} =</td>
 <td>Convert To Hex</td>
-<td>255</td>
-<td>prefix=0X</td>
-<td>lowercase=yes</td>
-<td># Result is 0Xff</td>
+<td>10</td>
+<td>prefix=0x</td>
+<td>length=2</td>
+<td># Result is 0x0A</td>
 </tr>
 <tr>
 <td>${result} =</td>
 <td>Convert To Hex</td>
-<td>10</td>
-<td>length=2</td>
+<td>255</td>
+<td>prefix=X</td>
 <td>lowercase=yes</td>
-<td># Result is 0A</td>
+<td># Result is Xff</td>
 </tr>
 </table>
 <br />
-This keyword is new in Robot Framework 2.6. See also <a href="#Convert To Integer" class="name">Convert To Integer</a>, <a href="#Convert To Binary" class="name">Convert To Binary</a> and <a href="#Convert To Octal" class="name">Convert To Octal</a>.</td>
+This keyword was added in Robot Framework 2.6. See also <a href="#Convert To Integer" class="name">Convert To Integer</a>, <a href="#Convert To Binary" class="name">Convert To Binary</a> and <a href="#Convert To Octal" class="name">Convert To Octal</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To Integer"></a>Convert To Integer</td>
@@ -457,7 +457,7 @@ If the given item is a string, it is by default expected to be an integer in bas
 <br />
 1) Give base explicitly to the keyword as <span class="name">base</span> argument.<br />
 <br />
-2) Prefix the given string with the base so that <span class="name">0b</span> means base 2 (binary), <span class="name">0o</span> means base 8 (octal), and <span class="name">0x</span> means base 16 (hex). The prefix is considered only when <span class="name">base</span> argument is not given.<br />
+2) Prefix the given string with the base so that <span class="name">0b</span> means binary (base 2), <span class="name">0o</span> means octal (base 8), and <span class="name">0x</span> means hex (base 16). The prefix is considered only when <span class="name">base</span> argument is not given.<br />
 <br />
 The syntax is case-insensitive and possible spaces are ignored.<br />
 <br />
@@ -557,7 +557,7 @@ If you need an integer number, use <a href="#Convert To Integer" class="name">Co
   <td class="arg">item, base=None, prefix=None, length=None</td>
   <td class="doc">Converts the given item to an octal string.<br />
 <br />
-The <span class="name">item</span>, with an optional <span class="name">base</span>, is first converted to an integer using <a href="#Convert To Integer" class="name">Convert To Integer</a> internally. After that it is converted to an octal (base 8) number represented as a string such as <span class="name">'775'</span>.<br />
+The <span class="name">item</span>, with an optional <span class="name">base</span>, is first converted to an integer using <a href="#Convert To Integer" class="name">Convert To Integer</a> internally. After that it is converted to an octal number (base 8) represented as a string such as <span class="name">'775'</span>.<br />
 <br />
 The returned value can contain an optional <span class="name">prefix</span> and can be required to be of minimum <span class="name">length</span> (excluding the prefix). If the value is initially shorter than the required length, it is padded with zeros.<br />
 <br />
@@ -574,10 +574,10 @@ Examples:<br />
 <tr>
 <td>${result} =</td>
 <td>Convert To Octal</td>
-<td>0xFF</td>
-<td>prefix=0o</td>
-<td></td>
-<td># Result is 0o377</td>
+<td>FF</td>
+<td>base=16</td>
+<td>prefix=0</td>
+<td># Result is 0377</td>
 </tr>
 <tr>
 <td>${result} =</td>
@@ -585,11 +585,11 @@ Examples:<br />
 <td>16</td>
 <td>prefix=oct</td>
 <td>length=4</td>
-<td># Result is oct0002</td>
+<td># Result is oct0020</td>
 </tr>
 </table>
 <br />
-This keyword is new in Robot Framework 2.6. See also <a href="#Convert To Integer" class="name">Convert To Integer</a>, <a href="#Convert To Binary" class="name">Convert To Binary</a> and <a href="#Convert To Hex" class="name">Convert To Hex</a>.</td>
+This keyword was added in Robot Framework 2.6. See also <a href="#Convert To Integer" class="name">Convert To Integer</a>, <a href="#Convert To Binary" class="name">Convert To Binary</a> and <a href="#Convert To Hex" class="name">Convert To Hex</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Convert To String"></a>Convert To String</td>
@@ -2091,7 +2091,7 @@ Starting from Robot Framework 2.5 errors caused by invalid syntax, timeouts, or 
 <p id="footer">
 Altogether 83 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2011-05-20 12:36:48.
+on 2011-05-20 13:40:17.
 </p>
 </body>
 </html>
