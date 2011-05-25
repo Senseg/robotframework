@@ -898,7 +898,7 @@ Examples (expecting the current time is 2006-03-29 15:06:21):<br />
   <td class="arg">name, default=None</td>
   <td class="doc">Returns variable value or <span class="name">default</span> if the variable does not exist.<br />
 <br />
-The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}). Notice that the former has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
+The name of the variable can be given either as a normal variable name (e.g. <span class="name">${NAME}</span>) or in escaped format (e.g. <span class="name">\${NAME}</span>). Notice that the former has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
 <br />
 Examples:<br />
 <table border="1" class="doc">
@@ -1429,7 +1429,7 @@ The available levels: TRACE, DEBUG, INFO (default), WARN and NONE (no logging).<
 <br />
 Variables set with this keyword are available everywhere within the scope of the currently executed test suite. Setting variables with this keyword thus has the same effect as creating them using the Variable table in the test data file or importing them from variable files. Other test suites, including possible child test suites, will not see variables set with this keyword.<br />
 <br />
-The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}).<br />
+The name of the variable can be given either as a normal variable name (e.g. <span class="name">${NAME}</span>) or in escaped format as <span class="name">\${NAME}</span> or <span class="name">$NAME</span>.<br />
 <br />
 If a variable already exists within the new scope, its value will be overwritten. Otherwise a new variable is created. If a variable already exists within the current scope, the value can be left empty and the variable within the new scope gets the value within the current scope.<br />
 <br />
@@ -1452,30 +1452,31 @@ Examples:<br />
 </tr>
 </table>
 <br />
-<b>NOTE:</b> If the variable has value which itself is a variable (escaped or not), you must always use the escaped format like in the example below. This limitation applies to <span class="name">Set Test/Suite/Global Variable</span> and <span class="name">Variable Should (Not) Exist</span> keywords.<br />
+<b>NOTE:</b> If the variable has value which itself is a variable (escaped or not), you must always use the escaped format to reset the variable:<br />
 <br />
 Example:<br />
 <table border="1" class="doc">
 <tr>
 <td>${NAME} =</td>
 <td>Set Variable</td>
-<td>\${variable}</td>
+<td>\${var}</td>
 <td></td>
 </tr>
 <tr>
 <td>Set Suite Variable</td>
 <td>${NAME}</td>
-<td>new value</td>
-<td># Does not work</td>
+<td>value</td>
+<td># Sets variable ${var}</td>
 </tr>
 <tr>
 <td>Set Suite Variable</td>
 <td>\${NAME}</td>
-<td>new value</td>
-<td># This works</td>
+<td>value</td>
+<td># Sets variable ${NAME}</td>
 </tr>
 </table>
-</td>
+<br />
+This limitation applies also to <span class="name">Set Test/Suite/Global Variable</span>, <span class="name">Variable Should (Not) Exist</span>, and <a href="#Get Variable Value" class="name">Get Variable Value</a> keywords.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Tags"></a>Set Tags</td>
@@ -2051,7 +2052,7 @@ Examples:<br />
   <td class="arg">name, msg=None</td>
   <td class="doc">Fails unless the given variable exists within the current scope.<br />
 <br />
-The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}). Notice that the former has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
+The name of the variable can be given either as a normal variable name (e.g. <span class="name">${NAME}</span>) or in escaped format (e.g. <span class="name">\${NAME}</span>). Notice that the former has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
 <br />
 The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
@@ -2060,7 +2061,7 @@ The default error message can be overridden with the <span class="name">msg</spa
   <td class="arg">name, msg=None</td>
   <td class="doc">Fails if the given variable exists within the current scope.<br />
 <br />
-The name of the variable can be given either as a normal variable name (e.g. ${NAME}) or in escaped format (e.g. \${NAME}). Notice that the former has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
+The name of the variable can be given either as a normal variable name (e.g. <span class="name">${NAME}</span>) or in escaped format (e.g. <span class="name">\${NAME}</span>). Notice that the former has some limitations explained in <a href="#Set Suite Variable" class="name">Set Suite Variable</a>.<br />
 <br />
 The default error message can be overridden with the <span class="name">msg</span> argument.</td>
 </tr>
@@ -2091,7 +2092,7 @@ Starting from Robot Framework 2.5 errors caused by invalid syntax, timeouts, or 
 <p id="footer">
 Altogether 83 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2011-05-20 13:40:17.
+on 2011-05-25 09:22:38.
 </p>
 </body>
 </html>
