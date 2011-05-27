@@ -488,7 +488,7 @@ div.contents li {
 <body>
 <div class="document" id="robot-framework-user-guide">
 <h1 class="title">Robot Framework User Guide</h1>
-<h2 class="subtitle" id="version-version">Version trunk 20110504</h2>
+<h2 class="subtitle" id="version-version">Version trunk 20110527</h2>
 
 <!-- This data file has been placed in the public domain. -->
 <!-- Derived from the Unicode character mappings available from
@@ -12472,12 +12472,18 @@ Robot Framework:</p>
 Remote Server</span> keyword that can be used from the test data.</li>
 <li>Remote servers have <span class="code">stop_remote_server</span> method in their
 XML-RPC interface.</li>
-<li><span class="code">Ctrl-c</span> stops the server if it is running on a terminal
+<li><span class="code">Ctrl-C</span> stops the server if it is running on a terminal
 window. Unfortunately this does not work with all servers on all
 operating systems.</li>
 <li>The server process can be terminated using tools provided by the
 operating system (e.g. <span class="prog">kill</span>).</li>
 </ul>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">The server may be configured so that users cannot stop it with
+<span class="name">Stop Remote Server</span> keyword or <span class="code">stop_remote_server</span>
+method.</p>
+</div>
 </div>
 </div>
 <div class="section" id="supported-argument-and-return-value-types">
@@ -12534,9 +12540,9 @@ Items In Directory</span> and <span class="name">Strings Should Be Equal</span>.
 
 
 <span class="k">class</span> <span class="nc">ExampleRemoteLibrary</span><span class="p">:</span>
-    
+
     <span class="k">def</span> <span class="nf">count_items_in_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">([</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span> <span class="p">])</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">strings_should_be_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">str1</span><span class="p">,</span> <span class="n">str2</span><span class="p">):</span>
         <span class="k">print</span> <span class="s">&quot;Comparing &#39;</span><span class="si">%s</span><span class="s">&#39; to &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str2</span><span class="p">)</span>
@@ -12604,7 +12610,11 @@ implement keywords itself.</p>
 method in their public interface to ease stopping them. They should
 also expose this method as <span class="name">Stop Remote Server</span> keyword
 automatically so that it can be used in the test data regardless of
-the test library.</p>
+the test library. Allowing users to stop the server using these
+methods is not always desirable, and servers can choose to allow
+disabling them via some configuration parameter.</p>
+<p>The provided Python remote server can be used as a reference
+implementation.</p>
 </div>
 <div class="section" id="getting-remote-keyword-names-and-other-information">
 <h4><a class="toc-backref" href="#id576">Getting remote keyword names and other information</a></h4>
@@ -12624,9 +12634,10 @@ libraries</a>, and documentation must be returned <a class="reference internal" 
 calls remote server's <span class="code">run_keyword</span> method and passes it the
 keyword name and a list of arguments. Base types can be used as
 arguments directly but more complex types are <a class="reference internal" href="#supported-argument-and-return-value-types">converted to supported
-types</a>. The server must return results of the execution in a result
-dictionary (or map, depending on terminology) containing items
-explained in the following table.</p>
+types</a>.</p>
+<p>The server must return results of the execution in a result dictionary
+(or map, depending on terminology) containing items explained in the
+following table.</p>
 <table border="1" class="tabular docutils">
 <caption>Entries in the remote result dictionary</caption>
 <colgroup>
@@ -14087,7 +14098,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2011-05-24 13:23 UTC.
+<p>Generated on: 2011-05-27 19:01 UTC.
 </p>
 
 </div>
