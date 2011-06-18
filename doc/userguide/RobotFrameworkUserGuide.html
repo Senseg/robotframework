@@ -7529,13 +7529,13 @@ highest priority. In such cases, it is possible to use <em>the full name
 of the keyword</em>, where the keyword name is prefixed with the name of
 the resource or library and a dot is a delimiter.</p>
 <p>With library keywords, the long format means only using the format
-<span class="name">LibraryName.Keyword Name</span>. For example, the keyword <span class="name">Run</span> from the
-<a class="reference internal" href="#operatingsystem-library">OperatingSystem library</a> could be used as
-<span class="name">OperatingSystem.Run</span>, even if there was another <span class="name">Run</span> keyword
-somewhere else. If the library is in a module or package, the full
-module or package name must be used (for example,
-<span class="name">com.company.Library.Some Keyword</span>). If a custom name is given to a
-library using the <a class="reference internal" href="#setting-custom-name-to-test-library">WITH NAME syntax</a>, the specified name must be
+<span class="name">LibraryName.Keyword Name</span>. For example, the keyword <span class="name">Run</span>
+from the <a class="reference internal" href="#operatingsystem-library">OperatingSystem library</a> could be used as
+<span class="name">OperatingSystem.Run</span>, even if there was another <span class="name">Run</span>
+keyword somewhere else. If the library is in a module or package, the
+full module or package name must be used (for example,
+<span class="name">com.company.Library.Some Keyword</span>). If a custom name is given
+to a library using the <a class="reference internal" href="#setting-custom-name-to-test-library">WITH NAME syntax</a>, the specified name must be
 used also in the full keyword name.</p>
 <p>Resource files are specified in the full keyword name, similarly as
 library names. The name of the resource is derived from the basename
@@ -7549,20 +7549,21 @@ as normal keyword names.</p>
 </div>
 <div class="section" id="specifying-library-search-order">
 <h4><a class="toc-backref" href="#id414">Specifying library search order</a></h4>
-<p>Starting from Robot Framework 2.1 it is possible to use the keyword <span class="name">Set
-Library Search Order</span> from <a class="reference internal" href="#builtin-library">BuiltIn library</a> to specify the priority order
-between test libraries that are in use.
-If multiple keywords with the same name are found, libraries implementing them
-are gone through in the library search order. The first library containing the
-keyword is selected and the keyword from that library is used. If keyword is not
-found, test execution fails.</p>
-<p>There is no need to use the long format <span class="name">LibraryName.Keyword Name</span> notation
-when library search order is set. This makes it easier to to use multiple instances
-of the same library as <span class="name">Set Library Search Order</span> keyword can be used to
-switch between the libraries. This enables using same user keywords instead of
+<p>Starting from Robot Framework 2.1 it is possible to use the keyword
+<span class="name">Set Library Search Order</span> from <a class="reference internal" href="#builtin-library">BuiltIn library</a> to specify
+the priority order between test libraries that are in use. If
+multiple keywords with the same name are found, libraries implementing
+them are gone through in the library search order. The first library
+containing the keyword is selected and the keyword from that library
+is used. If keyword is not found, test execution fails.</p>
+<p>There is no need to use the long format <span class="name">LibraryName.Keyword
+Name</span> notation when library search order is set. This makes it easier
+to to use multiple instances of the same library as <span class="name">Set Library
+Search Order</span> keyword can be used to switch between the
+libraries. This enables using same user keywords instead of
 duplicating those for all the library instances.</p>
-<p>Library search order is valid in the suite level meaning it is available only in
-the suite where it was set.</p>
+<p>Library search order is valid in the suite level meaning it is
+available only in the suite where it was set.</p>
 </div>
 </div>
 <div class="section" id="timeouts">
@@ -7626,8 +7627,8 @@ keywords with <a class="reference internal" href="#user-keyword-timeout">user ke
 <tbody valign="top">
 <tr><td>Test Timeout</td>
 <td>2 minutes</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -7815,27 +7816,27 @@ message is provided, the default error message <span class="msg">Keyword timeout
 <tr><td></td>
 <td>[Timeout]</td>
 <td>1 minute 42 seconds</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>Do Something</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>Do Something Else</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td>Timed-out Wrapper</td>
 <td>[Arguments]</td>
 <td>&#64;{args}</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>[Documentation]</td>
@@ -7850,7 +7851,7 @@ message is provided, the default error message <span class="msg">Keyword timeout
 <tr><td></td>
 <td>Original Keyword</td>
 <td>&#64;{args}</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -7923,32 +7924,32 @@ inside a For loop and have another For loop there.</p>
 <td>dog</td>
 </tr>
 <tr><td></td>
-<td></td>
+<td>&nbsp;</td>
 <td>Log</td>
 <td>${animal}</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
+<td>&nbsp;</td>
 <td>Log</td>
 <td>2nd keyword</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>Log</td>
 <td>Outside loop</td>
-<td></td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td>Example 2</td>
 <td>:FOR</td>
@@ -7967,16 +7968,16 @@ inside a For loop and have another For loop there.</p>
 <tr><td></td>
 <td>...</td>
 <td>seven</td>
-<td></td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
+<td>&nbsp;</td>
 <td>Log</td>
 <td>${var}</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -8014,14 +8015,14 @@ and keyword <span class="name">Start Element</span> is used with all of them.</p
 <td>${element}</td>
 <td>IN</td>
 <td>&#64;{ELEMENTS}</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
+<td>&nbsp;</td>
 <td>Start Element</td>
 <td>${element}</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -8068,35 +8069,35 @@ loop variables, as in the first part of the example below:</p>
 <td>1</td>
 <td>cat</td>
 <td>kissa</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>...</td>
 <td>2</td>
 <td>dog</td>
 <td>koira</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>...</td>
 <td>3</td>
 <td>horse</td>
 <td>hevonen</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
+<td>&nbsp;</td>
 <td>Do X</td>
 <td>${english}</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
+<td>&nbsp;</td>
 <td>Y Should Be</td>
 <td>${finnish}</td>
 <td>${index}</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>:FOR</td>
@@ -8106,11 +8107,11 @@ loop variables, as in the first part of the example below:</p>
 <td>&#64;{EMPLOYERS}</td>
 </tr>
 <tr><td></td>
-<td></td>
+<td>&nbsp;</td>
 <td>Create</td>
 <td>${name}</td>
 <td>${id}</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -8272,7 +8273,7 @@ useful when the limits are specified with variables.</p>
 <td>-10</td>
 </tr>
 <tr><td></td>
-<td></td>
+<td>&nbsp;</td>
 <td>Log</td>
 <td>${index}</td>
 <td>&nbsp;</td>
@@ -8304,7 +8305,7 @@ useful when the limits are specified with variables.</p>
 <td>&nbsp;</td>
 </tr>
 <tr><td></td>
-<td></td>
+<td>&nbsp;</td>
 <td>Log</td>
 <td>${index}</td>
 <td>&nbsp;</td>
@@ -8373,10 +8374,12 @@ libraries.</p>
 </div>
 <div class="section" id="repeating-single-keyword">
 <h4><a class="toc-backref" href="#id423">Repeating single keyword</a></h4>
-<p>For loops can be excessive in situations where there is only a need to repeat a single keyword. In these cases
-it is often easier to use <a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="name">Repeat Keyword</span> which was added in Robot Framework 2.0.4.
-This keyword takes a keyword and how many times to repeat it as arguments. The times to repeat
-the keyword can have an optional postfix <cite>times</cite> or <cite>x</cite> to make the syntax easier to read.</p>
+<p>For loops can be excessive in situations where there is only a need to
+repeat a single keyword. In these cases it is often easier to use
+<a class="reference internal" href="#builtin-library">BuiltIn keyword</a> <span class="name">Repeat Keyword</span>.  This keyword takes a
+keyword and how many times to repeat it as arguments. The times to
+repeat the keyword can have an optional postfix <cite>times</cite> or <cite>x</cite> to make
+the syntax easier to read.</p>
 <table border="1" class="example docutils">
 <caption>Repeat Keyword examples</caption>
 <colgroup>
@@ -8408,21 +8411,21 @@ the keyword can have an optional postfix <cite>times</cite> or <cite>x</cite> to
 <td>Repeat Keyword</td>
 <td>42 times</td>
 <td>My Keyword</td>
-<td></td>
-<td></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr><td></td>
 <td>Repeat Keyword</td>
 <td>${var}</td>
 <td>Another KW</td>
 <td>argument</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
-<p>Robot Framework also had a special syntax for repeating a single keyword. This syntax was
-deprecated in the 2.0.4 version in favor of <span class="name">Repeat Keyword</span> and it was removed
-in the 2.5 version.</p>
+<p>Robot Framework also had a special syntax for repeating a single
+keyword. This syntax was deprecated in the 2.0.4 version in favor of
+<span class="name">Repeat Keyword</span> and it was removed in the 2.5 version.</p>
 </div>
 </div>
 <div class="section" id="conditional-execution">
@@ -10072,10 +10075,12 @@ post-processing outputs.</p>
 <h4><a class="toc-backref" href="#id507">Configuring displayed suite statistics</a></h4>
 <p>When a deeper suite structure is executed, showing all the test suite
 levels in the <span class="name">Statistics by Suite</span> table may make the table
-somewhat difficult to read. You can control the number of levels
-displayed with the command line option <span class="opt">--suitestatlevel</span>. It
-takes the required level as an integer, and if <span class="opt">0</span> is used,
-the whole table is removed.</p>
+somewhat difficult to read. Bt default all suites are shown, but you can
+control this with the command line option <span class="opt">--suitestatlevel</span> which
+takes the level of suites to show as an argument:</p>
+<pre class="literal-block">
+--suitestatlevel 3
+</pre>
 </div>
 <div class="section" id="including-and-excluding-tag-statistics">
 <h4><a class="toc-backref" href="#id508">Including and excluding tag statistics</a></h4>
@@ -10090,19 +10095,13 @@ cases</a>:</p>
 --tagstatexclude owner-*
 --tagstatinclude prefix-* --tagstatexclude prefix-13
 </pre>
-<p>These settings affect also the <span class="name">Test Details by Tag</span> table, so
-that it has details only by the selected tags. This can make the
-report considerably smaller, which is why excluding tags that are not
-interesting can be recommended.</p>
 </div>
 <div class="section" id="generating-combined-tag-statistics">
 <h4><a class="toc-backref" href="#id509">Generating combined tag statistics</a></h4>
 <p>The command line option <span class="opt">--tagstatcombine</span> can be used to
 generate aggregate tags that combine statistics from multiple
-tags. These new combined tags are shown in the <span class="name">Statistics by
-Tag</span> table, and the matching tests are listed in the <span class="name">Test
-Details by Tag</span> table.  There are three somewhat different ways for
-giving arguments for this option:</p>
+tags. There are three somewhat different ways for giving arguments for
+this option:</p>
 <dl class="docutils">
 <dt>One tag as a <a class="reference internal" href="#option-value-as-simple-pattern">simple pattern</a></dt>
 <dd>All tags matching the given pattern are combined together.</dd>
@@ -10125,12 +10124,13 @@ executed with these options:</p>
 <img alt="src/ExecutingTestCases/tagstatcombine.png" src="src/ExecutingTestCases/tagstatcombine.png" style="width: 550px;" />
 <p class="caption">Examples of combined tag statistics</p>
 </div>
-<p>As the above example shows, the name of the added combined statistic is, by default,
-generated from the given pattern. In certain situations this name can look pretty
-cryptic and, starting from Robot Framework 2.0.2, it is possible to specify a
-more descriptive name. This name is given after the pattern separating it
-with a colon (<span class="code">:</span>). Example below generates combined tag so that the name shown
-in reports and logs is <span class="name">Critical Tests</span>:</p>
+<p>As the above example shows, the name of the added combined statistic
+is, by default, generated from the given pattern. In certain
+situations this name can look pretty cryptic and it is possible to
+specify a more descriptive name. This name is given after the pattern
+separating it with a colon (<span class="code">:</span>). Example below generates
+combined tag so that the name shown in reports and logs is
+<span class="name">Critical Tests</span>:</p>
 <pre class="literal-block">
 --tagstatcombine *NOTnon-critical:Critical_Tests
 </pre>
@@ -11643,9 +11643,9 @@ does that automatically.</p>
 <p>Sometimes there is a need to replace existing keywords with new ones
 or remove them altogether. Just informing the users about the change
 may not always be enough, and it is more efficient to get warnings at
-runtime. Starting from Robot Framework 2.0.2 this is possible by
-marking these keywords <em>deprecated</em>. This makes it easier to find old
-keywords from the test data and remove or replace them.</p>
+runtime. To support that, Robot Framework has a capability to mark
+keywords <em>deprecated</em>. This makes it easier to find old keywords from
+the test data and remove or replace them.</p>
 <p>Keywords are deprecated by starting their documentation with
 <span class="code">*DEPRECATED*</span>. When these keywords are executed, a warning
 containing rest of the <a class="reference internal" href="#documenting-libraries">short documentation</a> is written both into
@@ -12559,11 +12559,11 @@ path</a> where test libraries are searched from when they are imported. Other
 option is to give an absolute or a relative path to the listener file
 <a class="reference internal" href="#using-physical-path-to-library">similarly as with test libraries</a>. It is possible to take multiple listeners
 into use by using this option several times.</p>
-<p>Starting from version 2.0.2, it is also possible to give arguments to listener
-classes from the command line. Arguments are specified after the listener name
-(or path) using a colon as a separator. This approach provides only string
-type arguments and arguments obviously cannot contain colons. However, it
-should be pretty easy to listeners to go around these limitations.</p>
+<p>It is also possible to give arguments to listener classes from the
+command line. Arguments are specified after the listener name (or
+path) using a colon as a separator. This approach provides only string
+type arguments and arguments obviously cannot contain colons. However,
+it should be pretty easy to listeners to go around these limitations.</p>
 <p>Examples:</p>
 <pre class="literal-block">
 pybot --listener MyListener tests.html
@@ -13387,18 +13387,18 @@ Robot Framework 2.6 or newer.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--suitestatlevel <var>&lt;level&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Defines how many <a class="reference internal" href="#configuring-displayed-suite-statistics">levels to show</a> in the <span class="name">Statistics
-by Suite</span> table in outputs.</td></tr>
+<tr><td>&nbsp;</td><td>Defines how many <a class="reference internal" href="#configuring-displayed-suite-statistics">levels to show</a> in the
+<span class="name">Statistics by Suite</span> table in outputs.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--tagstatinclude <var>&lt;tag&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td><a class="reference internal" href="#including-and-excluding-tag-statistics">Includes only these tags</a> in the <span class="name">Statistics by Tag</span> and
-<span class="name">Test Details by Tag</span> tables in outputs.</td></tr>
+<tr><td>&nbsp;</td><td><a class="reference internal" href="#including-and-excluding-tag-statistics">Includes only these tags</a> in the <span class="name">Statistics
+by Tag</span> table.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--tagstatexclude <var>&lt;tag&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td><a class="reference internal" href="#including-and-excluding-tag-statistics">Excludes these tags</a> from the <span class="name">Statistics by Tag</span> and
-<span class="name">Test Details by Tag</span> tables in outputs.</td></tr>
+<tr><td>&nbsp;</td><td><a class="reference internal" href="#including-and-excluding-tag-statistics">Excludes these tags</a> from the <span class="name">Statistics
+by Tag</span> table.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--tagstatcombine <var>&lt;tags:title&gt;</var></span></kbd></td>
 </tr>
@@ -13411,7 +13411,7 @@ by Suite</span> table in outputs.</td></tr>
 <kbd><span class="option">--tagstatlink <var>&lt;pattern:link:title&gt;</var></span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Adds <a class="reference internal" href="#creating-links-from-tag-names">external links</a> to the <span class="name">Statistics by
-Tag</span> table in outputs.</td></tr>
+Tag</span> table.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--listener <var>&lt;name:args&gt;</var></span></kbd></td>
 </tr>
@@ -13568,18 +13568,18 @@ Robot Framework 2.6 or newer.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--suitestatlevel <var>&lt;level&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Defines how many <a class="reference internal" href="#configuring-displayed-suite-statistics">levels to show</a> in the <span class="name">Statistics by Suite</span>
-table in outputs.</td></tr>
+<tr><td>&nbsp;</td><td>Defines how many <a class="reference internal" href="#configuring-displayed-suite-statistics">levels to show</a> in the
+<span class="name">Statistics by Suite</span> table in outputs.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--tagstatinclude <var>&lt;tag&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td><a class="reference internal" href="#including-and-excluding-tag-statistics">Includes only these tags</a> in the <span class="name">Statistics by Tag</span> and
-<span class="name">Test Details by Tag</span> tables in outputs.</td></tr>
+<tr><td>&nbsp;</td><td><a class="reference internal" href="#including-and-excluding-tag-statistics">Includes only these tags</a> in the <span class="name">Statistics
+by Tag</span> table.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--tagstatexclude <var>&lt;tag&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td><a class="reference internal" href="#including-and-excluding-tag-statistics">Excludes these tags</a> from the <span class="name">Statistics by Tag</span> and
-<span class="name">Test Details by Tag</span> tables in outputs.</td></tr>
+<tr><td>&nbsp;</td><td><a class="reference internal" href="#including-and-excluding-tag-statistics">Excludes these tags</a> from the <span class="name">Statistics
+by Tag</span> table.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--tagstatcombine <var>&lt;tags:title&gt;</var></span></kbd></td>
 </tr>
@@ -13591,7 +13591,8 @@ table in outputs.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--tagstatlink <var>&lt;pattern:link:title&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Adds <a class="reference internal" href="#creating-links-from-tag-names">external links</a> into the <span class="name">Statistics by Tag</span>
+<tr><td>&nbsp;</td><td>Adds <a class="reference internal" href="#creating-links-from-tag-names">external links</a> to the <span class="name">Statistics by
+Tag</span> table.
 table in outputs.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--removekeywords <var>&lt;all|passed&gt;</var></span></kbd></td>
@@ -13848,8 +13849,7 @@ example URLs like <span class="code">http://some.url</span> are turned into link
 into images.</p>
 <p>The automatic conversion of URLs to links is applied to all the data
 in logs and reports, but creating images is done only for test suite,
-test case and keyword documentation. Creating images works starting
-from Robot Framework 2.0.2.</p>
+test case and keyword documentation.</p>
 </div>
 <div class="section" id="tables">
 <h3><a class="toc-backref" href="#id615">5.5.4&nbsp;&nbsp;&nbsp;Tables</a></h3>
@@ -13884,7 +13884,7 @@ documentation would be formatted like this:</p>
 </tr>
 <tr><td><em>2</em></td>
 <td>Hi</td>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -13959,7 +13959,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2011-06-18 23:10 UTC.
+<p>Generated on: 2011-06-18 23:47 UTC.
 </p>
 
 </div>
