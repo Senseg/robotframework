@@ -11,6 +11,9 @@ body {
   font-family: sans-serif;
   padding: 0.1em 0.5em;
 }
+.libdoc {
+  white-space: pre-wrap;
+}
 a.name, span.name {
   font-style: italic;
 }
@@ -86,32 +89,32 @@ a {
 </head>
 <body>
 <h1>Telnet</h1>
-<b>Version:</b> trunk 20110504<br>
+<b>Version:</b> trunk 20110708<br>
 <b>Scope:</b> test suite<br>
 <b>Named arguments: </b>
 not supported
 
 <h2 id="introduction">Introduction</h2>
-<p>A test library providing communication over Telnet connections.<br />
-<br />
-<span class="name">Telnet</span> is Robot Framework's standard library that makes it possible to connect to Telnet servers and execute commands on the opened connections.<br />
-<br />
-See <a href="#Open Connection" class="name">Open Connection</a> and <a href="#Switch Connection" class="name">Switch Connection</a> for details on how to handle multiple simultaneous connections. The responses are expected to be ASCII encoded and all non-ASCII characters are silently ignored.</p>
+<div class="libdoc">A test library providing communication over Telnet connections.
+
+<span class="name">Telnet</span> is Robot Framework's standard library that makes it possible to connect to Telnet servers and execute commands on the opened connections.
+
+See <a href="#Open Connection" class="name">Open Connection</a> and <a href="#Switch Connection" class="name">Switch Connection</a> for details on how to handle multiple simultaneous connections. The responses are expected to be ASCII encoded and all non-ASCII characters are silently ignored.</div>
 
 <h2 id="importing">Importing</h2>
-<table border="1" class="keywords">
+<table border="1" class="keywords libdoc">
 <tr>
   <th class="arg">Arguments</th>
   <th class="doc">Documentation</th>
 </tr>
 <tr>
   <td class="arg">timeout=3.0, newline=CRLF, prompt=None, prompt_is_regexp=False</td>
-  <td class="doc">Telnet library can be imported with optional arguments.<br />
-<br />
-Initialization parameters are used as default values when new connections are opened with <a href="#Open Connection" class="name">Open Connection</a> keyword. They can also be set after opening the connection using the <a href="#Set Timeout" class="name">Set Timeout</a>, <a href="#Set Newline" class="name">Set Newline</a> and <a href="#Set Prompt" class="name">Set Prompt</a> keywords. See these keywords for more information.<br />
-<br />
-Examples (use only one of these):<br />
-<br />
+  <td class="doc">Telnet library can be imported with optional arguments.
+
+Initialization parameters are used as default values when new connections are opened with <a href="#Open Connection" class="name">Open Connection</a> keyword. They can also be set after opening the connection using the <a href="#Set Timeout" class="name">Set Timeout</a>, <a href="#Set Newline" class="name">Set Newline</a> and <a href="#Set Prompt" class="name">Set Prompt</a> keywords. See these keywords for more information.
+
+Examples (use only one of these):
+
 <table border="1" class="doc">
 <tr>
 <td><b>Setting</b></td>
@@ -176,8 +179,7 @@ Examples (use only one of these):<br />
 <td>True</td>
 <td># set prompt with simple regexp</td>
 </tr>
-</table>
-</td>
+</table></td>
 </tr>
 </table>
 
@@ -219,7 +221,7 @@ Examples (use only one of these):<br />
 </div>
 
 <h2>Keywords</h2>
-<table border="1" class="keywords">
+<table border="1" class="keywords libdoc">
 <tr>
   <th class="kw">Keyword</th>
   <th class="arg">Arguments</th>
@@ -228,26 +230,26 @@ Examples (use only one of these):<br />
 <tr>
   <td class="kw"><a name="Close All Connections"></a>Close All Connections</td>
   <td class="arg"></td>
-  <td class="doc">Closes all open connections and empties the connection cache.<br />
-<br />
-After this keyword, new indexes got from the <a href="#Open Connection" class="name">Open Connection</a> keyword are reset to 1.<br />
-<br />
+  <td class="doc">Closes all open connections and empties the connection cache.
+
+After this keyword, new indexes got from the <a href="#Open Connection" class="name">Open Connection</a> keyword are reset to 1.
+
 This keyword should be used in a test or suite teardown to make sure all connections are closed.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Close Connection"></a>Close Connection</td>
   <td class="arg">loglevel=None</td>
-  <td class="doc">Closes the current Telnet connection and returns any remaining output.<br />
-<br />
+  <td class="doc">Closes the current Telnet connection and returns any remaining output.
+
 See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Execute Command"></a>Execute Command</td>
   <td class="arg">command, loglevel=None</td>
-  <td class="doc">Executes given command and reads and returns everything until prompt.<br />
-<br />
-This is a convenience keyword; following two are functionally identical:<br />
-<br />
+  <td class="doc">Executes given command and reads and returns everything until prompt.
+
+This is a convenience keyword; following two are functionally identical:
+
 <table border="1" class="doc">
 <tr>
 <td>${out} =</td>
@@ -255,7 +257,6 @@ This is a convenience keyword; following two are functionally identical:<br />
 <td>Some command</td>
 </tr>
 </table>
-<br />
 <table border="1" class="doc">
 <tr>
 <td>Write</td>
@@ -266,68 +267,67 @@ This is a convenience keyword; following two are functionally identical:<br />
 <td>Read Until Prompt</td>
 </tr>
 </table>
-<br />
-This keyword expects a prompt to be set, see <a href="#Read Until Prompt" class="name">Read Until Prompt</a> for details.<br />
-<br />
+This keyword expects a prompt to be set, see <a href="#Read Until Prompt" class="name">Read Until Prompt</a> for details.
+
 See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Login"></a>Login</td>
   <td class="arg">username, password, login_prompt=login: , password_prompt=Password: </td>
-  <td class="doc">Logs in to the Telnet server with the given user information.<br />
-<br />
-The login keyword reads from the connection until login_prompt is encountered and then types the user name. Then it reads until password_prompt is encountered and types the password. The rest of the output (if any) is also read, and all the text that has been read is returned as a single string.<br />
-<br />
+  <td class="doc">Logs in to the Telnet server with the given user information.
+
+The login keyword reads from the connection until login_prompt is encountered and then types the user name. Then it reads until password_prompt is encountered and types the password. The rest of the output (if any) is also read, and all the text that has been read is returned as a single string.
+
 If a prompt has been set to this connection, either with <a href="#Open Connection" class="name">Open Connection</a> or <a href="#Set Prompt" class="name">Set Prompt</a>, this keyword reads the output until the prompt is found. Otherwise, the keyword sleeps for a second and reads everything that is available.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Open Connection"></a>Open Connection</td>
   <td class="arg">host, alias=None, port=23, timeout=None, newline=None, prompt=None, prompt_is_regexp=False</td>
-  <td class="doc">Opens a new Telnet connection to the given host and port.<br />
-<br />
-Possible already opened connections are cached.<br />
-<br />
-Returns the index of this connection, which can be used later to switch back to the connection. The index starts from 1 and is reset back to it when the <a href="#Close All Connections" class="name">Close All Connections</a> keyword is used.<br />
-<br />
-The optional <span class="name">alias</span> is a name for the connection, and it can be used for switching between connections, similarly as the index. See <a href="#Switch Connection" class="name">Switch Connection</a> for more details about that.<br />
-<br />
+  <td class="doc">Opens a new Telnet connection to the given host and port.
+
+Possible already opened connections are cached.
+
+Returns the index of this connection, which can be used later to switch back to the connection. The index starts from 1 and is reset back to it when the <a href="#Close All Connections" class="name">Close All Connections</a> keyword is used.
+
+The optional <span class="name">alias</span> is a name for the connection, and it can be used for switching between connections, similarly as the index. See <a href="#Switch Connection" class="name">Switch Connection</a> for more details about that.
+
 The <span class="name">timeout</span>, <span class="name">newline</span>, <span class="name">prompt</span> and <span class="name">prompt_is_regexp</span> arguments get default values when the library is taken into use, but setting them here overrides those values for this connection. See <a href="#importing" class="name">importing</a> for more information.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Read"></a>Read</td>
   <td class="arg">loglevel=None</td>
-  <td class="doc">Reads and returns/logs everything that is currently available in the output.<br />
-<br />
-The read message is always returned and logged. The default log level is either 'INFO', or the level set with <a href="#Set Default Log Level" class="name">Set Default Log Level</a>. &nbsp;<span class="name">loglevel</span> can be used to override the default log level, and the available levels are TRACE, DEBUG, INFO, and WARN.</td>
+  <td class="doc">Reads and returns/logs everything that is currently available in the output.
+
+The read message is always returned and logged. The default log level is either 'INFO', or the level set with <a href="#Set Default Log Level" class="name">Set Default Log Level</a>.  <span class="name">loglevel</span> can be used to override the default log level, and the available levels are TRACE, DEBUG, INFO, and WARN.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Read Until"></a>Read Until</td>
   <td class="arg">expected, loglevel=None</td>
-  <td class="doc">Reads from the current output, until expected is encountered.<br />
-<br />
-Text up to and including the match is returned. If no match is found, the keyword fails.<br />
-<br />
+  <td class="doc">Reads from the current output, until expected is encountered.
+
+Text up to and including the match is returned. If no match is found, the keyword fails.
+
 See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Read Until Prompt"></a>Read Until Prompt</td>
   <td class="arg">loglevel=None</td>
-  <td class="doc">Reads from the current output, until a prompt is found.<br />
-<br />
-The prompt must have been set, either in the library import or at login time, or by using the <a href="#Set Prompt" class="name">Set Prompt</a> keyword.<br />
-<br />
+  <td class="doc">Reads from the current output, until a prompt is found.
+
+The prompt must have been set, either in the library import or at login time, or by using the <a href="#Set Prompt" class="name">Set Prompt</a> keyword.
+
 See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Read Until Regexp"></a>Read Until Regexp</td>
   <td class="arg">*expected</td>
-  <td class="doc">Reads from the current output, until a match to a regexp in expected.<br />
-<br />
-Expected is a list of regular expression patterns as strings, or compiled regular expressions. The keyword returns the text up to and including the first match to any of the regular expressions.<br />
-<br />
-If the last argument in <span class="name">*expected</span> is a valid log level, it is used as <span class="name">loglevel</span> in the keyword <a href="#Read" class="name">Read</a>.<br />
-<br />
-Examples:<br />
+  <td class="doc">Reads from the current output, until a match to a regexp in expected.
+
+Expected is a list of regular expression patterns as strings, or compiled regular expressions. The keyword returns the text up to and including the first match to any of the regular expressions.
+
+If the last argument in <span class="name">*expected</span> is a valid log level, it is used as <span class="name">loglevel</span> in the keyword <a href="#Read" class="name">Read</a>.
+
+Examples:
 <table border="1" class="doc">
 <tr>
 <td>Read Until Regexp</td>
@@ -344,24 +344,23 @@ Examples:<br />
 <td>some regexp</td>
 <td>DEBUG</td>
 </tr>
-</table>
-</td>
+</table></td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Default Log Level"></a>Set Default Log Level</td>
   <td class="arg">level</td>
-  <td class="doc">Sets the default log level used by all read keywords.<br />
-<br />
+  <td class="doc">Sets the default log level used by all read keywords.
+
 The possible values are TRACE, DEBUG, INFO and WARN. The default is INFO. The old value is returned and can be used to restore it later, similarly as with <a href="#Set Timeout" class="name">Set Timeout</a>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Newline"></a>Set Newline</td>
   <td class="arg">newline</td>
-  <td class="doc">Sets the newline used by the <a href="#Write" class="name">Write</a> keyword.<br />
-<br />
-Newline can be given either in escaped format using '\n' and '\r', or with special 'LF' and 'CR' syntax.<br />
-<br />
-Examples:<br />
+  <td class="doc">Sets the newline used by the <a href="#Write" class="name">Write</a> keyword.
+
+Newline can be given either in escaped format using '\n' and '\r', or with special 'LF' and 'CR' syntax.
+
+Examples:
 <table border="1" class="doc">
 <tr>
 <td>Set Newline</td>
@@ -372,21 +371,20 @@ Examples:<br />
 <td>CRLF</td>
 </tr>
 </table>
-<br />
-Correct newline to use depends on the system and the default value is 'CRLF'.<br />
-<br />
+Correct newline to use depends on the system and the default value is 'CRLF'.
+
 The old newline is returned and can be used to restore it later. See <a href="#Set Prompt" class="name">Set Prompt</a> or <a href="#Set Timeout" class="name">Set Timeout</a> for an example.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Prompt"></a>Set Prompt</td>
   <td class="arg">prompt, prompt_is_regexp=False</td>
-  <td class="doc">Sets the prompt used in this connection to <span class="name">prompt</span>.<br />
-<br />
-If <span class="name">prompt_is_regexp</span> is a non-empty string, the given prompt is considered to be a regular expression.<br />
-<br />
-The old prompt is returned and can be used to restore it later.<br />
-<br />
-Example:<br />
+  <td class="doc">Sets the prompt used in this connection to <span class="name">prompt</span>.
+
+If <span class="name">prompt_is_regexp</span> is a non-empty string, the given prompt is considered to be a regular expression.
+
+The old prompt is returned and can be used to restore it later.
+
+Example:
 <table border="1" class="doc">
 <tr>
 <td>${prompt}</td>
@@ -406,21 +404,20 @@ Example:<br />
 <td>${regexp}</td>
 <td></td>
 </tr>
-</table>
-</td>
+</table></td>
 </tr>
 <tr>
   <td class="kw"><a name="Set Timeout"></a>Set Timeout</td>
   <td class="arg">timeout</td>
-  <td class="doc">Sets the timeout used in read operations to the given value.<br />
-<br />
-<span class="name">timeout</span> is given in Robot Framework's time format (e.g. 1 minute 20 seconds) that is explained in the User Guide.<br />
-<br />
-Read operations that expect some output to appear (<a href="#Read Until" class="name">Read Until</a>, <a href="#Read Until Regexp" class="name">Read Until Regexp</a>, <a href="#Read Until Prompt" class="name">Read Until Prompt</a>) use this timeout and fail if the expected output has not appeared when this timeout expires.<br />
-<br />
-The old timeout is returned and can be used to restore it later.<br />
-<br />
-Example:<br />
+  <td class="doc">Sets the timeout used in read operations to the given value.
+
+<span class="name">timeout</span> is given in Robot Framework's time format (e.g. 1 minute 20 seconds) that is explained in the User Guide.
+
+Read operations that expect some output to appear (<a href="#Read Until" class="name">Read Until</a>, <a href="#Read Until Regexp" class="name">Read Until Regexp</a>, <a href="#Read Until Prompt" class="name">Read Until Prompt</a>) use this timeout and fail if the expected output has not appeared when this timeout expires.
+
+The old timeout is returned and can be used to restore it later.
+
+Example:
 <table border="1" class="doc">
 <tr>
 <td>${tout} =</td>
@@ -437,19 +434,18 @@ Example:<br />
 <td>${tout}</td>
 <td></td>
 </tr>
-</table>
-</td>
+</table></td>
 </tr>
 <tr>
   <td class="kw"><a name="Switch Connection"></a>Switch Connection</td>
   <td class="arg">index_or_alias</td>
-  <td class="doc">Switches between active connections using an index or alias.<br />
-<br />
-The index is got from <a href="#Open Connection" class="name">Open Connection</a> keyword, and an alias can be given to it.<br />
-<br />
-Returns the index of previously active connection.<br />
-<br />
-Example:<br />
+  <td class="doc">Switches between active connections using an index or alias.
+
+The index is got from <a href="#Open Connection" class="name">Open Connection</a> keyword, and an alias can be given to it.
+
+Returns the index of previously active connection.
+
+Example:
 <table border="1" class="doc">
 <tr>
 <td>Open Connection</td>
@@ -524,9 +520,8 @@ Example:<br />
 <td></td>
 </tr>
 </table>
-<br />
-The example above expects that there were no other open connections when opening the first one, because it used index '1' when switching to the connection later. If you are not sure about that, you can store the index into a variable as shown below.<br />
-<br />
+The example above expects that there were no other open connections when opening the first one, because it used index '1' when switching to the connection later. If you are not sure about that, you can store the index into a variable as shown below.
+
 <table border="1" class="doc">
 <tr>
 <td>${id} =</td>
@@ -543,39 +538,38 @@ The example above expects that there were no other open connections when opening
 <td>${id}</td>
 <td></td>
 </tr>
-</table>
-</td>
+</table></td>
 </tr>
 <tr>
   <td class="kw"><a name="Write"></a>Write</td>
   <td class="arg">text, loglevel=None</td>
-  <td class="doc">Writes the given text over the connection and appends a newline.<br />
-<br />
-Consumes the written text (until the appended newline) from the output and returns it. The given text must not contain newlines.<br />
-<br />
-Note: This keyword does not return the possible output of the executed command. To get the output, one of the <span class="name">Read XXX</span> keywords must be used.<br />
-<br />
+  <td class="doc">Writes the given text over the connection and appends a newline.
+
+Consumes the written text (until the appended newline) from the output and returns it. The given text must not contain newlines.
+
+Note: This keyword does not return the possible output of the executed command. To get the output, one of the <span class="name">Read XXX</span> keywords must be used.
+
 See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Write Bare"></a>Write Bare</td>
   <td class="arg">text</td>
-  <td class="doc">Writes the given text over the connection without appending a newline.<br />
-<br />
+  <td class="doc">Writes the given text over the connection without appending a newline.
+
 Does not consume the written text.</td>
 </tr>
 <tr>
   <td class="kw"><a name="Write Until Expected Output"></a>Write Until Expected Output</td>
   <td class="arg">text, expected, timeout, retry_interval, loglevel=None</td>
-  <td class="doc">Writes the given text repeatedly, until <span class="name">expected</span> appears in the output.<br />
-<br />
-<span class="name">text</span> is written without appending a newline. <span class="name">retry_interval</span> defines the time waited before writing <span class="name">text</span> again. <span class="name">text</span> is consumed from the output before <span class="name">expected</span> is tried to be read.<br />
-<br />
-If <span class="name">expected</span> does not appear in the output within <span class="name">timeout</span>, this keyword fails.<br />
-<br />
-See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.<br />
-<br />
-Example:<br />
+  <td class="doc">Writes the given text repeatedly, until <span class="name">expected</span> appears in the output.
+
+<span class="name">text</span> is written without appending a newline. <span class="name">retry_interval</span> defines the time waited before writing <span class="name">text</span> again. <span class="name">text</span> is consumed from the output before <span class="name">expected</span> is tried to be read.
+
+If <span class="name">expected</span> does not appear in the output within <span class="name">timeout</span>, this keyword fails.
+
+See <a href="#Read" class="name">Read</a> for more information on <span class="name">loglevel</span>.
+
+Example:
 <table border="1" class="doc">
 <tr>
 <td>Write Until Expected Output</td>
@@ -588,14 +582,13 @@ Example:<br />
 <td>0.5s</td>
 </tr>
 </table>
-<br />
 This writes the 'ps -ef | grep myprocess\n', until 'myprocess' appears on the output. The command is written every 0.5 seconds and the keyword ,fails if 'myprocess' does not appear in the output in 5 seconds.</td>
 </tr>
 </table>
 <p id="footer">
 Altogether 17 keywords.<br />
 Generated by <a href="http://code.google.com/p/robotframework/wiki/LibraryDocumentationTool">libdoc.py</a>
-on 2011-05-06 02:05:34.
+on 2011-07-10 22:23:35.
 </p>
 </body>
 </html>
