@@ -12906,13 +12906,14 @@ as an integer. The examples below are implemented as new style listeners.</p>
 </div>
 <div class="section" id="listener-interface-method-signatures">
 <h4><a class="toc-backref" href="#id591">Listener interface method signatures</a></h4>
-<p>Starting from Robot Framework 2.1, all listener methods related to test
-execution progress have the same signature <span class="code">method(name, attributes)</span>,
-where <span class="code">attributes</span> is a dictionary containing details of the event. The
-following table lists all the available methods in the listener interface and
-the contents of the <span class="code">attributes</span> dictionary, where applicable. Keys of
-the dictionary are strings. All of these methods have also <cite>camelCase</cite> aliases.
-Thus, for example, <span class="code">startSuite</span> is a synonym to <span class="code">start_suite</span>.</p>
+<p>All listener methods related to test execution progress have the same
+signature <span class="code">method(name, attributes)</span>, where <span class="code">attributes</span>
+is a dictionary containing details of the event. The following table
+lists all the available methods in the listener interface and the
+contents of the <span class="code">attributes</span> dictionary, where applicable. Keys
+of the dictionary are strings. All of these methods have also
+<cite>camelCase</cite> aliases.  Thus, for example, <span class="code">startSuite</span> is a
+synonym to <span class="code">start_suite</span>.</p>
 <table border="1" class="tabular docutils">
 <caption>Available methods in the listener interface</caption>
 <colgroup>
@@ -12929,29 +12930,29 @@ Thus, for example, <span class="code">startSuite</span> is a synonym to <span cl
 <tbody valign="top">
 <tr><td>start_suite</td>
 <td>name, attributes</td>
-<td><p class="first">Keys in the attributes dictionary:</p>
-<ul class="simple">
-<li>doc: test suite documentation</li>
+<td><p class="first">Keys in the attribute dictionary:</p>
+<ul class="last simple">
 <li>longname: suite name including parent suites</li>
-<li>starttime: execution start time</li>
+<li>doc: test suite documentation</li>
 <li>metadata: a dictionary containing <a class="reference internal" href="#free-test-suite-metadata">free test
-suite metadata</a></li>
-<li>tests: names of tests directly in this suite
-as a list of strings</li>
+suite metadata</a> (new in 2.5)</li>
 <li>suites: names of suites directly in this suite
-as a list of strings</li>
+as a list of strings (new in 2.5)</li>
+<li>tests: names of tests directly in this suite
+as a list of strings (new in 2.5)</li>
 <li>totaltests: total number of tests in this suite
-and all its sub-suites as an integer</li>
+and all its sub-suites as an integer (new in
+2.5)</li>
+<li>starttime: execution start time</li>
 </ul>
-<p class="last">The last four were added in Robot Framework 2.5.</p>
 </td>
 </tr>
 <tr><td>end_suite</td>
 <td>name, attributes</td>
-<td><p class="first">Keys in the attributes dictionary:</p>
+<td><p class="first">Keys in the attribute dictionary:</p>
 <ul class="last simple">
-<li>doc: test suite documentation</li>
 <li>longname: test suite name including parents</li>
+<li>doc: test suite documentation</li>
 <li>starttime: execution start time</li>
 <li>endtime: execution end time</li>
 <li>elapsedtime: execution time in milliseconds
@@ -12959,66 +12960,70 @@ as an integer</li>
 <li>status: either <span class="code">PASS</span> or <span class="code">FAIL</span></li>
 <li>statistics: suite statistics (number of passed
 and failed tests in the suite) as a string</li>
-<li>message: error message, if the suite setup
-or teardown has failed, empty otherwise</li>
+<li>message: error message if the suite setup or
+teardown has failed, empty otherwise</li>
 </ul>
 </td>
 </tr>
 <tr><td>start_test</td>
 <td>name, attributes</td>
-<td><p class="first">Keys in the attributes dictionary:</p>
+<td><p class="first">Keys in the attribute dictionary:</p>
 <ul class="last simple">
-<li>doc: test case documentation</li>
 <li>longname: test name including parent suites</li>
-<li>starttime: execution start time</li>
+<li>doc: test case documentation</li>
 <li>tags: test case tags as a list of strings</li>
+<li>critical: <span class="code">yes</span> or <span class="code">no</span> depending
+is test considered critical or not (new in 2.6)</li>
+<li>starttime: execution start time</li>
 </ul>
 </td>
 </tr>
 <tr><td>end_test</td>
 <td>name, attributes</td>
-<td><p class="first">Keys in the attributes dictionary:</p>
+<td><p class="first">Keys in the attribute dictionary:</p>
 <ul class="last simple">
-<li>doc: test case documentation</li>
 <li>longname: test name including parent suites</li>
+<li>doc: test case documentation</li>
+<li>tags: test case tags as a list of strings</li>
+<li>critical: <span class="code">yes</span> or <span class="code">no</span> depending
+is test considered critical or not (new in 2.6)</li>
 <li>starttime: execution start time</li>
 <li>endtime: execution end time</li>
 <li>elapsedtime: execution time in milliseconds
 as an integer</li>
-<li>tags: test case tags as a list of strings</li>
 <li>status: either <span class="code">PASS</span> or <span class="code">FAIL</span></li>
-<li>message: contains an error message if the
-test has failed and is empty otherwise</li>
+<li>message: status message, normally an error
+message or an empty string</li>
 </ul>
 </td>
 </tr>
 <tr><td>start_keyword</td>
 <td>name, attributes</td>
-<td><p class="first">Keys in the attributes dictionary:</p>
+<td><p class="first">Keys in the attribute dictionary:</p>
 <ul class="last simple">
-<li>doc: keyword documentation</li>
-<li>starttime: execution start time</li>
-<li>args: keyword's arguments as a list of strings</li>
 <li>type: string <span class="code">Keyword</span> for normal
 keywords and <span class="code">Test Setup</span>, <span class="code">Test
 Teardown</span>, <span class="code">Suite Setup</span> or <span class="code">Suite
 Teardown</span> for keywords used in suite/test
-setup/teardown. New in Robot Framework 2.6.</li>
+setup/teardown (new in 2.6)</li>
+<li>doc: keyword documentation</li>
+<li>args: keyword's arguments as a list of strings</li>
+<li>starttime: execution start time</li>
 </ul>
 </td>
 </tr>
 <tr><td>end_keyword</td>
 <td>name, attributes</td>
-<td><p class="first">Keys in the attributes dictionary:</p>
+<td><p class="first">Keys in the attribute dictionary:</p>
 <ul class="last simple">
+<li>type: same as with <span class="code">start_keyword</span></li>
 <li>doc: keyword documentation</li>
+<li>args: keyword's arguments as a list of strings</li>
 <li>starttime: execution start time</li>
 <li>endtime: execution end time</li>
 <li>elapsedtime: execution time in milliseconds
 as an integer</li>
-<li>args: keyword's arguments as a list of strings</li>
 <li>status: either <span class="code">PASS</span> or <span class="code">FAIL</span></li>
-<li>type: Same as with <span class="code">start_keyword</span></li>
 </ul>
 </td>
 </tr>
@@ -13026,8 +13031,8 @@ as an integer</li>
 <td>message</td>
 <td><p class="first">Called when an executed keyword writes a log
 message. <span class="code">message</span> is a dictionary with
-following keys:</p>
-<ul class="simple">
+the following keys:</p>
+<ul class="last simple">
 <li>message: the content of the message</li>
 <li>level: <a class="reference internal" href="#log-levels">log level</a> used in logging the message</li>
 <li>timestamp: message creation time, format is
@@ -13036,16 +13041,13 @@ following keys:</p>
 whether the message should be interpreted as
 HTML or not</li>
 </ul>
-<p class="last">New in Robot Framework 2.1.3.</p>
 </td>
 </tr>
 <tr><td>message</td>
 <td>message</td>
-<td><p class="first">Called when the framework itself writes a <a class="reference internal" href="#system-log">syslog</a>
+<td>Called when the framework itself writes a <a class="reference internal" href="#system-log">syslog</a>
 message. <span class="code">message</span> is a dictionary with
-same keys as with <span class="code">log_message</span> method.</p>
-<p class="last">New in Robot Framework 2.1.3.</p>
-</td>
+same keys as with <span class="code">log_message</span> method.</td>
 </tr>
 <tr><td>output_file</td>
 <td>path</td>
@@ -14265,7 +14267,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2011-07-10 20:02 UTC.
+<p>Generated on: 2011-07-12 09:28 UTC.
 </p>
 
 </div>
