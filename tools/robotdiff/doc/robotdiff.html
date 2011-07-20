@@ -524,17 +524,15 @@ The default is <span class="path">robotdiff.html</span>.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-n</span>, <span class="option">--name <var>&lt;name&gt;</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>The name for the test run. Different test runs can
-be named with this option. There must be as many
-names as there are input files. By default, the name
-of the input files are used as names. Input files
-with the same file name are distinguished by adding
-as many parent directories to the names as needed.</td></tr>
+<tr><td>&nbsp;</td><td>Custom names for test runs. If this option is used,
+it must be used as many times as there are input
+files. By default test run names are got from the
+input file names.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-t</span>, <span class="option">--title <var>&lt;title&gt;</var></span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>The title for the generated diff report. The default
-title is &quot;Diff Report&quot;.</td></tr>
+title is <span class="name">Test Run Diff Report</span>.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-E</span>, <span class="option">--escape <var>&lt;what:with&gt;</var></span></kbd></td>
 </tr>
@@ -570,7 +568,7 @@ $ robotdiff.py --name Env1 --name Env2 smoke1.xml smoke2.xml
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2011-07-19 13:33 UTC.
+Generated on: 2011-07-20 09:09 UTC.
 
 </div>
 </body>
