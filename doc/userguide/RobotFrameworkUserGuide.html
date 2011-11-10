@@ -490,7 +490,7 @@ a img {
 <body>
 <div class="document" id="robot-framework-user-guide">
 <h1 class="title">Robot Framework User Guide</h1>
-<h2 class="subtitle" id="version-version">Version 2.6.3</h2>
+<h2 class="subtitle" id="version-version">Version trunk 20111007</h2>
 
 <!-- This data file has been placed in the public domain. -->
 <!-- Derived from the Unicode character mappings available from
@@ -10530,6 +10530,9 @@ of unnecessary keywords. It has two possible values:</p>
 messages written with loglevel <span class="msg">WARN</span>. In most cases, log
 files created after this contain enough information to investigate
 possible failures.</dd>
+<dt><span class="opt">FOR</span></dt>
+<dd>Keywords are removed only from for loops that are in passed test cases or
+in passed suites.</dd>
 </dl>
 <p>Removing keywords makes output files considerably smaller and thus
 faster to process further. Even when keywords are removed, names,
@@ -11564,9 +11567,12 @@ not as <strong>foo</strong>. If libraries want to use formatting, links, display
 images and so on, they can use a special pseudo log level
 <span class="msg">HTML</span>. Robot Framework will write these messages directly into
 the log with the <span class="msg">INFO</span> level, so they can use any HTML syntax
-they want. Notice that this feature needs to be used with care, because
-one badly placed <span class="code">&lt;/table&gt;</span> tag can ruin the log file quite
-badly.</p>
+they want. Notice that this feature needs to be used with care,
+because, for example, one badly placed <span class="code">&lt;/table&gt;</span> tag can ruin
+the log file quite badly.</p>
+<p>When using the <a class="reference internal" href="#public-logging-api">public logging API</a>, various logging methods
+have optional <span class="code">html</span> attribute that can be set to <span class="code">True</span>
+to enable logging in HTML format.</p>
 </div>
 <div class="section" id="timestamps">
 <h5>Timestamps</h5>
@@ -11585,8 +11591,8 @@ must be placed after the <a class="reference internal" href="#using-log-levels">
 <p>As illustrated by the examples below, adding the timestamp is easy
 both using Python and Java. If you are using Python, it is, however,
 even easier to get accurate timestamps using the <a class="reference internal" href="#programmatic-logging-apis">programmatic logging
-APIs</a>. A big benefit of this mechanism is that it works also with the
-<a class="reference internal" href="#remote-library-interface">remote library interface</a>.</p>
+APIs</a>. A big benefit of adding timestamps explicitly is that this
+approach works also with the <a class="reference internal" href="#remote-library-interface">remote library interface</a>.</p>
 <p>Python:</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">time</span>
 
@@ -11601,21 +11607,31 @@ APIs</a>. A big benefit of this mechanism is that it works also with the
 </div>
 <div class="section" id="logging-to-console">
 <h5>Logging to console</h5>
-<p>If libraries need to write something to the console they have three
-options.</p>
-<p>As already discussed, warnings as well as all messages written to the
+<p>If libraries need to write something to the console they have several
+options. As already discussed, warnings and all messages written to the
 standard error stream are written both to the log file and to the
 console. Both of these options have a limitation that the messages end
-up to the console only after the currently executing keyword finishes.
-A bonus is that these approaches work both with Python and Java based
-libraries.</p>
-<p>The third option, that is only available with Python, is writing
-messages to <span class="code">sys.__stdout__</span>. Robot Framework only intercepts
-<span class="code">sys.stdout</span> and <span class="code">sys.stderr</span> and leaves
-<span class="code">sys.__stdout__</span> (and <span class="code">sys.__stderr__</span>) alone like all
-well behaving Python programs should. When using
-<span class="code">sys.__stdout__</span> messages end up to the console immediately and
-are not written to the log file at all.</p>
+up to the console only after the currently executing keyword
+finishes. A bonus is that these approaches work both with Python and
+Java based libraries.</p>
+<p>Another option, that is only available with Python, is writing
+messages to <span class="code">sys.__stdout__</span> or <span class="code">sys.__stderr__</span>. When
+using this approach, messages are written to the console immediately
+and are not written to the log file at all:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">my_keyword</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+   <span class="n">sys</span><span class="o">.</span><span class="n">__stdout__</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Got arg </span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">)</span>
+</pre></div>
+<p>The final option is using the <a class="reference internal" href="#public-logging-api">public logging API</a>:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">robot.api</span> <span class="kn">import</span> <span class="n">logger</span>
+
+<span class="k">def</span> <span class="nf">log_to_console</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+   <span class="n">logger</span><span class="o">.</span><span class="n">console</span><span class="p">(</span><span class="s">&#39;Got arg </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">log_to_console_and_log_file</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+   <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;Got arg </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">,</span> <span class="n">also_console</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
 </div>
 <div class="section" id="logging-example">
 <h5>Logging example</h5>
@@ -14085,7 +14101,7 @@ by Tag</span> table.</td></tr>
 Tag</span> table.
 table in outputs.</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">--removekeywords <var>&lt;all|passed&gt;</var></span></kbd></td>
+<kbd><span class="option">--removekeywords <var>&lt;all|passed|for&gt;</var></span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td><a class="reference internal" href="#removing-keywords-from-outputs">Removes keyword data</a> from the generated outputs.</td></tr>
 <tr><td class="option-group" colspan="2">
@@ -14449,7 +14465,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2011-10-07 12:10 UTC.
+<p>Generated on: 2011-11-10 08:57 UTC.
 </p>
 
 </div>
