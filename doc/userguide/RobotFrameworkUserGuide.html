@@ -490,7 +490,7 @@ a img {
 <body>
 <div class="document" id="robot-framework-user-guide">
 <h1 class="title">Robot Framework User Guide</h1>
-<h2 class="subtitle" id="version-version">Version trunk 20120202</h2>
+<h2 class="subtitle" id="version-version">Version 2.7 b1</h2>
 
 <!-- This data file has been placed in the public domain. -->
 <!-- Derived from the Unicode character mappings available from
@@ -13608,15 +13608,24 @@ Robot Framework execution.</p>
 </div>
 <div class="section" id="library-documentation-tool-libdoc">
 <h2><a class="toc-backref" href="#id614">5.1&nbsp;&nbsp;&nbsp;Library documentation tool (<span class="prog">libdoc</span>)</a></h2>
-<p><span class="prog">libdoc.py</span> is a tool for generating keyword documentation for test
-libraries and resource files in HTML and XML formats. Documentation can be
-created for both test libraries and resource files. It is built-in into Robot
-Framework and automatically included in the installation starting from
-version 2.7.</p>
-<div class="section" id="id225">
+<p><span class="prog">libdoc</span> is a tool for generating keyword documentation for test
+libraries and resource files in HTML and XML formats.The former format is
+suitable for humans and the latter for <a class="reference internal" href="#test-data-editing-tool-ride">RIDE</a> and other tools.</p>
+<p>Documentation can be created for:</p>
+<ul class="simple">
+<li>Test libraries implemented with <a class="reference internal" href="#python-libraries">Python</a> or <a class="reference internal" href="#java-libraries">Java</a> using the normal
+library API</li>
+<li>Test libraries using the <a class="reference internal" href="#dynamic-libraries">dynamic API</a></li>
+<li><a class="reference internal" href="#resource-files">Resource files</a></li>
+</ul>
+<p>Additionally it is possible to use XML documentation created earlier by
+<cite>libdoc.py</cite> or other tools as input.</p>
+<p><span class="prog">libdoc</span> is built-in into Robot Framework and automatically included
+in the installation starting from version 2.7.</p>
+<div class="section" id="id228">
 <h3>5.1.1&nbsp;&nbsp;&nbsp;Synopsis</h3>
 <pre class="literal-block">
-libdoc.py [options] library_or_resource output_file
+python -m robot.libdoc [options] library_or_resource output_file
 </pre>
 </div>
 <div class="section" id="options">
@@ -13665,22 +13674,8 @@ output.</td></tr>
 </table>
 </blockquote>
 </div>
-<div class="section" id="description">
-<h3>5.1.3&nbsp;&nbsp;&nbsp;Description</h3>
-<p><span class="prog">libdoc.py</span> is a tool for generating keyword documentation for test
-libraries and resource files in HTML and XML formats. The former format is
-suitable for humans and the latter for <a class="reference internal" href="#test-data-editing-tool-ride">RIDE</a> and other tools.</p>
-<p>Documentation can be created for:</p>
-<ul class="simple">
-<li>Test libraries implemented with <a class="reference internal" href="#python-libraries">Python</a> or <a class="reference internal" href="#java-libraries">Java</a> using the normal
-library API</li>
-<li>Test libraries using the <a class="reference internal" href="#dynamic-libraries">dynamic API</a></li>
-<li><a class="reference internal" href="#resource-files">Resource files</a></li>
-</ul>
-<p>Additionally it is possible to use XML documentation created earlier by
-<cite>libdoc.py</cite> or other tools as input.</p>
 <div class="section" id="specifying-the-library-or-resource-file">
-<h4>Specifying the library or resource file</h4>
+<h3>5.1.3&nbsp;&nbsp;&nbsp;Specifying the library or resource file</h3>
 <p>It is possible to specify a Python test library by giving either the
 path to the source or only the library name. If the library name is
 used, it must be in the same format as in the Robot Framework test
@@ -13703,7 +13698,6 @@ otherwise change its behavior, it might be a good idea to use
 <p>Resource files must always be specified using a path. If the path does
 not exist, resource files are also searched from all directories in
 PYTHONPATH.</p>
-</div>
 </div>
 <div class="section" id="examples">
 <h3>5.1.4&nbsp;&nbsp;&nbsp;Examples</h3>
@@ -13758,9 +13752,8 @@ Python libraries, you must either use UTF-8 as your <a class="reference external
 encoding</a> or create docstrings as Unicode.</p>
 </div>
 </div>
-</div>
 <div class="section" id="java-libraries">
-<h3>5.1.6&nbsp;&nbsp;&nbsp;Java libraries</h3>
+<h4>Java libraries</h4>
 <p>When writing documentation for a normal Java library, conventions for
 writing Javadoc should be used. The documentation is generated based
 on the Javadocs in the source files. For example following simple
@@ -13790,6 +13783,7 @@ earlier Python example.</p>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
+</div>
 <div class="section" id="dynamic-libraries">
 <h4>Dynamic libraries</h4>
 <p>To be able to generate meaningful documentation for dynamic libraries,
@@ -13911,17 +13905,13 @@ it.\n</td>
 </div>
 </div>
 <div class="section" id="documentation-syntax">
-<h3>5.1.7&nbsp;&nbsp;&nbsp;Documentation syntax</h3>
+<h3>5.1.6&nbsp;&nbsp;&nbsp;Documentation syntax</h3>
 <div class="section" id="generic-formatting-rules">
 <h4>Generic formatting rules</h4>
-<p>Most important features of <cite>documentation formatting</cite> are formatting using
+<p>Most important features of <a class="reference internal" href="#documentation-formatting">documentation formatting</a> are formatting using
 <span class="code">*bold*</span> and <span class="code">_italic_</span>, automatic conversion of URLs to
-clickable links, and the possibility to create tables (useful for
-examples) simply with pipe character:</p>
-<pre class="literal-block">
-| Some Keyword    | arg |
-| Another Keyword |     |
-</pre>
+clickable links, and the possibility to create tables and blocks (useful for
+examples) simply with pipe character.</p>
 </div>
 <div class="section" id="special-formatting-and-internal-linking">
 <h4>Special formatting and internal linking</h4>
@@ -14724,7 +14714,8 @@ both as plain text and after the HTML transformation.</p>
 <li><a class="reference internal" href="#bold-and-italic" id="id629">6.4.2&nbsp;&nbsp;&nbsp;Bold and italic</a></li>
 <li><a class="reference internal" href="#urls" id="id630">6.4.3&nbsp;&nbsp;&nbsp;URLs</a></li>
 <li><a class="reference internal" href="#tables" id="id631">6.4.4&nbsp;&nbsp;&nbsp;Tables</a></li>
-<li><a class="reference internal" href="#horizontal-ruler" id="id632">6.4.5&nbsp;&nbsp;&nbsp;Horizontal ruler</a></li>
+<li><a class="reference internal" href="#preformatted-text" id="id632">6.4.5&nbsp;&nbsp;&nbsp;Preformatted text</a></li>
+<li><a class="reference internal" href="#horizontal-ruler" id="id633">6.4.6&nbsp;&nbsp;&nbsp;Horizontal ruler</a></li>
 </ul>
 </div>
 <div class="section" id="representing-newlines">
@@ -14848,8 +14839,24 @@ documentation would be formatted like this:</p>
 </tbody>
 </table>
 </div>
+<div class="section" id="preformatted-text">
+<h3><a class="toc-backref" href="#id632">6.4.5&nbsp;&nbsp;&nbsp;Preformatted text</a></h3>
+<p>Starting from Robot Framework 2.7, it is also possible to embed blocks of
+preformatted text in the documentation. Preformatted block is created by
+starting lines with '| ', one space being mandatory after the pipe character.
+The sequence '| ' will be removed from the resulting HTML, but all other
+whitespace is preserved.</p>
+<p>In the following documentation, the two middle lines form a preformatted
+block when converted to HTML:</p>
+<pre class="literal-block">
+Doc before block:\n
+| inside block\n
+|    some   additional whitespace\n
+After block
+</pre>
+</div>
 <div class="section" id="horizontal-ruler">
-<h3><a class="toc-backref" href="#id632">6.4.5&nbsp;&nbsp;&nbsp;Horizontal ruler</a></h3>
+<h3><a class="toc-backref" href="#id633">6.4.6&nbsp;&nbsp;&nbsp;Horizontal ruler</a></h3>
 <p>Horizontal rulers (the &lt;hr&gt; tag) make it possible to separate larger
 sections from each others, and they can be created by having three
 hyphens alone in a line. With documentations in the test data literal
@@ -14918,7 +14925,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2012-02-16 11:46 UTC.
+<p>Generated on: 2012-02-17 14:40 UTC.
 </p>
 
 </div>
