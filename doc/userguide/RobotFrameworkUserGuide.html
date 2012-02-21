@@ -13618,8 +13618,9 @@ Robot Framework execution.</p>
 <div class="section" id="library-documentation-tool-libdoc">
 <span id="libdoc"></span><h2><a class="toc-backref" href="#id621">5.1&nbsp;&nbsp;&nbsp;Library documentation tool (<span class="prog">libdoc</span>)</a></h2>
 <p><span class="prog">libdoc</span> is a tool for generating keyword documentation for test
-libraries and resource files in HTML and XML formats.The former format is
-suitable for humans and the latter for <a class="reference internal" href="#test-data-editing-tool-ride">RIDE</a> and other tools.</p>
+libraries and resource files in HTML and XML formats. The former format is
+suitable for humans and the latter for <a class="reference internal" href="#test-data-editing-tool-ride">RIDE</a> and other tools. Libdoc also
+has few special commands to show library or resource information on the console.</p>
 <p>Documentation can be created for:</p>
 <ul class="simple">
 <li>test libraries implemented with <a class="reference internal" href="#python-libraries">Python</a> or <a class="reference internal" href="#java-libraries">Java</a> using the normal
@@ -13640,6 +13641,7 @@ is still the same.</p>
 <h4>Synopsis</h4>
 <pre class="literal-block">
 python -m robot.libdoc [options] library_or_resource output_file
+python -m robot.libdoc [options] library_or_resource list|show|version [names]
 </pre>
 </div>
 <div class="section" id="options">
@@ -13715,8 +13717,13 @@ not exist, resource files are also searched from all directories in
 PYTHONPATH similarly as when executing test cases.</p>
 </div>
 </div>
-<div class="section" id="examples">
-<h4>Examples</h4>
+<div class="section" id="creating-documentation">
+<h4>Creating documentation</h4>
+<p>When creating documentation in HTML or XML format, the output file must
+be specified as a second argument after the library/resource name or path.
+Output format is got automatically from the extension but can also be set
+with <span class="opt">--format</span> option.</p>
+<p>Examples:</p>
 <pre class="literal-block">
 python -m robot.libdoc OperatingSystem OperatingSystem.html
 python -m robot.libdoc --name MyLibrary Remote::http://10.0.0.42:8270 MyLibrary.html
@@ -13724,19 +13731,48 @@ python -m robot.libdoc test/resource.html doc/resource_doc.html
 jython -m robot.libdoc --version 1.0 MyJavaLibrary.java MyJavaLibrary.xml
 </pre>
 </div>
+<div class="section" id="viewing-information-on-console">
+<h4>Viewing information on console</h4>
+<p><span class="prog">libdoc</span> has three special commands to show information on the console.
+These commands are used instead of the name of the output file, and they can
+also take additional arguments.</p>
+<dl class="docutils">
+<dt><span class="opt">list</span></dt>
+<dd>List names of the keywords the library/resource contains. Can be
+limited to show only certain keywords by passing optional patterns
+as arguments. Keyword is listed if its name contains given pattern.</dd>
+<dt><span class="opt">show</span></dt>
+<dd>Show library/resource documentation. Can be limited to show only
+certain keywords by passing names as arguments. Keyword is shown if
+its name matches any given name. Special argument <span class="opt">intro</span> will show
+only the library introduction and importing sections.</dd>
+<dt><span class="opt">version</span></dt>
+<dd>Show library version</dd>
+</dl>
+<p>Optional patterns given to <span class="opt">list</span> and <span class="opt">show</span> are case and space
+insensitive. Both also accept <span class="opt">*</span> and <span class="opt">?</span> as wildcards.</p>
+<p>Examples:</p>
+<pre class="literal-block">
+python -m robot.libdoc Dialogs list
+python -m robot.libdoc Selenium2Library list browser
+python -m robot.libdoc Remote::10.0.0.42:8270 show
+python -m robot.libdoc Dialogs show PauseExecution execute*
+python -m robot.libdoc Selenium2Library show intro
+python -m robot.libdoc Selenium2Library version
+</pre>
+</div>
 <div class="section" id="alternative-execution">
 <h4>Alternative execution</h4>
-<p><span class="prog">libdoc</span> works with all supported interpreters, although creating
-documentation from Java source files requires running <span class="prog">libdoc</span> with
-Jython.</p>
-<p>In addition to executing <span class="prog">libdoc</span> as a module
-(<span class="cli">python -m robot.libdoc</span>), it is possible to execute it as a script:</p>
+<p>Although <span class="prog">libdoc</span> is used only with Python in the synopsis above, it works
+also with Jython and IronPython. When documenting Java libraries, Jython is
+actually required. In the synopsis <span class="prog">libdoc</span> is executed as an installed
+module (<span class="cli">python -m robot.libdoc</span>), but it can be run also as a script:</p>
 <pre class="literal-block">
-python path/robot/libdoc.py [options] inputfile
+python path/robot/libdoc.py [options] arguments
 </pre>
-<p>This is useful if you have done a <a class="reference internal" href="#manual-installation">manual installation</a> of the framework
-and just have the <span class="path">robot</span> directory with the source code somewhere
-in your system.</p>
+<p>Executing as a script can be useful if you have done <a class="reference internal" href="#manual-installation">manual installation</a>
+or otherwise just have the <span class="path">robot</span> directory with the source code
+somewhere in your system.</p>
 </div>
 </div>
 <div class="section" id="writing-documentation">
@@ -14047,16 +14083,16 @@ file is used.</td></tr>
 </div>
 <div class="section" id="id237">
 <h4>Alternative execution</h4>
-<p><span class="prog">tidy</span> is used only with Python in the synopsis and examples above,
-but it works also with Jython and IronPython.</p>
-<p>In addition to executing <span class="prog">tidy</span> as a module (<span class="cli">python -m robot.tidy</span>),
-it is possible to execute it as a script:</p>
+<p>Although <span class="prog">tidy</span> is used only with Python in the synopsis above, it works
+also with Jython and IronPython. In the synopsis <span class="prog">tidy</span> is executed as
+an installed module (<span class="cli">python -m robot.tidy</span>), but it can be run also as
+a script:</p>
 <pre class="literal-block">
-python path/robot/tidy.py [options] inputfile
+python path/robot/tidy.py [options] arguments
 </pre>
-<p>This is useful if you have done a <a class="reference internal" href="#manual-installation">manual installation</a> of the framework
-and just have the <span class="path">robot</span> directory with the source code somewhere
-in your system.</p>
+<p>Executing as a script can be useful if you have done <a class="reference internal" href="#manual-installation">manual installation</a>
+or otherwise just have the <span class="path">robot</span> directory with the source code
+somewhere in your system.</p>
 </div>
 <div class="section" id="output-encoding">
 <h4>Output encoding</h4>
@@ -14954,7 +14990,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2012-02-20 22:10 UTC.
+<p>Generated on: 2012-02-21 11:46 UTC.
 </p>
 
 </div>
