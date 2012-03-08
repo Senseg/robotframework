@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.7: http://docutils.sourceforge.net/" />
 <title>Robot Framework User Guide</title>
 <style type="text/css">
 
@@ -15067,9 +15067,15 @@ after the HTML transformation.</p>
 </li>
 <li><a class="reference internal" href="#bold-and-italic" id="id656">6.4.2&nbsp;&nbsp;&nbsp;Bold and italic</a></li>
 <li><a class="reference internal" href="#urls" id="id657">6.4.3&nbsp;&nbsp;&nbsp;URLs</a></li>
-<li><a class="reference internal" href="#tables" id="id658">6.4.4&nbsp;&nbsp;&nbsp;Tables</a></li>
-<li><a class="reference internal" href="#preformatted-text" id="id659">6.4.5&nbsp;&nbsp;&nbsp;Preformatted text</a></li>
-<li><a class="reference internal" href="#horizontal-ruler" id="id660">6.4.6&nbsp;&nbsp;&nbsp;Horizontal ruler</a></li>
+<li><a class="reference internal" href="#custom-links-and-images" id="id658">6.4.4&nbsp;&nbsp;&nbsp;Custom links and images</a><ul>
+<li><a class="reference internal" href="#link-with-text-content" id="id659">Link with text content</a></li>
+<li><a class="reference internal" href="#link-with-image-content" id="id660">Link with image content</a></li>
+<li><a class="reference internal" href="#image-with-title-text" id="id661">Image with title text</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tables" id="id662">6.4.5&nbsp;&nbsp;&nbsp;Tables</a></li>
+<li><a class="reference internal" href="#preformatted-text" id="id663">6.4.6&nbsp;&nbsp;&nbsp;Preformatted text</a></li>
+<li><a class="reference internal" href="#horizontal-ruler" id="id664">6.4.7&nbsp;&nbsp;&nbsp;Horizontal ruler</a></li>
 </ul>
 </div>
 <div class="section" id="representing-newlines">
@@ -15302,14 +15308,51 @@ clickable links. Additionally, URLs that end with extension
 <span class="path">.jpg</span>, <span class="path">.jpeg</span>, <span class="path">.png</span>, <span class="path">.gif</span> or
 <span class="path">.bmp</span> (case-insensitive) will automatically create images. For
 example URLs like <span class="code">http://some.url</span> are turned into links, and
-<span class="code">http:///server/image.jpg</span> and <span class="code">file:///path/chart.png</span>
+<span class="code">http:///host/image.jpg</span> and <span class="code">file:///path/chart.png</span>
 into images.</p>
 <p>The automatic conversion of URLs to links is applied to all the data
 in logs and reports, but creating images is done only for test suite,
-test case and keyword documentation.</p>
+test case and keyword documentation, and for test suite metadata.</p>
+</div>
+<div class="section" id="custom-links-and-images">
+<h3><a class="toc-backref" href="#id658">6.4.4&nbsp;&nbsp;&nbsp;Custom links and images</a></h3>
+<p>Starting from Robot Framework 2.7, it is also possible to create custom links
+and embed images using special syntax <span class="code">[link|content]</span>. This creates
+a link or image depending are <span class="code">link</span> and <span class="code">content</span> images.
+They are considered images if they have the same image extensions that are
+special with <a class="reference internal" href="#urls">URLs</a>. The surrounding square brackets and the pipe character
+between the parts are mandatory in all cases.</p>
+<div class="section" id="link-with-text-content">
+<h4><a class="toc-backref" href="#id659">Link with text content</a></h4>
+<p>If neither <span class="code">link</span> nor <span class="code">content</span> is image, the end result is
+a normal link where <span class="code">link</span> is the link target and <span class="code">content</span>
+the visible text:</p>
+<pre class="literal-block">
+[file.html|this file] -&gt; &lt;a href=&quot;file.html&quot;&gt;this file&lt;/a&gt;
+[http://host|that host] -&gt; &lt;a href=&quot;http://host&quot;&gt;that host&lt;/a&gt;
+</pre>
+</div>
+<div class="section" id="link-with-image-content">
+<h4><a class="toc-backref" href="#id660">Link with image content</a></h4>
+<p>If <span class="code">content</span> is an image, you get a link where the link content is an
+image. Link target is created by <span class="code">link</span> and it can be either text or image:</p>
+<pre class="literal-block">
+[robot.html|robot.png] -&gt; &lt;a href=&quot;robot.html&quot;&gt;&lt;img src=&quot;robot.png&quot;&gt;&lt;/a&gt;
+[image.jpg|thumb.jpg] -&gt; &lt;a href=&quot;image.jpg&quot;&gt;&lt;img src=&quot;thumb.jpg&quot;&gt;&lt;/a&gt;
+</pre>
+</div>
+<div class="section" id="image-with-title-text">
+<h4><a class="toc-backref" href="#id661">Image with title text</a></h4>
+<p>If <span class="code">link</span> is an image but <span class="code">content</span> is not, the syntax creates an
+image where the <span class="code">content</span> is the title text shown when mouse is over
+the image:</p>
+<pre class="literal-block">
+[robot.jpeg|Robot rocks!] -&gt; &lt;img src=&quot;robot.jpeg&quot; title=&quot;Robot rocks!&quot;&gt;
+</pre>
+</div>
 </div>
 <div class="section" id="tables">
-<h3><a class="toc-backref" href="#id658">6.4.4&nbsp;&nbsp;&nbsp;Tables</a></h3>
+<h3><a class="toc-backref" href="#id662">6.4.5&nbsp;&nbsp;&nbsp;Tables</a></h3>
 <p>Tables are created using the pipe character with whitespace around it
 as a cell boundary and the newline character as a row separator:</p>
 <pre class="literal-block">
@@ -15344,7 +15387,7 @@ documentation would be formatted like this:</p>
 </table>
 </div>
 <div class="section" id="preformatted-text">
-<h3><a class="toc-backref" href="#id659">6.4.5&nbsp;&nbsp;&nbsp;Preformatted text</a></h3>
+<h3><a class="toc-backref" href="#id663">6.4.6&nbsp;&nbsp;&nbsp;Preformatted text</a></h3>
 <p>Starting from Robot Framework 2.7, it is also possible to embed blocks of
 preformatted text in the documentation. Preformatted block is created by
 starting lines with '| ', one space being mandatory after the pipe character.
@@ -15360,7 +15403,7 @@ After block
 </pre>
 </div>
 <div class="section" id="horizontal-ruler">
-<h3><a class="toc-backref" href="#id660">6.4.6&nbsp;&nbsp;&nbsp;Horizontal ruler</a></h3>
+<h3><a class="toc-backref" href="#id664">6.4.7&nbsp;&nbsp;&nbsp;Horizontal ruler</a></h3>
 <p>Horizontal rulers (the &lt;hr&gt; tag) make it possible to separate larger
 sections from each others, and they can be created by having three
 hyphens alone in a line:</p>
@@ -15428,7 +15471,7 @@ insensitive, and the available specifier texts are:</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2012-03-07 14:24 UTC.
+<p>Generated on: 2012-03-08 09:09 UTC.
 </p>
 
 </div>
