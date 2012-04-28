@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.8.1: http://docutils.sourceforge.net/" />
 <title>statuschecker.py</title>
 <style type="text/css">
 
@@ -544,6 +544,8 @@ documentation. The expected error message must then be given after
 prefixing it with <span class="msg">REGEXP:</span>. The specified regular expression
 must match the error message fully. Having spaces between the status,
 the message or the possible regular expression prefix is optional.</p>
+<p>It is also possible to test only the beginning of the error by
+prefixing the expected message with <span class="msg">STARTS:</span>.</p>
 <table border="1" class="example docutils">
 <caption>Examples</caption>
 <colgroup>
@@ -574,6 +576,16 @@ the message or the possible regular expression prefix is optional.</p>
 <td>[Documentation]</td>
 <td>FAIL</td>
 <td>REGEXP: (IOError|OSError): .*</td>
+</tr>
+<tr><td></td>
+<td>Steps</td>
+<td></td>
+<td></td>
+</tr>
+<tr><td>Start Example</td>
+<td>[Documentation]</td>
+<td>FAIL</td>
+<td>STARTS: IOError:</td>
 </tr>
 <tr><td></td>
 <td>Steps</td>
@@ -751,7 +763,7 @@ keyword does not have a certain message, it is possible to use
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2012-03-26 09:18 UTC.
+Generated on: 2012-04-28 11:10 UTC.
 
 </div>
 </body>
