@@ -306,7 +306,7 @@ ul.auto-toc {
 table.example, table.tsv-example, table.messages, table.tabular {
     border: 1px solid #808080;
     border-collapse: collapse;
-    margin: 0.5em 2em;
+    margin: 5px 20px;
 }
 table.example caption, table.tsv-example caption, table.tabular caption {
     text-align: left;
@@ -337,7 +337,7 @@ table.tabular th, table.tabular td {
 table.messages {
     border: 1px solid gray;
     font-family: monospace;
-    margin: 1em 2em;
+    margin: 10px 20px;
     width: 60%;
 }
 table.messages td {
@@ -360,6 +360,45 @@ table.messages td.pass {
 }
 table.messages td.warn {
     color: #FFCC00;
+}
+
+/* Documentation formatting examples */
+
+.doc {
+    margin-left: 20px;
+    margin-right: 20px;
+    background: #f4f4f4;
+    font-size: 0.9em;
+}
+.doc > * {
+    margin: 10px 10px 0 10px;
+    padding: 0;
+}
+.doc > p {
+    margin: 10px 0 0 0;
+}
+.doc > *:first-child {
+    margin-top: 0;
+}
+.doc li {
+    list-style: square inside;
+}
+.doc table {
+    border: 1px solid gray;
+    background: transparent;
+    border-collapse: collapse;
+    empty-cells: show;
+    font-size: 0.9em;
+}
+.doc table td {
+    border: 1px solid gray;
+    padding: 0.1em 0.3em;
+    height: 1.2em;
+}
+.doc hr {
+    background: gray;
+    height: 1px;
+    border: 0;
 }
 
 /* Roles -- these are defined in roles.txt file */
@@ -411,11 +450,13 @@ cite {
 div.admonition, div.attention, div.caution, div.danger, div.error,
 div.hint, div.important, div.note, div.tip, div.warning {
     border: 1px solid gray;
-    margin: 1em 2em;
+    margin: 10px 20px;
     padding: 0.7em 1em;
     font-size: 0.9em;
 }
 pre.literal-block, pre.doctest-block {
+    margin-left: 20px;
+    margin-right: 20px;
     background: #f4f4f4;
 }
 li, li p.first {
@@ -423,11 +464,15 @@ li, li p.first {
     margin-bottom: 0.3em;
 }
 div.contents li {
-    margin-top: 0em;
-    margin-bottom: 0em;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 a img {
     border: 1px solid blue;
+}
+div.figure, div.topic {
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 /* Pygments
@@ -437,7 +482,7 @@ a img {
 - For more details see e.g. http://pygments.org/docs/quickstart/
 */
 
-.highlight  { background: #f4f4f4; margin: 1em 2em; }
+.highlight  { background: #f4f4f4; margin: 10px 20px; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
@@ -15196,17 +15241,19 @@ after the HTML transformation.</p>
 <li><a class="reference internal" href="#documentation-in-test-libraries" id="id665">Documentation in test libraries</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bold-and-italic" id="id666">6.4.2&nbsp;&nbsp;&nbsp;Bold and italic</a></li>
-<li><a class="reference internal" href="#urls" id="id667">6.4.3&nbsp;&nbsp;&nbsp;URLs</a></li>
-<li><a class="reference internal" href="#custom-links-and-images" id="id668">6.4.4&nbsp;&nbsp;&nbsp;Custom links and images</a><ul>
-<li><a class="reference internal" href="#link-with-text-content" id="id669">Link with text content</a></li>
-<li><a class="reference internal" href="#link-with-image-content" id="id670">Link with image content</a></li>
-<li><a class="reference internal" href="#image-with-title-text" id="id671">Image with title text</a></li>
+<li><a class="reference internal" href="#paragraphs" id="id666">6.4.2&nbsp;&nbsp;&nbsp;Paragraphs</a></li>
+<li><a class="reference internal" href="#bold-and-italic" id="id667">6.4.3&nbsp;&nbsp;&nbsp;Bold and italic</a></li>
+<li><a class="reference internal" href="#urls" id="id668">6.4.4&nbsp;&nbsp;&nbsp;URLs</a></li>
+<li><a class="reference internal" href="#custom-links-and-images" id="id669">6.4.5&nbsp;&nbsp;&nbsp;Custom links and images</a><ul>
+<li><a class="reference internal" href="#link-with-text-content" id="id670">Link with text content</a></li>
+<li><a class="reference internal" href="#link-with-image-content" id="id671">Link with image content</a></li>
+<li><a class="reference internal" href="#image-with-title-text" id="id672">Image with title text</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#tables" id="id672">6.4.5&nbsp;&nbsp;&nbsp;Tables</a></li>
-<li><a class="reference internal" href="#preformatted-text" id="id673">6.4.6&nbsp;&nbsp;&nbsp;Preformatted text</a></li>
-<li><a class="reference internal" href="#horizontal-ruler" id="id674">6.4.7&nbsp;&nbsp;&nbsp;Horizontal ruler</a></li>
+<li><a class="reference internal" href="#tables" id="id673">6.4.6&nbsp;&nbsp;&nbsp;Tables</a></li>
+<li><a class="reference internal" href="#lists" id="id674">6.4.7&nbsp;&nbsp;&nbsp;Lists</a></li>
+<li><a class="reference internal" href="#preformatted-text" id="id675">6.4.8&nbsp;&nbsp;&nbsp;Preformatted text</a></li>
+<li><a class="reference internal" href="#horizontal-ruler" id="id676">6.4.9&nbsp;&nbsp;&nbsp;Horizontal ruler</a></li>
 </ul>
 </div>
 <div class="section" id="representing-newlines">
@@ -15393,8 +15440,27 @@ as the test suite documentation in the previous section.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="paragraphs">
+<h3><a class="toc-backref" href="#id666">6.4.2&nbsp;&nbsp;&nbsp;Paragraphs</a></h3>
+<p>Starting from Robot Framework 2.7.2, all regular text in the formatted
+documentation is represented as paragraphs. Lines of documentation separated
+by a single newline will be combined in one paragraph. Two newlines can be used
+to separate paragraphs. For example, the following suite documentation:</p>
+<pre class="literal-block">
+*** Settings ***
+Documentation
+...    First line.
+...
+...    Second paragraph, this time
+...    with multiple lines.
+</pre>
+<p>will be formatted as:</p>
+<div class="doc">
+<p>First line.</p>
+<p>Second paragraph, this time with multiple lines.</p>
+</div></div>
 <div class="section" id="bold-and-italic">
-<h3><a class="toc-backref" href="#id666">6.4.2&nbsp;&nbsp;&nbsp;Bold and italic</a></h3>
+<h3><a class="toc-backref" href="#id667">6.4.3&nbsp;&nbsp;&nbsp;Bold and italic</a></h3>
 <p>Bold text can be created by having an asterisk before and after the
 selected word or words, for example <span class="code">*this is bold*</span>. Italic
 style works similarly, but the special character to use is an
@@ -15433,7 +15499,7 @@ started and stopped on every line.</p>
   </tr>
 </table></div>
 <div class="section" id="urls">
-<h3><a class="toc-backref" href="#id667">6.4.3&nbsp;&nbsp;&nbsp;URLs</a></h3>
+<h3><a class="toc-backref" href="#id668">6.4.4&nbsp;&nbsp;&nbsp;URLs</a></h3>
 <p>All strings that look like URLs are automatically converted into
 clickable links. Additionally, URLs that end with extension
 <span class="path">.jpg</span>, <span class="path">.jpeg</span>, <span class="path">.png</span>, <span class="path">.gif</span> or
@@ -15446,7 +15512,7 @@ in logs and reports, but creating images is done only for test suite,
 test case and keyword documentation, and for test suite metadata.</p>
 </div>
 <div class="section" id="custom-links-and-images">
-<h3><a class="toc-backref" href="#id668">6.4.4&nbsp;&nbsp;&nbsp;Custom links and images</a></h3>
+<h3><a class="toc-backref" href="#id669">6.4.5&nbsp;&nbsp;&nbsp;Custom links and images</a></h3>
 <p>Starting from Robot Framework 2.7, it is also possible to create custom links
 and embed images using special syntax <span class="code">[link|content]</span>. This creates
 a link or image depending are <span class="code">link</span> and <span class="code">content</span> images.
@@ -15454,7 +15520,7 @@ They are considered images if they have the same image extensions that are
 special with <a class="reference internal" href="#urls">URLs</a>. The surrounding square brackets and the pipe character
 between the parts are mandatory in all cases.</p>
 <div class="section" id="link-with-text-content">
-<h4><a class="toc-backref" href="#id669">Link with text content</a></h4>
+<h4><a class="toc-backref" href="#id670">Link with text content</a></h4>
 <p>If neither <span class="code">link</span> nor <span class="code">content</span> is image, the end result is
 a normal link where <span class="code">link</span> is the link target and <span class="code">content</span>
 the visible text:</p>
@@ -15464,7 +15530,7 @@ the visible text:</p>
 </pre>
 </div>
 <div class="section" id="link-with-image-content">
-<h4><a class="toc-backref" href="#id670">Link with image content</a></h4>
+<h4><a class="toc-backref" href="#id671">Link with image content</a></h4>
 <p>If <span class="code">content</span> is an image, you get a link where the link content is an
 image. Link target is created by <span class="code">link</span> and it can be either text or image:</p>
 <pre class="literal-block">
@@ -15473,7 +15539,7 @@ image. Link target is created by <span class="code">link</span> and it can be ei
 </pre>
 </div>
 <div class="section" id="image-with-title-text">
-<h4><a class="toc-backref" href="#id671">Image with title text</a></h4>
+<h4><a class="toc-backref" href="#id672">Image with title text</a></h4>
 <p>If <span class="code">link</span> is an image but <span class="code">content</span> is not, the syntax creates an
 image where the <span class="code">content</span> is the title text shown when mouse is over
 the image:</p>
@@ -15483,42 +15549,49 @@ the image:</p>
 </div>
 </div>
 <div class="section" id="tables">
-<h3><a class="toc-backref" href="#id672">6.4.5&nbsp;&nbsp;&nbsp;Tables</a></h3>
+<h3><a class="toc-backref" href="#id673">6.4.6&nbsp;&nbsp;&nbsp;Tables</a></h3>
 <p>Tables are created using the pipe character with whitespace around it
-as a cell boundary and the newline character as a row separator:</p>
+as a cell boundary and the possibly automatically added newline character
+as a row separator:</p>
 <pre class="literal-block">
-| *A*  | *B*   | *C*   |
-| _1_  | Hello | world |
-| _2_  | Hi    |       |
+| *A* | *B*   | *C*   |
+| _1_ | Hello | world |
+| _2_ | Hi    |
 </pre>
 <p>The created table always has a thin border and the text is
 left-aligned. Formatting using bold and italic works also in table
-cells, so it is possible to create headers. For example the above
-documentation would be formatted like this:</p>
-<table border="1" class="tabular docutils">
-<colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
-</colgroup>
-<tbody valign="top">
-<tr><td><strong>A</strong></td>
-<td><strong>B</strong></td>
-<td><strong>C</strong></td>
-</tr>
-<tr><td><em>1</em></td>
-<td>Hello</td>
-<td>world</td>
-</tr>
-<tr><td><em>2</em></td>
-<td>Hi</td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
+cells, so it is possible to create headers. Empty cells are automatically
+added to make rows equally long. For example, the above
+example would be formatted like this:</p>
+<div class="doc">
+<table>
+  <tr><td><b>A</b></td><td><b>B</b></td><td><b>C</b></td>
+  <tr><td><i>1</i></td><td>Hello</td><td>world</td>
+  <tr><td><i>2</i></td><td>Hi</td><td></td>
 </table>
-</div>
+</div></div>
+<div class="section" id="lists">
+<h3><a class="toc-backref" href="#id674">6.4.7&nbsp;&nbsp;&nbsp;Lists</a></h3>
+<p>A list is created by using the sequence '- ' to denote list elements. An empty
+line or line not starting with '- ' ends the list:</p>
+<pre class="literal-block">
+Example:
+- a list item
+- a second list item
+
+This is outside the list.
+</pre>
+<p>The above documentation is formatted like this:</p>
+<div class="doc">
+<p>Example:</p>
+<ul>
+  <li>a list item</li>
+  <li>a second list item</li>
+</ul>
+<p>This is outside the list.</p>
+</div></div>
 <div class="section" id="preformatted-text">
-<h3><a class="toc-backref" href="#id673">6.4.6&nbsp;&nbsp;&nbsp;Preformatted text</a></h3>
+<h3><a class="toc-backref" href="#id675">6.4.8&nbsp;&nbsp;&nbsp;Preformatted text</a></h3>
 <p>Starting from Robot Framework 2.7, it is also possible to embed blocks of
 preformatted text in the documentation. Preformatted block is created by
 starting lines with '| ', one space being mandatory after the pipe character.
@@ -15530,11 +15603,17 @@ block when converted to HTML:</p>
 Doc before block:
 | inside block
 |    some   additional whitespace
-After block
+After block.
 </pre>
-</div>
+<p>The above documentation is formatted like this:</p>
+<div class="doc">
+<p>Doc before block:</p>
+<pre>inside block
+  some   additional whitespace</pre>
+<p>After block.</p>
+</div></div>
 <div class="section" id="horizontal-ruler">
-<h3><a class="toc-backref" href="#id674">6.4.7&nbsp;&nbsp;&nbsp;Horizontal ruler</a></h3>
+<h3><a class="toc-backref" href="#id676">6.4.9&nbsp;&nbsp;&nbsp;Horizontal ruler</a></h3>
 <p>Horizontal rulers (the &lt;hr&gt; tag) make it possible to separate larger
 sections from each others, and they can be created by having three
 hyphens alone in a line:</p>
@@ -15545,7 +15624,12 @@ Some text here.
 
 More text...
 </pre>
-</div>
+<p>The above documentation is formatted like this:</p>
+<div class="doc">
+<p>Some text here.</p>
+<hr>
+<p>More text...</p>
+</div></div>
 </div>
 <div class="section" id="time-format">
 <h2><a class="toc-backref" href="#id655">6.5&nbsp;&nbsp;&nbsp;Time format</a></h2>
@@ -15609,7 +15693,7 @@ to <a class="reference internal" href="#mailing-lists">mailing list</a>.</p>
 <div class="footer">
 <hr class="footer" />
 <p>Generated by <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Syntax highlighting by <a class="reference external" href="http://pygments.org/">Pygments</a>.</p>
-<p>Generated on: 2012-05-22 10:03 UTC.
+<p>Generated on: 2012-05-31 11:22 UTC.
 </p>
 
 </div>
