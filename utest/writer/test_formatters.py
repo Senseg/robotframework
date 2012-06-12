@@ -12,7 +12,8 @@ class TestTxtFormatter(unittest.TestCase):
         self._formatter = TxtFormatter(6)
 
     def test_escaping_whitespace(self):
-        assert_equals(self._formatter._escape(['so  me']), ['so \ me'])
+        assert_equals(self._formatter._escape(['so  me']), ['so \\ me'])
+        assert_equals(self._formatter._escape(['   ']), [' \\ \\ '])
 
     def test_replacing_newlines(self):
         assert_equals(self._formatter._escape(['so\nme']), ['so me'])
@@ -29,6 +30,14 @@ class TestTxtFormatter(unittest.TestCase):
         settings.suite_setup.args = ['', 'baby']
         assert_equals(list(self._formatter.format_table(settings))[0][1:],
                       ['Run', '\\', 'baby'])
+
+    def test_aligned_header_cells_are_not_escaped(self):
+        table = TestCaseTable(None)
+        table.set_header(['test case', 'cus  tom',  'header'])
+        table.add('Test case with a long name').add_step(['keyword here', 'args'])
+        assert_equals(self._formatter.format_header(table),
+                     ['*** test case ***         ', 'cus \\ tom   ', 'header'])
+
 
 
 class TestPipeFormatter(unittest.TestCase):

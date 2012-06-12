@@ -31,7 +31,7 @@ PACKAGES = ['robot', 'robot.api', 'robot.common', 'robot.conf',
             'robot.running.timeouts', 'robot.utils', 'robot.variables',
             'robot.writer']
 PACKAGE_DATA = [join('htmldata', directory, pattern)
-                for directory in 'rebot', 'libdoc', 'testdoc', 'lib'
+                for directory in 'rebot', 'libdoc', 'testdoc', 'lib', 'common'
                 for pattern in '*.html', '*.css', '*.js']
 if sys.platform.startswith('java'):
     SCRIPTS = ['jybot', 'jyrebot']
@@ -51,6 +51,7 @@ setup(
     author       = 'Robot Framework Developers',
     author_email = 'robotframework@gmail.com',
     url          = 'http://robotframework.org',
+    download_url = 'http://code.google.com/p/robotframework/downloads/list?can=1',
     license      = 'Apache License 2.0',
     description  = 'A generic test automation framework',
     long_description = DESCRIPTION,

@@ -13,31 +13,36 @@
 #  limitations under the License.
 
 import string
+import re
 
 from .htmlformatters import LinkFormatter, HtmlFormatter
 
 
-_html_escapes = (('&', '&amp;'), ('<', '&lt;'), ('>', '&gt;'))
-_html_attr_escapes = _html_escapes + (('"', '&quot;'),)
 _format_url = LinkFormatter().format_url
+_generic_escapes = (('&', '&amp;'), ('<', '&lt;'), ('>', '&gt;'))
+_attribute_escapes = _generic_escapes + (('"', '&quot;'),) \
+        + tuple((ws, ' ') for ws in string.whitespace if ws != ' ')
+_illegal_chars_in_xml = re.compile(u'[\x00-\x08\x0B\x0C\x0E-\x1F\uFFFE\uFFFF]')
 
 
 def html_escape(text):
-    return _format_url(_html_escape(text))
+    return _format_url(_escape(text))
 
-def _html_escape(text):
-    for name, value in _html_escapes:
-        text = text.replace(name, value)
-    return text
+
+def xml_escape(text):
+    return _illegal_chars_in_xml.sub('', _escape(text))
 
 
 def html_format(text):
-    return HtmlFormatter().format(_html_escape(text))
+    return HtmlFormatter().format(_escape(text))
 
 
-def html_attr_escape(attr):
-    for name, value in _html_attr_escapes:
-        attr = attr.replace(name, value)
-    for ws in string.whitespace:
-        attr = attr.replace(ws, ' ')
-    return attr
+def attribute_escape(attr):
+    return _escape(attr, _attribute_escapes)
+
+
+def _escape(text, escapes=_generic_escapes):
+    for name, value in escapes:
+        if name in text:  # performance optimization
+            text = text.replace(name, value)
+    return text
