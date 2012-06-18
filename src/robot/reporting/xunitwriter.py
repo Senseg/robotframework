@@ -15,7 +15,7 @@
 import os
 
 from robot.result.visitor import ResultVisitor
-from robot import utils
+from robot.utils import XmlWriter
 
 
 class XUnitWriter(ResultVisitor):
@@ -26,7 +26,7 @@ class XUnitWriter(ResultVisitor):
     """
 
     def __init__(self, output):
-        self._writer = utils.XmlWriter(output)
+        self._writer = XmlWriter(output, encoding='UTF-8')
         self._root_suite = None
 
     def start_suite(self, suite):
@@ -72,7 +72,7 @@ class TestFailureWriter(ResultVisitor):
 
     def start_test(self, test):
         self._writer.start('failure', {'message': test.message,
-                                       'type': 'AssertionError'})
+                                       'type': 'AssertionError'}, newline=False)
 
     def end_test(self, test):
         self._writer.end('failure')

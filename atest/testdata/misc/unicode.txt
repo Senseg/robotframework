@@ -4,6 +4,12 @@ Library         UnicodeLibrary
 *** Test Cases ***
 Unicode In Log Messages
     Print Unicode Strings
+    Log    Français
+
+Unicode Return Value
+    ${msg} =    Evaluate    u'Fran\\xe7ais'
+    Should Be Equal    ${msg}    Français
+    Log    ${msg}
 
 Unicode In Return Value Attributes
     ${obj} =  Print And Return Unicode Object
@@ -24,3 +30,9 @@ Unicode Failure In Teardown After Normal Failure
     Fail  Just ASCII here
     [Teardown]  Raise Unicode Error
 
+Ünïcödë Tëst änd Këywörd Nämës
+    Ünïcödë Këywörd Nämë
+
+*** Keywords ***
+Ünïcödë Këywörd Nämë
+    Log    Hyvää päivää
