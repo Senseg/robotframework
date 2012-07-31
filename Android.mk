@@ -37,9 +37,9 @@ $(robotframework_install_marker): $(robotframework_marker)
 	$(hide) $(ACP) -fptr $(dir $<)/* $(dir $@)
 
 $(robotframework_marker): $(python_install_marker)
-	$(hide) (cd $(LOCAL_PATH); \
-	    $(host_python_install_dir)/bin/python setup.py install \
+	$(hide) (cd $(robotframework_LOCAL_PATH); \
+	    $(host_python_install_dir)/bin/python setup.py build \
 	        --build-base=$(robotframework_intermediates)/build \
-		--prefix=$(robotframework_intermediates))
+		install --prefix=$(robotframework_intermediates))
 
 LOCAL_MODULE_SUBDIR :=
